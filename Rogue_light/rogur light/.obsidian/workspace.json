@@ -1,0 +1,195 @@
+{
+  "main": {
+    "id": "e3c878d4c492c383",
+    "type": "split",
+    "children": [
+      {
+        "id": "91c09e7d8b9cdc38",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f54fe474c51b7542",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Наброски.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "6462ae950aafe460",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a87826dc263686e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Игровой персонаж.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5eda68caab435b11",
+    "type": "split",
+    "children": [
+      {
+        "id": "b00697e1a82650ac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fb780d4642e978fb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "580b2f799c17c773",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "862d561445634488",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "6486b407bd589af4",
+    "type": "split",
+    "children": [
+      {
+        "id": "9e9563b7ea90667a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "06d88ab70af795bc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Игровой персонаж.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9a73b9ecd06efa3b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Игровой персонаж.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8e798f83bdfe6130",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "900c797b27157318",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Игровой персонаж.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false
+    }
+  },
+  "active": "a87826dc263686e5",
+  "lastOpenFiles": [
+    "Генерация выстрела.md",
+    "Игровой персонаж.md",
+    "Получение урона.md",
+    "Дроп.md",
+    "Подбор Дропа.md",
+    "Генерации.md",
+    "Первичная генерации.md",
+    "Справочник характеристик.md",
+    "Характеристики ГГ.md",
+    "Наброски.md",
+    "Список всех ТРок.md",
+    "Фотошки",
+    "Фотошки/photo_2024-12-25_15-20-38.jpg",
+    "Фотошки/photo_2024-12-25_15-20-39.jpg",
+    "Фотошки/photo_2024-12-25_15-20-31.jpg",
+    "Фотошки/photo_2024-12-25_15-20-36.jpg",
+    "Все Меню.md",
+    "Файлы.md",
+    "Прокачка.md",
+    "Главное меню.md",
+    "Таймер.md",
+    "Кривая сложности.md",
+    "Враги.md",
+    "Слои.md",
+    "Игровое поле.md"
+  ]
+}
