@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Unity_Projects\\Rouge Light\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|e:\\unity_projects\\rouge light\\assets\\moveplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|solutionrelative:assets\\moveplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|e:\\unity_projects\\rouge light\\assets\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|solutionrelative:assets\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Unity_Projects\\Rouge Light\\Assets\\move_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\move_player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|E:\\Unity_Projects\\Rouge Light\\assets\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3FBF0BB6-A9F8-537D-F9C1-1C19A095C3BA}|Assembly-CSharp.csproj|solutionrelative:assets\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "movePlayer.cs",
-              "DocumentMoniker": "E:\\Unity_Projects\\Rouge Light\\Assets\\movePlayer.cs",
-              "RelativeDocumentMoniker": "Assets\\movePlayer.cs",
-              "ToolTip": "E:\\Unity_Projects\\Rouge Light\\Assets\\movePlayer.cs",
-              "RelativeToolTip": "Assets\\movePlayer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "E:\\Unity_Projects\\Rouge Light\\Assets\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Player.cs",
+              "ToolTip": "E:\\Unity_Projects\\Rouge Light\\Assets\\Player.cs",
+              "RelativeToolTip": "Assets\\Player.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAABoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T22:17:46.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-02T19:23:13.292Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "move_player.cs",
-              "DocumentMoniker": "E:\\Unity_Projects\\Rouge Light\\Assets\\move_player.cs",
-              "RelativeDocumentMoniker": "Assets\\move_player.cs",
-              "ToolTip": "E:\\Unity_Projects\\Rouge Light\\Assets\\move_player.cs",
-              "RelativeToolTip": "Assets\\move_player.cs",
+              "DocumentIndex": 0,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "E:\\Unity_Projects\\Rouge Light\\Assets\\Bullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Bullet.cs",
+              "ToolTip": "E:\\Unity_Projects\\Rouge Light\\Assets\\Bullet.cs",
+              "RelativeToolTip": "Assets\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T22:15:55.123Z"
+              "WhenOpened": "2025-01-02T18:16:39.492Z",
+              "EditorCaption": ""
             }
           ]
         }
