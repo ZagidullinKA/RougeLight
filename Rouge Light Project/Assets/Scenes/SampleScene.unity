@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 900538706}
   m_Layer: 0
   m_Name: FirePoint
-  m_TagString: Untagged
+  m_TagString: PlayerFirePoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,6 +837,7 @@ GameObject:
   - component: {fileID: 2049923071}
   - component: {fileID: 2049923070}
   - component: {fileID: 2049923069}
+  - component: {fileID: 2049923072}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -904,6 +905,24 @@ Transform:
   - {fileID: 900538706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049923072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049923068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395c7e5be2100a847b8f428c5ce7abb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
+  rb: {fileID: 0}
+  baseDmg: 1
+  whoIsShooter: 
+  shooter: {fileID: 0}
+  bulletSpawn: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

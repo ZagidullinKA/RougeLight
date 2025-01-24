@@ -23,10 +23,10 @@ public class Player : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        /*if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(Bullet, firePoint.position, firePoint.rotation);
-        }
+        }*/
 
         RotateTowardsMouse();
     }
