@@ -61,9 +61,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Dictionary\CharactersDictionary.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\TypeOfDots.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\DotsDictionary.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\ItemDot.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\ItemImprovableCharactes.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\ItemCharacter.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -545,6 +552,26 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Apple.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.Apple.Extensions.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
