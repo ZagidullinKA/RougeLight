@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-public class Shoooting : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
@@ -12,6 +12,10 @@ public class Shoooting : MonoBehaviour
 
     public string whoIsShooter;
 
+    public float coolDown = 0.5f;
+
+    private float nextFireTime;
+
     [SerializeField] private GameObject shooter;
     [SerializeField] private GameObject bulletSpawn;
 
@@ -19,9 +23,9 @@ public class Shoooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
-    void Update()
+    public void Shot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.time >= nextFireTime)
         {
             bulletSpawn = GameObject.FindGameObjectWithTag("PlayerFirePoint");
             Vector2 firePoint = bulletSpawn.transform.position;
@@ -39,9 +43,12 @@ public class Shoooting : MonoBehaviour
             bulletScript.aimCoords = aimCoords;
             bulletScript.baseDmg = baseDmg;
             bulletScript.dotsArray = dotsArray;
+
+            // Логика выстрела
+            Debug.Log("Выстрел!");
+            nextFireTime = Time.time + coolDown; // Устанавливаем время следующего выстрела
         }
     }
-
     //Присваивание пуле тега в соответствии с тегом стреляющего
     void BulletTag(GameObject bullet, string whoIsShooter)
     {

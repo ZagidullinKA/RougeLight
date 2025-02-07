@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -9,26 +8,41 @@ public class Player : MonoBehaviour
     private Vector2 moveVector;
     public GameObject Bullet;
     public Transform firePoint;
+    public Shooting shooting;
 
+    private bool isShooting = false;
+    //private InputAction shootAction;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        shooting = GetComponent<Shooting>();
+
+       // var inputActions = new PlayerInputActions();
+       // shootAction = inputActions.Player.Shoot;
+       // shootAction.Enable();
     }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            isShooting = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
+
         rb.MovePosition(rb.position + moveVector * speed * Time.deltaTime);
-
-        
-
-        /*if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Instantiate(Bullet, firePoint.position, firePoint.rotation);
-        }*/
-
         RotateTowardsMouse();
+
+        if (isShooting)
+        {
+            shooting.Shot();
+            isShooting = false;
+        }
     }
 
     void RotateTowardsMouse()
