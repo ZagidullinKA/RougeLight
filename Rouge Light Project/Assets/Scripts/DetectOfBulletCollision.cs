@@ -19,9 +19,23 @@ public class DetectOfBulletCollision : MonoBehaviour
         string otherTag = otherObject.tag;
         if (TagChecking(otherTag))
         {
-            //Debug.Log("Наносим урон");
-            bullet.DamageDealing();
-            bullet.DestroyBullet();
+            Debug.Log("Проверка тегов пройдена");
+            TestUnit testunit = otherObject.GetComponent<TestUnit>();
+            if (testunit != null)
+            {
+                if (!testunit.TryDodge())
+                {
+                    // Вызываем метод TakeDamage и передаем урон
+                    testunit.TakeDamage(bullet.DamageDealing());
+                    bullet.DestroyBullet();
+                }
+                else Debug.Log("Уворот");
+            }
+            else
+            {
+                Debug.LogWarning("Компонент Enemy не найден на объекте: " + otherObject.name);
+            }
+
         }
     }
 

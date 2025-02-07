@@ -62,9 +62,10 @@ public class Bullet : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void DamageDealing()
+    public int DamageDealing()
     {
         Debug.Log("Наносим урон");
         // Туть вызов сеттера урона персонажа
+        return damage;
     }
 }
