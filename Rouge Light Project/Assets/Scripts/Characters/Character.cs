@@ -4,21 +4,21 @@ using UnityEngine;
 public class Character : MonoBehaviour, IDamageable, IHealable
 {
     // Основные характеристики
-    public int maxHP = 100;
-    public int dmg = 10;
-    public float atkSpeed = 1.0f;
-    public float moveSpeed = 5.0f;
-    public int luck = 5;
-    public float critChance = 0.1f;
-    public float evadeChance = 0.05f;
-    public int armor = 0;
-    public float debuffResist = 0.0f;
-    public float vampire = 0.0f;
-    public int hpFromDropRestore = 5;
-    public float dropRadius = 2.0f;
+    public int? maxHP;
+    public int? dmg;
+    public float? atkSpeed;
+    public float? moveSpeed;
+    public int? luck;
+    public float? critChance;
+    public float? evadeChance;
+    public int? armor;
+    public float? debuffResist;
+    public float? vampire;
+    public int? hpFromDropRestore;
+    public float? dropRadius;
 
     // Текущее здоровье
-    public int actualHP;
+    public int? actualHP;
 
     // Флаг, определяющий, является ли объект врагом
     public bool isEnemy = false;
@@ -33,9 +33,9 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     }
 
     // Реализация IDamageable
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int? damage)
     {
-        int damageAfterArmor = damage - armor;
+        int? damageAfterArmor = damage - armor;
         if (damageAfterArmor < 0) damageAfterArmor = 0;
 
         actualHP -= damageAfterArmor;
@@ -63,7 +63,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     }
 
     // Реализация IHealable
-    public virtual void Heal(int amount)
+    public virtual void Heal(int? amount)
     {
         actualHP += amount;
         if (actualHP > maxHP)

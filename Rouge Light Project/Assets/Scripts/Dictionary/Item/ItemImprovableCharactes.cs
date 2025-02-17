@@ -2,15 +2,25 @@
 
 public class ItemImprovableCharactes
 {
-    private string code { get; set; }
-    private string nameRu { get; set; }
-    private int type { get; set; }
-    private int? upgradeAmount { get; set; }
-    private int? finalValue { get; set; }
-    private int? dmgUpgradeAmount { get; set; }
-    private int? durationUpgradeAmount { get; set; }
-    private int? finalDotDmg { get; set; }
-    private int? finalDotDur { get; set; }
+    private string code;
+    private string nameRu;
+    private int type;
+    private int? upgradeAmount;
+    private int? finalValue;
+    private int? dmgUpgradeAmount;
+    private int? durationUpgradeAmount;
+    private int? finalDotDmg;
+    private int? finalDotDur;   
+
+    public string Code => code;
+    public string Name => nameRu;       
+    public int Type => type;
+    public int? UpgradeAmount => upgradeAmount;
+    public int? FinalValue => finalValue;
+    public int? DmgUpgradeAmount => dmgUpgradeAmount;  
+    public int? DurationUpgradeAmount => durationUpgradeAmount;
+    public int? FinalDotDmg => finalDotDmg;
+    public int? FinalDotDur => finalDotDur;
 
     public ItemImprovableCharactes(string code, string nameRu, int type, 
         int? upgradeAmount, int? finalValue, int? dmgUpgradeAmount, 
