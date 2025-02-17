@@ -1,11 +1,10 @@
 
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public static class ImprovableCharactesDictionary
 {
-    public static readonly List<ItemImprovableCharactes> ItemsImprovableCharactes = new();
+    private static readonly List<ItemImprovableCharactes> ItemsImprovableCharactes = new();
 
 
     public static List<ItemImprovableCharactes> getListItemImprovableCharactes()
@@ -13,7 +12,7 @@ public static class ImprovableCharactesDictionary
         if (ItemsImprovableCharactes.Count != 0)
             ItemsImprovableCharactes.Clear();
 
-        foreach (var itemCharacter in DictionaryCharacters.itemCharacters)
+        foreach (var itemCharacter in DictionaryCharacters.GetAllCharacteristics())
         {
             if (itemCharacter.Upgradable == true) {
                 ItemImprovableCharactes item = new(
@@ -31,7 +30,7 @@ public static class ImprovableCharactesDictionary
             }
         }
 
-        foreach (var itemDot in DotsDictionary.ITEM_DOTS)
+        foreach (var itemDot in DotsDictionary.GetAllDots())
         {
             if (itemDot.Upgradable == true)
             {
@@ -50,6 +49,17 @@ public static class ImprovableCharactesDictionary
             }
         }
 
+        return ItemsImprovableCharactes;
+    }
+
+    public static ItemImprovableCharactes GetImprovableCharacteristic(string code)
+    {
+        return ItemsImprovableCharactes.Find(x => x.Code == code);
+    }
+
+    public static List<ItemImprovableCharactes> GetAllImprovableCharacteristics()
+    {
+        getListItemImprovableCharactes();
         return ItemsImprovableCharactes;
     }
 }
