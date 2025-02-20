@@ -55,6 +55,7 @@ public class Bullet : MonoBehaviour
     {
         damage = (int)Math.Round(baseDmg*CritChance(critDamageProbability));
         return damage;
+        // хуяк=хуяк и в коммит
     }
    
     public void DestroyBullet()
