@@ -20,7 +20,7 @@ public static class ImprovableCharactesDictionary
                     itemCharacter.NameRu,
                     1,
                     0,
-                    itemCharacter.BaseAmount * itemCharacter.UpgradeX,
+                    itemCharacter.BaseAmount,
                     null,
                     null,
                     null,

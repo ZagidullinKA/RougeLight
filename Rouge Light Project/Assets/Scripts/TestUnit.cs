@@ -1,4 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
+using Mono.Cecil.Cil;
+using NUnit.Framework;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class TestUnit : MonoBehaviour
 {
@@ -16,6 +21,15 @@ public class TestUnit : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    public void TakeDots(List<DotEffect> usableDotsArray)
+    {
+        if (usableDotsArray.Count > 0) { Debug.Log("Там чет есть"); } else { Debug.LogError("Тут ничего нет!"); }
+        foreach (var item in usableDotsArray)
+        {
+            Debug.Log(item.code);
         }
     }
 

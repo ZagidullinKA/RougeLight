@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class DetectOfBulletCollision : MonoBehaviour
@@ -23,17 +24,18 @@ public class DetectOfBulletCollision : MonoBehaviour
             TestUnit testunit = otherObject.GetComponent<TestUnit>();
             if (testunit != null)
             {
-                if (!testunit.TryDodge())
+                if (testunit.TryDodge())
                 {
                     // Вызываем метод TakeDamage и передаем урон
                     testunit.TakeDamage(bullet.DamageDealing());
+                    testunit.TakeDots(bullet.usableDotsArray);
                     bullet.DestroyBullet();
                 }
                 else Debug.Log("Уворот");
             }
             else
             {
-                Debug.LogWarning("Компонент Enemy не найден на объекте: " + otherObject.name);
+                Debug.LogWarning("Скрипт не найден на объекте: " + otherObject.name);
             }
 
         }

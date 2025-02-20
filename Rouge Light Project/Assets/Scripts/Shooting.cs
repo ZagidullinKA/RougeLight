@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 using Vector2 = UnityEngine.Vector2;
 
 public class Shooting : MonoBehaviour
@@ -7,12 +9,8 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
 
-    public int baseDmg = 1;
     public Array dotsArray;
-
     public string whoIsShooter;
-
-    public float coolDown = 0.5f;
 
     private float nextFireTime;
 
@@ -23,8 +21,10 @@ public class Shooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
-    public void Shot()
+    public void Shot(int baseDmg, float attackSpeed, List<DotEffect> usableDotsArray)
     {
+        float coolDown = 1 / attackSpeed;
+       
         if (Time.time >= nextFireTime)
         {
             bulletSpawn = GameObject.FindGameObjectWithTag("PlayerFirePoint");
@@ -42,7 +42,7 @@ public class Shooting : MonoBehaviour
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.aimCoords = aimCoords;
             bulletScript.baseDmg = baseDmg;
-            bulletScript.dotsArray = dotsArray;
+            bulletScript.usableDotsArray = usableDotsArray;
 
             // Логика выстрела
             Debug.Log("Выстрел!");
