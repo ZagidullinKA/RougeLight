@@ -3,6 +3,7 @@ using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Bullet : MonoBehaviour
     public float speed = 3f;
     private Rigidbody2D rb;
 
-    public int baseDmg = 1;
-    public Array dotsArray;
+    public int baseDmg;
+    public List<DotEffect> usableDotsArray;
     public int damage;
     public Vector2 aimCoords;
 
@@ -26,10 +27,12 @@ public class Bullet : MonoBehaviour
 
         DamageCalc();
 
-        BulletGeneration(aimCoords, baseDmg, dotsArray);
+        Debug.Log("Base Dmg = " + baseDmg);
+
+        BulletGeneration(aimCoords, baseDmg, usableDotsArray);
     }
 
-    public void BulletGeneration(Vector2 aimCoords, int baseDmg, Array dotsArray)
+    public void BulletGeneration(Vector2 aimCoords, int baseDmg, List<DotEffect> usableDotsArray)
     {
         float rotate = Mathf.Atan2(aimCoords.y, aimCoords.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, rotate);

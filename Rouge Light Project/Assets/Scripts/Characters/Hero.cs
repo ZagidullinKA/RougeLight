@@ -16,6 +16,11 @@ public class Hero : Character, IAttacker, IMovable
 
     protected override void Start()
     {
+        // Заглушка ебаная
+        usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
+        // Конец заглушки ебаной
+
+        Debug.Log(usableDotsArray[0].code);
         base.Start();
         isEnemy = false; // Герой не является врагом
         InitializeCharacteristics();
@@ -48,7 +53,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         if (isShooting)
         {
-            shooting.Shot((int) dmg, (float) atkSpeed);
+            shooting.Shot((int) dmg, (float) atkSpeed, usableDotsArray);
             isShooting = false;
         }
     }

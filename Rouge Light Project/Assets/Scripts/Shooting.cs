@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+
 using Vector2 = UnityEngine.Vector2;
 
 public class Shooting : MonoBehaviour
@@ -19,9 +21,9 @@ public class Shooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
-    public void Shot(int baseDmg, float coolDown)
+    public void Shot(int baseDmg, float attackSpeed, List<DotEffect> usableDotsArray)
     {
-        coolDown = 1 / coolDown;
+        float coolDown = 1 / attackSpeed;
        
         if (Time.time >= nextFireTime)
         {
@@ -40,7 +42,7 @@ public class Shooting : MonoBehaviour
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.aimCoords = aimCoords;
             bulletScript.baseDmg = baseDmg;
-            bulletScript.dotsArray = dotsArray;
+            bulletScript.usableDotsArray = usableDotsArray;
 
             // Логика выстрела
             Debug.Log("Выстрел!");
