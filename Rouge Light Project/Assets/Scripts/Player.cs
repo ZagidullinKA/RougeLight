@@ -16,10 +16,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
-
-       // var inputActions = new PlayerInputActions();
-       // shootAction = inputActions.Player.Shoot;
-       // shootAction.Enable();
     }
 
     void Update()
@@ -40,7 +36,7 @@ public class Player : MonoBehaviour
 
         if (isShooting)
         {
-            shooting.Shot();
+            shooting.Shot(1, 0.5f);
             isShooting = false;
         }
     }

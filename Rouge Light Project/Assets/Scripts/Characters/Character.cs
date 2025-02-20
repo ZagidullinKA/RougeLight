@@ -7,7 +7,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     public int? maxHP;
     public int? dmg;
     public float? atkSpeed;
-    public float? moveSpeed;
+    public float moveSpeed;
     public int? luck;
     public float? critChance;
     public float? evadeChance;

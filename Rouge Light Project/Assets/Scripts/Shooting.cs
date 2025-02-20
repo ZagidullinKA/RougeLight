@@ -7,12 +7,8 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
 
-    public int baseDmg = 1;
     public Array dotsArray;
-
     public string whoIsShooter;
-
-    public float coolDown = 0.5f;
 
     private float nextFireTime;
 
@@ -23,8 +19,10 @@ public class Shooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
-    public void Shot()
+    public void Shot(int baseDmg, float coolDown)
     {
+        coolDown = 1 / coolDown;
+       
         if (Time.time >= nextFireTime)
         {
             bulletSpawn = GameObject.FindGameObjectWithTag("PlayerFirePoint");

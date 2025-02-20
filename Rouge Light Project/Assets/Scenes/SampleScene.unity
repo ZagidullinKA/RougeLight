@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 2049923070}
   - component: {fileID: 2049923069}
   - component: {fileID: 2049923072}
+  - component: {fileID: 2049923073}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1043,7 +1044,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049923068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 154de63445f20c04b8a0689fbde14a80, type: 3}
   m_Name: 
@@ -1052,6 +1053,7 @@ MonoBehaviour:
   speed: 20
   Bullet: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
   firePoint: {fileID: 900538706}
+  shooting: {fileID: 0}
 --- !u!50 &2049923070
 Rigidbody2D:
   serializedVersion: 5
@@ -1110,10 +1112,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
   rb: {fileID: 0}
-  baseDmg: 1
   whoIsShooter: 
   shooter: {fileID: 0}
   bulletSpawn: {fileID: 0}
+--- !u!114 &2049923073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049923068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ca039f4e63b4646872412a70aa72f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  isEnemy: 0
+  recievedDots: []
+  rb: {fileID: 2049923070}
+  shooting: {fileID: 2049923072}
+  firePoint: {fileID: 900538706}
+  Bullet: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DetectOfBulletCollision.cs" />
     <Compile Include="Assets\Scripts\Dictionary\CharactersDictionary.cs" />
+    <Compile Include="Assets\Scripts\TestUnit.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
     <Compile Include="Assets\Scripts\Dictionary\TypeOfDots.cs" />

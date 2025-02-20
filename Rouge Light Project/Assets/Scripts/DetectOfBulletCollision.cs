@@ -23,7 +23,7 @@ public class DetectOfBulletCollision : MonoBehaviour
             TestUnit testunit = otherObject.GetComponent<TestUnit>();
             if (testunit != null)
             {
-                if (!testunit.TryDodge())
+                if (testunit.TryDodge())
                 {
                     // Вызываем метод TakeDamage и передаем урон
                     testunit.TakeDamage(bullet.DamageDealing());
