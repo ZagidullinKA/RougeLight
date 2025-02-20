@@ -7,7 +7,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     public int? maxHP;
     public int? dmg;
     public float? atkSpeed;
-    public float? moveSpeed;
+    public float moveSpeed;
     public int? luck;
     public float? critChance;
     public float? evadeChance;
@@ -25,6 +25,9 @@ public class Character : MonoBehaviour, IDamageable, IHealable
 
     // Массив для хранения полученных ДОТов (Damage Over Time)
     public List<DotEffect> recievedDots = new List<DotEffect>();
+
+    // Массив для хранения наносимых снарядом ДОТов (Damage Over Time)
+    public List<DotEffect> usableDotsArray = new List<DotEffect>();
 
     // Инициализация
     protected virtual void Start()

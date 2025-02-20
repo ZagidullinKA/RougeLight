@@ -5,7 +5,7 @@ public class DictionaryCharacters
     private static readonly List<ItemCharacter> itemCharacters = new()
     {
         new ItemCharacter("maxHP", "максимальное ХП", true, 10, 1, 1) ,
-        new ItemCharacter("dmg", "дамаг", true, 1, 1, 2),
+        new ItemCharacter("dmg", "дамаг", true, 1, 5, 2),
         new ItemCharacter("atkSpeed", "Скорость атаки", true, 10, 5, 3),
         new ItemCharacter("moveSpeed", "Скорость передвижения", true, 10, 5, 4),
         new ItemCharacter("luck", "Удача", false, 2, 1, 5),
