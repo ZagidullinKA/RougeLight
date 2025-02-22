@@ -1,10 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using log4net;
-using Mono.Cecil.Cil;
-using NUnit.Framework;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class TestUnit : MonoBehaviour
 {
@@ -30,7 +26,6 @@ public class TestUnit : MonoBehaviour
 
     public void TakeDots(List<DotEffect> usableDotsArray)
     {
-        if (usableDotsArray.Count > 0) { log.Debug("Там чет есть"); } else { log.Error("Тут ничего нет!"); }
         foreach (var item in usableDotsArray)
         {
             log.Debug(item.code);

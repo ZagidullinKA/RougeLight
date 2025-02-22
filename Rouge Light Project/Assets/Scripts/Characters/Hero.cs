@@ -57,7 +57,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         if (isShooting)
         {
-            shooting.Shot(dmg, atkSpeed, usableDotsArray);
+            shooting.Shot(dmg, critChance, atkSpeed, bulletFlySpeed, bulletTimeAlive, usableDotsArray);
             isShooting = false;
         }
     }
@@ -138,11 +138,11 @@ public class Hero : Character, IAttacker, IMovable
             case "dropRadius":
                 dropRadius = (int)value;
                 break;
-            case "bulletflySpeed":
-                dropRadius = (int)value;
+            case "bulletFlySpeed":
+                bulletFlySpeed = (int)value;
                 break;
             case "bulletTimeAlive":
-                dropRadius = (int)value;
+                bulletTimeAlive = (int)value;
                 break;
             default:
                 log.Warn($"Неизвестная характеристика: {code}");

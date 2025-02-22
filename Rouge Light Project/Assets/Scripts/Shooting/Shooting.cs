@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 using Vector2 = UnityEngine.Vector2;
 using log4net;
@@ -18,6 +19,8 @@ public class Shooting : MonoBehaviour
 
     private float nextFireTime;
 
+    private float critDamageMultiplier = 2;
+
     [SerializeField] private GameObject shooter;
     [SerializeField] private GameObject bulletSpawn;
 
@@ -25,9 +28,15 @@ public class Shooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
-    public void Shot(int baseDmg, float attackSpeed, List<DotEffect> usableDotsArray)
+    public void Shot(int baseDmg, 
+        int critChance, 
+        int attackSpeed, 
+        int bulletFlySpeed, 
+        int bulletTimeAlive, 
+        List<DotEffect> usableDotsArray)
     {
-        float coolDown = 1 / attackSpeed;
+        float coolDown = 1 / (float) attackSpeed; // устанавливаем задержку стрельбы
+        log.Debug("Кулдаун " + coolDown);
        
         if (Time.time >= nextFireTime)
         {
@@ -44,15 +53,39 @@ public class Shooting : MonoBehaviour
             BulletTag(bullet, whoIsShooter);
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.aimCoords = aimCoords;
-            bulletScript.baseDmg = baseDmg;
-            bulletScript.usableDotsArray = usableDotsArray;
 
-            // Логика выстрела
-            log.Debug("Выстрел!");
+            // Передаем пуле характеристики
+            bulletScript.SetAimCoords(aimCoords);
+            bulletScript.SetUsableDotsArray(usableDotsArray);
+            bulletScript.SetDamage(DamageCalc(baseDmg, critChance));
+            bulletScript.SetBulletFlySpeed(bulletFlySpeed);
+            bulletScript.SetBulletTimeAlive(bulletTimeAlive);
+
             nextFireTime = Time.time + coolDown; // Устанавливаем время следующего выстрела
+            log.Debug("nexyFireTime " +  nextFireTime + " Time.time " + Time.time);
         }
     }
+
+    float CritChance(float critChance)
+    {
+        float diceRoll = Random.Range(0, 1);
+        if (diceRoll > critChance)
+        {
+            return critDamageMultiplier; // Если крит сработал - возвращаем множитель крита
+        }
+        else
+        {
+            return 1; // Если крит не сработал - возвращаем множитель 1
+        }
+    }
+
+    int DamageCalc(int BaseDmg, float critChance)
+    {
+        return (int)Math.Round(BaseDmg * CritChance(critChance));
+        
+        // хуяк=хуяк и в коммит
+    }
+
     //Присваивание пуле тега в соответствии с тегом стреляющего
     void BulletTag(GameObject bullet, string whoIsShooter)
     {
