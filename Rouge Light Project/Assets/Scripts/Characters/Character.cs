@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Character : MonoBehaviour, IDamageable, IHealable
 {
+   
     // Основные характеристики
     public int? maxHP;
     public int? dmg;

@@ -4,9 +4,13 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
+using log4net;
 
 public class Bullet : MonoBehaviour
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Bullet));
+
     public float timeDestroy = 3f;
     public float speed = 3f;
     private Rigidbody2D rb;
@@ -27,7 +31,7 @@ public class Bullet : MonoBehaviour
 
         DamageCalc();
 
-        Debug.Log("Base Dmg = " + baseDmg);
+        log.Debug("Base Dmg = " + baseDmg);
 
         BulletGeneration(aimCoords, baseDmg, usableDotsArray);
     }
@@ -67,7 +71,7 @@ public class Bullet : MonoBehaviour
 
     public int DamageDealing()
     {
-        Debug.Log("Наносим урон");
+        log.Debug("Наносим урон");
         // Туть вызов сеттера урона персонажа
         return damage;
     }
