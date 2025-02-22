@@ -3,9 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 
 using Vector2 = UnityEngine.Vector2;
+using log4net;
 
 public class Shooting : MonoBehaviour
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Shooting));
+
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
 
@@ -45,7 +49,7 @@ public class Shooting : MonoBehaviour
             bulletScript.usableDotsArray = usableDotsArray;
 
             // Логика выстрела
-            Debug.Log("Выстрел!");
+            log.Debug("Выстрел!");
             nextFireTime = Time.time + coolDown; // Устанавливаем время следующего выстрела
         }
     }

@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
+using log4net;
 
 public class Hero : Character, IAttacker, IMovable
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Hero));
+
     public Rigidbody2D rb;
     public Shooting shooting;
     public Transform firePoint;
@@ -20,7 +24,7 @@ public class Hero : Character, IAttacker, IMovable
         usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
         // Конец заглушки ебаной
 
-        Debug.Log(usableDotsArray[0].code);
+        log.Debug(usableDotsArray[0].code);
         base.Start();
         isEnemy = false; // Герой не является врагом
         InitializeCharacteristics();
@@ -74,7 +78,7 @@ public class Hero : Character, IAttacker, IMovable
         // Используем справочник всех характеристик
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
         {
-            Debug.Log("foreachCharacteristic :" + item.Code);
+            log.Debug("foreachCharacteristic :" + item.Code);
             if (item.Upgradable)
             {
                 // Получаем улучшаемые характеристики из справочника улучшаемых характеристик
@@ -95,7 +99,7 @@ public class Hero : Character, IAttacker, IMovable
     // Установка значения характеристики
     private void SetCharacteristic(string code, int? value)
     {
-        Debug.Log("SetCharacteristic :" + code + " - " + value);
+        log.Debug("SetCharacteristic :" + code + " - " + value);
         switch (code)
         {
             case "maxHP":
@@ -135,7 +139,7 @@ public class Hero : Character, IAttacker, IMovable
                 dropRadius = (int)value;
                 break;
             default:
-                Debug.LogWarning($"Неизвестная характеристика: {code}");
+                log.Warn($"Неизвестная характеристика: {code}");
                 break;
         }
     }

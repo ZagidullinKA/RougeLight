@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Logging\UnityDebugAppender.cs" />
     <Compile Include="Assets\Scripts\DetectOfBulletCollision.cs" />
     <Compile Include="Assets\Scripts\Dictionary\CharactersDictionary.cs" />
     <Compile Include="Assets\Scripts\TestUnit.cs" />
@@ -77,10 +78,40 @@
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemCharacter.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemImprovableCharactes.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemDot.cs" />
+    <Compile Include="Assets\Scripts\Logging\Logger.cs" />
     <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\Characters\Hero.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Packages\log4net.3.0.4\lib\netstandard2.0\log4net.dll" />
+    <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\lib\netstandard2.0\System.Security.Principal.Windows.dll" />
+    <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\version.txt" />
+    <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\lib\netstandard2.0\System.Security.AccessControl.dll" />
+    <None Include="Assets\Packages\System.Security.Permissions.4.5.0\version.txt" />
+    <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\version.txt" />
+    <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\Packages\System.Security.Permissions.4.5.0\lib\netstandard2.0\System.Security.Permissions.dll" />
+    <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\Packages\System.Security.Permissions.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\version.txt" />
+    <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\version.txt" />
+    <None Include="Assets\Packages\System.Security.Permissions.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\Packages\System.Security.Permissions.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\log4net.3.0.4\lib\netstandard2.0\log4net.xml" />
+    <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\useSharedDesignerContext.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -547,6 +578,10 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>Assets\Packages\log4net.3.0.4\lib\netstandard2.0\log4net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -555,12 +590,52 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Security.Principal.Windows">
+      <HintPath>Assets\Packages\System.Security.Principal.Windows.4.5.0\lib\netstandard2.0\System.Security.Principal.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.AccessControl">
+      <HintPath>Assets\Packages\System.Security.AccessControl.4.5.0\lib\netstandard2.0\System.Security.AccessControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions">
+      <HintPath>Assets\Packages\System.Security.Permissions.4.5.0\lib\netstandard2.0\System.Security.Permissions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData">
+      <HintPath>Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Apple.Extensions.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.Apple.Extensions.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1131,12 +1206,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Multiplayer.Center.Editor">
@@ -1233,6 +1308,10 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuGetForUnity">
+      <HintPath>Library\ScriptAssemblies\NuGetForUnity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras">

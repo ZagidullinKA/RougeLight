@@ -1,8 +1,12 @@
+using log4net;
 using System.Linq;
 using UnityEngine;
 
 public class DetectOfBulletCollision : MonoBehaviour
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(DetectOfBulletCollision));
+
     private string bulletTag;
     //public GameObject bullet;
 
@@ -11,16 +15,16 @@ public class DetectOfBulletCollision : MonoBehaviour
     {
         bulletTag = gameObject.tag;
         bullet = gameObject.GetComponent<Bullet>();
-        Debug.Log(bullet.name);
+        log.Debug(bullet.name);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Есть контакт!");
+        log.Debug("Есть контакт!");
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
         if (TagChecking(otherTag))
         {
-            Debug.Log("Проверка тегов пройдена");
+            log.Debug("Проверка тегов пройдена");
             TestUnit testunit = otherObject.GetComponent<TestUnit>();
             if (testunit != null)
             {
@@ -31,11 +35,11 @@ public class DetectOfBulletCollision : MonoBehaviour
                     testunit.TakeDots(bullet.usableDotsArray);
                     bullet.DestroyBullet();
                 }
-                else Debug.Log("Уворот");
+                else log.Debug("Уворот");
             }
             else
             {
-                Debug.LogWarning("Скрипт не найден на объекте: " + otherObject.name);
+                log.Warn("Скрипт не найден на объекте: " + otherObject.name);
             }
 
         }

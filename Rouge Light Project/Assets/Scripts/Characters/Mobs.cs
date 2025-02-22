@@ -1,7 +1,11 @@
+using log4net;
 using UnityEngine;
 
 public class Mobs : Character, IAttacker, IMovable
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
+
     protected override void Start()
     {
         base.Start();
@@ -12,13 +16,13 @@ public class Mobs : Character, IAttacker, IMovable
     // Реализация IAttacker
     public void Shoot()
     {
-        Debug.Log("Моб стреляет с пониженной точностью!");
+        log.Debug("Моб стреляет с пониженной точностью!");
     }
 
     // Реализация IMovable
     public void Move()
     {
-        Debug.Log("Моб движется со скоростью " + moveSpeed);
+        log.Debug("Моб движется со скоростью " + moveSpeed);
     }
 
     /*
