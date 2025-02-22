@@ -1,9 +1,13 @@
 
+using log4net;
 using System;
 using System.Collections.Generic;
 
 public static class ImprovableCharactesDictionary
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Hero));
+
     private static readonly List<ItemImprovableCharactes> ItemsImprovableCharactes = new();
 
 
@@ -15,10 +19,20 @@ public static class ImprovableCharactesDictionary
         foreach (var itemCharacter in DictionaryCharacters.GetAllCharacteristics())
         {
             if (itemCharacter.Upgradable == true) {
+                
+                ValidationValue.ValidateStringNotNullOrEmpty(
+                    (itemCharacter.Code, nameof(itemCharacter.Code)),
+                    (itemCharacter.NameRu, nameof(itemCharacter.NameRu))
+                    );
+
+                ValidationValue.ValidateIntNotNull(
+                     (itemCharacter.BaseAmount, nameof(itemCharacter.BaseAmount))
+                     );
+
                 ItemImprovableCharactes item = new(
                     itemCharacter.Code,
                     itemCharacter.NameRu,
-                    1,
+                    true,
                     0,
                     itemCharacter.BaseAmount,
                     null,
@@ -34,10 +48,20 @@ public static class ImprovableCharactesDictionary
         {
             if (itemDot.Upgradable == true)
             {
+                ValidationValue.ValidateStringNotNullOrEmpty(
+                    (itemDot.Code, nameof(itemDot.Code)),
+                    (itemDot.NameRu, nameof(itemDot.NameRu))
+                    );
+
+                ValidationValue.ValidateIntNotNull(
+                     (itemDot.BaseDotDmg, nameof(itemDot.BaseDotDmg)),
+                     (itemDot.BaseDotDuration, nameof(itemDot.BaseDotDuration))
+                     );
+
                 ItemImprovableCharactes item = new(
                     itemDot.Code,
                     itemDot.NameRu,
-                    0,
+                    false,
                     null,
                     null,
                     0,

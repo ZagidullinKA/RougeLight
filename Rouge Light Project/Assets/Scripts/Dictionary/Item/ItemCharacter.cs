@@ -7,6 +7,7 @@ public class ItemCharacter
     private int upgradeX;
     private int baseAmount;
     private int price;
+    private bool isEnemyAvaliable;
 
     public string Code => code;
     public string NameRu => nameRu;
@@ -14,8 +15,9 @@ public class ItemCharacter
     public int UpgradeX => upgradeX;
     public int BaseAmount => baseAmount;
     public int Price => price;
+    public bool IsEnemyAvaliable => isEnemyAvaliable;
 
-    public ItemCharacter(string code, string nameRu, bool upgradable, int upgradeX, int baseAmount, int price)
+    public ItemCharacter(string code, string nameRu, bool upgradable, int upgradeX, int baseAmount, int price, bool isEnemyAvaliable)
     {
         this.code = code;
         this.nameRu = nameRu;
@@ -23,6 +25,7 @@ public class ItemCharacter
         this.upgradeX = upgradeX;
         this.baseAmount = baseAmount;
         this.price = price;
+        this.isEnemyAvaliable = isEnemyAvaliable;
     }
 
 
