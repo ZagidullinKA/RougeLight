@@ -57,7 +57,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         if (isShooting)
         {
-            shooting.Shot((int) dmg, (float) atkSpeed, usableDotsArray);
+            shooting.Shot(dmg, atkSpeed, usableDotsArray);
             isShooting = false;
         }
     }
@@ -136,6 +136,12 @@ public class Hero : Character, IAttacker, IMovable
                 hpFromDropRestore = (int)value;
                 break;
             case "dropRadius":
+                dropRadius = (int)value;
+                break;
+            case "bulletflySpeed":
+                dropRadius = (int)value;
+                break;
+            case "bulletTimeAlive":
                 dropRadius = (int)value;
                 break;
             default:

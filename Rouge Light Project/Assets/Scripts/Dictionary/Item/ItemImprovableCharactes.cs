@@ -4,7 +4,7 @@ public class ItemImprovableCharactes
 {
     private string code;
     private string nameRu;
-    private int type;
+    private bool type;
     private int? upgradeAmount;
     private int? finalValue;
     private int? dmgUpgradeAmount;
@@ -14,7 +14,7 @@ public class ItemImprovableCharactes
 
     public string Code => code;
     public string Name => nameRu;       
-    public int Type => type;
+    public bool Type => type;
     public int? UpgradeAmount => upgradeAmount;
     public int? FinalValue => finalValue;
     public int? DmgUpgradeAmount => dmgUpgradeAmount;  
@@ -22,7 +22,7 @@ public class ItemImprovableCharactes
     public int? FinalDotDmg => finalDotDmg;
     public int? FinalDotDur => finalDotDur;
 
-    public ItemImprovableCharactes(string code, string nameRu, int type, 
+    public ItemImprovableCharactes(string code, string nameRu, bool type, 
         int? upgradeAmount, int? finalValue, int? dmgUpgradeAmount, 
         int? durationUpgradeAmount, int? finalDotDmg, int? finalDotDur)
     {

@@ -3,47 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Users\\mussh\\Documents\\UnityProjects\\shooting_game\\Assets\\Scripts\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\shooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\detectofbulletcollision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\detectofbulletcollision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\testunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\testunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\characters\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\characters\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\logging\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\logging\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\characters\\mobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\mobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\dictionary\\item\\itemdot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\item\\itemdot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\charactersdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\charactersdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\dictionary\\improvablecharactesdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\improvablecharactesdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Helpers\\UnityDebugAppender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Helpers\\UnityDebugAppender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|c:\\users\\\u043C\u0438\u0445\u0430\u0438\u043B\\documents\\github\\rougelight\\rouge light project\\assets\\scripts\\helpers\\validationvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\helpers\\validationvalue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\item\\itemimprovablecharactes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\item\\itemimprovablecharactes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\item\\itemcharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\item\\itemcharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\charactersdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\charactersdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,63 +51,80 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Player.cs",
-              "DocumentMoniker": "E:\\Users\\mussh\\Documents\\UnityProjects\\shooting_game\\Assets\\Scripts\\Player.cs",
-              "ToolTip": "E:\\Users\\mussh\\Documents\\UnityProjects\\shooting_game\\Assets\\Scripts\\Player.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAaAAAAAAAAAA==",
+              "Title": "Hero.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Hero.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Hero.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Hero.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Characters\\Hero.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:47:03.409Z",
+              "WhenOpened": "2025-02-22T14:02:12.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Shooting.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Shooting.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Shooting.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Shooting.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Shooting.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ItemDot.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemDot.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\Item\\ItemDot.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemDot.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Dictionary\\Item\\ItemDot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:45:20.65Z",
+              "WhenOpened": "2025-02-22T13:54:24.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ValidationValue.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Helpers\\ValidationValue.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Helpers\\ValidationValue.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Helpers\\ValidationValue.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Helpers\\ValidationValue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T13:31:47.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ItemImprovableCharactes.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemImprovableCharactes.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\Item\\ItemImprovableCharactes.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemImprovableCharactes.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Dictionary\\Item\\ItemImprovableCharactes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T13:13:56.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Mobs.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Mobs.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Mobs.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Mobs.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Characters\\Mobs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Title": "ItemCharacter.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemCharacter.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\Item\\ItemCharacter.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\Item\\ItemCharacter.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Dictionary\\Item\\ItemCharacter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:43:31.212Z",
+              "WhenOpened": "2025-02-22T12:54:21.533Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Logger.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Logging\\Logger.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Logging\\Logger.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Logging\\Logger.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Logging\\Logger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ImprovableCharactesDictionary.cs",
+              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\ImprovableCharactesDictionary.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\ImprovableCharactesDictionary.cs",
+              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\ImprovableCharactesDictionary.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Dictionary\\ImprovableCharactesDictionary.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwEEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:39:18.798Z",
+              "WhenOpened": "2025-02-22T12:53:53.716Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UnityDebugAppender.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Helpers\\UnityDebugAppender.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Helpers\\UnityDebugAppender.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Helpers\\UnityDebugAppender.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Helpers\\UnityDebugAppender.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:29:40.779Z"
             },
             {
               "$type": "Document",
@@ -124,74 +134,36 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\CharactersDictionary.cs",
               "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\CharactersDictionary.cs",
               "RelativeToolTip": "Assets\\Scripts\\Dictionary\\CharactersDictionary.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAA1wB0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T21:29:41.927Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Hero.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Hero.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Hero.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Hero.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Characters\\Hero.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T21:12:02.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Character.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Character.cs",
               "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Character.cs",
               "RelativeToolTip": "Assets\\Scripts\\Characters\\Character.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAQwFIAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T20:59:19.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TestUnit.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\TestUnit.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\TestUnit.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\TestUnit.cs",
-              "RelativeToolTip": "Assets\\Scripts\\TestUnit.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T20:34:05.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetectOfBulletCollision.cs",
-              "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\DetectOfBulletCollision.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\DetectOfBulletCollision.cs",
-              "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\DetectOfBulletCollision.cs",
-              "RelativeToolTip": "Assets\\Scripts\\DetectOfBulletCollision.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T21:21:57.422Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 5,
               "Title": "DotsDictionary.cs",
               "DocumentMoniker": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\DotsDictionary.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\DotsDictionary.cs",
               "ToolTip": "C:\\Users\\\u041C\u0438\u0445\u0430\u0438\u043B\\Documents\\GitHub\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\DotsDictionary.cs",
               "RelativeToolTip": "Assets\\Scripts\\Dictionary\\DotsDictionary.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T21:11:02.993Z"
+              "WhenOpened": "2025-02-20T21:11:02.993Z",
+              "EditorCaption": ""
             }
           ]
         }
