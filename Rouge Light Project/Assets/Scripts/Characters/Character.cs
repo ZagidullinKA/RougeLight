@@ -22,7 +22,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     protected int vampire { get; set; }
     protected int hpFromDropRestore { get; set; }
     protected int dropRadius { get; set; }
-    protected int bulletflySpeed { get; set; }
+    protected int bulletFlySpeed { get; set; }
     protected int bulletTimeAlive { get; set; }
 
     // Текущее здоровье

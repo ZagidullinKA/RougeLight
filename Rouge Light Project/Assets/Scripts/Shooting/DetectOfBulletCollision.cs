@@ -19,12 +19,11 @@ public class DetectOfBulletCollision : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        log.Debug("Есть контакт!");
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
         if (TagChecking(otherTag))
         {
-            log.Debug("Проверка тегов пройдена");
+            log.Debug("Попал в противника");
             TestUnit testunit = otherObject.GetComponent<TestUnit>();
             if (testunit != null)
             {
@@ -32,7 +31,7 @@ public class DetectOfBulletCollision : MonoBehaviour
                 {
                     // Вызываем метод TakeDamage и передаем урон
                     testunit.TakeDamage(bullet.DamageDealing());
-                    testunit.TakeDots(bullet.usableDotsArray);
+                    testunit.TakeDots(bullet.GetUsableDotsArray());
                     bullet.DestroyBullet();
                 }
                 else log.Debug("Уворот");
@@ -43,13 +42,17 @@ public class DetectOfBulletCollision : MonoBehaviour
             }
 
         }
+        else
+        {
+            log.Debug("Попадание по своему");
+        }
+
+        bool TagChecking(string otherTag)
+        {
+            bulletTag = bulletTag.Replace("Bullet", "");
+            return string.Compare(otherTag, bulletTag) == 0 ? false : true;
+        }
+
+
     }
-
-    bool TagChecking(string otherTag)
-    {
-        bulletTag = bulletTag.Replace("Bullet", "");
-        return string.Compare(otherTag, bulletTag) == 0 ? false : true;
-    }
-
-
 }
