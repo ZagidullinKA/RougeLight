@@ -24,14 +24,14 @@ public class DetectOfBulletCollision : MonoBehaviour
         if (TagChecking(otherTag))
         {
             log.Debug("Попал в противника");
-            TestUnit testunit = otherObject.GetComponent<TestUnit>();
-            if (testunit != null)
+            Character character = otherObject.GetComponent<Character>();
+            if (character != null)
             {
-                if (testunit.TryDodge())
+                if (character.TryDodge())
                 {
                     // Вызываем метод TakeDamage и передаем урон
-                    testunit.TakeDamage(bullet.DamageDealing());
-                    testunit.TakeDots(bullet.GetUsableDotsArray());
+                    character.TakeDamage(bullet.DamageDealing());
+                    character.TakeDots(bullet.GetUsableDotsArray());
                     bullet.DestroyBullet();
                 }
                 else log.Debug("Уворот");

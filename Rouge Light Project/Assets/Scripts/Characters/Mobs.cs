@@ -15,9 +15,10 @@ public class Mobs : Character, IAttacker, IMovable
 
     protected override void Start()
     {
+        InitializeCharacteristics("UnitTest");
         base.Start();
         isEnemy = true; // Моб является врагом
-        InitializeCharacteristics("UnitTest");
+        
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -75,7 +76,7 @@ public class Mobs : Character, IAttacker, IMovable
             armor = enemyData.Armor;
             debuffResist = enemyData.DebuffResist;
             vampire = enemyData.Vampire;
-            bulletflySpeed = enemyData.BulletflySpeed;
+            bulletFlySpeed = enemyData.BulletflySpeed;
             bulletTimeAlive = enemyData.BulletTimeAlive;
 
             log.Debug("Характеристики моба - " + enemyData.MaxHP );

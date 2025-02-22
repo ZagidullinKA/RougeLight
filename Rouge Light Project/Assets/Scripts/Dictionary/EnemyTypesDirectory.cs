@@ -8,7 +8,7 @@ public class EnemyTypesDictionary
         //структура ItemCharacter:
         // string code, string nameRu, int maxHP, int dmg, int atkSpeed, 
         // int moveSpeed, int critChance, int evadeChance, int armor, int debuffResist, int vampire,
-        // int bulletflySpeed, int bulletTimeAlive, string typeOfAttack
+        // int bulletFlySpeed, int bulletTimeAlive, string typeOfAttack
         new ItemEnemyTypesDictionary("UnitTest", "Тестовый юнит", 100, 1, 1, 1, 10, 5, 0, 0, 0, 1, 3, TypeOfEnemyAttack.TYPE_SHOOT)
     };
 

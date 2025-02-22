@@ -48,8 +48,8 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     {
         int damageAfterArmor = damage - armor;
         if (damageAfterArmor < 0) damageAfterArmor = 0;
-        log.Debug("Противник получил урон: " + damage + ". Осталось здоровья: " + actualHP);
         actualHP -= damageAfterArmor;
+        log.Debug("Противник получил урон: " + damageAfterArmor + ". Осталось здоровья: " + actualHP);
         if (actualHP <= 0)
         {
             Die();
