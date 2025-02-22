@@ -78,7 +78,6 @@ public class Hero : Character, IAttacker, IMovable
         // Используем справочник всех характеристик
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
         {
-            log.Debug("foreachCharacteristic :" + item.Code);
             if (item.Upgradable)
             {
                 // Получаем улучшаемые характеристики из справочника улучшаемых характеристик

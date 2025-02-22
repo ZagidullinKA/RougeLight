@@ -1,16 +1,33 @@
 using log4net;
+using Mono.Cecil.Cil;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Mobs : Character, IAttacker, IMovable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
 
+    private Rigidbody2D rb;
+
+    private Transform player; // Ссылка на игрока
+    public float rotationSpeed = 5f; // Скорость поворота
+
     protected override void Start()
     {
         base.Start();
         isEnemy = true; // Моб является врагом
-        //InitializeCharacteristics();
+        InitializeCharacteristics("UnitTest");
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void Update()
+    {
+        if (player != null)
+        {
+            RotateTowardsPlayer();
+        }
     }
 
     // Реализация IAttacker
@@ -25,27 +42,43 @@ public class Mobs : Character, IAttacker, IMovable
         log.Debug("Моб движется со скоростью " + moveSpeed);
     }
 
-    /*
+    void RotateTowardsPlayer()
+    {
+        // Вычисляем направление к игроку
+        Vector2 direction = player.position - transform.position;
+        direction.Normalize();
+
+        // Вычисляем угол поворота
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Создаем целевой поворот
+        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+
+        // Плавно поворачиваем объект
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
     // Инициализация характеристик
-    private void InitializeCharacteristics()
+    private void InitializeCharacteristics(string enemyType)
     {
         // Используем справочник врагов
-        var enemyData = EnemyTypes.items.Find(x => x.type == enemyType);
+        var enemyData = EnemyTypesDictionary.GetCharacteristic(enemyType);
         if (enemyData != null)
         {
-            maxHP = enemyData.maxHP;
-            dmg = enemyData.dmg;
-            atkSpeed = enemyData.atkSpeed;
-            moveSpeed = enemyData.moveSpeed;
-            luck = enemyData.luck;
-            critChance = enemyData.critChance;
-            evadeChance = enemyData.evadeChance;
-            armor = enemyData.armor;
-            debuffResist = enemyData.debuffResist;
-            vampire = enemyData.vampire;
-            hpFromDropRestore = enemyData.hpFromDropRestore;
-            dropRadius = enemyData.dropRadius;
+            maxHP = enemyData.MaxHP;
+            dmg = enemyData.Dmg;
+            atkSpeed = enemyData.AtkSpeed;
+            moveSpeed = enemyData.MoveSpeed;
+            critChance = enemyData.CritChance;
+            evadeChance = enemyData.EvadeChance;
+            armor = enemyData.Armor;
+            debuffResist = enemyData.DebuffResist;
+            vampire = enemyData.Vampire;
+            bulletflySpeed = enemyData.BulletflySpeed;
+            bulletTimeAlive = enemyData.BulletTimeAlive;
+
+            log.Debug("Характеристики моба - " + enemyData.MaxHP );
         }
     }
-    */
 }

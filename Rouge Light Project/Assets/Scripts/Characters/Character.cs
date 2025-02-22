@@ -1,9 +1,13 @@
+using log4net;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class Character : MonoBehaviour, IDamageable, IHealable
 {
+    //Добавляем логирование
+    private static readonly ILog log = LogManager.GetLogger(typeof(Character));
+
 
     // Основные характеристики
     protected int maxHP { get; set; }
@@ -44,7 +48,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     {
         int damageAfterArmor = damage - armor;
         if (damageAfterArmor < 0) damageAfterArmor = 0;
-
+        log.Debug("Противник получил урон: " + damage + ". Осталось здоровья: " + actualHP);
         actualHP -= damageAfterArmor;
         if (actualHP <= 0)
         {
@@ -52,20 +56,21 @@ public class Character : MonoBehaviour, IDamageable, IHealable
         }
     }
 
-    public virtual void AddDot(DotEffect dot)
+    // Метод проверки вероятности уклонения
+    public bool TryDodge()
     {
-        recievedDots.Add(dot);
+        float randomValue = Random.value; // Генерация случайного числа от 0 до 1
+        float evadeChanceMoment = 1 / evadeChance;
+        log.Debug(randomValue);
+        log.Debug(randomValue < evadeChanceMoment);
+        return randomValue > evadeChanceMoment;
     }
 
-    public virtual void UpdateDots()
+    public void TakeDots(List<DotEffect> usableDotsArray)
     {
-        for (int i = recievedDots.Count - 1; i >= 0; i--)
+        foreach (var item in usableDotsArray)
         {
-            recievedDots[i].Tick(this);
-            if (recievedDots[i].IsFinished)
-            {
-                recievedDots.RemoveAt(i);
-            }
+            log.Debug(item.code);
         }
     }
 
@@ -82,8 +87,8 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     // Метод для обработки смерти
     protected virtual void Die()
     {
-        Debug.Log(gameObject.name + " умер.");
-        // Здесь можно добавить логику для уничтожения объекта или других действий при смерти
+        log.Debug(gameObject.name + " умер.");
+        Destroy(gameObject);
     }
 
     // Метод для подбора дропа
