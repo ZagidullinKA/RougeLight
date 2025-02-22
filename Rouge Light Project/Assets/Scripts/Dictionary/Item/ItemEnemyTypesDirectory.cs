@@ -12,7 +12,7 @@ public class ItemEnemyTypesDictionary
     private int armor;
     private int debuffResist;
     private int vampire;
-    private int bulletflySpeed;
+    private int bulletFlySpeed;
     private int bulletTimeAlive;
     private string typeOfAttack;
 
@@ -28,7 +28,7 @@ public class ItemEnemyTypesDictionary
     public int Armor => armor;
     public int DebuffResist => debuffResist;
     public int Vampire => vampire;
-    public int BulletflySpeed => bulletflySpeed;
+    public int BulletflySpeed => bulletFlySpeed;
     public int BulletTimeAlive => bulletTimeAlive;
     public string TypeOfAttack => typeOfAttack;
 
@@ -36,7 +36,7 @@ public class ItemEnemyTypesDictionary
     public ItemEnemyTypesDictionary (
         string code, string nameRu, int maxHP, int dmg, int atkSpeed, int moveSpeed,
         int critChance, int evadeChance, int armor, int debuffResist, int vampire,
-        int bulletflySpeed, int bulletTimeAlive, string typeOfAttack)
+        int bulletFlySpeed, int bulletTimeAlive, string typeOfAttack)
     {
         ValidationValue.ValidateIntNotNull(
             (maxHP, nameof(maxHP)),
@@ -48,7 +48,7 @@ public class ItemEnemyTypesDictionary
             (armor, nameof(armor)),
             (debuffResist, nameof(debuffResist)),
             (vampire, nameof(vampire)),
-            (bulletflySpeed, nameof(bulletflySpeed)),
+            (bulletFlySpeed, nameof(bulletFlySpeed)),
             (bulletTimeAlive, nameof(bulletTimeAlive))
             );
 
@@ -71,7 +71,7 @@ public class ItemEnemyTypesDictionary
         this.armor = armor;
         this.debuffResist = debuffResist;
         this.vampire = vampire;
-        this.bulletflySpeed = bulletflySpeed;
+        this.bulletFlySpeed = bulletFlySpeed;
         this.bulletTimeAlive = bulletTimeAlive;
         this.typeOfAttack = typeOfAttack;
     }
