@@ -10,23 +10,23 @@ public class Character : MonoBehaviour, IDamageable, IHealable
 
 
     // Основные характеристики
-    protected int maxHP { get; set; }
-    protected int dmg { get; set; }
-    protected int atkSpeed { get; set; }
-    protected int moveSpeed { get; set; }
-    protected int luck { get; set; }
-    protected int critChance { get; set; }
-    protected int evadeChance { get; set; }
-    protected int armor { get; set; }
-    protected int debuffResist { get; set; }
-    protected int vampire { get; set; }
-    protected int hpFromDropRestore { get; set; }
-    protected int dropRadius { get; set; }
-    protected int bulletFlySpeed { get; set; }
-    protected int bulletTimeAlive { get; set; }
+    protected int maxHP = 0;
+    protected int dmg = 0;
+    protected int atkSpeed = 0;
+    protected int moveSpeed = 0;
+    protected int luck = 0;
+    protected int critChance = 0;
+    protected int evadeChance = 0;
+    protected int armor = 0;
+    protected int debuffResist = 0;
+    protected int vampire = 0;
+    protected int hpFromDropRestore = 0;
+    protected int dropRadius = 0;
+    protected int bulletFlySpeed = 0;
+    protected int bulletTimeAlive = 0;
 
     // Текущее здоровье
-    public int actualHP { get; set; } 
+    public int actualHP = 0;
 
     // Флаг, определяющий, является ли объект врагом
     public bool isEnemy = false;
