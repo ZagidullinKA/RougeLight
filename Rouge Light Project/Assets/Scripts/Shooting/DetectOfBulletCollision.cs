@@ -17,7 +17,7 @@ public class DetectOfBulletCollision : MonoBehaviour
         bullet = gameObject.GetComponent<Bullet>();
         log.Debug(bullet.name);
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;

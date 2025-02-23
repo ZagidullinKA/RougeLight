@@ -9,6 +9,7 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Enemy
+  - Drop
   layers:
   - Default
   - TransparentFX
@@ -16,10 +17,10 @@ TagManager:
   - TEST1
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Hero
+  - Enemy
+  - Drop
+  - Bullet
   - 
   - 
   - 

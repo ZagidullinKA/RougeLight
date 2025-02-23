@@ -96,52 +96,52 @@ public class Hero : Character, IAttacker, IMovable
     }
 
     // Установка значения характеристики
-    private void SetCharacteristic(string code, int? value)
+    public void SetCharacteristic(string code, int? value)
     {
         log.Debug("SetCharacteristic :" + code + " - " + value);
         switch (code)
         {
             case "maxHP":
-                maxHP = (int)value;
+                maxHP += (int)value;
                 break;
             case "dmg":
-                dmg = (int)value;
+                dmg += (int)value;
                 break;
             case "atkSpeed":
-                atkSpeed = (int)value;
+                atkSpeed += (int)value;
                 break;
             case "moveSpeed":
-                moveSpeed = (int) value;
+                moveSpeed += (int)value;
                 break;
             case "luck":
-                luck = (int)value;
+                luck += (int)value;
                 break;
             case "critChance":
-                critChance = (int)value;
+                critChance += (int)value;
                 break;
             case "evadeChace":
-                evadeChance = (int)value;
+                evadeChance += (int)value;
                 break;
             case "armor":
-                armor = (int)value;
+                armor += (int)value;
                 break;
             case "debuffResist":
-                debuffResist = (int) value;
+                debuffResist += (int)value;
                 break;
             case "Vampire":
-                vampire = (int)value;
+                vampire += (int)value;
                 break;
             case "hpFromDropRestore":
-                hpFromDropRestore = (int)value;
+                hpFromDropRestore += (int)value;
                 break;
             case "dropRadius":
-                dropRadius = (int)value;
+                dropRadius += (int)value;
                 break;
             case "bulletFlySpeed":
-                bulletFlySpeed = (int)value;
+                bulletFlySpeed += (int)value;
                 break;
             case "bulletTimeAlive":
-                bulletTimeAlive = (int)value;
+                bulletTimeAlive += (int)value;
                 break;
             default:
                 log.Warn($"Неизвестная характеристика: {code}");

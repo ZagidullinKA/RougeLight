@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1378632933798455558}
   - component: {fileID: 3089263407456573933}
   - component: {fileID: 5392891648289041163}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,13 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9bca63598f22e419e128ab4dd62e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDestroy: 3
-  speed: 3
-  baseDmg: 1
-  damage: 0
-  aimCoords: {x: 0, y: 0}
-  critDamageProbability: 0
-  critDamageMultiplier: 0
 --- !u!212 &8578433520238635617
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -205,4 +198,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23564f840d2c88940881368b9a9a3073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
