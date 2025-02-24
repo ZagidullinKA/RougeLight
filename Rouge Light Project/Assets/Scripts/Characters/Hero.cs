@@ -6,6 +6,7 @@ using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 using log4net;
 
+
 public class Hero : Character, IAttacker, IMovable
 {
     //Добавляем логирование
@@ -28,6 +29,18 @@ public class Hero : Character, IAttacker, IMovable
         base.Start();
         isEnemy = false; // Герой не является врагом
         InitializeCharacteristics();
+
+
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        if (collider != null)
+        {
+            collider.radius = dropRadius;
+            collider.isTrigger = true; // Делаем коллайдер триггером
+        } else
+        {
+            log.Error("CircleCollider2D is null");
+        }
+        
     }
 
     void Awake()
@@ -48,6 +61,19 @@ public class Hero : Character, IAttacker, IMovable
     {
         Move();
         Shoot();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Проверяем, что объект можно подобрать (например, по тегу)
+        if (other.CompareTag("Drop"))
+        {
+            log.Debug("Предмет подобрали! - " + other.name);
+            Drop drop = other.GetComponent<Drop>();
+            SetCharacteristic(drop.Code, drop.Update);
+            Destroy(other.gameObject);
+            log.Debug("Дроп уничтожен");
+        }
     }
 
 
