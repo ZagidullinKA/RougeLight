@@ -30,7 +30,7 @@ public class Shooting : MonoBehaviour
     }
     public void Shot(int baseDmg, 
         int critChance, 
-        int attackSpeed, 
+        float? attackSpeed, 
         int bulletFlySpeed, 
         int bulletTimeAlive, 
         List<DotEffect> usableDotsArray)

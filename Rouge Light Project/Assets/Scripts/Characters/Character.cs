@@ -12,7 +12,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     // Основные характеристики
     protected int maxHP = 0;
     protected int dmg = 0;
-    protected int atkSpeed = 0;
+    protected float? atkSpeed = 0;
     protected int moveSpeed = 0;
     protected int luck = 0;
     protected int critChance = 0;
@@ -28,7 +28,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     // Свойства с get для доступа к переменным
     public int MaxHP => maxHP;
     public int Dmg => dmg;
-    public int AtkSpeed => atkSpeed;
+    public float? AtkSpeed => atkSpeed;
     public int MoveSpeed => moveSpeed;
     public int Luck => luck;
     public int CritChance => critChance;

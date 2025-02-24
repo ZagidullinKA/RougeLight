@@ -25,7 +25,7 @@ public static class ImprovableCharactesDictionary
                     (itemCharacter.NameRu, nameof(itemCharacter.NameRu))
                     );
 
-                ValidationValue.ValidateIntNotNull(
+                ValidationValue.ValidateFloatNotNull(
                      (itemCharacter.BaseAmount, nameof(itemCharacter.BaseAmount))
                      );
 

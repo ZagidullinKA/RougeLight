@@ -122,8 +122,12 @@ public class Hero : Character, IAttacker, IMovable
     }
 
     // Установка значения характеристики
-    public void SetCharacteristic(string code, int? value)
+    public void SetCharacteristic(string code, float? value)
     {
+        ValidationValue.ValidateFloatNotNull(
+            (value, code)
+            );
+
         log.Debug("SetCharacteristic :" + code + " - " + value);
         switch (code)
         {
@@ -134,7 +138,7 @@ public class Hero : Character, IAttacker, IMovable
                 dmg += (int)value;
                 break;
             case "atkSpeed":
-                atkSpeed += (int)value;
+                atkSpeed += (float) value;
                 break;
             case "moveSpeed":
                 moveSpeed += (int)value;
