@@ -25,6 +25,22 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     protected int bulletFlySpeed = 0;
     protected int bulletTimeAlive = 0;
 
+    // Свойства с get для доступа к переменным
+    public int MaxHP => maxHP;
+    public int Dmg => dmg;
+    public int AtkSpeed => atkSpeed;
+    public int MoveSpeed => moveSpeed;
+    public int Luck => luck;
+    public int CritChance => critChance;
+    public int EvadeChance => evadeChance;
+    public int Armor => armor;
+    public int DebuffResist => debuffResist;
+    public int Vampire => vampire;
+    public int HpFromDropRestore => hpFromDropRestore;
+    public int DropRadius => dropRadius;
+    public int BulletFlySpeed => bulletFlySpeed;
+    public int BulletTimeAlive => bulletTimeAlive;
+
     // Текущее здоровье
     public int actualHP = 0;
 

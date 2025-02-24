@@ -7,14 +7,19 @@ public class Drop : MonoBehaviour
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Drop));
 
-    public string code;
-    public int update;
+    private string code;
+    private int update;
 
-
-    void Start()
+    public string Code
     {
-        code = "dmg";
-        update = 2;
+        get { return code; }
+        set { code = value; }
+    }
+
+    public int Update
+    {
+        get { return update; }
+        set { update = value; }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

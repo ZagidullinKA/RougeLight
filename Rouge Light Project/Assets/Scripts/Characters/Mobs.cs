@@ -9,6 +9,7 @@ public class Mobs : Character, IAttacker, IMovable
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
 
     private Rigidbody2D rb;
+    private DropManager dropManagerScript;
 
     private Transform player; // Ссылка на игрока
     public float rotationSpeed = 5f; // Скорость поворота
@@ -18,8 +19,8 @@ public class Mobs : Character, IAttacker, IMovable
         InitializeCharacteristics("UnitTest");
         base.Start();
         isEnemy = true; // Моб является врагом
-        
 
+        dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -81,5 +82,11 @@ public class Mobs : Character, IAttacker, IMovable
 
             log.Debug("Характеристики моба - " + enemyData.MaxHP );
         }
+    }
+
+    protected override void Die()
+    {
+        dropManagerScript.DropLoss();
+        base.Die();
     }
 }

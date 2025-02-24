@@ -9,7 +9,7 @@ public class DictionaryCharacters
         new ItemCharacter("dmg",                "дамаг",                        true,   1,  7,  2,  true),
         new ItemCharacter("atkSpeed",           "Скорость атаки",               true,   10, 5,  3,  true),
         new ItemCharacter("moveSpeed",          "Скорость передвижения",        true,   10, 5,  4,  true),
-        new ItemCharacter("luck",               "Удача",                        false,  2,  1,  5,  true),
+        new ItemCharacter("luck",               "Удача",                        false,  2,  2,  5,  true),
         new ItemCharacter("critChance",         "Шанс крита",                   true,   0,  10, 6,  true),
         new ItemCharacter("evadeChace",         "Шанс уворота",                 true,   0,  7,  7,  true),
         new ItemCharacter("armor",              "броня",                        true,   0,  2,  8,  true), 

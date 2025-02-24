@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IHealable.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
+    <Compile Include="Assets\Scripts\DropManager.cs" />
     <Compile Include="Assets\Scripts\Dictionary\DotsDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\EnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttacker.cs" />
