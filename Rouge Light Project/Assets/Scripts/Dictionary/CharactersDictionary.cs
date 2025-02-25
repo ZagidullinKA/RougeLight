@@ -17,8 +17,8 @@ public class DictionaryCharacters
         new ItemCharacter("Vampire",            "Вампирка",                     true,   0,  1,  10, true),
         new ItemCharacter("hpFromDropRestore",  "Кол-во ХП при поднятии хилки", true,   10, 1,  11, true),
         new ItemCharacter("dropRadius",         "Радиус подбора",               true,   10, 1,  12, true),
-        new ItemCharacter("bulletFlySpeed",     "Скорость полета пули",         true,   10, 1,  12, true),
-        new ItemCharacter("bulletTimeAlive",    "Время жизни пули",             true,   10, 1,  12, true)
+        new ItemCharacter("bulletFlySpeed",     "Скорость полета пули",         true,   10, 2,  12, true),
+        new ItemCharacter("bulletTimeAlive",    "Время жизни пули",             true,   10, 2,  12, true)
     };
 
     public static ItemCharacter GetCharacteristic(string code)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 604435949576138029}
   - component: {fileID: 1836092546348367689}
   - component: {fileID: 5493396226755638572}
+  - component: {fileID: 570033486433605984}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -194,3 +195,18 @@ MonoBehaviour:
   recievedDots: []
   usableDotsArray: []
   rotationSpeed: 5
+--- !u!114 &570033486433605984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424926675049982923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4466c0c431ba7c4478b8269b6e05bff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRadius: 50
+  maxRadius: 100
+  speed: 0

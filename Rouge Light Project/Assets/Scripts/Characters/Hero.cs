@@ -1,9 +1,4 @@
-using Mono.Cecil.Cil;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 using log4net;
 
 
@@ -19,14 +14,16 @@ public class Hero : Character, IAttacker, IMovable
     private Vector2 moveVector;
     private bool isShooting = false;
 
-    protected override void Start()
+    protected override void Awake()
     {
         // Заглушка ебаная
         usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
         // Конец заглушки ебаной
 
         log.Debug(usableDotsArray[0].code);
-        base.Start();
+        base.Awake();
+        rb = GetComponent<Rigidbody2D>();
+        shooting = GetComponent<Shooting>();
         isEnemy = false; // Герой не является врагом
         InitializeCharacteristics();
 
@@ -40,13 +37,6 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Error("CircleCollider2D is null");
         }
-        
-    }
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        shooting = GetComponent<Shooting>();
     }
 
     void Update()
@@ -65,7 +55,7 @@ public class Hero : Character, IAttacker, IMovable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Проверяем, что объект можно подобрать (например, по тегу)
+        // Проверяем, что объект можно подобрать
         if (other.CompareTag("Drop"))
         {
             log.Debug("Предмет подобрали! - " + other.name);

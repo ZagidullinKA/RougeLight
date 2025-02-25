@@ -1,10 +1,7 @@
 using System;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
-
-using Vector2 = UnityEngine.Vector2;
 using log4net;
 
 public class DropManager : MonoBehaviour

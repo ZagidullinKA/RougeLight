@@ -54,7 +54,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     public List<DotEffect> usableDotsArray = new List<DotEffect>();
 
     // Инициализация
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         actualHP = maxHP; // Устанавливаем текущее здоровье на максимальное при старте
     }

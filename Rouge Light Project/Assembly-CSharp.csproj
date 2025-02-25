@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemDot.cs" />
     <Compile Include="Assets\Scripts\Logging\Logger.cs" />
+    <Compile Include="Assets\Scripts\MoveEnemy\EnemyTestAI.cs" />
     <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\types\TypeOfDots.cs" />
     <Compile Include="Assets\Scripts\Characters\Hero.cs" />
