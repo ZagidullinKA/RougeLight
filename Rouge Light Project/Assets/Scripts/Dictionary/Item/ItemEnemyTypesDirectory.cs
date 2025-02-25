@@ -5,7 +5,7 @@ public class ItemEnemyTypesDictionary
     private string nameRu;
     private int maxHP;
     private int dmg;
-    private int atkSpeed;
+    private float atkSpeed;
     private int moveSpeed;
     private int critChance;
     private int evadeChance;
@@ -21,7 +21,7 @@ public class ItemEnemyTypesDictionary
     public string NameRu => nameRu;
     public int MaxHP => maxHP;
     public int Dmg => dmg;
-    public int AtkSpeed => atkSpeed;
+    public float AtkSpeed => atkSpeed;
     public int MoveSpeed => moveSpeed;
     public int CritChance => critChance;
     public int EvadeChance => evadeChance;
@@ -34,14 +34,13 @@ public class ItemEnemyTypesDictionary
 
     // Конструктор
     public ItemEnemyTypesDictionary (
-        string code, string nameRu, int maxHP, int dmg, int atkSpeed, int moveSpeed,
+        string code, string nameRu, int maxHP, int dmg, float atkSpeed, int moveSpeed,
         int critChance, int evadeChance, int armor, int debuffResist, int vampire,
         int bulletFlySpeed, int bulletTimeAlive, string typeOfAttack)
     {
         ValidationValue.ValidateIntNotNull(
             (maxHP, nameof(maxHP)),
             (dmg, nameof(dmg)),
-            (atkSpeed, nameof(atkSpeed)),
             (moveSpeed, nameof(moveSpeed)),
             (critChance, nameof(critChance)),
             (evadeChance, nameof(evadeChance)),
@@ -50,6 +49,10 @@ public class ItemEnemyTypesDictionary
             (vampire, nameof(vampire)),
             (bulletFlySpeed, nameof(bulletFlySpeed)),
             (bulletTimeAlive, nameof(bulletTimeAlive))
+            );
+
+        ValidationValue.ValidateFloatNotNull(
+            (atkSpeed, nameof(atkSpeed))
             );
 
         ValidationValue.ValidateStringNotNullOrEmpty(

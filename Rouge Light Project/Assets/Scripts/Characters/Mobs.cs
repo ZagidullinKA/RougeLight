@@ -1,7 +1,5 @@
 using log4net;
-using Mono.Cecil.Cil;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Mobs : Character, IAttacker, IMovable
 {
@@ -9,17 +7,18 @@ public class Mobs : Character, IAttacker, IMovable
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
 
     private Rigidbody2D rb;
+    private DropManager dropManagerScript;
 
     private Transform player; // Ссылка на игрока
     public float rotationSpeed = 5f; // Скорость поворота
 
-    protected override void Start()
+    protected override void Awake()
     {
         InitializeCharacteristics("UnitTest");
-        base.Start();
+        base.Awake();
         isEnemy = true; // Моб является врагом
-        
 
+        dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -63,8 +62,28 @@ public class Mobs : Character, IAttacker, IMovable
     // Инициализация характеристик
     private void InitializeCharacteristics(string enemyType)
     {
+        
+
         // Используем справочник врагов
         var enemyData = EnemyTypesDictionary.GetCharacteristic(enemyType);
+
+        ValidationValue.ValidateFloatNotNull(
+            (atkSpeed, nameof(atkSpeed))
+            );
+
+        ValidationValue.ValidateIntNotNull(
+            (maxHP, nameof(maxHP)),
+            (dmg, nameof(dmg)),
+            (moveSpeed, nameof(moveSpeed)),
+            (critChance, nameof(critChance)),
+            (evadeChance, nameof(evadeChance)),
+            (armor, nameof(armor)),
+            (debuffResist, nameof(debuffResist)),
+            (vampire, nameof(vampire)),
+            (bulletFlySpeed, nameof(bulletFlySpeed)),
+            (bulletTimeAlive, nameof(bulletTimeAlive))
+            );
+
         if (enemyData != null)
         {
             maxHP = enemyData.MaxHP;
@@ -79,7 +98,13 @@ public class Mobs : Character, IAttacker, IMovable
             bulletFlySpeed = enemyData.BulletflySpeed;
             bulletTimeAlive = enemyData.BulletTimeAlive;
 
-            log.Debug("Характеристики моба - " + enemyData.MaxHP );
+            log.Debug("Характеристики моба - " + enemyData.MoveSpeed);
         }
+    }
+
+    protected override void Die()
+    {
+        dropManagerScript.DropLoss();
+        base.Die();
     }
 }

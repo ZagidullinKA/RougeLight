@@ -12,7 +12,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     // Основные характеристики
     protected int maxHP = 0;
     protected int dmg = 0;
-    protected int atkSpeed = 0;
+    protected float? atkSpeed = 0;
     protected int moveSpeed = 0;
     protected int luck = 0;
     protected int critChance = 0;
@@ -24,6 +24,22 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     protected int dropRadius = 0;
     protected int bulletFlySpeed = 0;
     protected int bulletTimeAlive = 0;
+
+    // Свойства с get для доступа к переменным
+    public int MaxHP => maxHP;
+    public int Dmg => dmg;
+    public float? AtkSpeed => atkSpeed;
+    public int MoveSpeed => moveSpeed;
+    public int Luck => luck;
+    public int CritChance => critChance;
+    public int EvadeChance => evadeChance;
+    public int Armor => armor;
+    public int DebuffResist => debuffResist;
+    public int Vampire => vampire;
+    public int HpFromDropRestore => hpFromDropRestore;
+    public int DropRadius => dropRadius;
+    public int BulletFlySpeed => bulletFlySpeed;
+    public int BulletTimeAlive => bulletTimeAlive;
 
     // Текущее здоровье
     public int actualHP = 0;
@@ -38,7 +54,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     public List<DotEffect> usableDotsArray = new List<DotEffect>();
 
     // Инициализация
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         actualHP = maxHP; // Устанавливаем текущее здоровье на максимальное при старте
     }

@@ -19,11 +19,5 @@ public class Logger : MonoBehaviour
         {
             Debug.LogError("Файл log4net.config не найден!");
         }
-
-        // Примеры логирования
-        log.Debug("Это сообщение уровня Debug");
-        log.Info("Игра запущена");
-        log.Warn("Предупреждение: низкий FPS");
-        log.Error("Критическая ошибка!");
     }
 }

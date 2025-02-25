@@ -23,4 +23,15 @@ public static class ValidationValue
             }
         }
     }
+
+    public static void ValidateFloatNotNull(params (float? value, string name)[] variables)
+    {
+        foreach (var (value, name) in variables)
+        {
+            if (value == null)
+            {
+                throw new ArgumentException($"{name} не может быть пустым", name);
+            }
+        }
+    }
 }

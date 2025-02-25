@@ -5,7 +5,7 @@ public class ItemCharacter
     private string nameRu;
     private bool upgradable;
     private int upgradeX;
-    private int baseAmount;
+    private float baseAmount;
     private int price;
     private bool isEnemyAvaliable;
 
@@ -13,11 +13,11 @@ public class ItemCharacter
     public string NameRu => nameRu;
     public bool Upgradable => upgradable;
     public int UpgradeX => upgradeX;
-    public int BaseAmount => baseAmount;
+    public float BaseAmount => baseAmount;
     public int Price => price;
     public bool IsEnemyAvaliable => isEnemyAvaliable;
 
-    public ItemCharacter(string code, string nameRu, bool upgradable, int upgradeX, int baseAmount, int price, bool isEnemyAvaliable)
+    public ItemCharacter(string code, string nameRu, bool upgradable, int upgradeX, float baseAmount, int price, bool isEnemyAvaliable)
     {
         this.code = code;
         this.nameRu = nameRu;

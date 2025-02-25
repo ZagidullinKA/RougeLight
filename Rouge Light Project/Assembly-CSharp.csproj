@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IHealable.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
+    <Compile Include="Assets\Scripts\DropManager.cs" />
     <Compile Include="Assets\Scripts\Dictionary\DotsDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\EnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttacker.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemDot.cs" />
     <Compile Include="Assets\Scripts\Logging\Logger.cs" />
+    <Compile Include="Assets\Scripts\MoveEnemy\EnemyTestAI.cs" />
     <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\types\TypeOfDots.cs" />
     <Compile Include="Assets\Scripts\Characters\Hero.cs" />

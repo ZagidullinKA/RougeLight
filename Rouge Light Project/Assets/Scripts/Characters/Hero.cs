@@ -1,10 +1,6 @@
-using Mono.Cecil.Cil;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 using log4net;
+
 
 public class Hero : Character, IAttacker, IMovable
 {
@@ -18,22 +14,32 @@ public class Hero : Character, IAttacker, IMovable
     private Vector2 moveVector;
     private bool isShooting = false;
 
-    protected override void Start()
+    //Переменная для godmod
+    public bool isGodMode = false;
+
+    protected override void Awake()
     {
         // Заглушка ебаная
         usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
         // Конец заглушки ебаной
 
         log.Debug(usableDotsArray[0].code);
-        base.Start();
-        isEnemy = false; // Герой не является врагом
-        InitializeCharacteristics();
-    }
-
-    void Awake()
-    {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
+        isEnemy = false; // Герой не является врагом
+        InitializeCharacteristics();
+
+
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        if (collider != null)
+        {
+            collider.radius = dropRadius;
+            collider.isTrigger = true; // Делаем коллайдер триггером
+        } else
+        {
+            log.Error("CircleCollider2D is null");
+        }
     }
 
     void Update()
@@ -48,6 +54,19 @@ public class Hero : Character, IAttacker, IMovable
     {
         Move();
         Shoot();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Проверяем, что объект можно подобрать
+        if (other.CompareTag("Drop"))
+        {
+            log.Debug("Предмет подобрали! - " + other.name);
+            Drop drop = other.GetComponent<Drop>();
+            SetCharacteristic(drop.Code, drop.Update);
+            Destroy(other.gameObject);
+            log.Debug("Дроп уничтожен");
+        }
     }
 
 
@@ -96,8 +115,12 @@ public class Hero : Character, IAttacker, IMovable
     }
 
     // Установка значения характеристики
-    public void SetCharacteristic(string code, int? value)
+    public void SetCharacteristic(string code, float? value)
     {
+        ValidationValue.ValidateFloatNotNull(
+            (value, code)
+            );
+
         log.Debug("SetCharacteristic :" + code + " - " + value);
         switch (code)
         {
@@ -108,7 +131,7 @@ public class Hero : Character, IAttacker, IMovable
                 dmg += (int)value;
                 break;
             case "atkSpeed":
-                atkSpeed += (int)value;
+                atkSpeed += (float) value;
                 break;
             case "moveSpeed":
                 moveSpeed += (int)value;
@@ -162,6 +185,18 @@ public class Hero : Character, IAttacker, IMovable
 
         // Устанавливаем новый угол поворота
         rb.rotation = angle;
+    }
+
+    protected override void Die()
+    {
+        if (!isGodMode)
+        {
+            base.Die();
+        } else
+        {
+            log.Debug("Ты бы умер, но ты либо тестер, либо читер");
+            actualHP = maxHP;
+        }
     }
 
 }
