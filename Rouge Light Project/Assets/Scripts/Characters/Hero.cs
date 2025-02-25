@@ -14,6 +14,9 @@ public class Hero : Character, IAttacker, IMovable
     private Vector2 moveVector;
     private bool isShooting = false;
 
+    //Переменная для godmod
+    public bool isGodMode = false;
+
     protected override void Awake()
     {
         // Заглушка ебаная
@@ -182,6 +185,18 @@ public class Hero : Character, IAttacker, IMovable
 
         // Устанавливаем новый угол поворота
         rb.rotation = angle;
+    }
+
+    protected override void Die()
+    {
+        if (!isGodMode)
+        {
+            base.Die();
+        } else
+        {
+            log.Debug("Ты бы умер, но ты либо тестер, либо читер");
+            actualHP = maxHP;
+        }
     }
 
 }
