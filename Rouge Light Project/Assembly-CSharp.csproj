@@ -62,14 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Logging\UnityDebugAppender.cs" />
-    <Compile Include="Assets\Scripts\Drop.cs" />
     <Compile Include="Assets\Scripts\Dictionary\CharactersDictionary.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameGeneration.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IHealable.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
-    <Compile Include="Assets\Scripts\DropManager.cs" />
     <Compile Include="Assets\Scripts\Dictionary\DotsDictionary.cs" />
+    <Compile Include="Assets\Scripts\Managers\Observer.cs" />
     <Compile Include="Assets\Scripts\Dictionary\EnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Shooting\DetectOfBulletCollision.cs" />
@@ -78,14 +78,18 @@
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemCharacter.cs" />
     <Compile Include="Assets\Scripts\Helpers\ValidationValue.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemImprovableCharactes.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\Item\ItemMoneyDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\types\TypeOfEnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Shooting\Shooting.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemDot.cs" />
+    <Compile Include="Assets\Scripts\Managers\DropManager.cs" />
     <Compile Include="Assets\Scripts\Logging\Logger.cs" />
     <Compile Include="Assets\Scripts\MoveEnemy\EnemyTestAI.cs" />
     <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\types\TypeOfDots.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\MoneyDictionary.cs" />
     <Compile Include="Assets\Scripts\Characters\Hero.cs" />
+    <Compile Include="Assets\Scripts\Drop\Drop.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemEnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />

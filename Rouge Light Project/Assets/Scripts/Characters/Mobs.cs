@@ -1,4 +1,5 @@
 using log4net;
+using System;
 using UnityEngine;
 
 public class Mobs : Character, IAttacker, IMovable
@@ -84,19 +85,21 @@ public class Mobs : Character, IAttacker, IMovable
             (bulletTimeAlive, nameof(bulletTimeAlive))
             );
 
+        float mobsMultipier = GameGeneration.MobsMultipier;
+
         if (enemyData != null)
         {
-            maxHP = enemyData.MaxHP;
-            dmg = enemyData.Dmg;
-            atkSpeed = enemyData.AtkSpeed;
-            moveSpeed = enemyData.MoveSpeed;
-            critChance = enemyData.CritChance;
-            evadeChance = enemyData.EvadeChance;
-            armor = enemyData.Armor;
-            debuffResist = enemyData.DebuffResist;
-            vampire = enemyData.Vampire;
-            bulletFlySpeed = enemyData.BulletflySpeed;
-            bulletTimeAlive = enemyData.BulletTimeAlive;
+            maxHP = (int) Math.Round(enemyData.MaxHP * mobsMultipier);
+            dmg = (int)Math.Round(enemyData.Dmg * mobsMultipier);
+            atkSpeed = (float)Math.Round(enemyData.AtkSpeed * mobsMultipier);
+            moveSpeed = (int)Math.Round(enemyData.MoveSpeed * mobsMultipier);
+            critChance = (int)Math.Round(enemyData.CritChance * mobsMultipier);
+            evadeChance = (int)Math.Round(enemyData.EvadeChance * mobsMultipier);
+            armor = (int)Math.Round(enemyData.Armor * mobsMultipier);
+            debuffResist = (int)Math.Round(enemyData.DebuffResist * mobsMultipier);
+            vampire = (int)Math.Round(enemyData.Vampire * mobsMultipier);
+            bulletFlySpeed = (int) Math.Round(enemyData.BulletflySpeed * mobsMultipier);
+            bulletTimeAlive = (int)Math.Round(enemyData.BulletTimeAlive * mobsMultipier);
 
             log.Debug("Характеристики моба - " + enemyData.MoveSpeed);
         }
