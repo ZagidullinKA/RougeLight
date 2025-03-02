@@ -29,6 +29,11 @@ public class EnemyTestAI : MonoBehaviour
         changeInterval = Random.Range(1, 5);
         log.Debug("Инициализация скорости передвижения - " + moveSpeed + " mobsScript.MoveSpeed - " + mobsScript.MoveSpeed);
         rb = GetComponent<Rigidbody2D>();
+        
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 0; // Отключаем гравитацию
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Включаем непрерывное обнаружение коллизий
+        rb.freezeRotation = true; // Запрещаем вращение
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -39,7 +44,11 @@ public class EnemyTestAI : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 directionCircle *= -1;
-           
+                // Рассчитываем направление отталкивания
+                Vector2 pushDirection = (rb.position - (Vector2)collision.transform.position).normalized;
+
+                // Применяем отталкивание через AddForce
+                rb.AddForce(pushDirection * moveSpeed * 50f, ForceMode2D.Impulse); // Используем импульс для отталкивания
             }
         }
     }
@@ -78,13 +87,13 @@ public class EnemyTestAI : MonoBehaviour
     private void moveTowardsHero(Vector2 direction)
     {
         // Двигаемся к герою
-        transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+        rb.linearVelocity = direction * -moveSpeed;
     }
 
     private void moveAwayFromHero(Vector2 direction)
     {
         // Отдаляемся от героя
-        transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3)direction, moveSpeed * Time.deltaTime);
+        rb.linearVelocity = direction * moveSpeed;
     }
 
     private void moveCircle(float distanceToHero, Vector2 directionVector)
@@ -109,7 +118,11 @@ public class EnemyTestAI : MonoBehaviour
         float x = playerTransform.position.x + Mathf.Cos(angle) * distanceToHero;
         float y = playerTransform.position.y + Mathf.Sin(angle) * distanceToHero;
 
-        // Применяем новую позицию
-        transform.position = new Vector2(x, y);
+        // Направление для движения по кругу
+        Vector2 targetPosition = new Vector2(x, y);
+        Vector2 moveDirection = (targetPosition - rb.position).normalized;
+
+        // Применяем скорость для движения по кругу
+        rb.linearVelocity = moveDirection * moveSpeed;
     }
 }
