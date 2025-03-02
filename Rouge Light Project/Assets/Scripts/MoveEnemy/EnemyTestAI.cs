@@ -1,18 +1,24 @@
 using log4net;
+using Mono.Cecil.Cil;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyTestAI : MonoBehaviour
 {
-    //Добавляем логирование
+    //Р”РѕР±Р°РІР»СЏРµРј Р»РѕРіРёСЂРѕРІР°РЅРёРµ
     private static readonly ILog log = LogManager.GetLogger(typeof(EnemyTestAI));
 
-    private Transform playerTransform; // Ссылка на героя
-    private float minRadius = 3f; // Минимальный радиус (50 пикселей)
-    private float maxRadius = 5f; // Максимальный радиус (100 пикселей)
-    private float moveSpeed; // Скорость движения врага
-    private float timer = 0f; // Направление движения
-    private int direction = 1; // Направление движения (1 — по часовой стрелке, -1 — против)
-    float changeInterval; // Текущий интервал смены направления
+    private Transform playerTransform; // РЎСЃС‹Р»РєР° РЅР° РіРµСЂРѕСЏ
+    private float minRadius = 3f; // РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°РґРёСѓСЃ (50 РїРёРєСЃРµР»РµР№)
+    private float maxRadius = 5f; // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°РґРёСѓСЃ (100 РїРёРєСЃРµР»РµР№)
+    private float moveSpeed; // РЎРєРѕСЂРѕСЃС‚СЊ РґРІРёР¶РµРЅРёСЏ РІСЂР°РіР°
+    private float timer = 0f; // РќР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ
+    private int directionCircle = 1; // РќР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ (1 вЂ” РїРѕ С‡Р°СЃРѕРІРѕР№ СЃС‚СЂРµР»РєРµ, -1 вЂ” РїСЂРѕС‚РёРІ)
+    private bool directionFront = true; // РќР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ (true вЂ” Рє РіРµСЂРѕСЋ, false вЂ” РѕС‚ РіРµСЂРѕСЏ)
+    float changeInterval; // РўРµРєСѓС‰РёР№ РёРЅС‚РµСЂРІР°Р» СЃРјРµРЅС‹ РЅР°РїСЂР°РІР»РµРЅРёСЏ
+    Vector2 direction;
+
+    private Rigidbody2D rb;
 
     void Start()
     {
@@ -21,31 +27,47 @@ public class EnemyTestAI : MonoBehaviour
         Mobs mobsScript = gameObject.GetComponent<Mobs>();
         moveSpeed = mobsScript.MoveSpeed;
         changeInterval = Random.Range(1, 5);
-        log.Debug("Инициализация скорости передвижения - " + moveSpeed + " mobsScript.MoveSpeed - " + mobsScript.MoveSpeed);
+        log.Debug("РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃРєРѕСЂРѕСЃС‚Рё РїРµСЂРµРґРІРёР¶РµРЅРёСЏ - " + moveSpeed + " mobsScript.MoveSpeed - " + mobsScript.MoveSpeed);
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision != null)
+        {
+            log.Debug("РЎС‚РѕР»РєРЅРѕРІРµРЅРёРµ СЃ: " + collision.gameObject.name + " Tag - " + collision.gameObject.tag);
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                directionCircle *= -1;
+           
+            }
+        }
     }
 
     void Update()
     {
         if (playerTransform == null)
         {
-            Debug.LogError("Герой не назначен!");
+            Debug.LogError("Р“РµСЂРѕР№ РЅРµ РЅР°Р·РЅР°С‡РµРЅ!");
             return;
         }
 
-        // Расстояние до героя
+        // Р Р°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РіРµСЂРѕСЏ
         float distanceToHero = Vector2.Distance(transform.position, playerTransform.position);
-        Vector2 direction = (transform.position - playerTransform.position).normalized;
+        direction = (transform.position - playerTransform.position).normalized;
 
-        // Логика движения
+        // Р›РѕРіРёРєР° РґРІРёР¶РµРЅРёСЏ
         if (distanceToHero > maxRadius)
         {
-            // Если враг слишком далеко, двигаемся к герою
+            // Р•СЃР»Рё РІСЂР°Рі СЃР»РёС€РєРѕРј РґР°Р»РµРєРѕ, РґРІРёРіР°РµРјСЃСЏ Рє РіРµСЂРѕСЋ
             moveTowardsHero(direction);
+            directionFront = true;
         }
         else if (distanceToHero < minRadius)
         {
-            // Если враг слишком близко, отдаляемся от героя
+            // Р•СЃР»Рё РІСЂР°Рі СЃР»РёС€РєРѕРј Р±Р»РёР·РєРѕ, РѕС‚РґР°Р»СЏРµРјСЃСЏ РѕС‚ РіРµСЂРѕСЏ
             moveAwayFromHero(direction);
+            directionFront =false;
         }
         else
         {
@@ -55,13 +77,13 @@ public class EnemyTestAI : MonoBehaviour
 
     private void moveTowardsHero(Vector2 direction)
     {
-        // Двигаемся к герою
+        // Р”РІРёРіР°РµРјСЃСЏ Рє РіРµСЂРѕСЋ
         transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
     }
 
     private void moveAwayFromHero(Vector2 direction)
     {
-        // Отдаляемся от героя
+        // РћС‚РґР°Р»СЏРµРјСЃСЏ РѕС‚ РіРµСЂРѕСЏ
         transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3)direction, moveSpeed * Time.deltaTime);
     }
 
@@ -69,25 +91,25 @@ public class EnemyTestAI : MonoBehaviour
     {
         
         
-        // Увеличиваем таймер
+        // РЈРІРµР»РёС‡РёРІР°РµРј С‚Р°Р№РјРµСЂ
         timer += Time.deltaTime;
 
 
-        // Меняем направление каждую секунду
+        // РњРµРЅСЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РєР°Р¶РґСѓСЋ СЃРµРєСѓРЅРґСѓ
         if (timer >= changeInterval)
         {
-            direction *= -1; // Меняем направление на противоположное
-            timer = 0f; // Сбрасываем таймер
+            directionCircle *= -1; // РњРµРЅСЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РЅР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ
+            timer = 0f; // РЎР±СЂР°СЃС‹РІР°РµРј С‚Р°Р№РјРµСЂ
             changeInterval = Random.Range(1, 5);
         }
 
         float angle = Mathf.Atan2(directionVector.y, directionVector.x);
-        angle += (moveSpeed / 7f ) * direction * Time.deltaTime;   // ТУТ ЕБАНЫЙ ХАРДКОД ДЛЯ УМЕНЬШЕНИЯ СКОРОСТИ 
-        // Рассчитываем новую позицию
+        angle += (moveSpeed / 7f ) * directionCircle * Time.deltaTime;   // РўРЈРў Р•Р‘РђРќР«Р™ РҐРђР Р”РљРћР” Р”Р›РЇ РЈРњР•РќР¬РЁР•РќРРЇ РЎРљРћР РћРЎРўР 
+        // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ
         float x = playerTransform.position.x + Mathf.Cos(angle) * distanceToHero;
         float y = playerTransform.position.y + Mathf.Sin(angle) * distanceToHero;
 
-        // Применяем новую позицию
+        // РџСЂРёРјРµРЅСЏРµРј РЅРѕРІСѓСЋ РїРѕР·РёС†РёСЋ
         transform.position = new Vector2(x, y);
     }
 }
