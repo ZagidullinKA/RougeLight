@@ -107,9 +107,11 @@ public class Shooting : MonoBehaviour
             {
                 log.Warn("In " + dotEffect + " DotDur is 0");
             }
-            if (dotEffect.type == "baseDmgPercent")
+            log.Debug("dotEffect.type is " + dotEffect.type);
+            if (dotEffect.type == "percent")
             {
-                dotEffect.finalDotDmg = baseDmg*(int)Math.Ceiling(dotEffect.finalDotDmg/100);
+                log.Debug("Множитель " + (float)dotEffect.DotDmg / 100 + " Умноженный урон до округления " + (float)baseDmg * (float)dotEffect.DotDmg / 100 + " Округленный урон " + (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100));
+                dotEffect.DotDmg = (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100);
             }
         }
     }

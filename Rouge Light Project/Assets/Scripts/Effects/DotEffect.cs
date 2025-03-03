@@ -32,8 +32,8 @@ public class DotEffect
                         (dotItem.AffectedChar, "upgradableItem.AffectedChar")
                     );
 
-        this.affectedChar = dotItem.Type;
-        this.type = dotItem.AffectedChar;
+        this.affectedChar = dotItem.AffectedChar;
+        this.type = dotItem.Type;
     }
 
     public void Tick(IDamageable target)
