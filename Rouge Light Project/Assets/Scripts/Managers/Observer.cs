@@ -44,6 +44,9 @@ public class Observer : MonoBehaviour
         if (isRunning)
         {
             float elapsedTime = Time.time - startTime; // Прошедшее время
+            UIManager.Instance.printTimer(elapsedTime);
+
+
             if (Time.time - lastLogTime >= logPeriod) // Проверка вывода лога
             {
                 log.Debug("Прошло 10 секунд - На данный момент прошло: " + elapsedTime);

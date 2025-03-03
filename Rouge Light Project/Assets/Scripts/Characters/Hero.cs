@@ -1,5 +1,7 @@
 using UnityEngine;
 using log4net;
+using Mono.Cecil.Cil;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class Hero : Character, IAttacker, IMovable
@@ -13,47 +15,34 @@ public class Hero : Character, IAttacker, IMovable
     public GameObject Bullet;
     private Vector2 moveVector;
     private bool isShooting = false;
-    CircleCollider2D colliderDropRadius;
-    private LineRenderer lineRendererDropRadius;
 
     //Переменная для godmod
     public bool isGodMode = false;
 
     protected override void Awake()
     {
-        // Заглушка ебаная
-        usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
-        // Конец заглушки ебаной
-
-        log.Debug(usableDotsArray[0].code);
-        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
         isEnemy = false; // Герой не является врагом
+        InitializeCharacteristicsAndDots();
+        base.Awake();
+        UIManager.Instance.printActualHP(actualHP);
 
-        colliderDropRadius = GetComponent<CircleCollider2D>();
-        if (colliderDropRadius != null)
+        CircleCollider2D collider = GetComponent<CircleCollider2D>();
+        if (collider != null)
         {
-            colliderDropRadius.isTrigger = true; // Делаем коллайдер триггером
-
-            //Делаем настройки для визуализации радиуса дропа
-
-            lineRendererDropRadius = gameObject.AddComponent<LineRenderer>();
-
-            // Настройка LineRenderer
-            lineRendererDropRadius.startWidth = 0.01f;
-            lineRendererDropRadius.endWidth = 0.01f;
-            lineRendererDropRadius.useWorldSpace = false;
-            lineRendererDropRadius.material = new Material(Shader.Find("Sprites/Default"));
-            lineRendererDropRadius.startColor = Color.green;
-            lineRendererDropRadius.endColor = Color.green;
-        }
-        else
+            collider.radius = dropRadius;
+            collider.isTrigger = true; // Делаем коллайдер триггером
+        } else
         {
-            log.Error("CircleCollider2D DropRadius is null");
+            log.Error("CircleCollider2D is null");
         }
+    }
 
-        InitializeCharacteristics();
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        UIManager.Instance.printActualHP(actualHP);
     }
 
     void Update()
@@ -70,24 +59,6 @@ public class Hero : Character, IAttacker, IMovable
         Shoot();
     }
 
-    void DrawCircle()
-    {
-        int segments = 50; // Количество сегментов для окружности
-        lineRendererDropRadius.positionCount = segments + 1;
-
-        float angle = 0f;
-        float angleStep = 360f / segments;
-
-        for (int i = 0; i <= segments; i++)
-        {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
-
-            lineRendererDropRadius.SetPosition(i, new Vector3(x, y, 0) + (Vector3)colliderDropRadius.offset);
-            angle += angleStep;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Проверяем, что объект можно подобрать
@@ -95,7 +66,12 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Debug("Предмет подобрали! - " + other.name);
             Drop drop = other.GetComponent<Drop>();
+
             SetCharacteristic(drop.Code, drop.Update);
+            UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
+            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
+            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+
             Destroy(other.gameObject);
             log.Debug("Дроп уничтожен");
         }
@@ -124,7 +100,7 @@ public class Hero : Character, IAttacker, IMovable
     }
 
     // Инициализация характеристик
-    private void InitializeCharacteristics()
+    private void InitializeCharacteristicsAndDots()
     {
         // Используем справочник всех характеристик
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
@@ -132,11 +108,13 @@ public class Hero : Character, IAttacker, IMovable
             if (item.Upgradable)
             {
                 // Получаем улучшаемые характеристики из справочника улучшаемых характеристик
-                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristics().Find(x => x.Code == item.Code);
-                if (upgradableItem != null)
+                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Find(x => x.Code == item.Code);
+                if (upgradableItem is null)
                 {
-                    SetCharacteristic(item.Code, upgradableItem.FinalValue);
+                    log.Error("upgradableItem is null - item.code = " + item.Code);
+                    continue;
                 }
+                SetCharacteristic(item.Code, upgradableItem.FinalValue);
             }
             else
             {
@@ -144,6 +122,20 @@ public class Hero : Character, IAttacker, IMovable
                 SetCharacteristic(item.Code, item.BaseAmount);
             }
         }
+
+        foreach (var item in ImprovableCharactesDictionary.GetAllImprovableDots())
+        {
+            ValidationValue.ValidateIntNotNull(
+                        (item.FinalDotDmg, "upgradableItem.FinalDotDmg"),
+                        (item.FinalDotDur, "upgradableItem.FinalDotDur"),
+                        (item.DmgUpgradeAmount, "upgradableItem.DmgUpgradeAmount"),
+                        (item.DurationUpgradeAmount, "upgradableItem.DurationUpgradeAmount")
+                    );
+
+            usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+        }
+        UIManager.Instance.printDots(usableDotsArray);
     }
 
     // Установка значения характеристики
@@ -174,7 +166,7 @@ public class Hero : Character, IAttacker, IMovable
             case "critChance":
                 critChance += (int)value;
                 break;
-            case "evadeChace":
+            case "evadeChance":
                 evadeChance += (int)value;
                 break;
             case "armor":
@@ -191,8 +183,6 @@ public class Hero : Character, IAttacker, IMovable
                 break;
             case "dropRadius":
                 dropRadius += (int)value;
-                colliderDropRadius.radius = dropRadius;
-                DrawCircle();
                 break;
             case "bulletFlySpeed":
                 bulletFlySpeed += (int)value;
@@ -204,6 +194,16 @@ public class Hero : Character, IAttacker, IMovable
                 log.Warn($"Неизвестная характеристика: {code}");
                 break;
         }
+
+        if (UIManager.Instance == null)
+        {
+            log.Error("UIManager не найден!");
+            return;
+        }
+
+        UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
+            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
+            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
     }
 
     void RotateTowardsMouse()
@@ -230,6 +230,7 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Debug("Ты бы умер, но ты либо тестер, либо читер");
             actualHP = maxHP;
+            UIManager.Instance.printActualHP(actualHP);
         }
     }
 
