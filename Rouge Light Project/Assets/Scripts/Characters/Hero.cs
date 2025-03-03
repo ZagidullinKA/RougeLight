@@ -1,5 +1,7 @@
 using UnityEngine;
 using log4net;
+using Mono.Cecil.Cil;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class Hero : Character, IAttacker, IMovable
@@ -19,17 +21,12 @@ public class Hero : Character, IAttacker, IMovable
 
     protected override void Awake()
     {
-        // Заглушка ебаная
-        usableDotsArray.Add(new DotEffect("fire1", 1, 1, 1, 1));
-        // Конец заглушки ебаной
-
-        log.Debug(usableDotsArray[0].code);
-        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
         isEnemy = false; // Герой не является врагом
-        InitializeCharacteristics();
-
+        InitializeCharacteristicsAndDots();
+        base.Awake();
+        UIManager.Instance.printActualHP(actualHP);
 
         CircleCollider2D collider = GetComponent<CircleCollider2D>();
         if (collider != null)
@@ -40,6 +37,12 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Error("CircleCollider2D is null");
         }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        UIManager.Instance.printActualHP(actualHP);
     }
 
     void Update()
@@ -63,7 +66,12 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Debug("Предмет подобрали! - " + other.name);
             Drop drop = other.GetComponent<Drop>();
+
             SetCharacteristic(drop.Code, drop.Update);
+            UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
+            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
+            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+
             Destroy(other.gameObject);
             log.Debug("Дроп уничтожен");
         }
@@ -92,7 +100,7 @@ public class Hero : Character, IAttacker, IMovable
     }
 
     // Инициализация характеристик
-    private void InitializeCharacteristics()
+    private void InitializeCharacteristicsAndDots()
     {
         // Используем справочник всех характеристик
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
@@ -100,11 +108,13 @@ public class Hero : Character, IAttacker, IMovable
             if (item.Upgradable)
             {
                 // Получаем улучшаемые характеристики из справочника улучшаемых характеристик
-                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristics().Find(x => x.Code == item.Code);
-                if (upgradableItem != null)
+                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Find(x => x.Code == item.Code);
+                if (upgradableItem is null)
                 {
-                    SetCharacteristic(item.Code, upgradableItem.FinalValue);
+                    log.Error("upgradableItem is null - item.code = " + item.Code);
+                    continue;
                 }
+                SetCharacteristic(item.Code, upgradableItem.FinalValue);
             }
             else
             {
@@ -112,6 +122,20 @@ public class Hero : Character, IAttacker, IMovable
                 SetCharacteristic(item.Code, item.BaseAmount);
             }
         }
+
+        foreach (var item in ImprovableCharactesDictionary.GetAllImprovableDots())
+        {
+            ValidationValue.ValidateIntNotNull(
+                        (item.FinalDotDmg, "upgradableItem.FinalDotDmg"),
+                        (item.FinalDotDur, "upgradableItem.FinalDotDur"),
+                        (item.DmgUpgradeAmount, "upgradableItem.DmgUpgradeAmount"),
+                        (item.DurationUpgradeAmount, "upgradableItem.DurationUpgradeAmount")
+                    );
+
+            usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+        }
+        UIManager.Instance.printDots(usableDotsArray);
     }
 
     // Установка значения характеристики
@@ -142,7 +166,7 @@ public class Hero : Character, IAttacker, IMovable
             case "critChance":
                 critChance += (int)value;
                 break;
-            case "evadeChace":
+            case "evadeChance":
                 evadeChance += (int)value;
                 break;
             case "armor":
@@ -170,6 +194,16 @@ public class Hero : Character, IAttacker, IMovable
                 log.Warn($"Неизвестная характеристика: {code}");
                 break;
         }
+
+        if (UIManager.Instance == null)
+        {
+            log.Error("UIManager не найден!");
+            return;
+        }
+
+        UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
+            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
+            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
     }
 
     void RotateTowardsMouse()
@@ -196,6 +230,7 @@ public class Hero : Character, IAttacker, IMovable
         {
             log.Debug("Ты бы умер, но ты либо тестер, либо читер");
             actualHP = maxHP;
+            UIManager.Instance.printActualHP(actualHP);
         }
     }
 

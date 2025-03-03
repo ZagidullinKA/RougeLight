@@ -92,7 +92,7 @@ public class DropManager : MonoBehaviour
 
     private String getRandomCharacter() {
         // Фильтруем объекты, где type = true
-        var filteredItems = ImprovableCharactesDictionary.GetAllImprovableCharacteristics().Where(item => item.Type).ToList();
+        var filteredItems = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Where(item => item.Type).ToList();
 
         // Если список пуст, возвращаем null
         if (filteredItems.Count == 0)

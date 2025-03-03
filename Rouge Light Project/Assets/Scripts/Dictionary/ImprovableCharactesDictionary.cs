@@ -1,5 +1,7 @@
 using log4net;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
 
 public static class ImprovableCharactesDictionary
 {
@@ -9,7 +11,7 @@ public static class ImprovableCharactesDictionary
     private static readonly List<ItemImprovableCharactes> ItemsImprovableCharactes = new();
 
 
-    public static List<ItemImprovableCharactes> getListItemImprovableCharactes()
+    public static List<ItemImprovableCharactes> getListItemImprovableCharactesAndDots()
     {
         if (ItemsImprovableCharactes.Count != 0)
             ItemsImprovableCharactes.Clear();
@@ -44,6 +46,7 @@ public static class ImprovableCharactesDictionary
 
         foreach (var itemDot in DotsDictionary.GetAllDots())
         {
+            UnityEngine.Debug.Log("Type = " + itemDot.Type + " Code = " + itemDot.Code + " Upgradable = " + itemDot.Upgradable);
             if (itemDot.Upgradable == true)
             {
                 ValidationValue.ValidateStringNotNullOrEmpty(
@@ -68,20 +71,35 @@ public static class ImprovableCharactesDictionary
                     itemDot.BaseDotDuration);
 
                 ItemsImprovableCharactes.Add(item);
+                UnityEngine.Debug.Log("Code = " + item.Code + " Добавлен");
             }
         }
 
         return ItemsImprovableCharactes;
     }
 
-    public static ItemImprovableCharactes GetImprovableCharacteristic(string code)
+    public static ItemImprovableCharactes GetImprovableCharacteristicOrDot(string code)
     {
         return ItemsImprovableCharactes.Find(x => x.Code == code);
     }
 
-    public static List<ItemImprovableCharactes> GetAllImprovableCharacteristics()
+    public static List<ItemImprovableCharactes> GetAllImprovableCharacteristicsAndDots()
     {
-        getListItemImprovableCharactes();
+        getListItemImprovableCharactesAndDots();
         return ItemsImprovableCharactes;
+    }
+
+    public static List<ItemImprovableCharactes> GetAllImprovableDots()
+    {
+        List < ItemImprovableCharactes > listDots = new();
+        foreach (var item in getListItemImprovableCharactesAndDots())
+        {
+            if (item.Type == false)
+            {
+                listDots.Add(item);
+            }
+        }
+
+        return listDots;
     }
 }

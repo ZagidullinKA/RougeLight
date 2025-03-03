@@ -19,7 +19,7 @@ public class Observer : MonoBehaviour
     private static float lastOverestimatingTime = 0f; // Время последнего вывода лога
     private static float recalculationPeriod = 60f; // Раз в какое время должна пересчитываться кривая сложности
     private static float lastGenerationMobsTime = 0f; // Время последней генерации мобов
-    private static float generationMobsPeriod = 30f; // Раз в какое время происходит генерация мобов
+    private static float generationMobsPeriod = 5f; // Раз в какое время происходит генерация мобов
 
 
 
@@ -44,6 +44,9 @@ public class Observer : MonoBehaviour
         if (isRunning)
         {
             float elapsedTime = Time.time - startTime; // Прошедшее время
+            UIManager.Instance.printTimer(elapsedTime);
+
+
             if (Time.time - lastLogTime >= logPeriod) // Проверка вывода лога
             {
                 log.Debug("Прошло 10 секунд - На данный момент прошло: " + elapsedTime);
