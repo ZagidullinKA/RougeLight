@@ -14,7 +14,6 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Rigidbody2D rb;
 
-    public Array dotsArray;
     public string whoIsShooter;
 
     private float nextFireTime;
@@ -48,12 +47,14 @@ public class Shooting : MonoBehaviour
 
             Vector2 aimCoords = firePoint - unitPos;
 
+            UsableDotsArray(usableDotsArray, baseDmg);
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.identity);
 
             BulletTag(bullet, whoIsShooter);
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
-
+            
             // Передаем пуле характеристики
             bulletScript.SetAimCoords(aimCoords);
             bulletScript.SetUsableDotsArray(usableDotsArray);
@@ -90,6 +91,27 @@ public class Shooting : MonoBehaviour
     void BulletTag(GameObject bullet, string whoIsShooter)
     {
         bullet.tag = string.Concat(whoIsShooter, "Bullet");
+    }
+
+    private void UsableDotsArray(List<DotEffect> usableDotsArray, int baseDmg)
+    {
+        foreach (var dotEffect in usableDotsArray)
+        {
+            log.Debug("dotEffect.DotDmg is " +  dotEffect.DotDmg + 
+                " and dotEffect.DotDur is " + dotEffect.DotDur);
+            if (dotEffect.DotDmg == 0)
+            {
+                log.Warn("In " + dotEffect + " DotDmg is 0");
+            }
+            if (dotEffect.DotDur == 0)
+            {
+                log.Warn("In " + dotEffect + " DotDur is 0");
+            }
+            if (dotEffect.type == "baseDmgPercent")
+            {
+                dotEffect.finalDotDmg = baseDmg*(int)Math.Ceiling(dotEffect.finalDotDmg/100);
+            }
+        }
     }
 }
 
