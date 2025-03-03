@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
     <Compile Include="Assets\Scripts\Dictionary\DotsDictionary.cs" />
     <Compile Include="Assets\Scripts\Managers\Observer.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Dictionary\EnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IAttacker.cs" />
     <Compile Include="Assets\Scripts\Shooting\DetectOfBulletCollision.cs" />
@@ -96,32 +97,55 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Packages\log4net.3.0.4\lib\netstandard2.0\log4net.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\lib\netstandard2.0\System.Security.Principal.Windows.dll" />
     <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\useSharedDesignerContext.txt" />
     <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\version.txt" />
     <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\THIRD-PARTY-NOTICES.TXT" />
     <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\lib\netstandard2.0\System.Security.AccessControl.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Packages\System.Security.Permissions.4.5.0\version.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\LICENSE.TXT" />
     <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\version.txt" />
     <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Packages\System.Security.Permissions.4.5.0\lib\netstandard2.0\System.Security.Permissions.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\useSharedDesignerContext.txt" />
     <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\LICENSE.TXT" />
     <None Include="Assets\Packages\System.Security.Permissions.4.5.0\LICENSE.TXT" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Packages\System.Security.AccessControl.4.5.0\version.txt" />
     <None Include="Assets\Packages\System.Configuration.ConfigurationManager.4.5.0\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll" />
     <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\version.txt" />
     <None Include="Assets\Packages\System.Security.Permissions.4.5.0\THIRD-PARTY-NOTICES.TXT" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Packages\System.Security.Permissions.4.5.0\useSharedDesignerContext.txt" />
     <None Include="Assets\Packages\log4net.3.0.4\lib\netstandard2.0\log4net.xml" />
     <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\LICENSE.TXT" />
     <None Include="Assets\Packages\System.Security.Principal.Windows.4.5.0\useSharedDesignerContext.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -626,26 +650,6 @@
     </Reference>
     <Reference Include="System.Security.Cryptography.ProtectedData">
       <HintPath>Assets\Packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEditor.Apple.Extensions.Common">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.Apple.Extensions.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

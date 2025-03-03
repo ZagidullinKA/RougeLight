@@ -5,7 +5,8 @@ public static class DotsDictionary
 {
     private static readonly List<ItemDot> ITEM_DOTS = new()
         {
-            new ItemDot("Fire", "ќгонь", 1, 1, 1, 1, "actualHP", TypeOfDots.TYPE_PERCENT, true)
+            new ItemDot("Fire", "ќгонь", 1, 1, 1, 1, "moveSpeed", TypeOfDots.TYPE_PERCENT, true),
+            new ItemDot("Poison", "яд", 2, 2, 2, 2, "moveSpeed", TypeOfDots.TYPE_FIXED, true)
         };
 
     public static ItemDot GetDot(string code)
