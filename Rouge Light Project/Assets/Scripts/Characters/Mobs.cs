@@ -21,6 +21,8 @@ public class Mobs : Character, IAttacker, IMovable
 
         dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()

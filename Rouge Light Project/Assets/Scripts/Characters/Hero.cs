@@ -13,6 +13,8 @@ public class Hero : Character, IAttacker, IMovable
     public GameObject Bullet;
     private Vector2 moveVector;
     private bool isShooting = false;
+    CircleCollider2D colliderDropRadius;
+    private LineRenderer lineRendererDropRadius;
 
     //Переменная для godmod
     public bool isGodMode = false;
@@ -28,18 +30,30 @@ public class Hero : Character, IAttacker, IMovable
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
         isEnemy = false; // Герой не является врагом
-        InitializeCharacteristics();
 
+        colliderDropRadius = GetComponent<CircleCollider2D>();
+        if (colliderDropRadius != null)
+        {
+            colliderDropRadius.isTrigger = true; // Делаем коллайдер триггером
 
-        CircleCollider2D collider = GetComponent<CircleCollider2D>();
-        if (collider != null)
-        {
-            collider.radius = dropRadius;
-            collider.isTrigger = true; // Делаем коллайдер триггером
-        } else
-        {
-            log.Error("CircleCollider2D is null");
+            //Делаем настройки для визуализации радиуса дропа
+
+            lineRendererDropRadius = gameObject.AddComponent<LineRenderer>();
+
+            // Настройка LineRenderer
+            lineRendererDropRadius.startWidth = 0.01f;
+            lineRendererDropRadius.endWidth = 0.01f;
+            lineRendererDropRadius.useWorldSpace = false;
+            lineRendererDropRadius.material = new Material(Shader.Find("Sprites/Default"));
+            lineRendererDropRadius.startColor = Color.green;
+            lineRendererDropRadius.endColor = Color.green;
         }
+        else
+        {
+            log.Error("CircleCollider2D DropRadius is null");
+        }
+
+        InitializeCharacteristics();
     }
 
     void Update()
@@ -54,6 +68,24 @@ public class Hero : Character, IAttacker, IMovable
     {
         Move();
         Shoot();
+    }
+
+    void DrawCircle()
+    {
+        int segments = 50; // Количество сегментов для окружности
+        lineRendererDropRadius.positionCount = segments + 1;
+
+        float angle = 0f;
+        float angleStep = 360f / segments;
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
+
+            lineRendererDropRadius.SetPosition(i, new Vector3(x, y, 0) + (Vector3)colliderDropRadius.offset);
+            angle += angleStep;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -159,6 +191,8 @@ public class Hero : Character, IAttacker, IMovable
                 break;
             case "dropRadius":
                 dropRadius += (int)value;
+                colliderDropRadius.radius = dropRadius;
+                DrawCircle();
                 break;
             case "bulletFlySpeed":
                 bulletFlySpeed += (int)value;
