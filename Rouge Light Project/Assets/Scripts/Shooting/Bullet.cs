@@ -58,13 +58,13 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletTimeAlive(float timeAlive) { bulletTimeAlive = timeAlive; }
 
-    public void SetBulletFlySpeed(float FlySpeed) { bulletFlySpeed = FlySpeed; }
+    public void SetBulletFlySpeed(float flySpeed) { bulletFlySpeed = flySpeed; }
 
-    public void SetUsableDotsArray(List<DotEffect> DotsArray) { usableDotsArray = DotsArray; }
+    public void SetUsableDotsArray(List<DotEffect> dotsArray) { usableDotsArray = dotsArray; }
 
     public List<DotEffect> GetUsableDotsArray() { return usableDotsArray; }
 
-    public void SetAimCoords(Vector2 Coords) { aimCoords = Coords; }
+    public void SetAimCoords(Vector2 coords) { aimCoords = coords; }
 
-    public void SetLayerIndex(int LayerIndex) { layerIndex = LayerIndex; }
+    public void SetLayerIndex(int setLayerIndex) { layerIndex = setLayerIndex; }
 }

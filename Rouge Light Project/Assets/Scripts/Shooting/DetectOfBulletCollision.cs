@@ -20,10 +20,10 @@ public class DetectOfBulletCollision : MonoBehaviour
     {
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
-        log.Debug(otherTag);
+
         if (TagChecking(otherTag))
         {
-            log.Debug("Попал в противника");
+            log.Debug("Попал в " + otherTag);
             Character character = otherObject.GetComponent<Character>();
             if (character != null)
             {
@@ -38,18 +38,17 @@ public class DetectOfBulletCollision : MonoBehaviour
             }
             else
             {
-                log.Warn("Скрипт не найден на объекте: " + otherObject.name);
+                log.Error("Скрипт не найден на объекте: " + otherObject.name);
             }
 
         }
         else
         {
-            log.Debug("Попадание по своему");
+            log.Warn("Попадание по своему");
         }
 
         bool TagChecking(string otherTag)
         {
-            log.Debug("Мы в Tag Checking. otherTag = " + otherTag + " bulletTag = " + bulletTag);
             bulletTag = bulletTag.Replace("Bullet", "");
             return string.Compare(otherTag, bulletTag) == 0 ? false : true;   
         }

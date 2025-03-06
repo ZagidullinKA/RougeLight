@@ -13,7 +13,7 @@ public class Mobs : Character, IAttacker, IMovable
     private Transform player; // —сылка на игрока
     public float rotationSpeed = 5f; // —корость поворота
 
-    public Shooting shooting;
+    private Shooting shooting;
 
     protected override void Awake()
     {
