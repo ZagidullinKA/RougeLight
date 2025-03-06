@@ -20,7 +20,6 @@ public class Shooting : MonoBehaviour
 
     private float critDamageMultiplier = 2;
 
-    [SerializeField] private GameObject shooter;
     [SerializeField] private GameObject bulletSpawn;
 
     private void Start()
@@ -36,16 +35,20 @@ public class Shooting : MonoBehaviour
     {
         float coolDown = 1 / (float) attackSpeed; // устанавливаем задержку стрельбы
         log.Debug("Кулдаун " + coolDown);
-       
+        
+        if (bulletSpawn == null)
+        {
+            log.Error("bulletSpawn не назначен, выстрел невозможен.");
+            return;
+        }
+
         if (Time.time >= nextFireTime)
         {
-            bulletSpawn = GameObject.FindGameObjectWithTag("PlayerFirePoint");
             Vector2 firePoint = bulletSpawn.transform.position;
-
-            shooter = GameObject.FindGameObjectWithTag("Player");
-            Vector2 unitPos = shooter.transform.position;
+            Vector2 unitPos = transform.position;
 
             Vector2 aimCoords = firePoint - unitPos;
+            aimCoords.Normalize();
 
             UsableDotsArray(usableDotsArray, baseDmg);
 
