@@ -15,12 +15,12 @@ public class DetectOfBulletCollision : MonoBehaviour
     {
         bulletTag = gameObject.tag;
         bullet = gameObject.GetComponent<Bullet>();
-        log.Debug(bullet.name);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
+        log.Debug(otherTag);
         if (TagChecking(otherTag))
         {
             log.Debug("Попал в противника");
@@ -49,8 +49,9 @@ public class DetectOfBulletCollision : MonoBehaviour
 
         bool TagChecking(string otherTag)
         {
+            log.Debug("Мы в Tag Checking. otherTag = " + otherTag + " bulletTag = " + bulletTag);
             bulletTag = bulletTag.Replace("Bullet", "");
-            return string.Compare(otherTag, bulletTag) == 0 ? false : true;
+            return string.Compare(otherTag, bulletTag) == 0 ? false : true;   
         }
 
 

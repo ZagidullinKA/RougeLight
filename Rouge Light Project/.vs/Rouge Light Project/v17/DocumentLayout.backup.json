@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shooting\\shooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|e:\\rougelight\\rouge light project\\assets\\scripts\\effects\\doteffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\effects\\doteffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|e:\\rougelight\\rouge light project\\assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dictionary\\dotsdictionary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|e:\\rougelight\\rouge light project\\assets\\scripts\\characters\\mobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\mobs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\effects\\doteffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\effects\\doteffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Mobs.cs",
+              "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Mobs.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Mobs.cs",
+              "ToolTip": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Mobs.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Characters\\Mobs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-06T20:15:30.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "DotEffect.cs",
               "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Effects\\DotEffect.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Effects\\DotEffect.cs",
@@ -34,8 +51,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Effects\\DotEffect.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwAgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T20:50:47.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-03T20:50:47.882Z"
             },
             {
               "$type": "Document",
@@ -45,14 +61,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Shooting\\Shooting.cs",
               "ToolTip": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Shooting\\Shooting.cs",
               "RelativeToolTip": "Assets\\Scripts\\Shooting\\Shooting.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAA9wHMAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAowC8AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-03T20:46:41.333Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "DotsDictionary.cs",
               "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Dictionary\\DotsDictionary.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Dictionary\\DotsDictionary.cs",

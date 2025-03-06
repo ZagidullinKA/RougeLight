@@ -13,6 +13,8 @@ public class Mobs : Character, IAttacker, IMovable
     private Transform player; // —сылка на игрока
     public float rotationSpeed = 5f; // —корость поворота
 
+    public Shooting shooting;
+
     protected override void Awake()
     {
         InitializeCharacteristics("UnitTest");
@@ -23,6 +25,8 @@ public class Mobs : Character, IAttacker, IMovable
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         rb = GetComponent<Rigidbody2D>();
+
+        shooting = gameObject.GetComponent<Shooting>();
     }
 
     void Update()
@@ -30,6 +34,7 @@ public class Mobs : Character, IAttacker, IMovable
         if (player != null)
         {
             RotateTowardsPlayer();
+            shooting.Shot(dmg, critChance, atkSpeed, bulletFlySpeed, bulletTimeAlive, usableDotsArray);
         }
     }
 

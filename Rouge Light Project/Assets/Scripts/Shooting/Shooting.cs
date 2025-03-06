@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 using Vector2 = UnityEngine.Vector2;
 using log4net;
+using System.Linq;
 
 public class Shooting : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class Shooting : MonoBehaviour
         List<DotEffect> usableDotsArray)
     {
         float coolDown = 1 / (float) attackSpeed; // устанавливаем задержку стрельбы
-        log.Debug("Кулдаун " + coolDown);
+        // log.Debug("Кулдаун " + coolDown);
         
         if (bulletSpawn == null)
         {
@@ -52,6 +53,9 @@ public class Shooting : MonoBehaviour
 
             UsableDotsArray(usableDotsArray, baseDmg);
 
+            string layerTag = string.Concat(whoIsShooter, "Bullet"); 
+            int LayerIndex = LayerMask.NameToLayer(layerTag);
+
             GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.identity);
 
             BulletTag(bullet, whoIsShooter);
@@ -64,6 +68,8 @@ public class Shooting : MonoBehaviour
             bulletScript.SetDamage(DamageCalc(baseDmg, critChance));
             bulletScript.SetBulletFlySpeed(bulletFlySpeed);
             bulletScript.SetBulletTimeAlive(bulletTimeAlive);
+            bulletScript.SetLayerIndex(LayerIndex);
+            log.Debug("Layer Tag is " + layerTag + "Layer Index is " + LayerIndex);
 
             nextFireTime = Time.time + coolDown; // Устанавливаем время следующего выстрела
             log.Debug("nexyFireTime " +  nextFireTime + " Time.time " + Time.time);
