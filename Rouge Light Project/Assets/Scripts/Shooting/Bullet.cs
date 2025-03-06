@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     private List<DotEffect> usableDotsArray;
     private int damage;
     private Vector2 aimCoords;
-
+    private int layerIndex;
 
 
     void Start()
@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
         float rotate = Mathf.Atan2(aimCoords.y, aimCoords.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, rotate);
         rb.linearVelocity = transform.up * bulletFlySpeed;
+        gameObject.layer = layerIndex;
 
         Invoke("DestroyBullet", bulletTimeAlive);
     }
@@ -57,11 +58,13 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletTimeAlive(float timeAlive) { bulletTimeAlive = timeAlive; }
 
-    public void SetBulletFlySpeed(float FlySpeed) { bulletFlySpeed = FlySpeed; }
+    public void SetBulletFlySpeed(float flySpeed) { bulletFlySpeed = flySpeed; }
 
-    public void SetUsableDotsArray(List<DotEffect> DotsArray) { usableDotsArray = DotsArray; }
+    public void SetUsableDotsArray(List<DotEffect> dotsArray) { usableDotsArray = dotsArray; }
 
     public List<DotEffect> GetUsableDotsArray() { return usableDotsArray; }
 
-    public void SetAimCoords(Vector2 Coords) { aimCoords = Coords; }
+    public void SetAimCoords(Vector2 coords) { aimCoords = coords; }
+
+    public void SetLayerIndex(int setLayerIndex) { layerIndex = setLayerIndex; }
 }

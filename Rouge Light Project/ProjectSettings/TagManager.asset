@@ -10,6 +10,7 @@ TagManager:
   - EnemyBullet
   - Enemy
   - Drop
+  - EnemyFirePoint
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - Hero
   - Enemy
   - Drop
-  - Bullet
-  - 
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 

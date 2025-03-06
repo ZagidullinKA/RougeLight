@@ -9,7 +9,7 @@ public class EnemyTypesDictionary
         // string code, string nameRu, int maxHP, int dmg, int atkSpeed, 
         // int moveSpeed, int critChance, int evadeChance, int armor, int debuffResist, int vampire,
         // int bulletFlySpeed, int bulletTimeAlive, string typeOfAttack
-        new ItemEnemyTypesDictionary("UnitTest", "Тестовый юнит", 100, 1, 1, 1, 10, 5, 0, 0, 0, 1, 3, TypeOfEnemyAttack.TYPE_SHOOT)
+        new ItemEnemyTypesDictionary("UnitTest", "Тестовый юнит", 100, 5, 1, 1, 10, 5, 0, 0, 0, 2, 3, TypeOfEnemyAttack.TYPE_SHOOT)
     };
 
     public static ItemEnemyTypesDictionary GetCharacteristic(string code)

@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 using Vector2 = UnityEngine.Vector2;
 using log4net;
+using System.Linq;
 
 public class Shooting : MonoBehaviour
 {
@@ -20,7 +21,6 @@ public class Shooting : MonoBehaviour
 
     private float critDamageMultiplier = 2;
 
-    [SerializeField] private GameObject shooter;
     [SerializeField] private GameObject bulletSpawn;
 
     private void Start()
@@ -35,19 +35,26 @@ public class Shooting : MonoBehaviour
         List<DotEffect> usableDotsArray)
     {
         float coolDown = 1 / (float) attackSpeed; // устанавливаем задержку стрельбы
-        log.Debug("Кулдаун " + coolDown);
-       
+        // log.Debug("Кулдаун " + coolDown);
+        
+        if (bulletSpawn == null)
+        {
+            log.Error("bulletSpawn не назначен, выстрел невозможен.");
+            return;
+        }
+
         if (Time.time >= nextFireTime)
         {
-            bulletSpawn = GameObject.FindGameObjectWithTag("PlayerFirePoint");
             Vector2 firePoint = bulletSpawn.transform.position;
-
-            shooter = GameObject.FindGameObjectWithTag("Player");
-            Vector2 unitPos = shooter.transform.position;
+            Vector2 unitPos = transform.position;
 
             Vector2 aimCoords = firePoint - unitPos;
+            aimCoords.Normalize();
 
             UsableDotsArray(usableDotsArray, baseDmg);
+
+            string layerTag = string.Concat(whoIsShooter, "Bullet"); 
+            int LayerIndex = LayerMask.NameToLayer(layerTag);
 
             GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.identity);
 
@@ -61,6 +68,8 @@ public class Shooting : MonoBehaviour
             bulletScript.SetDamage(DamageCalc(baseDmg, critChance));
             bulletScript.SetBulletFlySpeed(bulletFlySpeed);
             bulletScript.SetBulletTimeAlive(bulletTimeAlive);
+            bulletScript.SetLayerIndex(LayerIndex);
+            log.Debug("Layer Tag is " + layerTag + "Layer Index is " + LayerIndex);
 
             nextFireTime = Time.time + coolDown; // Устанавливаем время следующего выстрела
             log.Debug("nexyFireTime " +  nextFireTime + " Time.time " + Time.time);

@@ -15,15 +15,15 @@ public class DetectOfBulletCollision : MonoBehaviour
     {
         bulletTag = gameObject.tag;
         bullet = gameObject.GetComponent<Bullet>();
-        log.Debug(bullet.name);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
+
         if (TagChecking(otherTag))
         {
-            log.Debug("Попал в противника");
+            log.Debug("Попал в " + otherTag);
             Character character = otherObject.GetComponent<Character>();
             if (character != null)
             {
@@ -38,19 +38,19 @@ public class DetectOfBulletCollision : MonoBehaviour
             }
             else
             {
-                log.Warn("Скрипт не найден на объекте: " + otherObject.name);
+                log.Error("Скрипт не найден на объекте: " + otherObject.name);
             }
 
         }
         else
         {
-            log.Debug("Попадание по своему");
+            log.Warn("Попадание по своему");
         }
 
         bool TagChecking(string otherTag)
         {
             bulletTag = bulletTag.Replace("Bullet", "");
-            return string.Compare(otherTag, bulletTag) == 0 ? false : true;
+            return string.Compare(otherTag, bulletTag) == 0 ? false : true;   
         }
 
 

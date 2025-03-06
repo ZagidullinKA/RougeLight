@@ -12,7 +12,6 @@ public class Hero : Character, IAttacker, IMovable
     public Rigidbody2D rb;
     public Shooting shooting;
     public Transform firePoint;
-    public GameObject Bullet;
     private Vector2 moveVector;
     private bool isShooting = false;
 
