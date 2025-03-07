@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text textDots; // Ссылка на компонент TextMeshPro для Дотов
     public TMP_Text textTimer; // Ссылка на компонент TextMeshPro для Timer
     public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
+    public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
 
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
@@ -151,5 +152,10 @@ public class UIManager : MonoBehaviour
         }
 
         textActualHP.text = string.Format("ActualHP : {0}", actualHP);
+    }
+
+    public void printCountKill(int countKill)
+    {
+        textCountKill.text = string.Format("Count kill : {0}", countKill);
     }
 }
