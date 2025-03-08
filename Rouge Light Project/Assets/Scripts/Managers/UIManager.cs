@@ -2,9 +2,6 @@
 using TMPro;
 using UnityEngine;
 using System;
-using log4net.Config;
-using System.IO;
-using static UnityEngine.Rendering.DebugUI;
 using System.Text;
 using System.Collections.Generic;
 
@@ -28,19 +25,12 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        // Загрузка конфигурации log4net
-        var configFile = new FileInfo(Path.Combine(Application.dataPath, "log4net.config"));
-        XmlConfigurator.Configure(configFile);
-
-        Debug.Log("Awake вызван"); // Добавьте это
-        log.Debug("Awake вызван");
-
         // Реализация синглтона
         if (Instance == null)
         {
             Instance = this;
             log.Info("UIManager инициализарован");
-            //DontDestroyOnLoad(gameObject); // Если нужно сохранить между сценами
+            DontDestroyOnLoad(gameObject); // сохранить между сценами
         }
         else
         {
@@ -53,8 +43,6 @@ public class UIManager : MonoBehaviour
             int moveSpeed, int luck, int critChance, int evadeChance, int armor, int debuffResist,
             int Vampire, int hpFromDropRestore, int dropRadius, int bulletFlySpeed, int bulletTimeAlive)
     {
-        log.Debug("Обращение к printCharacters");
-        Debug.Log("Обращение к printCharacters");
 
         if (textCharacters == null)
         {
@@ -85,7 +73,6 @@ public class UIManager : MonoBehaviour
     public void printDots(List<DotEffect> usableDotsArray)
     {
         log.Debug("Обращение к printDots");
-        Debug.Log("Обращение к printDots");
 
         if (textDots == null)
         {
