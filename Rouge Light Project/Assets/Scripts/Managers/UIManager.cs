@@ -12,13 +12,12 @@ public class UIManager : MonoBehaviour
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(UIManager));
 
-
-
     public TMP_Text textCharacters; // Ссылка на компонент TextMeshPro для Характеристик
     public TMP_Text textDots; // Ссылка на компонент TextMeshPro для Дотов
     public TMP_Text textTimer; // Ссылка на компонент TextMeshPro для Timer
     public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
     public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
+    public TMP_Text textMoney; // Ссылка на компонент TextMeshPro для Money
 
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
@@ -134,7 +133,7 @@ public class UIManager : MonoBehaviour
     {
         if (textActualHP == null)
         {
-            log.Error("textTimer не назначен!");
+            log.Error("textActualHP не назначен!");
             return;
         }
 
@@ -143,6 +142,23 @@ public class UIManager : MonoBehaviour
 
     public void printCountKill(int countKill)
     {
+        if (textCountKill == null)
+        {
+            log.Error("textCountKill не назначен!");
+            return;
+        }
+
         textCountKill.text = string.Format("Count kill : {0}", countKill);
+    }
+
+    public void printMoney(int money)
+    {
+        if (textMoney == null)
+        {
+            log.Error("textMoney не назначен!");
+            return;
+        }
+
+        textMoney.text = string.Format("Заработаные : {0}", money);
     }
 }

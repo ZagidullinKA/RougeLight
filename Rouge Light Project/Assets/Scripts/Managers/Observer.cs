@@ -36,8 +36,9 @@ public class Observer : MonoBehaviour
             log.Warn("Duplicate Observer destroyed.");
             Destroy(gameObject);
         }
-
+        initializedMoneyAtStart();
         UIManager.Instance.printCountKill(countKill);
+        UIManager.Instance.printMoney(0);
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] // Запуск скрипта после загрузки сцены
@@ -52,6 +53,11 @@ public class Observer : MonoBehaviour
             StartTimer();
             log.Info("Инициализация наблюдателя завершена");
         }
+    }
+
+    private void initializedMoneyAtStart()
+    {
+        moneyAtStart = MoneyDictionary.GetItemMoneyDictionaryOfCode("money").Amount;
     }
 
     void Update()
@@ -105,5 +111,11 @@ public class Observer : MonoBehaviour
 
         countKill++;
         UIManager.Instance.printCountKill(countKill);
+    }
+
+    public static void increaseMoney(int countMoney)
+    {
+        MoneyDictionary.increaseAmountItemMoneyDictionaryOfCode("money", countMoney);
+        UIManager.Instance.printMoney(MoneyDictionary.GetItemMoneyDictionaryOfCode("money").Amount - moneyAtStart);
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Linq;
 using Random = UnityEngine.Random;
 using log4net;
+using Mono.Cecil.Cil;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DropManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class DropManager : MonoBehaviour
 
     private static Hero heroScript;
     private static float luck;
+    private static String dropCode;
 
     public GameObject dropPrefab;
     private GameObject enemy;
@@ -43,7 +46,8 @@ public class DropManager : MonoBehaviour
                 log.Debug("Удача на твоей стороне, выпадение дропа!");
                 ChoosingDrop();
 
-            } else
+            }
+            else
             {
                 log.Debug("Удача не пройдена - дроп не выпадет :  diceRoll - " + diceRoll + " < luck - " + luck);
             }
@@ -63,41 +67,105 @@ public class DropManager : MonoBehaviour
         if (diceRoll < 11)
         {
             log.Debug("Выпадает улучшение характеристики");
+            dropCode = "character";
         }
-        else if (diceRoll < 51)
+        else if (diceRoll < 31)
         {
             log.Debug("Выпадает улучшение дота");
+            dropCode = "dot";
+        }
+        else if (diceRoll < 61)
+        {
+            log.Debug("Выпадают деньги");
+            dropCode = "money";
         }
         else
         {
-            log.Debug("Выпадают деньги");
+            log.Debug("Выпадает хилка");
+            dropCode = "heal";
         }
         //Пока это условность, всегда будет выпадать улучшение характеристики
-        createDrop();
+        createDrop(dropCode);
     }
 
-    private void createDrop() {
-        string code = getRandomCharacter();
+    private void createDrop(string dropCode)
+    {
+
+        string code;
+        Color dropColor;
+        switch (dropCode)
+        {
+            case "character":
+                code = getRandomCharacterOrDot(true);
+                dropColor = Color.blue;
+                break;
+            case "dot":
+                code = getRandomCharacterOrDot(false);
+                dropColor = Color.green;
+                break;
+            case "money":
+                code = dropCode;
+                dropColor = Color.yellow;
+                break;
+            case "heal":
+                code = dropCode;
+                dropColor = Color.red;
+                break;
+            default:
+                log.Error($"Неизвестная тип дропа: {dropCode}");
+                return;
+        }
+
+
 
         if (dropPrefab is null) { log.Error("dropPrefab is null"); }
         if (enemy is null) { log.Error("createDrop - enemy is null"); }
         GameObject drop = Instantiate(dropPrefab, enemy.transform.position, Quaternion.identity);
 
-
         Drop dropScript = drop.GetComponent<Drop>();
         // Передаем дропу характеристики
-        dropScript.Code = code;
-        dropScript.Update = 3;
+        dropScript.DropCode = dropCode;
+        dropScript.ItemCode = code;
+        dropScript.Update = 3; //ЕБАННЫЙ ХАРДКОД
+
+        if (dropCode == "dot")
+        {
+            dropScript.IsDmgUpIfDot = Random.value > 0.5f;
+        }
+
+        // Получаем ссылку на дочерний объект "circle"
+        Transform circleTransform = drop.transform.Find("Circle");
+
+        if (circleTransform != null)
+        {
+            // Получаем SpriteRenderer из дочернего объекта
+            SpriteRenderer dropSprite = circleTransform.GetComponent<SpriteRenderer>();
+
+            if (dropSprite != null)
+            {
+                // Теперь можно установить цвет
+                dropSprite.color = dropColor;
+            }
+            else
+            {
+                log.Error("SpriteRenderer не найден");
+            }
+        }
+        else
+        {
+            log.Error("Дочерний объект 'circle' не найден");
+        }
     }
 
-    private String getRandomCharacter() {
-        // Фильтруем объекты, где type = true
-        var filteredItems = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Where(item => item.Type).ToList();
+    private String getRandomCharacterOrDot(bool type)
+    {
+        // Фильтруем объекты по type, характеристика или дот
+        var filteredItems = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Where(item => item.Type == type).ToList();
 
         // Если список пуст, возвращаем null
         if (filteredItems.Count == 0)
         {
-            log.Error("Улучшаемая характеристика не найдена");
+            log.Error("Улучшаемый/ая " + (type ? "характеристика" : "дот") + " не найден, type = " + type);
             return null;
         }
 

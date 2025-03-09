@@ -102,4 +102,28 @@ public static class ImprovableCharactesDictionary
 
         return listDots;
     }
+
+    public static int GetFinalDotDmgOfCode(string code)
+    {
+        int? dotDmgReturn = ItemsImprovableCharactes.Find(x => x.Code == code).FinalDotDmg;
+
+        if (dotDmgReturn == null)
+        {
+            log.Error("Не верный code или поле dotDmg не заполнено, code = " + code);
+        }
+
+        return (int) dotDmgReturn;
+    }
+
+    public static int GetFinalDotDurOfCode(string code)
+    {
+        int? dotDurReturn = ItemsImprovableCharactes.Find(x => x.Code == code).FinalDotDur;
+
+        if (dotDurReturn == null)
+        {
+            log.Error("Не верный code или поле dotDmg не заполнено, code = " + code);
+        }
+
+        return (int) dotDurReturn;
+    }
 }

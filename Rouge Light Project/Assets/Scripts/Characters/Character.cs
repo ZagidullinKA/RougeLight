@@ -106,11 +106,4 @@ public class Character : MonoBehaviour, IDamageable, IHealable
         log.Debug(gameObject.name + " умер.");
         Destroy(gameObject);
     }
-
-    // Метод для подбора дропа
-    public virtual void PickupDrop()
-    {
-        Heal(hpFromDropRestore);
-        // Здесь можно добавить логику для подбора других предметов
-    }
 }

@@ -1,17 +1,25 @@
+using System;
 
-using UnityEngine;
-
-public class ItemMoneyDictionary 
+public class ItemMoneyDictionary
 {
-    string code;
-    int amount;
+    private string code;
+    private int amount;
 
-    public string Code => code;
-    public int Amount => amount;
+    public string Code
+    {
+        get => code;
+        set { code = value; }
+    }
+
+    public int Amount
+    {
+        get => amount;
+        set { amount = value; }
+    }
 
     public ItemMoneyDictionary(string code, int amount)
     {
-        this.code = code;
-        this.amount = amount;
+        Code = code; 
+        Amount = amount;
     }
 }

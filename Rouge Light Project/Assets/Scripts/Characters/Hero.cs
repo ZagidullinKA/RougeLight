@@ -2,6 +2,8 @@
 using log4net;
 using Mono.Cecil.Cil;
 using static UnityEngine.Rendering.DebugUI;
+using System.Reflection.Emit;
+using static UnityEditor.Progress;
 
 
 public class Hero : Character, IAttacker, IMovable
@@ -102,10 +104,27 @@ public class Hero : Character, IAttacker, IMovable
             log.Debug("Предмет подобрали! - " + other.name);
             Drop drop = other.GetComponent<Drop>();
 
-            SetCharacteristic(drop.Code, drop.Update);
-            UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
-            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
-            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+
+            switch (drop.DropCode)
+            {
+                case "character":
+                    SetCharacteristic(drop.ItemCode, drop.Update);
+                    break;
+                case "dot":
+                    UpgradeUsableDots(drop.ItemCode, drop.Update, (bool) drop.IsDmgUpIfDot);
+                    break;
+                case "money":
+                    Observer.increaseMoney(drop.Update);
+                    break;
+                case "heal":
+                    Heal(drop.Update);
+                    break;
+                default:
+                    log.Error($"Неизвестная тип дропа: {drop.DropCode}");
+                    return;
+            }
+
+            
 
             Destroy(other.gameObject);
             log.Debug("Дроп уничтожен");
@@ -241,6 +260,60 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
             moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
             Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+    }
+
+    public void AddDotInUsableDotsArrayOfCode(string code)
+    {
+        var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code);
+
+        if (item == null)
+        {
+            log.Error("AddDotInUsableDotsArrayOfCode. дот который пытаемся добавить не найден в справочнике, code = " + code);
+            return;
+        }
+
+        usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+    }
+
+    public void UpgradeUsableDots(string code, float? value, bool typeUpgradeDmgDot)
+    {
+        bool seacrhDot = true; // Чек нашли ли мы нужный нам дот
+        for (int i = 0; i < usableDotsArray.Count; i++)
+        {
+            if (usableDotsArray[i].code == code)
+            {
+                if (typeUpgradeDmgDot)
+                {
+                    if (usableDotsArray[i].DotDur == 0)
+                    {
+                        usableDotsArray[i].DotDur = ImprovableCharactesDictionary.GetFinalDotDurOfCode(code);
+                        log.Warn("DotDur = 0, code = " + code);
+                    }
+                    usableDotsArray[i].DotDmg += (int) value;
+                    log.Debug("Улучшили dot " + usableDotsArray[i].code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDmg);
+                } else
+                {
+                    if (usableDotsArray[i].DotDmg == 0)
+                    {
+                        usableDotsArray[i].DotDmg = ImprovableCharactesDictionary.GetFinalDotDmgOfCode(code);
+                        log.Warn("DotDmg = 0, code = " + code);
+                    }
+                    usableDotsArray[i].DotDur += (int)value;
+                    log.Debug("Улучшили dot " + usableDotsArray[i].code + ", dur на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDur);
+                }
+                seacrhDot = false;
+                break;
+            }
+        }
+
+        if (seacrhDot)
+        {
+            log.Debug("Дот не был найден в списке usableDotsArray героя, code = " + code);
+            AddDotInUsableDotsArrayOfCode(code);
+        }
+
+        UIManager.Instance.printDots(usableDotsArray);
     }
 
     void RotateTowardsMouse()
