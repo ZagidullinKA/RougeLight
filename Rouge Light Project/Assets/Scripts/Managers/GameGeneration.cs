@@ -9,7 +9,7 @@ public class GameGeneration : MonoBehaviour
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Observer));
 
-    private static float mobsAmount = 3; // первоначальное количество мобо для генерации
+    private static float mobsAmount = 5; // первоначальное количество мобо для генерации
     private static float mobsMultipier = 1; // первоначальный множитель характеристик мобов
 
     private static float minDistance = 10f; // Минимальное расстояние генерации моба

@@ -7,6 +7,13 @@ public class Mobs : Character, IAttacker, IMovable
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
 
+    private int deathPrice;
+    public int DeathPrice
+    {
+        get => deathPrice;
+        set { deathPrice = value; }
+    }
+
     private Rigidbody2D rb;
     private DropManager dropManagerScript;
 
@@ -105,17 +112,18 @@ public class Mobs : Character, IAttacker, IMovable
             armor = (int)Math.Round(enemyData.Armor * mobsMultipier);
             debuffResist = (int)Math.Round(enemyData.DebuffResist * mobsMultipier);
             vampire = (int)Math.Round(enemyData.Vampire * mobsMultipier);
-            bulletFlySpeed = (int) Math.Round(enemyData.BulletflySpeed * mobsMultipier);
+            bulletFlySpeed = (int) Math.Round(enemyData.BulletFlySpeed * mobsMultipier);
             bulletTimeAlive = (int)Math.Round(enemyData.BulletTimeAlive * mobsMultipier);
+            deathPrice = enemyData.DeathPrice;
 
-            log.Debug("Характеристики моба - " + enemyData.MoveSpeed);
+            log.Debug("InitializeCharacteristics. Характеристики моба - " + enemyData.DeathPrice);
         }
     }
 
     protected override void Die()
     {
         dropManagerScript.DropLoss();
-        Observer.incrementCountKill();
+        Observer.IncrementCountKill(DeathPrice);
         base.Die();
     }
 }

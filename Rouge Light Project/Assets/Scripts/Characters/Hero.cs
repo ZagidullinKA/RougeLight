@@ -4,6 +4,9 @@ using Mono.Cecil.Cil;
 using static UnityEngine.Rendering.DebugUI;
 using System.Reflection.Emit;
 using static UnityEditor.Progress;
+using Unity.VisualScripting;
+using System;
+using System.Collections.Generic;
 
 
 public class Hero : Character, IAttacker, IMovable
@@ -19,6 +22,8 @@ public class Hero : Character, IAttacker, IMovable
 
     private CircleCollider2D colliderDropRadius;
     private LineRenderer lineRendererDropRadius;
+
+    private const float UpgradeLvlFactor = 1.5f;
 
     //Переменная для godmod
     public bool isGodMode = false;
@@ -316,6 +321,38 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printDots(usableDotsArray);
     }
 
+    public void IncrementLvl(int lvl)
+    {
+        if (lvl < 1)
+        {
+            log.Error("IncrementLvl. Передается " + lvl + " уровень");
+        }
+
+        log.Debug("IncrementLvl. Передается " + lvl + " уровень");
+
+        // 1. Извлекаем общее вычисление в отдельную функцию
+        float CalculateUpgrade(int level)
+        {
+            float result = level * UpgradeLvlFactor;
+            return result > 1 ? (float)Math.Ceiling(result) : 1;
+        }
+
+        // 2. Используем Dictionary для группировки характеристик
+        var upgrades = new Dictionary<string, float>
+        {
+            ["dmg"] = CalculateUpgrade(lvl),
+            ["atkSpeed"] = CalculateUpgrade(lvl),
+            ["maxHP"] = CalculateUpgrade(lvl)
+        };
+
+        // 3. Применяем характеристики в цикле
+        foreach (var characteristic in upgrades)
+        {
+            log.Debug("IncrementLvl. Увелечение характеристики : "+ characteristic.Key + " на " + characteristic.Value);
+            SetCharacteristic(characteristic.Key, characteristic.Value);
+        }
+    }
+
     void RotateTowardsMouse()
     {
         // Получаем позицию курсора в мировых координатах
@@ -329,6 +366,12 @@ public class Hero : Character, IAttacker, IMovable
 
         // Устанавливаем новый угол поворота
         rb.rotation = angle;
+    }
+
+    public override void Heal(int amount)
+    {
+        base.Heal(amount);
+        UIManager.Instance.printActualHP(actualHP);
     }
 
     protected override void Die()
