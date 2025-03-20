@@ -2,9 +2,6 @@
 using TMPro;
 using UnityEngine;
 using System;
-using log4net.Config;
-using System.IO;
-using static UnityEngine.Rendering.DebugUI;
 using System.Text;
 using System.Collections.Generic;
 
@@ -15,31 +12,24 @@ public class UIManager : MonoBehaviour
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(UIManager));
 
-
-
     public TMP_Text textCharacters; // Ссылка на компонент TextMeshPro для Характеристик
     public TMP_Text textDots; // Ссылка на компонент TextMeshPro для Дотов
     public TMP_Text textTimer; // Ссылка на компонент TextMeshPro для Timer
     public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
+    public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
+    public TMP_Text textMoney; // Ссылка на компонент TextMeshPro для Money
 
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
 
     void Awake()
     {
-        // Загрузка конфигурации log4net
-        var configFile = new FileInfo(Path.Combine(Application.dataPath, "log4net.config"));
-        XmlConfigurator.Configure(configFile);
-
-        Debug.Log("Awake вызван"); // Добавьте это
-        log.Debug("Awake вызван");
-
         // Реализация синглтона
         if (Instance == null)
         {
             Instance = this;
             log.Info("UIManager инициализарован");
-            //DontDestroyOnLoad(gameObject); // Если нужно сохранить между сценами
+            DontDestroyOnLoad(gameObject); // сохранить между сценами
         }
         else
         {
@@ -52,8 +42,6 @@ public class UIManager : MonoBehaviour
             int moveSpeed, int luck, int critChance, int evadeChance, int armor, int debuffResist,
             int Vampire, int hpFromDropRestore, int dropRadius, int bulletFlySpeed, int bulletTimeAlive)
     {
-        log.Debug("Обращение к printCharacters");
-        Debug.Log("Обращение к printCharacters");
 
         if (textCharacters == null)
         {
@@ -84,7 +72,6 @@ public class UIManager : MonoBehaviour
     public void printDots(List<DotEffect> usableDotsArray)
     {
         log.Debug("Обращение к printDots");
-        Debug.Log("Обращение к printDots");
 
         if (textDots == null)
         {
@@ -146,10 +133,32 @@ public class UIManager : MonoBehaviour
     {
         if (textActualHP == null)
         {
-            log.Error("textTimer не назначен!");
+            log.Error("textActualHP не назначен!");
             return;
         }
 
         textActualHP.text = string.Format("ActualHP : {0}", actualHP);
+    }
+
+    public void printCountKill(int countKill)
+    {
+        if (textCountKill == null)
+        {
+            log.Error("textCountKill не назначен!");
+            return;
+        }
+
+        textCountKill.text = string.Format("Count kill : {0}", countKill);
+    }
+
+    public void printMoney(int money)
+    {
+        if (textMoney == null)
+        {
+            log.Error("textMoney не назначен!");
+            return;
+        }
+
+        textMoney.text = string.Format("Заработаные : {0}", money);
     }
 }

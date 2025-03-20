@@ -1,12 +1,14 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using log4net;
 using Mono.Cecil.Cil;
 using static UnityEngine.Rendering.DebugUI;
+using System.Reflection.Emit;
+using static UnityEditor.Progress;
 
 
 public class Hero : Character, IAttacker, IMovable
 {
-    //Добавляем логирование
+    //Р”РѕР±Р°РІР»СЏРµРј Р»РѕРіРёСЂРѕРІР°РЅРёРµ
     private static readonly ILog log = LogManager.GetLogger(typeof(Hero));
 
     public Rigidbody2D rb;
@@ -15,27 +17,45 @@ public class Hero : Character, IAttacker, IMovable
     private Vector2 moveVector;
     private bool isShooting = false;
 
-    //Переменная для godmod
+    private CircleCollider2D colliderDropRadius;
+    private LineRenderer lineRendererDropRadius;
+
+    //РџРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ godmod
     public bool isGodMode = false;
 
     protected override void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
-        isEnemy = false; // Герой не является врагом
+        isEnemy = false; // Р“РµСЂРѕР№ РЅРµ СЏРІР»СЏРµС‚СЃСЏ РІСЂР°РіРѕРј
+        
+
+        colliderDropRadius = GetComponent<CircleCollider2D>();
+        if (colliderDropRadius != null)
+        {
+            colliderDropRadius.isTrigger = true; // Г„ГҐГ«Г ГҐГ¬ ГЄГ®Г«Г«Г Г©Г¤ГҐГ° ГІГ°ГЁГЈГЈГҐГ°Г®Г¬
+
+            //Г„ГҐГ«Г ГҐГ¬ Г­Г Г±ГІГ°Г®Г©ГЄГЁ Г¤Г«Гї ГўГЁГ§ГіГ Г«ГЁГ§Г Г¶ГЁГЁ Г°Г Г¤ГЁГіГ±Г  Г¤Г°Г®ГЇГ 
+
+            lineRendererDropRadius = gameObject.AddComponent<LineRenderer>();
+
+            // ГЌГ Г±ГІГ°Г®Г©ГЄГ  LineRenderer
+            lineRendererDropRadius.startWidth = 0.01f;
+            lineRendererDropRadius.endWidth = 0.01f;
+            lineRendererDropRadius.useWorldSpace = false;
+            lineRendererDropRadius.material = new Material(Shader.Find("Sprites/Default"));
+            lineRendererDropRadius.startColor = Color.green;
+            lineRendererDropRadius.endColor = Color.green;
+        }
+        else
+        {
+            log.Error("CircleCollider2D DropRadius is null");
+        }
+
+
         InitializeCharacteristicsAndDots();
         base.Awake();
         UIManager.Instance.printActualHP(actualHP);
-
-        CircleCollider2D collider = GetComponent<CircleCollider2D>();
-        if (collider != null)
-        {
-            collider.radius = dropRadius;
-            collider.isTrigger = true; // Делаем коллайдер триггером
-        } else
-        {
-            log.Error("CircleCollider2D is null");
-        }
     }
 
     public override void TakeDamage(int damage)
@@ -52,6 +72,24 @@ public class Hero : Character, IAttacker, IMovable
         }
     }
 
+    void DrawCircle()
+    {
+        int segments = 50; // ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г±ГҐГЈГ¬ГҐГ­ГІГ®Гў Г¤Г«Гї Г®ГЄГ°ГіГ¦Г­Г®Г±ГІГЁ
+        lineRendererDropRadius.positionCount = segments + 1;
+
+        float angle = 0f;
+        float angleStep = 360f / segments;
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
+
+            lineRendererDropRadius.SetPosition(i, new Vector3(x, y, 0) + (Vector3)colliderDropRadius.offset);
+            angle += angleStep;
+        }
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -60,25 +98,42 @@ public class Hero : Character, IAttacker, IMovable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Проверяем, что объект можно подобрать
+        // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РѕР±СЉРµРєС‚ РјРѕР¶РЅРѕ РїРѕРґРѕР±СЂР°С‚СЊ
         if (other.CompareTag("Drop"))
         {
-            log.Debug("Предмет подобрали! - " + other.name);
+            log.Debug("РџСЂРµРґРјРµС‚ РїРѕРґРѕР±СЂР°Р»Рё! - " + other.name);
             Drop drop = other.GetComponent<Drop>();
 
-            SetCharacteristic(drop.Code, drop.Update);
-            UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
-            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
-            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+
+            switch (drop.DropCode)
+            {
+                case "character":
+                    SetCharacteristic(drop.ItemCode, drop.Update);
+                    break;
+                case "dot":
+                    UpgradeUsableDots(drop.ItemCode, drop.Update, (bool) drop.IsDmgUpIfDot);
+                    break;
+                case "money":
+                    Observer.increaseMoney(drop.Update);
+                    break;
+                case "heal":
+                    Heal(drop.Update);
+                    break;
+                default:
+                    log.Error($"РќРµРёР·РІРµСЃС‚РЅР°СЏ С‚РёРї РґСЂРѕРїР°: {drop.DropCode}");
+                    return;
+            }
+
+            
 
             Destroy(other.gameObject);
-            log.Debug("Дроп уничтожен");
+            log.Debug("Р”СЂРѕРї СѓРЅРёС‡С‚РѕР¶РµРЅ");
         }
     }
 
 
 
-    // Реализация IAttacker
+    // Р РµР°Р»РёР·Р°С†РёСЏ IAttacker
     public void Shoot()
     {
         if (isShooting)
@@ -88,7 +143,7 @@ public class Hero : Character, IAttacker, IMovable
         }
     }
 
-    // Реализация IMovable
+    // Р РµР°Р»РёР·Р°С†РёСЏ IMovable
     public void Move()
     {
         moveVector.x = Input.GetAxis("Horizontal");
@@ -98,15 +153,15 @@ public class Hero : Character, IAttacker, IMovable
         RotateTowardsMouse();
     }
 
-    // Инициализация характеристик
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
     private void InitializeCharacteristicsAndDots()
     {
-        // Используем справочник всех характеристик
+        // РСЃРїРѕР»СЊР·СѓРµРј СЃРїСЂР°РІРѕС‡РЅРёРє РІСЃРµС… С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
         {
             if (item.Upgradable)
             {
-                // Получаем улучшаемые характеристики из справочника улучшаемых характеристик
+                // РџРѕР»СѓС‡Р°РµРј СѓР»СѓС‡С€Р°РµРјС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РёР· СЃРїСЂР°РІРѕС‡РЅРёРєР° СѓР»СѓС‡С€Р°РµРјС‹С… С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
                 var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Find(x => x.Code == item.Code);
                 if (upgradableItem is null)
                 {
@@ -117,7 +172,7 @@ public class Hero : Character, IAttacker, IMovable
             }
             else
             {
-                // Используем базовые значения из справочника всех характеристик
+                // РСЃРїРѕР»СЊР·СѓРµРј Р±Р°Р·РѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РёР· СЃРїСЂР°РІРѕС‡РЅРёРєР° РІСЃРµС… С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
                 SetCharacteristic(item.Code, item.BaseAmount);
             }
         }
@@ -137,7 +192,7 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printDots(usableDotsArray);
     }
 
-    // Установка значения характеристики
+    // РЈСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёСЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё
     public void SetCharacteristic(string code, float? value)
     {
         ValidationValue.ValidateFloatNotNull(
@@ -182,6 +237,8 @@ public class Hero : Character, IAttacker, IMovable
                 break;
             case "dropRadius":
                 dropRadius += (int)value;
+                colliderDropRadius.radius = dropRadius;
+                DrawCircle();
                 break;
             case "bulletFlySpeed":
                 bulletFlySpeed += (int)value;
@@ -190,13 +247,13 @@ public class Hero : Character, IAttacker, IMovable
                 bulletTimeAlive += (int)value;
                 break;
             default:
-                log.Warn($"Неизвестная характеристика: {code}");
+                log.Warn($"РќРµРёР·РІРµСЃС‚РЅР°СЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°: {code}");
                 break;
         }
 
         if (UIManager.Instance == null)
         {
-            log.Error("UIManager не найден!");
+            log.Error("UIManager РЅРµ РЅР°Р№РґРµРЅ!");
             return;
         }
 
@@ -205,18 +262,72 @@ public class Hero : Character, IAttacker, IMovable
             Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
     }
 
+    public void AddDotInUsableDotsArrayOfCode(string code)
+    {
+        var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code);
+
+        if (item == null)
+        {
+            log.Error("AddDotInUsableDotsArrayOfCode. РґРѕС‚ РєРѕС‚РѕСЂС‹Р№ РїС‹С‚Р°РµРјСЃСЏ РґРѕР±Р°РІРёС‚СЊ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ, code = " + code);
+            return;
+        }
+
+        usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+    }
+
+    public void UpgradeUsableDots(string code, float? value, bool typeUpgradeDmgDot)
+    {
+        bool seacrhDot = true; // Р§РµРє РЅР°С€Р»Рё Р»Рё РјС‹ РЅСѓР¶РЅС‹Р№ РЅР°Рј РґРѕС‚
+        for (int i = 0; i < usableDotsArray.Count; i++)
+        {
+            if (usableDotsArray[i].code == code)
+            {
+                if (typeUpgradeDmgDot)
+                {
+                    if (usableDotsArray[i].DotDur == 0)
+                    {
+                        usableDotsArray[i].DotDur = ImprovableCharactesDictionary.GetFinalDotDurOfCode(code);
+                        log.Warn("DotDur = 0, code = " + code);
+                    }
+                    usableDotsArray[i].DotDmg += (int) value;
+                    log.Debug("РЈР»СѓС‡С€РёР»Рё dot " + usableDotsArray[i].code + ", dmg РЅР° " + value + ", РѕРєСЂСѓРіР»РёР»Рё РґРѕ " + (int)value + ", С‚РµРїРµСЂСЊ РѕРЅ = " + usableDotsArray[i].DotDmg);
+                } else
+                {
+                    if (usableDotsArray[i].DotDmg == 0)
+                    {
+                        usableDotsArray[i].DotDmg = ImprovableCharactesDictionary.GetFinalDotDmgOfCode(code);
+                        log.Warn("DotDmg = 0, code = " + code);
+                    }
+                    usableDotsArray[i].DotDur += (int)value;
+                    log.Debug("РЈР»СѓС‡С€РёР»Рё dot " + usableDotsArray[i].code + ", dur РЅР° " + value + ", РѕРєСЂСѓРіР»РёР»Рё РґРѕ " + (int)value + ", С‚РµРїРµСЂСЊ РѕРЅ = " + usableDotsArray[i].DotDur);
+                }
+                seacrhDot = false;
+                break;
+            }
+        }
+
+        if (seacrhDot)
+        {
+            log.Debug("Р”РѕС‚ РЅРµ Р±С‹Р» РЅР°Р№РґРµРЅ РІ СЃРїРёСЃРєРµ usableDotsArray РіРµСЂРѕСЏ, code = " + code);
+            AddDotInUsableDotsArrayOfCode(code);
+        }
+
+        UIManager.Instance.printDots(usableDotsArray);
+    }
+
     void RotateTowardsMouse()
     {
-        // Получаем позицию курсора в мировых координатах
+        // РџРѕР»СѓС‡Р°РµРј РїРѕР·РёС†РёСЋ РєСѓСЂСЃРѕСЂР° РІ РјРёСЂРѕРІС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С…
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Вычисляем направление от игрока к курсору
+        // Р’С‹С‡РёСЃР»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РѕС‚ РёРіСЂРѕРєР° Рє РєСѓСЂСЃРѕСЂСѓ
         Vector2 direction = mousePosition - transform.position;
 
-        // Вычисляем угол для поворота
+        // Р’С‹С‡РёСЃР»СЏРµРј СѓРіРѕР» РґР»СЏ РїРѕРІРѕСЂРѕС‚Р°
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
-        // Устанавливаем новый угол поворота
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅРѕРІС‹Р№ СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р°
         rb.rotation = angle;
     }
 
@@ -227,7 +338,7 @@ public class Hero : Character, IAttacker, IMovable
             base.Die();
         } else
         {
-            log.Debug("Ты бы умер, но ты либо тестер, либо читер");
+            log.Debug("РўС‹ Р±С‹ СѓРјРµСЂ, РЅРѕ С‚С‹ Р»РёР±Рѕ С‚РµСЃС‚РµСЂ, Р»РёР±Рѕ С‡РёС‚РµСЂ");
             actualHP = maxHP;
             UIManager.Instance.printActualHP(actualHP);
         }

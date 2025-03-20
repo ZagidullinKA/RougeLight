@@ -21,7 +21,25 @@ public class Observer : MonoBehaviour
     private static float lastGenerationMobsTime = 0f; // Время последней генерации мобов
     private static float generationMobsPeriod = 5f; // Раз в какое время происходит генерация мобов
 
+    private static int countKill = 0;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Не уничтожаем объект при загрузке новой сцены
+            log.Info("Observer initialized.");
+        }
+        else
+        {
+            log.Warn("Duplicate Observer destroyed.");
+            Destroy(gameObject);
+        }
+        initializedMoneyAtStart();
+        UIManager.Instance.printCountKill(countKill);
+        UIManager.Instance.printMoney(0);
+    }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] // Запуск скрипта после загрузки сцены
     static void OnSceneLoad()
@@ -32,11 +50,14 @@ public class Observer : MonoBehaviour
             GameObject initializerObject = new GameObject("Observer"); //Создание объекта для рыботы скрипта
             initializerObject.hideFlags = HideFlags.HideInHierarchy; // Скрываем объект в иерархии
             initializerObject.AddComponent<Observer>(); // Добавляем этот скрипт
-            DontDestroyOnLoad(initializerObject); // Не уничтожаем объект при загрузке новой сцены
             StartTimer();
             log.Info("Инициализация наблюдателя завершена");
         }
-            
+    }
+
+    private void initializedMoneyAtStart()
+    {
+        moneyAtStart = MoneyDictionary.GetItemMoneyDictionaryOfCode("money").Amount;
     }
 
     void Update()
@@ -78,5 +99,23 @@ public class Observer : MonoBehaviour
     public static void StopTimer()
     {
         isRunning = false; // Останавливаем таймер
+    }
+
+    public static void incrementCountKill()
+    {
+        if (Instance == null)
+        {
+            log.Error("Observer is not initialized!");
+            return;
+        }
+
+        countKill++;
+        UIManager.Instance.printCountKill(countKill);
+    }
+
+    public static void increaseMoney(int countMoney)
+    {
+        MoneyDictionary.increaseAmountItemMoneyDictionaryOfCode("money", countMoney);
+        UIManager.Instance.printMoney(MoneyDictionary.GetItemMoneyDictionaryOfCode("money").Amount - moneyAtStart);
     }
 }

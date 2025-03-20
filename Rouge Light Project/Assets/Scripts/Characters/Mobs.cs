@@ -115,6 +115,7 @@ public class Mobs : Character, IAttacker, IMovable
     protected override void Die()
     {
         dropManagerScript.DropLoss();
+        Observer.incrementCountKill();
         base.Die();
     }
 }

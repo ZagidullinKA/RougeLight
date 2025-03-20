@@ -14,6 +14,7 @@ public class Logger : MonoBehaviour
         {
             XmlConfigurator.Configure(new FileInfo(configPath));
             log.Info("Логгер инициализирован");
+            DontDestroyOnLoad(gameObject); // Сохраняем между сценами
         }
         else
         {
