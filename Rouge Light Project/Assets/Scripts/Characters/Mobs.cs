@@ -6,6 +6,13 @@ public class Mobs : Character, IAttacker, IMovable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
+    private int idMob;
+
+    public int IdMob
+    {
+        get => idMob;
+        set { idMob = value; }
+    }
 
     private int deathPrice;
     public int DeathPrice
@@ -120,10 +127,23 @@ public class Mobs : Character, IAttacker, IMovable
         }
     }
 
+    public override void TakeDamage(int damage)
+    {
+        log.Debug("TakeDamage. Die. idMob = " + idMob);
+        base.TakeDamage(damage);
+    }
+
     protected override void Die()
     {
-        dropManagerScript.DropLoss();
-        Observer.IncrementCountKill(DeathPrice);
-        base.Die();
+        Destroy(GetComponent<BoxCollider2D>());
+        if (isCanDie)
+        {
+            isCanDie = false;
+            log.Debug("Die. idMob = " + idMob);
+            dropManagerScript.DropLoss();
+            Observer.IncrementCountKill(DeathPrice);
+            base.Die();
+        }
+        
     }
 }

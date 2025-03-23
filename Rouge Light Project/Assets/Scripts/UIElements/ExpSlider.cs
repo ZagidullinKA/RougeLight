@@ -13,7 +13,7 @@ public class ExpSlider : MonoBehaviour
     private static float maxExp = 0;
     private static float maxExpPrev = 0;
     private static float currentExpSlider = 0;
-    private static bool accsess = true;
+    private static bool AccessToAnimation = true;
     private static Queue<QueueSlider> expQueue = new Queue<QueueSlider>();
 
     public class QueueSlider
@@ -48,82 +48,83 @@ public class ExpSlider : MonoBehaviour
 
     private void Update()
     {
-        if (expQueue.Count > 0)
+        if (expQueue.Count > 0)             // Есть ли что-то в очереди анимации
         {
-            if (accsess)
+            if (AccessToAnimation)                    // Проверяем можно ли проводить анимацию (Не проводится ли другая?)
             {
                 log.Debug("Update. IncreasetExp.Начало обработки очереди.");
-                accsess = false;
-                QueueSlider itemQueue = expQueue.Dequeue();
+                AccessToAnimation = false;                                  // Закрываем доступ к анимации
+                QueueSlider itemQueue = expQueue.Dequeue();                 // Берем первый элемент из очереди
 
                 log.Debug("Update. IncreasetExp. Обработка элемента очереди: lvlCount = " + itemQueue.lvlCount 
                     + ", currentExp = " + itemQueue.currentExp 
                     + ", expNextLvl = " + string.Join(", ", itemQueue.expNextLvl)
                     + " currentExpSlider = " + currentExpSlider);
 
-                if (itemQueue.lvlCount != 0)
+                if (itemQueue.lvlCount != 0)                                // Повышаем уровень?
                 {
-                    Sequence sequence = DOTween.Sequence();
-                    Queue<float> maxValueQueue = new Queue<float>();
+                    Sequence sequence = DOTween.Sequence();                 // Создаем очередь анимации
+                    Queue<float> maxValueQueue = new Queue<float>();        // Создаем очередь максимального exp, для кореектного вывода в каждом моменте
+                    currentExpSlider = 0;                                   // Нынешнее значение exp уводим в 0
 
-                    currentExpSlider = 0;
 
-
-                    for (var i = 0; i < itemQueue.lvlCount; i++)
+                    for (var i = 0; i < itemQueue.lvlCount; i++)            // Перебираем все повышения уровня
                     {
                         
 
-                        if (itemQueue.expNextLvl == null || itemQueue.expNextLvl.Count == 0)
+                        if (itemQueue.expNextLvl == null || itemQueue.expNextLvl.Count == 0)        
                         {
                             log.Error("Update. IncreasetExp. value.expNextLvl is null or empty.");
-                            accsess = true;
+                            AccessToAnimation = true;
                             return;
                         }
 
-                        sequence.Append(expSlider.DOValue((maxExp + 0.1f), 2f).SetEase(Ease.InOutQuad)
-                            .OnUpdate(() =>
+                        sequence.Append(expSlider.DOValue((maxExp + 0.1f), 2f).SetEase(Ease.InOutQuad)          // Добавляем в очередь анимацию увечеления слайдера до макс значения
+                            .OnUpdate(() =>                                                                     // Что происходит пока, анимация работает
                             {
                                 UIManager.Instance.printExp((int)expSlider.value, (int)expSlider.maxValue);
                             }));
 
-                        sequence.Append(expSlider.DOValue(0, 2f).SetEase(Ease.InOutQuad)
-                        .OnUpdate(() =>
+                        sequence.Append(expSlider.DOValue(0, 2f).SetEase(Ease.InOutQuad)                        // Добавляем в очередь анимацию уменьшения значения слайдера до 0
+                        .OnUpdate(() =>                                                                         // Что происходит пока, анимация работает
                         {
                             UIManager.Instance.printExp((int)expSlider.value, (int)expSlider.maxValue);
 
-                        }).OnComplete(() =>
+                        }).OnComplete(() =>                                                                     // По выполнению анимации :
                         {
-                            expSlider.maxValue = maxValueQueue.Dequeue();
+                            // Берем первый элемент очереди максимального exp и устанавливаем новое значение для слайдера
+                            expSlider.maxValue = maxValueQueue.Dequeue();                                       
+                            
                         }));
 
 
-                        maxExp = itemQueue.expNextLvl[i] - maxExpPrev;
-                        maxExpPrev = itemQueue.expNextLvl[i];
-                        maxValueQueue.Enqueue(maxExp);
+                        maxExp = itemQueue.expNextLvl[i] - maxExpPrev;          // Высчитываем какое количество exp нужно до след уровня
+                        maxExpPrev = itemQueue.expNextLvl[i];                   // Запоминаем предыдущее количество exp до след уровня
+                        maxValueQueue.Enqueue(maxExp);                          // Добавляем в очередь необходимое количество exp до след уровня
                     }
                     if (itemQueue.currentExp != 0)
                     {
-                        sequence.Append(moveSliderToCurrentExp((int)itemQueue.currentExp));
+                        sequence.Append(moveSliderToCurrentExp((int)itemQueue.currentExp));         // Добавляем в очередь анимацию увечелечения опыта до значения остатка после повышения уровней
                     }
-                    sequence.OnComplete(() => {
-                        accsess = true;
-                            log.Debug("Update. IncreasetExp. Sequence завершён.");
+                    sequence.OnComplete(() => {                     // По завершению всех анимаций
+                        AccessToAnimation = true;                   // Открываем доступ к анимации
+                        log.Debug("Update. IncreasetExp. Sequence завершён.");
                     });
                 } else
                 {
                     if (itemQueue.currentExp != 0)
                     {
-                        Sequence moveSequence = DOTween.Sequence();
-                        moveSequence.Append(moveSliderToCurrentExp((int)itemQueue.currentExp));
-                        moveSequence.OnComplete(() =>
+                        Sequence moveSequence = DOTween.Sequence();     // Создаем очередь анимации
+                        moveSequence.Append(moveSliderToCurrentExp((int)itemQueue.currentExp)); // Добавляем в очередь анимацию увечелечения опыта до нового значения опыта
+                        moveSequence.OnComplete(() =>                   // По завершению всех анимаций
                         {
-                            accsess = true;
+                            AccessToAnimation = true;                   // Открываем доступ к анимации
                             log.Debug("Update. IncreasetExp. Анимация moveSliderToCurrentExp завершена");
                         });
                     }
                     else
                     {
-                        accsess = true;
+                        AccessToAnimation = true;   // Открываем доступ к анимации
                     }
                 }
                 
@@ -134,12 +135,12 @@ public class ExpSlider : MonoBehaviour
 
     private Tween moveSliderToCurrentExp(int changeCurrentExp)
     {
-        return expSlider.DOValue(currentExpSlider + (int)changeCurrentExp, 1f).SetEase(Ease.Linear)
-            .OnUpdate(() =>
+        return expSlider.DOValue(currentExpSlider + (int)changeCurrentExp, 1f).SetEase(Ease.Linear)         // Создаем анимацию по увеличению опытаот нынешнего положения сладера до нового
+            .OnUpdate(() =>                                         // Что происходит пока, анимация работает
             {
                 UIManager.Instance.printExp((int)expSlider.value, (int)maxExp);
             })
-            .OnComplete(() =>
+            .OnComplete(() =>                                       // По завершению этой анимации
             {
                 currentExpSlider += (int)changeCurrentExp;
                 log.Debug("Update. IncreasetExp. moveSliderToCurrentExp: Отображаем в цифрах currentExpSlider = " + currentExpSlider);
@@ -155,6 +156,8 @@ public class ExpSlider : MonoBehaviour
             + currentExp
         );
 
+
+        // Добавляем данные в очередь обработки анимации
         List<int> copyExpNextLvl = new List<int>(expNextLvl);
         expQueue.Enqueue(new QueueSlider(copyExpNextLvl, lvlCount, currentExp));
     }
@@ -162,48 +165,11 @@ public class ExpSlider : MonoBehaviour
 
     public static void setMaxExp( int expNextLvl)
     {
+        // Метод для первоначальной установки exp
+
         maxExp = expNextLvl;
         maxExpPrev = expNextLvl;
         UIManager.Instance.printExp((int)currentExpSlider, (int)maxExp);
     }
-
-
-
-
-    public static void TestAddExp()
-    {
-        Sequence sequence = DOTween.Sequence();
-        Queue<float> maxValueQueue = new Queue<float>();
-        float maxValueInteration = expSlider.maxValue;
-
-        for (int i = 0; i < 5; i++)
-        {
-            sequence.Append(expSlider.DOValue((maxValueInteration + 0.1f), 2f).SetEase(Ease.InOutQuad)
-                .OnUpdate(() =>
-                {
-                    UIManager.Instance.printExp((int)expSlider.value, (int)expSlider.maxValue);
-                }));
-
-            sequence.Append(expSlider.DOValue(0, 2f).SetEase(Ease.InOutQuad)
-                .OnUpdate(() =>
-                {
-                    UIManager.Instance.printExp((int)expSlider.value, (int)expSlider.maxValue);
-                    
-                }).OnComplete(() =>
-                {
-                    expSlider.maxValue = maxValueQueue.Dequeue();
-                }));
-            maxValueInteration += 2;
-            maxValueQueue.Enqueue(maxValueInteration);
-        }
-
-        sequence.OnComplete(() =>
-        {
-            maxValueQueue.Clear();
-            UIManager.Instance.printExp((int)expSlider.value, (int)expSlider.maxValue);
-            log.Debug("Update. IncreasetExpTest. Все анимации завершены.");
-        });
-    }
-
 }
 

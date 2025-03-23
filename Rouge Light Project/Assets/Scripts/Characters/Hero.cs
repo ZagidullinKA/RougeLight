@@ -376,10 +376,16 @@ public class Hero : Character, IAttacker, IMovable
 
     protected override void Die()
     {
+
         if (!isGodMode)
         {
-            base.Die();
-        } else
+            if (isCanDie)
+            {
+                isCanDie = false;
+                base.Die();
+            }
+        }
+            else
         {
             log.Debug("Ты бы умер, но ты либо тестер, либо читер");
             actualHP = maxHP;

@@ -7,7 +7,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
-
+    protected bool isCanDie = true;           // Можети ли умереть 
 
     // Основные характеристики
     protected int maxHP = 0;

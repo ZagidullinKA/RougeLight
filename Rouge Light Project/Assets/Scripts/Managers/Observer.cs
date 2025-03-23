@@ -140,41 +140,31 @@ public class Observer : MonoBehaviour
         for (var i = exp + 1; i <= (exp + deathPrice); i++)
         {
             log.Debug("IncreasetExp. Math.Pow(exp, 0.5) % 1 = " + ((float)Math.Pow(exp, 0.5) % 1 == 0) + "  Math.Pow(exp, 0.5) = " + Math.Pow(exp, 0.5) + "  i  = " + i);
-            if ((float)Math.Pow(i, 0.5) % 1 == 0)
+            if ((float)Math.Pow(i, 0.5) % 1 == 0) // Если квадратный корень числа exp целочисленный, то повышаем уровень 
             {
                 log.Debug("IncreasetExp. Мы вошли в повышение уровня!");
-                lvl++;
-                playerScript.IncrementLvl(lvl);
+                lvl++;                                                          // Повышения уровня героя
+                playerScript.IncrementLvl(lvl);                                 // Вызываем метод перерасчета базовых характеристик героя        
                 UIManager.Instance.printLvl(lvl);
-                lvlCount++;
+                lvlCount++;                                                     // Количество уровней, которые мы повысим за раз
                 
-                deathPrice = deathPrice - (i - exp);
+                deathPrice = deathPrice - (i - exp);                            // Высчитываем остаток опыта
                 exp = i;
-                expNextLvl.Add(searchCountLvlUpExp());
+                expNextLvl.Add(searchCountLvlUpExp());                          // Получаем количество опыта, необходимое до след уровня
                 if (deathPrice != 0)
-                    return CheckLvlUp(deathPrice);
+                    return CheckLvlUp(deathPrice);                              // Если есть остаток, проверяем нужно ли повысить уровень еще раз
             }
         }
         log.Debug("IncreasetExp. expNextLvl = " + expNextLvl + " lvlCount = " + lvlCount + " deathPrice = " + deathPrice);
-        if (expNextLvl != null || expNextLvl.Count != 0)
-        {
-            for (var i = 0; i < expNextLvl.Count; i++)
-                log.Debug("IncreasetExp. expNextLvl[" + i + "] = " + expNextLvl[i]);
-        } else
-        {
-            log.Debug("IncreasetExp. expNextLvl is null or empty.");
-        }
 
-
-        ExpSlider.AddExp(expNextLvl, lvlCount, deathPrice);
+        ExpSlider.AddExp(expNextLvl, lvlCount, deathPrice);                     // Отправляем данные в слайдер для анимации слайдера опыта 
         expNextLvl.Clear();
         lvlCount = 0;
-        return deathPrice;
+        return deathPrice;                                                      // Возвращаем остаток опыта
     
     }
 
     private static void CheckProgressExp(int deathPrice)
-
     {
         exp += deathPrice;
     }

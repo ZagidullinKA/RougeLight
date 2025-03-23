@@ -10,13 +10,15 @@ public class GameGeneration : MonoBehaviour
     private static readonly ILog log = LogManager.GetLogger(typeof(Observer));
 
     private static float mobsAmount = 5; // первоначальное количество мобо дл€ генерации
-    private static float mobsMultipier = 1; // первоначальный множитель характеристик мобов
+    private static float mobsMultiplier = 1; // первоначальный множитель характеристик мобов
+
+    private static int mobIterationNumber = 0;
 
     private static float minDistance = 10f; // ћинимальное рассто€ние генерации моба
     private static float maxDistance = 20f; // ћаксимальное рассто€ние генерации моба
 
     public static float MobsAmount => mobsAmount;
-    public static float MobsMultipier => mobsMultipier;
+    public static float MobsMultipier => mobsMultiplier;
 
     public static void OverestimatingMobsAmount()
     {
@@ -26,8 +28,8 @@ public class GameGeneration : MonoBehaviour
 
     public static void OverestimatingMobsMultipier()
     {
-        mobsMultipier = (float)Math.Round((mobsMultipier * 1.1), 2);
-        log.Debug(" рива€ сложности множитель характеристик уувеличилс€ до - " + mobsMultipier);
+        mobsMultiplier = (float)Math.Round((mobsMultiplier * 1.1), 2);
+        log.Debug(" рива€ сложности множитель характеристик уувеличилс€ до - " + mobsMultiplier);
     }
 
     public static void GenerationMobs()
@@ -40,6 +42,9 @@ public class GameGeneration : MonoBehaviour
             for (int i = 0; i < mobsAmountMoment; i++)
             {
                 GameObject enemy = Instantiate(enemyPrefab, GetRandomPositionAroundHero(), Quaternion.identity);
+                Mobs enemyScript = enemy.GetComponent<Mobs>();
+                enemyScript.IdMob = mobIterationNumber;
+                mobIterationNumber++;
                 if (enemy == null)
                 {
                     log.Error("√енераци€ не удалась, enemy is null");
