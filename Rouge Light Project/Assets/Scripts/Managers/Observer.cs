@@ -1,6 +1,9 @@
 using log4net;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Observer : MonoBehaviour
 {
@@ -22,6 +25,11 @@ public class Observer : MonoBehaviour
     private static float generationMobsPeriod = 5f; // Раз в какое время происходит генерация мобов
 
     private static int countKill = 0;
+    private static int lvl = 1;
+    private static int exp = 0;
+    private static int lvlCount = 0;
+    private static List<int> expNextLvl = new List<int>();
+
 
     private void Awake()
     {
@@ -39,6 +47,8 @@ public class Observer : MonoBehaviour
         initializedMoneyAtStart();
         UIManager.Instance.printCountKill(countKill);
         UIManager.Instance.printMoney(0);
+        UIManager.Instance.printLvl(lvl);
+        ExpSlider.setMaxExp(searchCountLvlUpExp()); 
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] // Запуск скрипта после загрузки сцены
@@ -101,7 +111,7 @@ public class Observer : MonoBehaviour
         isRunning = false; // Останавливаем таймер
     }
 
-    public static void incrementCountKill()
+    public static void IncrementCountKill(int deathPrice)
     {
         if (Instance == null)
         {
@@ -111,6 +121,67 @@ public class Observer : MonoBehaviour
 
         countKill++;
         UIManager.Instance.printCountKill(countKill);
+
+        IncreasetExp(deathPrice);
+    }
+
+    public static void IncreasetExp(int deathPrice)
+    {
+        log.Debug("IncreasetExp. - dp = " + deathPrice);
+        deathPrice = CheckLvlUp(deathPrice);
+        CheckProgressExp(deathPrice);
+    }
+
+    private static int CheckLvlUp(int deathPrice)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Hero playerScript = player.GetComponent<Hero>();
+
+        for (var i = exp + 1; i <= (exp + deathPrice); i++)
+        {
+            log.Debug("IncreasetExp. Math.Pow(exp, 0.5) % 1 = " + ((float)Math.Pow(exp, 0.5) % 1 == 0) + "  Math.Pow(exp, 0.5) = " + Math.Pow(exp, 0.5) + "  i  = " + i);
+            if ((float)Math.Pow(i, 0.5) % 1 == 0) // Если квадратный корень числа exp целочисленный, то повышаем уровень 
+            {
+                log.Debug("IncreasetExp. Мы вошли в повышение уровня!");
+                lvl++;                                                          // Повышения уровня героя
+                playerScript.IncrementLvl(lvl);                                 // Вызываем метод перерасчета базовых характеристик героя        
+                UIManager.Instance.printLvl(lvl);
+                lvlCount++;                                                     // Количество уровней, которые мы повысим за раз
+                
+                deathPrice = deathPrice - (i - exp);                            // Высчитываем остаток опыта
+                exp = i;
+                expNextLvl.Add(searchCountLvlUpExp());                          // Получаем количество опыта, необходимое до след уровня
+                if (deathPrice != 0)
+                    return CheckLvlUp(deathPrice);                              // Если есть остаток, проверяем нужно ли повысить уровень еще раз
+            }
+        }
+        log.Debug("IncreasetExp. expNextLvl = " + expNextLvl + " lvlCount = " + lvlCount + " deathPrice = " + deathPrice);
+
+        ExpSlider.AddExp(expNextLvl, lvlCount, deathPrice);                     // Отправляем данные в слайдер для анимации слайдера опыта 
+        expNextLvl.Clear();
+        lvlCount = 0;
+        return deathPrice;                                                      // Возвращаем остаток опыта
+    
+    }
+
+    private static void CheckProgressExp(int deathPrice)
+    {
+        exp += deathPrice;
+    }
+
+    private static int searchCountLvlUpExp()
+    {
+        log.Debug("searchCountLvlUpExp. IncreasetExp. Ищем новое значение maxExp до след уровня");
+        for (var i = exp + 1; i > 0; i++)
+        {
+            if (Math.Pow(i, 0.5) % 1 == 0)
+            {
+                log.Debug("searchCountLvlUpExp. IncreasetExp. Нашли, след значение " + i);
+                return i;
+            }
+        }
+        log.Error("searchCountLvlUpExp. IncreasetExp. Не нашли след значение уровня!!!!!! ");
+        return 0;
     }
 
     public static void increaseMoney(int countMoney)

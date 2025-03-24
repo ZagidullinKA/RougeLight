@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
     public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
     public TMP_Text textMoney; // Ссылка на компонент TextMeshPro для Money
+    public TMP_Text textExp; // Ссылка на компонент TextMeshPro для Exp
+    public TMP_Text textLvl; // Ссылка на компонент TextMeshPro для Lvl
 
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
@@ -160,5 +162,26 @@ public class UIManager : MonoBehaviour
         }
 
         textMoney.text = string.Format("Заработаные : {0}", money);
+    }
+
+    public void printExp(int currentExp, int maxExp)
+    {
+        if (textExp == null)
+        {
+            log.Error("textExp не назначен!");
+            return;
+        }
+        textExp.text = string.Format("Exp : {0} / {1}", currentExp, maxExp);
+    }
+
+    public void printLvl(int lvl)
+    {
+        if (textLvl == null)
+        {
+            log.Error("textLvl не назначен!");
+            return;
+        }
+
+        textLvl.text = string.Format("Lvl : {0}", lvl);
     }
 }

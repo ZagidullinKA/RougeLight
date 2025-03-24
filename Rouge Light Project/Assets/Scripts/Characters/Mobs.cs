@@ -6,6 +6,20 @@ public class Mobs : Character, IAttacker, IMovable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
+    private int idMob;
+
+    public int IdMob
+    {
+        get => idMob;
+        set { idMob = value; }
+    }
+
+    private int deathPrice;
+    public int DeathPrice
+    {
+        get => deathPrice;
+        set { deathPrice = value; }
+    }
 
     private Rigidbody2D rb;
     private DropManager dropManagerScript;
@@ -105,17 +119,31 @@ public class Mobs : Character, IAttacker, IMovable
             armor = (int)Math.Round(enemyData.Armor * mobsMultipier);
             debuffResist = (int)Math.Round(enemyData.DebuffResist * mobsMultipier);
             vampire = (int)Math.Round(enemyData.Vampire * mobsMultipier);
-            bulletFlySpeed = (int) Math.Round(enemyData.BulletflySpeed * mobsMultipier);
+            bulletFlySpeed = (int) Math.Round(enemyData.BulletFlySpeed * mobsMultipier);
             bulletTimeAlive = (int)Math.Round(enemyData.BulletTimeAlive * mobsMultipier);
+            deathPrice = enemyData.DeathPrice;
 
-            log.Debug("Характеристики моба - " + enemyData.MoveSpeed);
+            log.Debug("InitializeCharacteristics. Характеристики моба - " + enemyData.DeathPrice);
         }
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        log.Debug("TakeDamage. Die. idMob = " + idMob);
+        base.TakeDamage(damage);
     }
 
     protected override void Die()
     {
-        dropManagerScript.DropLoss();
-        Observer.incrementCountKill();
-        base.Die();
+        Destroy(GetComponent<BoxCollider2D>());
+        if (isCanDie)
+        {
+            isCanDie = false;
+            log.Debug("Die. idMob = " + idMob);
+            dropManagerScript.DropLoss();
+            Observer.IncrementCountKill(DeathPrice);
+            base.Die();
+        }
+        
     }
 }

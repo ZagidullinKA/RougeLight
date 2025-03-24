@@ -1,5 +1,8 @@
+using DG.Tweening;
 using log4net;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -7,7 +10,7 @@ public class Character : MonoBehaviour, IDamageable, IHealable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
-
+    protected bool isCanDie = true;           // Можети ли умереть 
 
     // Основные характеристики
     protected int maxHP = 0;
@@ -53,9 +56,19 @@ public class Character : MonoBehaviour, IDamageable, IHealable
     // Массив для хранения наносимых снарядом ДОТов (Damage Over Time)
     public List<DotEffect> usableDotsArray = new List<DotEffect>();
 
+    public GameObject damageTextPrefab;
+
     // Инициализация
     protected virtual void Awake()
     {
+        damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DamageTextPrefab.prefab");
+
+        if (damageTextPrefab == null)
+        {
+            log.Error("Awake. Префаб DamageTextPrefab не найден по указанному пути.");
+        }
+
+
         actualHP = maxHP; // Устанавливаем текущее здоровье на максимальное при старте
     }
 
@@ -65,6 +78,39 @@ public class Character : MonoBehaviour, IDamageable, IHealable
         int damageAfterArmor = damage - armor;
         if (damageAfterArmor < 0) damageAfterArmor = 0;
         actualHP -= damageAfterArmor;
+        if (isEnemy)
+        {
+            log.Debug("Вошли в условие отображения урона!");
+            // Создаем текст с уроном
+
+            if (damageTextPrefab == null)
+            {
+                log.Error("TakeDamage. Префаб DamageTextPrefab не найден по указанному пути.");
+            }
+
+            
+
+            GameObject damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
+            // Устанавливаем текст
+            TextMeshPro textComponent = damageText.GetComponent<TextMeshPro>();
+            if (textComponent == null)
+            {
+                log.Error("TakeDamage. Префаб textComponent не найден.");
+            }
+
+            textComponent.text = damageAfterArmor.ToString();
+            textComponent.color = Color.red;
+            textComponent.sortingOrder = 100;
+
+            // Плавно поднимаем текст вверх
+            damageText.transform.DOMoveY(transform.position.y + 2f, 2f)
+                .SetEase(Ease.OutQuad); // Плавное ускорение и замедление
+
+            // Плавно изменяем прозрачность текста
+            textComponent.DOFade(0f, 2f)
+                .OnComplete(() => Destroy(damageText));
+        }
+
         log.Debug("Противник получил урон: " + damageAfterArmor + ". Осталось здоровья: " + actualHP);
         if (actualHP <= 0)
         {
