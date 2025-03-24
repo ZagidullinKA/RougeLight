@@ -1,0 +1,1677 @@
+fileFormatVersion: 2
+guid: 80a350136bc3cf04db95f21fe099a0f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2700686128096171584
+    second: 459-4591060_30-game-buttons-set-collection_0
+  - first:
+      213: 4575933884964573582
+    second: 459-4591060_30-game-buttons-set-collection_1
+  - first:
+      213: -2276535066625962138
+    second: 459-4591060_30-game-buttons-set-collection_2
+  - first:
+      213: 7686709672441988213
+    second: 459-4591060_30-game-buttons-set-collection_3
+  - first:
+      213: -3110075539257038087
+    second: 459-4591060_30-game-buttons-set-collection_4
+  - first:
+      213: -1135780441953225275
+    second: 459-4591060_30-game-buttons-set-collection_5
+  - first:
+      213: 3231544047870659879
+    second: 459-4591060_30-game-buttons-set-collection_6
+  - first:
+      213: 2420509917048818310
+    second: 459-4591060_30-game-buttons-set-collection_7
+  - first:
+      213: 1953241938427389892
+    second: 459-4591060_30-game-buttons-set-collection_8
+  - first:
+      213: 8988658698781095120
+    second: 459-4591060_30-game-buttons-set-collection_9
+  - first:
+      213: 1034901377847254421
+    second: 459-4591060_30-game-buttons-set-collection_10
+  - first:
+      213: 5448986287875656484
+    second: 459-4591060_30-game-buttons-set-collection_11
+  - first:
+      213: 4042252590111732121
+    second: 459-4591060_30-game-buttons-set-collection_12
+  - first:
+      213: -3033229353939404862
+    second: 459-4591060_30-game-buttons-set-collection_13
+  - first:
+      213: 5828698969174979615
+    second: 459-4591060_30-game-buttons-set-collection_14
+  - first:
+      213: 8904659996240235016
+    second: 459-4591060_30-game-buttons-set-collection_15
+  - first:
+      213: -7659177432192422032
+    second: 459-4591060_30-game-buttons-set-collection_16
+  - first:
+      213: 430542212669784116
+    second: 459-4591060_30-game-buttons-set-collection_17
+  - first:
+      213: -8473155559837522234
+    second: 459-4591060_30-game-buttons-set-collection_18
+  - first:
+      213: -67098284397956269
+    second: 459-4591060_30-game-buttons-set-collection_19
+  - first:
+      213: -2262548175874556617
+    second: 459-4591060_30-game-buttons-set-collection_20
+  - first:
+      213: 4021610719887223834
+    second: 459-4591060_30-game-buttons-set-collection_21
+  - first:
+      213: -9007528839526288817
+    second: 459-4591060_30-game-buttons-set-collection_22
+  - first:
+      213: -6972746201910266229
+    second: 459-4591060_30-game-buttons-set-collection_23
+  - first:
+      213: -8318071777778716412
+    second: 459-4591060_30-game-buttons-set-collection_24
+  - first:
+      213: 7318508072341608954
+    second: 459-4591060_30-game-buttons-set-collection_25
+  - first:
+      213: 6909753490892931538
+    second: 459-4591060_30-game-buttons-set-collection_26
+  - first:
+      213: -8558082643840041733
+    second: 459-4591060_30-game-buttons-set-collection_27
+  - first:
+      213: 5065180172427851538
+    second: 459-4591060_30-game-buttons-set-collection_28
+  - first:
+      213: 1744636566912213924
+    second: 459-4591060_30-game-buttons-set-collection_29
+  - first:
+      213: -4987852249310698431
+    second: 459-4591060_30-game-buttons-set-collection_30
+  - first:
+      213: 4804762377930720190
+    second: 459-4591060_30-game-buttons-set-collection_31
+  - first:
+      213: -6373238021215001580
+    second: 459-4591060_30-game-buttons-set-collection_32
+  - first:
+      213: 2764516650628715495
+    second: 459-4591060_30-game-buttons-set-collection_33
+  - first:
+      213: 5055547841918305314
+    second: 459-4591060_30-game-buttons-set-collection_34
+  - first:
+      213: -4989103804261332755
+    second: 459-4591060_30-game-buttons-set-collection_35
+  - first:
+      213: -2611903872873190972
+    second: 459-4591060_30-game-buttons-set-collection_36
+  - first:
+      213: -3196592108928241383
+    second: 459-4591060_30-game-buttons-set-collection_37
+  - first:
+      213: -3712147219410477085
+    second: 459-4591060_30-game-buttons-set-collection_38
+  - first:
+      213: -7743547058857197501
+    second: 459-4591060_30-game-buttons-set-collection_39
+  - first:
+      213: 6506134903643129147
+    second: 459-4591060_30-game-buttons-set-collection_40
+  - first:
+      213: -7329606923608673818
+    second: 459-4591060_30-game-buttons-set-collection_41
+  - first:
+      213: 8253006459788345241
+    second: 459-4591060_30-game-buttons-set-collection_42
+  - first:
+      213: -4586376256275392466
+    second: 459-4591060_30-game-buttons-set-collection_43
+  - first:
+      213: -4136429575627124088
+    second: 459-4591060_30-game-buttons-set-collection_44
+  - first:
+      213: 8948724760040567454
+    second: 459-4591060_30-game-buttons-set-collection_45
+  - first:
+      213: -7447925144634600013
+    second: 459-4591060_30-game-buttons-set-collection_46
+  - first:
+      213: -6830248503948632146
+    second: 459-4591060_30-game-buttons-set-collection_47
+  - first:
+      213: 5924776755131290156
+    second: 459-4591060_30-game-buttons-set-collection_48
+  - first:
+      213: 8761839320969771496
+    second: 459-4591060_30-game-buttons-set-collection_49
+  - first:
+      213: -7055313697484815648
+    second: 459-4591060_30-game-buttons-set-collection_50
+  - first:
+      213: 5708547217360997458
+    second: 459-4591060_30-game-buttons-set-collection_51
+  - first:
+      213: 3335074274909202171
+    second: 459-4591060_30-game-buttons-set-collection_52
+  - first:
+      213: 4228074638560488001
+    second: 459-4591060_30-game-buttons-set-collection_53
+  - first:
+      213: -1440178251364093162
+    second: 459-4591060_30-game-buttons-set-collection_54
+  - first:
+      213: 8324975515978067219
+    second: 459-4591060_30-game-buttons-set-collection_55
+  - first:
+      213: 8326657506760464762
+    second: 459-4591060_30-game-buttons-set-collection_56
+  - first:
+      213: -2365584073232278299
+    second: 459-4591060_30-game-buttons-set-collection_57
+  - first:
+      213: 7308227554227203905
+    second: 459-4591060_30-game-buttons-set-collection_58
+  - first:
+      213: -7949242107395451593
+    second: 459-4591060_30-game-buttons-set-collection_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 595
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df1ba122b98f5c48a21109c598f90f9
+      internalID: 1596536310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_1
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 595
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ea090235dd7b14ea477d813d390fd7
+      internalID: -1817172479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_2
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 595
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17f83acc13f9dfa4db574ede0c0a03fe
+      internalID: 1613294061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_3
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 595
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f666ddea5f3d94439e705d736c5bf23
+      internalID: -1355524654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_4
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 595
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86351df6e3c0a314690446a1e27d4d5f
+      internalID: 1728037990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 541
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc557a7029e96d4a82f1029ab4530c4
+      internalID: -1734561936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 541
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bda995da29cb8b449ea7871ad5d1931
+      internalID: -919396481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_7
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 541
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73f657e7da6af2a448be6167d4fed371
+      internalID: -1720983185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_8
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 541
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e44b5531738dcd94d80fcf17a9c9d8ab
+      internalID: 595251290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_9
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 541
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85a1cb6fc9ba39541bb2192a52e1a8cb
+      internalID: -1006570428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 487
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cca4377423917468af82b0a72eaccc
+      internalID: -1472603256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_11
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 487
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34f2d9a9ec427a54c961bbf60ee2c60b
+      internalID: -1892525547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_12
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 487
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b79f662e19bad4b9b20193be4cb69d
+      internalID: -289173834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_13
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 487
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555e4ab79c9183d49a47872e9b941adf
+      internalID: 929229668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_14
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 487
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c8a734f0e1d73b4c834b3ab439e93e7
+      internalID: -1241724147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 433
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20b0029de0e930e419626efd95c5031c
+      internalID: -1612792760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_16
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 433
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaddb999bd9be274e8089f01ab478c3e
+      internalID: -1563634155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_17
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 433
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc48047b04ad594aacc12622856505c
+      internalID: 762544364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_18
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 433
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b73bc8efd942b7f42b33f2c53e349c93
+      internalID: -1157880437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_19
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 433
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9611e7b61e46424449b932f5ba39b998
+      internalID: -745505317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 379
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b800fa00386e04e4c8e90a6e7855cce4
+      internalID: 1044095063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_21
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 379
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 326ebedfe2c9ee84890b533595dd482e
+      internalID: 1320756272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_22
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 379
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274963b7f0180214797ad3de74235e19
+      internalID: 1467879769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_23
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 379
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea0f76b7cde5194b8881640aaec080d
+      internalID: -1554032449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_24
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 379
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34c995f1d32c35e468000ef49dd5e50b
+      internalID: 1098487133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_25
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 325
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 395e9c61204620f4c8e55961de8a2944
+      internalID: 2079992372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_26
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 325
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf8917c73cdf4b45a572a679c853964
+      internalID: -911294112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_27
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 325
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05a5b72ab23f34e4e99b1e31e275f0cb
+      internalID: 1434309315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_28
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 325
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5152201ae0eb684ab1e7175f3871c89
+      internalID: 74897925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_29
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 325
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52576505c5755e946adf691c90420862
+      internalID: -264042566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 271
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4806d94b3c634b641853bcbc0dabdb07
+      internalID: 880277586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_31
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 271
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c683f92aa721ed49a289df175728bab
+      internalID: -432316520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_32
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 271
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c3052e8a2e6924bb468a79231ce55e
+      internalID: -302899576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_33
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 271
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e705d922c0ce3f04baf3cd16a8de77ba
+      internalID: -731278785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_34
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 271
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74645cbfe3d49f34a90a42b54ce99f24
+      internalID: -1957413381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_35
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 217
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2044af6a750d5a44bb148dc221fac155
+      internalID: -1315834952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_36
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 217
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d040f1b9a2ab084b9bc26b8fd4dac72
+      internalID: 246089617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_37
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 217
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 548a8e90a54ab8e4e844d5211348b699
+      internalID: 263940332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_38
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 217
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b478889ad52784fb9fac876463d3c1
+      internalID: -357375632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_39
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 217
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67bee8a5dc2b3c498f28b76602a8f6a
+      internalID: 1167449063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 163
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4197c90bcb6adc84ba116d3ada2cb063
+      internalID: 1356334202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_41
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 163
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeeb13b82bf9ff34980fee6252557e74
+      internalID: -786389664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_42
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 163
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cea6f1a66c82a41ab0e784b6304138
+      internalID: 341028686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_43
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 163
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cd60e059f2ded5428a6ed51d9839703
+      internalID: -1966371249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_44
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 163
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9890cc42ff5e9ff468dcbf49ffe9c09c
+      internalID: 905511243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_45
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 109
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a15c4cd5974f514688cd74c0f80a937
+      internalID: 300584401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_46
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 109
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d09ef73c4a1e6e545b3ce195f1149ac0
+      internalID: -242615949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_47
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 109
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974ae2728d3f3904faa198560d53cdfa
+      internalID: -41233362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_48
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 109
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a4199aea3f052459f5b1c3615084b5
+      internalID: 656037100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_49
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 109
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b38a6118a5d0f46925f395794b0b6a
+      internalID: 1764060387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 55
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f87bfb629e90e4e40ac7232dd92878d5
+      internalID: 880849159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_51
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 55
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d559e7dfee427645afd69e5cd88ffd6
+      internalID: -2042375842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_52
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 55
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0688d0eb737a1c24b97a49110c61ea81
+      internalID: 1924453872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_53
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 55
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff6e6fe17ae49c42bf3e66561405f5b
+      internalID: 1671069511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_54
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 55
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b4df83ae755d74091216735cd4c6cd
+      internalID: -331144710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_55
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 150e9df044f00d149aabfa8ec9b73fa0
+      internalID: 31195040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_56
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a458569fb4a06254a94c3bc42550a122
+      internalID: 1373916913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_57
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 1
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02c8cace880204546a0c1960b8e2742a
+      internalID: 1116096093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_58
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 1
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4b324f7ac001349924ff8b7da5f877
+      internalID: 1625901556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 459-4591060_30-game-buttons-set-collection_59
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 1
+        width: 195
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79abfe02a334ec644953a5a588a53661
+      internalID: -812829379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: cf33dff948b6d93408e24e4e12603b89
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      459-4591060_30-game-buttons-set-collection_0: 1596536310
+      459-4591060_30-game-buttons-set-collection_1: -1817172479
+      459-4591060_30-game-buttons-set-collection_10: -1472603256
+      459-4591060_30-game-buttons-set-collection_11: -1892525547
+      459-4591060_30-game-buttons-set-collection_12: -289173834
+      459-4591060_30-game-buttons-set-collection_13: 929229668
+      459-4591060_30-game-buttons-set-collection_14: -1241724147
+      459-4591060_30-game-buttons-set-collection_15: -1612792760
+      459-4591060_30-game-buttons-set-collection_16: -1563634155
+      459-4591060_30-game-buttons-set-collection_17: 762544364
+      459-4591060_30-game-buttons-set-collection_18: -1157880437
+      459-4591060_30-game-buttons-set-collection_19: -745505317
+      459-4591060_30-game-buttons-set-collection_2: 1613294061
+      459-4591060_30-game-buttons-set-collection_20: 1044095063
+      459-4591060_30-game-buttons-set-collection_21: 1320756272
+      459-4591060_30-game-buttons-set-collection_22: 1467879769
+      459-4591060_30-game-buttons-set-collection_23: -1554032449
+      459-4591060_30-game-buttons-set-collection_24: 1098487133
+      459-4591060_30-game-buttons-set-collection_25: 2079992372
+      459-4591060_30-game-buttons-set-collection_26: -911294112
+      459-4591060_30-game-buttons-set-collection_27: 1434309315
+      459-4591060_30-game-buttons-set-collection_28: 74897925
+      459-4591060_30-game-buttons-set-collection_29: -264042566
+      459-4591060_30-game-buttons-set-collection_3: -1355524654
+      459-4591060_30-game-buttons-set-collection_30: 880277586
+      459-4591060_30-game-buttons-set-collection_31: -432316520
+      459-4591060_30-game-buttons-set-collection_32: -302899576
+      459-4591060_30-game-buttons-set-collection_33: -731278785
+      459-4591060_30-game-buttons-set-collection_34: -1957413381
+      459-4591060_30-game-buttons-set-collection_35: -1315834952
+      459-4591060_30-game-buttons-set-collection_36: 246089617
+      459-4591060_30-game-buttons-set-collection_37: 263940332
+      459-4591060_30-game-buttons-set-collection_38: -357375632
+      459-4591060_30-game-buttons-set-collection_39: 1167449063
+      459-4591060_30-game-buttons-set-collection_4: 1728037990
+      459-4591060_30-game-buttons-set-collection_40: 1356334202
+      459-4591060_30-game-buttons-set-collection_41: -786389664
+      459-4591060_30-game-buttons-set-collection_42: 341028686
+      459-4591060_30-game-buttons-set-collection_43: -1966371249
+      459-4591060_30-game-buttons-set-collection_44: 905511243
+      459-4591060_30-game-buttons-set-collection_45: 300584401
+      459-4591060_30-game-buttons-set-collection_46: -242615949
+      459-4591060_30-game-buttons-set-collection_47: -41233362
+      459-4591060_30-game-buttons-set-collection_48: 656037100
+      459-4591060_30-game-buttons-set-collection_49: 1764060387
+      459-4591060_30-game-buttons-set-collection_5: -1734561936
+      459-4591060_30-game-buttons-set-collection_50: 880849159
+      459-4591060_30-game-buttons-set-collection_51: -2042375842
+      459-4591060_30-game-buttons-set-collection_52: 1924453872
+      459-4591060_30-game-buttons-set-collection_53: 1671069511
+      459-4591060_30-game-buttons-set-collection_54: -331144710
+      459-4591060_30-game-buttons-set-collection_55: 31195040
+      459-4591060_30-game-buttons-set-collection_56: 1373916913
+      459-4591060_30-game-buttons-set-collection_57: 1116096093
+      459-4591060_30-game-buttons-set-collection_58: 1625901556
+      459-4591060_30-game-buttons-set-collection_59: -812829379
+      459-4591060_30-game-buttons-set-collection_6: -919396481
+      459-4591060_30-game-buttons-set-collection_7: -1720983185
+      459-4591060_30-game-buttons-set-collection_8: 595251290
+      459-4591060_30-game-buttons-set-collection_9: -1006570428
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

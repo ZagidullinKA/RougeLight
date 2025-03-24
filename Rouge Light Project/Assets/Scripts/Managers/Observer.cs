@@ -37,7 +37,7 @@ public class Observer : MonoBehaviour
             Destroy(gameObject);
         }
         initializedMoneyAtStart();
-        UIManager.Instance.printCountKill(countKill);
+        //UIManager.Instance.printCountKill(countKill);
         UIManager.Instance.printMoney(0);
     }
 
