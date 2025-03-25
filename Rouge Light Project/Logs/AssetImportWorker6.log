@@ -1,0 +1,1116 @@
+Using pre-set license
+Built from '6000.0/staging' branch; Version is '6000.0.32f1 (b2e806cf271c) revision 11724806'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit CoreSingleLanguage' Language: 'ru' Physical Memory: 32509 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Unity\6000.0.32f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker6
+-projectPath
+C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+-logFile
+Logs/AssetImportWorker6.log
+-srvPort
+53924
+-job-worker-count
+9
+-background-job-worker-count
+8
+-gc-helper-count
+1
+Successfully changed project path to: C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [36012]  Target information:
+
+Player connection [36012]  * "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 2164522207 [EditorId] 2164522207 [Version] 1048832 [Id] WindowsEditor(7,GreenDesc) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [36012] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [36012] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 9
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 2.97 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.32f1 (b2e806cf271c)
+[Subsystems] Discovering subsystems at path D:/Unity/6000.0.32f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 Ti (ID=0x2482)
+    Vendor:   NVIDIA
+    VRAM:     8017 MB
+    Driver:   32.0.15.6636
+Initialize mono
+Mono path[0] = 'D:/Unity/6000.0.32f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/6000.0.32f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity/6000.0.32f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56100
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity/6000.0.32f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002328 seconds.
+- Loaded All Assemblies, in  0.461 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.462 seconds
+Domain Reload Profiling: 923ms
+	BeginReloadAssembly (158ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (186ms)
+		LoadAssemblies (157ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (183ms)
+			TypeCache.Refresh (181ms)
+				TypeCache.ScanAssembly (164ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (462ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (400ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (30ms)
+			SetLoadedEditorAssemblies (8ms)
+			BeforeProcessingInitializeOnLoad (67ms)
+			ProcessInitializeOnLoadAttributes (228ms)
+			ProcessInitializeOnLoadMethodAttributes (67ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.950 seconds
+Refreshing native plugins compatible for Editor in 1.88 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00060] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.997 seconds
+Domain Reload Profiling: 1943ms
+	BeginReloadAssembly (181ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (27ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (47ms)
+	LoadAllAssembliesAndSetupDomain (666ms)
+		LoadAssemblies (401ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (372ms)
+			TypeCache.Refresh (248ms)
+				TypeCache.ScanAssembly (225ms)
+			BuildScriptInfoCaches (108ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (997ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (839ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (127ms)
+			ProcessInitializeOnLoadAttributes (574ms)
+			ProcessInitializeOnLoadMethodAttributes (128ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 2.08 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 219 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6683 unused Assets / (4.3 MB). Loaded Objects now: 7351.
+Memory consumption went from 187.6 MB to 183.3 MB.
+Total: 7.832200 ms (FindLiveObjects: 0.819200 ms CreateObjectMapping: 0.429300 ms MarkObjects: 4.764100 ms  DeleteObjects: 1.818700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 675180.119292 seconds.
+  path: Assets/Resources/MainMenu/tile085.png
+  artifactKey: Guid(a7512210aded38248bd1dd3412668327) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile085.png using Guid(a7512210aded38248bd1dd3412668327) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '16969c8bc7afbaaf060ee8be2cb8068b') in 0.2114887 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Resources/MainMenu/tile112.png
+  artifactKey: Guid(e53bc0ccd18304247b4f1f3c36d77072) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile112.png using Guid(e53bc0ccd18304247b4f1f3c36d77072) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '461f75d6a951802e95f1fc87e32fd3b4') in 0.0129354 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Resources/MainMenu/tile132.png
+  artifactKey: Guid(ebd509840f4e1ea48bbba844ca59c146) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile132.png using Guid(ebd509840f4e1ea48bbba844ca59c146) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8fbf93c4ed58445a4d9566ff6518661b') in 0.0115248 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile140.png
+  artifactKey: Guid(ec3395b0c1a695c4697c6940e4a82008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile140.png using Guid(ec3395b0c1a695c4697c6940e4a82008) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea1729a7ab432965a8d1f1e9e9f6d13d') in 0.0111866 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile164.png
+  artifactKey: Guid(a73fbb965112a6644a7bf49ea6860d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile164.png using Guid(a73fbb965112a6644a7bf49ea6860d3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3bbf6ec69cf13ed187f33ac6dc433eab') in 0.0114774 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile182.png
+  artifactKey: Guid(7e79e521c6df0f14f989820d9f8b64ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile182.png using Guid(7e79e521c6df0f14f989820d9f8b64ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c598f713185f5e654d20cf6ea23dafce') in 0.011381 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile167.png
+  artifactKey: Guid(a2e9f7fb93e8df3489135aa98009b60a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile167.png using Guid(a2e9f7fb93e8df3489135aa98009b60a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f8404b39d1091b1f51927d1f4dbca4e') in 0.0112163 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile150.png
+  artifactKey: Guid(27d8e47b8526f4c44a94b9cce3a79b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile150.png using Guid(27d8e47b8526f4c44a94b9cce3a79b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a0d48b081f1c7f2493d2793fc0ce7801') in 0.0120009 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile143.png
+  artifactKey: Guid(f14ada4d92ff4ed4aa3a842ce67b004b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile143.png using Guid(f14ada4d92ff4ed4aa3a842ce67b004b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '783aad09317d5f9bd1178f8895a4b867') in 0.0112387 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/tile129.png
+  artifactKey: Guid(ea7ab5bfca354d74497fd9093a60b34e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile129.png using Guid(ea7ab5bfca354d74497fd9093a60b34e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3f5c218652476397f5f1202d5e4301b8') in 0.011023 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile202.png
+  artifactKey: Guid(cc30a2fd53184514588b9445a75a3c35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile202.png using Guid(cc30a2fd53184514588b9445a75a3c35) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9682ca9f67aa41606b103bce529d6a79') in 0.0114385 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Resources/MainMenu/tile228.png
+  artifactKey: Guid(6a8239c999490b040a6156938ec050bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile228.png using Guid(6a8239c999490b040a6156938ec050bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b2a605622503dea3b730a1dff65f8ca') in 0.0112718 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile237.png
+  artifactKey: Guid(02679cb325b6f1145be6f2e21284b012) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile237.png using Guid(02679cb325b6f1145be6f2e21284b012) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ad21ff8339490d556929779e8b27fa19') in 0.0120274 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile227.png
+  artifactKey: Guid(162306e1f43424849a5b3e6908f55613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile227.png using Guid(162306e1f43424849a5b3e6908f55613) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b39b961c5751cc79d7d4664922e9e18d') in 0.0181171 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile223.png
+  artifactKey: Guid(010f67ad402182f46b1ec87aad5dc469) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile223.png using Guid(010f67ad402182f46b1ec87aad5dc469) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '693c572908a87080e31502718a85e627') in 0.011316 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Resources/MainMenu/tile203.png
+  artifactKey: Guid(d7b6d607727e7994fbe9b9c7841394fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile203.png using Guid(d7b6d607727e7994fbe9b9c7841394fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '28a5b367b8806cf9448720ac6a13c1d8') in 0.0112814 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile177.png
+  artifactKey: Guid(bcd97fb66b7274b4b8492c90b9d1cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile177.png using Guid(bcd97fb66b7274b4b8492c90b9d1cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6da2d8062dcc2ed435f52d516605a6f9') in 0.0113102 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile131.png
+  artifactKey: Guid(453ca4113980d034d8fb76fe312eae2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile131.png using Guid(453ca4113980d034d8fb76fe312eae2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '889f4909aebb8580a12dca6fedf46424') in 0.0181264 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile163.png
+  artifactKey: Guid(feab5333b88df9b409d25f52587da104) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile163.png using Guid(feab5333b88df9b409d25f52587da104) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'af5fe3090dd1fa649f69aafde9fcd49c') in 0.0116671 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile210.png
+  artifactKey: Guid(501f1ef2f5841c34793701c4f8721f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile210.png using Guid(501f1ef2f5841c34793701c4f8721f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e0f013ade4515feaa759215da66e259d') in 0.0113917 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile221.png
+  artifactKey: Guid(cfab6d2e5f6c73540b84987bdacc449d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile221.png using Guid(cfab6d2e5f6c73540b84987bdacc449d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd09424fa4cba45d57373dc24bb85d25a') in 0.0121457 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Resources/MainMenu/tile176.png
+  artifactKey: Guid(ec0d94ac010ae6b41b0b28db38583fc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile176.png using Guid(ec0d94ac010ae6b41b0b28db38583fc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8af8ad9cff83eada2056dec2886667aa') in 0.0190907 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Resources/MainMenu/tile217.png
+  artifactKey: Guid(6ea6fcbad066de64e88adf6dcb0ca322) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile217.png using Guid(6ea6fcbad066de64e88adf6dcb0ca322) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1e775aec5377b0adef7b1bcfda9b5ff5') in 0.0186107 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile226.png
+  artifactKey: Guid(41a53014a6690324690d758b8c7f8958) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile226.png using Guid(41a53014a6690324690d758b8c7f8958) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd67e683b12c89bdeea71bb22000e5fa8') in 0.0125388 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile196.png
+  artifactKey: Guid(fbcbfc905b862304aaa3e06d6bcd8660) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile196.png using Guid(fbcbfc905b862304aaa3e06d6bcd8660) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e4f65f55ac08d68458a62fe88a5be120') in 0.0132676 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile214.png
+  artifactKey: Guid(d99dca3f79c086043866088e7af2381d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile214.png using Guid(d99dca3f79c086043866088e7af2381d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6820a599add42b09ff9dc77c90e507c1') in 0.011351 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile142.png
+  artifactKey: Guid(b5b13b0b7930b4f4abd43ea538da0208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile142.png using Guid(b5b13b0b7930b4f4abd43ea538da0208) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3d37d58620ead56b4ed2d10f83c05dfe') in 0.0110492 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile115.png
+  artifactKey: Guid(d83baaa672497e14d91bebff662e2704) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile115.png using Guid(d83baaa672497e14d91bebff662e2704) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd48bc8d3a6dab5f768bf1f8b03e6ca22') in 0.0202829 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/tile197.png
+  artifactKey: Guid(b9b6c63895a5f9e46bc85a7ac90c07a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile197.png using Guid(b9b6c63895a5f9e46bc85a7ac90c07a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dc33a169ef5adaaa20c0d7f1858f332a') in 0.0178885 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile229.png
+  artifactKey: Guid(8fd4aef5256af174f97030ef4c015931) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile229.png using Guid(8fd4aef5256af174f97030ef4c015931) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c3445d3a04b6e38bc308e556c41f1be7') in 0.0113439 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile238.png
+  artifactKey: Guid(69fc069b78619894185376736ce53028) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile238.png using Guid(69fc069b78619894185376736ce53028) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '078d85b7eab1e5b43f209348924194e7') in 0.010821 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile113.png
+  artifactKey: Guid(07ea812a76375974c8413ca1ed75c15a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile113.png using Guid(07ea812a76375974c8413ca1ed75c15a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f5973c40aa2be1aa049bb68f894cd47f') in 0.019111 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile109.png
+  artifactKey: Guid(3de1d5af7e892e8439fea160a62612d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile109.png using Guid(3de1d5af7e892e8439fea160a62612d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e6e48b0195c9a75b4f04255c9462a69f') in 0.0113165 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Resources/MainMenu/tile089.png
+  artifactKey: Guid(fb2ea4b557fa4d847a6d5e51d84270a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile089.png using Guid(fb2ea4b557fa4d847a6d5e51d84270a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '325ae6cf31885cd9e6457a2c898210f5') in 0.0179625 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Resources/MainMenu/tile222.png
+  artifactKey: Guid(9dcc8550463470b40870ceb64766b081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile222.png using Guid(9dcc8550463470b40870ceb64766b081) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1b681ecf54da40cc87357d9d8f83552e') in 0.010646 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile239.png
+  artifactKey: Guid(28d9bd55dcf69db4da70dcdaa8f9fab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile239.png using Guid(28d9bd55dcf69db4da70dcdaa8f9fab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39dfb31b24352df87500772af14d7157') in 0.0105574 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile157.png
+  artifactKey: Guid(c314b5d9f2615a94c858bc5969f94488) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile157.png using Guid(c314b5d9f2615a94c858bc5969f94488) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '851a0bc255abdee137d3f83defd20485') in 0.010098 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile125.png
+  artifactKey: Guid(3cfdf6ece7dc6a14aa0800c67f85aa1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile125.png using Guid(3cfdf6ece7dc6a14aa0800c67f85aa1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dd9e60409ef888e2984b7db5ff6a731d') in 0.0105203 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.918 seconds
+Refreshing native plugins compatible for Editor in 1.98 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00060] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.922 seconds
+Domain Reload Profiling: 1839ms
+	BeginReloadAssembly (227ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (57ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (603ms)
+		LoadAssemblies (431ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (279ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (253ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (923ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (699ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (126ms)
+			ProcessInitializeOnLoadAttributes (477ms)
+			ProcessInitializeOnLoadMethodAttributes (85ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Refreshing native plugins compatible for Editor in 2.65 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6681 unused Assets / (4.6 MB). Loaded Objects now: 7362.
+Memory consumption went from 159.7 MB to 155.1 MB.
+Total: 9.731900 ms (FindLiveObjects: 0.927100 ms CreateObjectMapping: 0.719000 ms MarkObjects: 5.554600 ms  DeleteObjects: 2.529700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.919 seconds
+Refreshing native plugins compatible for Editor in 1.96 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00060] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.919 seconds
+Domain Reload Profiling: 1837ms
+	BeginReloadAssembly (223ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (17ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (52ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (609ms)
+		LoadAssemblies (436ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (282ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (257ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (919ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (700ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (130ms)
+			ProcessInitializeOnLoadAttributes (481ms)
+			ProcessInitializeOnLoadMethodAttributes (79ms)
+			AfterProcessingInitializeOnLoad (2ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Refreshing native plugins compatible for Editor in 2.39 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6681 unused Assets / (4.4 MB). Loaded Objects now: 7364.
+Memory consumption went from 159.7 MB to 155.3 MB.
+Total: 8.889800 ms (FindLiveObjects: 0.897900 ms CreateObjectMapping: 0.523000 ms MarkObjects: 5.251400 ms  DeleteObjects: 2.215600 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 1068.936853 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background
+  artifactKey: Guid(0bb555e6bd6f96f4a96e1bad4bcf255f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background using Guid(0bb555e6bd6f96f4a96e1bad4bcf255f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bbdb8c36c10030dc4a1bf1604000cf72') in 0.012379 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.826892 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title00.png
+  artifactKey: Guid(ecfca9dca47d9cd4d933176d30179633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title00.png using Guid(ecfca9dca47d9cd4d933176d30179633) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fbcba349470886d2e68ef1c44e1d4743') in 0.108707 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title12.png
+  artifactKey: Guid(1458d5525e644fa43b72970229454651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title12.png using Guid(1458d5525e644fa43b72970229454651) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a2916502c90cf98474bfadb5846bbd91') in 0.0261666 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title15.png
+  artifactKey: Guid(ae4b3261e5b092149a92b839cc7aa459) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title15.png using Guid(ae4b3261e5b092149a92b839cc7aa459) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea64c7b04a922feca154c4e4fc3ffcfd') in 0.0225462 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title03.png
+  artifactKey: Guid(71a11e8a07ca38e48bb5276a4627db54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title03.png using Guid(71a11e8a07ca38e48bb5276a4627db54) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18257afb0dce856993e9ded90569e640') in 0.0162572 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title21.png
+  artifactKey: Guid(8a7c83512ae044845939350ad1bc0109) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title21.png using Guid(8a7c83512ae044845939350ad1bc0109) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '68eedf4f22b64b7ac91d20b9e5990a20') in 0.0244378 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title13.png
+  artifactKey: Guid(0d3033c074a6bed4f8c090695638b709) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title13.png using Guid(0d3033c074a6bed4f8c090695638b709) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '145f6a99c95db400bdb8a0442f8626c0') in 0.0162858 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title33.png
+  artifactKey: Guid(63fda18cbaecd954fa642c7622d5aaa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title33.png using Guid(63fda18cbaecd954fa642c7622d5aaa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b14425486c3d001c8d255e7ad9b31bbe') in 0.016894 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title02.png
+  artifactKey: Guid(fe6ed4106cdbe2648a4bd1ab87ddc001) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title02.png using Guid(fe6ed4106cdbe2648a4bd1ab87ddc001) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '146ea999c5cc1dc9a4fe5299ae97c55a') in 0.0192007 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title17.png
+  artifactKey: Guid(33d9ce14575909d43a3811ffb0d19a86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title17.png using Guid(33d9ce14575909d43a3811ffb0d19a86) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cfc492e4b1fbe60dc496f365b340a507') in 0.0159603 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title25.png
+  artifactKey: Guid(3bc0ecb4719f4224db0c1f988ae987e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title25.png using Guid(3bc0ecb4719f4224db0c1f988ae987e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '82647056a9d268fd1797d170e15b44ef') in 0.0164634 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title07.png
+  artifactKey: Guid(4e8f556ebf600c54fb7af016b47e7955) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title07.png using Guid(4e8f556ebf600c54fb7af016b47e7955) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c6294d46985a66bdfc5787d6a80a001a') in 0.0171012 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title32.png
+  artifactKey: Guid(57ee82d7c0809db4a93c1b2bf7e0b957) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title32.png using Guid(57ee82d7c0809db4a93c1b2bf7e0b957) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '268bf1485324ca94b5ff1eca576aaf59') in 0.0162118 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title19.png
+  artifactKey: Guid(68a79c97693cc35449300a53ddbf2aeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title19.png using Guid(68a79c97693cc35449300a53ddbf2aeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6dd204b62f2ef204264097b58f190beb') in 0.0159575 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title11.png
+  artifactKey: Guid(26201006d693f094bb8eb928775f87cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title11.png using Guid(26201006d693f094bb8eb928775f87cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'faee3bcadef11d8142d0f26083795aa2') in 0.0164056 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title24.png
+  artifactKey: Guid(84678c81b3456ab48bf1a4dd78dfb0a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title24.png using Guid(84678c81b3456ab48bf1a4dd78dfb0a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8b7f4b4436eb00287ecb2ac7cbc610ca') in 0.0156621 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title04.png
+  artifactKey: Guid(6f3e9f2217e702d4086bffce97a32312) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title04.png using Guid(6f3e9f2217e702d4086bffce97a32312) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '198de7ace8abad8979e30440f01318f7') in 0.0149693 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title29.png
+  artifactKey: Guid(f6689d3700ee01a489395eb006d78c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title29.png using Guid(f6689d3700ee01a489395eb006d78c14) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a60ab56cdcab00eac8bd22cc9f9c416') in 0.0156392 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 51.951884 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title00.png
+  artifactKey: Guid(ecfca9dca47d9cd4d933176d30179633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title00.png using Guid(ecfca9dca47d9cd4d933176d30179633) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '605baabbed5ad1c1ad53a687b98df8c1') in 0.0378068 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title12.png
+  artifactKey: Guid(1458d5525e644fa43b72970229454651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title12.png using Guid(1458d5525e644fa43b72970229454651) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '886e947dbe77654c28c8d385ec8a585d') in 0.1112885 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title21.png
+  artifactKey: Guid(8a7c83512ae044845939350ad1bc0109) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title21.png using Guid(8a7c83512ae044845939350ad1bc0109) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f9c388a737024802a6900ab8a553d0c') in 0.0205788 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title33.png
+  artifactKey: Guid(63fda18cbaecd954fa642c7622d5aaa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title33.png using Guid(63fda18cbaecd954fa642c7622d5aaa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd461068d03af338381963446ff854cc0') in 0.0103841 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title22.png
+  artifactKey: Guid(687bdcab32bf7da42a81ab19808bbbbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title22.png using Guid(687bdcab32bf7da42a81ab19808bbbbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e9ffcecd9c0d53cc23d8a18f2aad65c') in 0.0112579 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title27.png
+  artifactKey: Guid(a2fdb7f6933a8a9428934ba6b6336297) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title27.png using Guid(a2fdb7f6933a8a9428934ba6b6336297) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd67d9e3a5bc16e2e5ea6a038015678f4') in 0.010997 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title19.png
+  artifactKey: Guid(68a79c97693cc35449300a53ddbf2aeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title19.png using Guid(68a79c97693cc35449300a53ddbf2aeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '488083f453313b109ff1be4f314517a4') in 0.0090576 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/GIF_Background/title06.png
+  artifactKey: Guid(639fb065c98767a4187e7d42f2b5bd21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/GIF_Background/title06.png using Guid(639fb065c98767a4187e7d42f2b5bd21) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd2d816a4afc9338d8a3f7a243f289eab') in 0.0090278 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

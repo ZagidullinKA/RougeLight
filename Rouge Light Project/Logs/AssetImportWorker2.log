@@ -1,0 +1,782 @@
+Using pre-set license
+Built from '6000.0/staging' branch; Version is '6000.0.32f1 (b2e806cf271c) revision 11724806'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit CoreSingleLanguage' Language: 'ru' Physical Memory: 32509 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\Unity\6000.0.32f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+53924
+-job-worker-count
+9
+-background-job-worker-count
+8
+-gc-helper-count
+1
+Successfully changed project path to: C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [29864]  Target information:
+
+Player connection [29864]  * "[IP] 192.168.1.105 [Port] 0 [Flags] 2 [Guid] 616027973 [EditorId] 616027973 [Version] 1048832 [Id] WindowsEditor(7,GreenDesc) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [29864] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [29864] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 9
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 2.77 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.32f1 (b2e806cf271c)
+[Subsystems] Discovering subsystems at path D:/Unity/6000.0.32f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/user/Documents/Mindmap/RougeLight/Rouge Light Project/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3070 Ti (ID=0x2482)
+    Vendor:   NVIDIA
+    VRAM:     8017 MB
+    Driver:   32.0.15.6636
+Initialize mono
+Mono path[0] = 'D:/Unity/6000.0.32f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/6000.0.32f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/Unity/6000.0.32f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56068
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/Unity/6000.0.32f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002529 seconds.
+- Loaded All Assemblies, in  0.447 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.525 seconds
+Domain Reload Profiling: 972ms
+	BeginReloadAssembly (153ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (55ms)
+	LoadAllAssembliesAndSetupDomain (181ms)
+		LoadAssemblies (152ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (178ms)
+			TypeCache.Refresh (176ms)
+				TypeCache.ScanAssembly (161ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (526ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (467ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (37ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (96ms)
+			ProcessInitializeOnLoadAttributes (232ms)
+			ProcessInitializeOnLoadMethodAttributes (96ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.079 seconds
+Refreshing native plugins compatible for Editor in 2.43 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00060] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
+System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
+  at System.Configuration.ClientConfigPaths..ctor (System.String exePath, System.Boolean includeUserConfig) [0x00050] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigPaths.GetPaths (System.String exePath, System.Boolean includeUserConfig) [0x00018] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_ConfigPaths () [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.GetStreamName (System.String configPath) [0x0006d] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationHost.get_IsAppConfigHttp () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.Internal.DelegatingConfigHost.get_IsAppConfigHttp () [0x00006] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ClientConfigurationSystem..ctor () [0x00051] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.EnsureConfigurationSystem () [0x00024] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+   --- End of inner exception stack trace ---
+  at System.Configuration.ConfigurationManager.PrepareConfigSystem () [0x0001a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.GetSection (System.String sectionName) [0x0000a] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at System.Configuration.ConfigurationManager.get_AppSettings () [0x00000] in <5ae095f7408b4d5cb5cdbfc3d3c31d20>:0 
+  at log4net.Util.SystemInfo.GetAppSetting (System.String key) [0x00000] in <00c34789746b40dda4cd7be2c85ba32f>:0 
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.215 seconds
+Domain Reload Profiling: 2291ms
+	BeginReloadAssembly (191ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (8ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (29ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (50ms)
+	LoadAllAssembliesAndSetupDomain (776ms)
+		LoadAssemblies (484ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (409ms)
+			TypeCache.Refresh (276ms)
+				TypeCache.ScanAssembly (251ms)
+			BuildScriptInfoCaches (115ms)
+			ResolveRequiredComponents (14ms)
+	FinalizeReload (1215ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1027ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (163ms)
+			ProcessInitializeOnLoadAttributes (721ms)
+			ProcessInitializeOnLoadMethodAttributes (132ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 2.25 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 219 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6683 unused Assets / (2.2 MB). Loaded Objects now: 7351.
+Memory consumption went from 187.6 MB to 185.5 MB.
+Total: 11.168800 ms (FindLiveObjects: 0.840600 ms CreateObjectMapping: 0.442700 ms MarkObjects: 7.851700 ms  DeleteObjects: 2.032300 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 673158.805759 seconds.
+  path: Assets/Resources/MainMenu/tile060.png
+  artifactKey: Guid(e74d7b1b0f008ae4fb5def8538749a96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile060.png using Guid(e74d7b1b0f008ae4fb5def8538749a96) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fd32c9bce53c80feabf2f802c556f2b3') in 0.1446461 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile044.png
+  artifactKey: Guid(77229662d3481f8408da8ade0359e779) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile044.png using Guid(77229662d3481f8408da8ade0359e779) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f74ae9184ee339d5d47ee9171003cdea') in 0.0246747 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Resources/MainMenu/tile078.png
+  artifactKey: Guid(c88f64075a4fc1f41bf6ca359bc60e78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile078.png using Guid(c88f64075a4fc1f41bf6ca359bc60e78) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e516355fac0e1ba4269f896f3d1f9ed') in 0.0229342 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/tile059.png
+  artifactKey: Guid(8ea01660fd4b5434a833c728f22123d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile059.png using Guid(8ea01660fd4b5434a833c728f22123d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '71db0b0a9752d5aed640df3d0603e618') in 0.0188429 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile032.png
+  artifactKey: Guid(09707170e04717a4fbe3e9b88196c81c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile032.png using Guid(09707170e04717a4fbe3e9b88196c81c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0f302b701ba5a7811f6af499a040dbdd') in 0.0205409 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile050.png
+  artifactKey: Guid(5d6311de9d24770459c7f8aa8fa33683) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile050.png using Guid(5d6311de9d24770459c7f8aa8fa33683) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cfbe8e61851abf7f6bc29a0f297ae91a') in 0.0199659 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile028.png
+  artifactKey: Guid(d70145a740636ba4a878cdb006e7b6ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile028.png using Guid(d70145a740636ba4a878cdb006e7b6ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '41f142accf92cc757a4b5805c90afb86') in 0.0190865 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile053.png
+  artifactKey: Guid(ff864d4c308d1f341bee5138b3e48c5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile053.png using Guid(ff864d4c308d1f341bee5138b3e48c5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e43ef215963f125c53d927f34ab12ee6') in 0.0197714 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Resources/MainMenu/tile075.png
+  artifactKey: Guid(086aed48fade07544b1a4d045effab2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile075.png using Guid(086aed48fade07544b1a4d045effab2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3d6a3cf7df8a51252435a8ed84c5e4c9') in 0.0205382 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile014.png
+  artifactKey: Guid(5da23b5c25fc3a4469a9900bbf4d18e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile014.png using Guid(5da23b5c25fc3a4469a9900bbf4d18e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8caa26adcc79c620de8ce23b52874172') in 0.0201657 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile076.png
+  artifactKey: Guid(7e09cef4625f89b4d822721a7d027cfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile076.png using Guid(7e09cef4625f89b4d822721a7d027cfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b1a99c9e3c4dc492534fe2d1fca025f7') in 0.0190158 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Resources/MainMenu/tile083.png
+  artifactKey: Guid(9df25b872c514374298cee2ad3742d0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile083.png using Guid(9df25b872c514374298cee2ad3742d0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c4143d040f69ea878a1037f1e0cbe8a8') in 0.0202526 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile048.png
+  artifactKey: Guid(44c3af50905f5d844b105717a1633eb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile048.png using Guid(44c3af50905f5d844b105717a1633eb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '077bca65d5b81fe47484e77bc6ced1f7') in 0.0197119 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile009.png
+  artifactKey: Guid(acf113d3ebe9c364a9289845662ee5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile009.png using Guid(acf113d3ebe9c364a9289845662ee5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a571a9d4dacfafbc1f939480ea3e2fc9') in 0.0207967 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Resources/MainMenu/tile010.png
+  artifactKey: Guid(70b82d697a91ca448b84d89ab0318ff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile010.png using Guid(70b82d697a91ca448b84d89ab0318ff6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'eaa6c1d8d175b29a5c64d40d5804afba') in 0.019853 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile051.png
+  artifactKey: Guid(3f3f540779fb7f44293efe831f5660c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile051.png using Guid(3f3f540779fb7f44293efe831f5660c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b0894bb7ce566293a6c1c4b11d84e0aa') in 0.0205466 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile029.png
+  artifactKey: Guid(5b6cf3c1d9db83c47b8746983fadf502) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile029.png using Guid(5b6cf3c1d9db83c47b8746983fadf502) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5afd3c79d79bafd60f67d367545d5afb') in 0.0207643 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile038.png
+  artifactKey: Guid(fb843c5c6a967e84890369dca31b74e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile038.png using Guid(fb843c5c6a967e84890369dca31b74e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2df9665dbe4c5ad1d902c91c7e77282b') in 0.0207488 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile006.png
+  artifactKey: Guid(b19ba5858e971d3448b0a64b664324ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile006.png using Guid(b19ba5858e971d3448b0a64b664324ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '789dca19cba4cea357cf6b2c65a16e8e') in 0.0202943 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/tile042.png
+  artifactKey: Guid(cd6aee711bb4ee04888516ab8200cbfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile042.png using Guid(cd6aee711bb4ee04888516ab8200cbfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '386c64b886fe64ac788eb6331fa6f16c') in 0.0202994 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/tile037.png
+  artifactKey: Guid(2897608b1fce4c241a3d12cfa1a1f07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile037.png using Guid(2897608b1fce4c241a3d12cfa1a1f07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '20dcf576425f4fd62d6190206543bfe1') in 0.021438 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.237926 seconds.
+  path: Assets/Resources/MainMenu/tile084.png
+  artifactKey: Guid(33bb1e3f57831fe48b285dd7faa36b2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile084.png using Guid(33bb1e3f57831fe48b285dd7faa36b2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5ecd83ad707a08315992d8b7548aa251') in 0.0421306 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile093.png
+  artifactKey: Guid(a2e1f46af1c566a45a377ae0a5eb751a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile093.png using Guid(a2e1f46af1c566a45a377ae0a5eb751a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6d648ff3d1751f3ab8e743051817426d') in 0.0192092 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile124.png
+  artifactKey: Guid(c8ae18d778b8a584f8fc7cc7792cfdf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile124.png using Guid(c8ae18d778b8a584f8fc7cc7792cfdf7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '59a6791de44c43817eeeb61584f73cf4') in 0.0187023 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile122.png
+  artifactKey: Guid(d5afc977cf23c4f43b4064502a3b30e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile122.png using Guid(d5afc977cf23c4f43b4064502a3b30e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bf8c19426ab10c3ddf09b228840fac34') in 0.0182202 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Resources/MainMenu/tile105.png
+  artifactKey: Guid(593d8d0b25e5b2742a7d5b13cf11eccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile105.png using Guid(593d8d0b25e5b2742a7d5b13cf11eccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f10a32ca8d6895929253ee0d7aa94d19') in 0.0185783 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Resources/MainMenu/tile097.png
+  artifactKey: Guid(0e39f9b4101e08a4b87cada7a502f70e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile097.png using Guid(0e39f9b4101e08a4b87cada7a502f70e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c6961b443f326f804b32659ae143093a') in 0.018765 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile120.png
+  artifactKey: Guid(2a1fa1289f1daff4aad1729533d183d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile120.png using Guid(2a1fa1289f1daff4aad1729533d183d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8e595a92c8ccbbb8f0fb4e3dd41b31f7') in 0.0198985 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile116.png
+  artifactKey: Guid(bc39298414ba74948bfb2b9eef6a0abf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile116.png using Guid(bc39298414ba74948bfb2b9eef6a0abf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6e91c32c62d89f2956a561eef39c6c3e') in 0.0182451 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile118.png
+  artifactKey: Guid(d9a0a3fbb0f9d654bb650b6acfe7c031) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile118.png using Guid(d9a0a3fbb0f9d654bb650b6acfe7c031) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '10f75b138e9886467a5e91046d5a4359') in 0.0183998 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile107.png
+  artifactKey: Guid(ac4cb17f466c05d408ad5c5a33bb3c38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile107.png using Guid(ac4cb17f466c05d408ad5c5a33bb3c38) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9c91abc7f6aa2d958ba87bfbef7d5ba0') in 0.0200197 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Resources/MainMenu/tile102.png
+  artifactKey: Guid(0541d3935d17c814c9cb851f73ded695) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile102.png using Guid(0541d3935d17c814c9cb851f73ded695) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0e5b1542f7afd119c459f3b56d852e28') in 0.0188112 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Resources/MainMenu/tile148.png
+  artifactKey: Guid(d1bca7bbdaa217d44a8bcad607a90845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile148.png using Guid(d1bca7bbdaa217d44a8bcad607a90845) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a0803a5a80dc9825b9c6143bb253a33') in 0.0193558 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile161.png
+  artifactKey: Guid(ea4c5195834a5f64286ff3e3f13541ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile161.png using Guid(ea4c5195834a5f64286ff3e3f13541ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '34da94d8aef820bcd46ac997e4f06dce') in 0.020056 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile183.png
+  artifactKey: Guid(308ca8535ee7a75408d82df8a20ba019) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile183.png using Guid(308ca8535ee7a75408d82df8a20ba019) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9098197cd66e251157f176bbdaed52e5') in 0.0202598 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile182.png
+  artifactKey: Guid(7e79e521c6df0f14f989820d9f8b64ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile182.png using Guid(7e79e521c6df0f14f989820d9f8b64ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '07f04eb7ad405a76d1bdf215d41e3b94') in 0.0197401 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile184.png
+  artifactKey: Guid(fa25118962c91ef4289a38393162e871) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile184.png using Guid(fa25118962c91ef4289a38393162e871) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd0f79c0822158ac2272682fe3e9bcf88') in 0.0217515 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/tile142.png
+  artifactKey: Guid(b5b13b0b7930b4f4abd43ea538da0208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile142.png using Guid(b5b13b0b7930b4f4abd43ea538da0208) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '51fc8d9fe61f4f4a1eccce608a6d20cd') in 0.0210392 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/tile159.png
+  artifactKey: Guid(dffacea039c38b94881f5416e6b3c5a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile159.png using Guid(dffacea039c38b94881f5416e6b3c5a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5e89a8edbcbd59edaa52e62b6b1e0d33') in 0.0217473 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Resources/MainMenu/tile174.png
+  artifactKey: Guid(d032fea2bfbf0764f8480f077c28dc36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile174.png using Guid(d032fea2bfbf0764f8480f077c28dc36) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '312f1c1ca6b18ea769bd1db5f76fe0d7') in 0.0214015 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile143.png
+  artifactKey: Guid(f14ada4d92ff4ed4aa3a842ce67b004b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile143.png using Guid(f14ada4d92ff4ed4aa3a842ce67b004b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f787c54d5d8fe6224eb19189f9bcccdb') in 0.0202022 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile145.png
+  artifactKey: Guid(2dfcc24108c611f43aa37414f873c426) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile145.png using Guid(2dfcc24108c611f43aa37414f873c426) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b03379905ef5aae70f5b3ba083b1bde') in 0.0218813 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile154.png
+  artifactKey: Guid(03025c8cab88366498fd4cbb33cd57f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile154.png using Guid(03025c8cab88366498fd4cbb33cd57f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '220b18ffbe7ef766a70e38b318245d34') in 0.020809 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/tile192.png
+  artifactKey: Guid(1d19ca6d34a3c224790a1081020b9a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile192.png using Guid(1d19ca6d34a3c224790a1081020b9a1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b44a9eda6cedec5ce5f0f5aea6a782de') in 0.0214945 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Resources/MainMenu/tile220.png
+  artifactKey: Guid(7e3963d21b3db9744a797789e7912500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile220.png using Guid(7e3963d21b3db9744a797789e7912500) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18fdf096af13e9f9413411896760db88') in 0.0215042 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Resources/MainMenu/tile200.png
+  artifactKey: Guid(f8f236a874796484db2a79761d2eb495) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile200.png using Guid(f8f236a874796484db2a79761d2eb495) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fa88689a9e24d1ff0d2f418c8a4c01eb') in 0.0225483 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile231.png
+  artifactKey: Guid(0afa3f660e21a8a4fb8e8fe1dd9c072c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile231.png using Guid(0afa3f660e21a8a4fb8e8fe1dd9c072c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd13f2d89e51dcadc2342746b5f2c1102') in 0.0222052 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile209.png
+  artifactKey: Guid(e4bf9121bf4a4eb4d817666058843898) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile209.png using Guid(e4bf9121bf4a4eb4d817666058843898) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2b7132a2613a1f0965566792cb5d0352') in 0.0203915 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile214.png
+  artifactKey: Guid(d99dca3f79c086043866088e7af2381d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile214.png using Guid(d99dca3f79c086043866088e7af2381d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3f3d5e4eac90119b4ab7c95bf92f4329') in 0.0212577 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile232.png
+  artifactKey: Guid(203d9a4fd794ba442911a72868499aba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile232.png using Guid(203d9a4fd794ba442911a72868499aba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '01d0be4b1397bf1e96f015489c05ecf3') in 0.0215447 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Resources/MainMenu/tile201.png
+  artifactKey: Guid(15eb06da57007d14c8fe4343cc5e9727) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile201.png using Guid(15eb06da57007d14c8fe4343cc5e9727) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0d9bbdff50c37f82f48bd4f99ec8e2f5') in 0.0215022 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile229.png
+  artifactKey: Guid(8fd4aef5256af174f97030ef4c015931) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile229.png using Guid(8fd4aef5256af174f97030ef4c015931) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bd3dc4e45c232fe77b1fb03c1d7f8917') in 0.0208731 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Resources/MainMenu/tile241.png
+  artifactKey: Guid(648dc51a78576d349999c69db27456b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile241.png using Guid(648dc51a78576d349999c69db27456b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9c4f410003d8afec7e6d07c06c1f0e96') in 0.0216527 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile203.png
+  artifactKey: Guid(d7b6d607727e7994fbe9b9c7841394fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile203.png using Guid(d7b6d607727e7994fbe9b9c7841394fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '908cd3833597d0ac568db896275afb18') in 0.0213608 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Resources/MainMenu/tile177.png
+  artifactKey: Guid(bcd97fb66b7274b4b8492c90b9d1cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile177.png using Guid(bcd97fb66b7274b4b8492c90b9d1cbb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2ea263a189bc21fe63ace5008cdbe2c3') in 0.0219114 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Resources/MainMenu/tile199.png
+  artifactKey: Guid(e7585d2f5e9965745830c0edd5b95e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile199.png using Guid(e7585d2f5e9965745830c0edd5b95e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fcc438482f7e3b3876c77d72b1ee2388') in 0.0212328 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/MainMenu/tile222.png
+  artifactKey: Guid(9dcc8550463470b40870ceb64766b081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile222.png using Guid(9dcc8550463470b40870ceb64766b081) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8eb77289ff61e061fbb861242586c33d') in 0.0208908 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile123.png
+  artifactKey: Guid(be43a9e9db89dd8479feff1701dee21f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile123.png using Guid(be43a9e9db89dd8479feff1701dee21f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6cfe9cdb7c6add08103e69abaa5aef50') in 0.0204643 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Resources/MainMenu/tile213.png
+  artifactKey: Guid(9a3dffd24d51b20439a273313716d6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile213.png using Guid(9a3dffd24d51b20439a273313716d6e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '730ce4e2e2b2f13e658ac5780478633c') in 0.0200588 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile157.png
+  artifactKey: Guid(c314b5d9f2615a94c858bc5969f94488) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile157.png using Guid(c314b5d9f2615a94c858bc5969f94488) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a11f1bcaec88b5013ec7f1e1a570c596') in 0.019756 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Resources/MainMenu/tile096.png
+  artifactKey: Guid(da4dfdf166e8f88449be8802e76d56a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/MainMenu/tile096.png using Guid(da4dfdf166e8f88449be8802e76d56a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '055bf3e5fbe26670689140599d3fa3b0') in 0.0190695 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
