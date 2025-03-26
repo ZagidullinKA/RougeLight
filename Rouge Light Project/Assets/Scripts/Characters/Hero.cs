@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
 using log4net;
-using Mono.Cecil.Cil;
-using static UnityEngine.Rendering.DebugUI;
-using System.Reflection.Emit;
-using static UnityEditor.Progress;
-using Unity.VisualScripting;
 using System;
 using System.Collections.Generic;
 
+//удалены неиспользуемые библиотеки
 
 public class Hero : Character, IAttacker, IMovable
 {
@@ -23,7 +19,7 @@ public class Hero : Character, IAttacker, IMovable
     private CircleCollider2D colliderDropRadius;
     private LineRenderer lineRendererDropRadius;
 
-    private const float UpgradeLvlFactor = 1.5f;
+    private const float UpgradeLvlFactor = 3f;
 
     //Переменная для godmod
     public bool isGodMode = false;
