@@ -19,7 +19,8 @@ public class Hero : Character, IAttacker, IMovable
     private CircleCollider2D colliderDropRadius;
     private LineRenderer lineRendererDropRadius;
 
-    private const float UpgradeLvlFactor = 3f;
+    private const float UpgradeLvlFactor = 1.5f;
+    //Доп коммент тест мердже
 
     //Переменная для godmod
     public bool isGodMode = false;
