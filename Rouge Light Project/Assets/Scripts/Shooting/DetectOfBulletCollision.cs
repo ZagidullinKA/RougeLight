@@ -21,6 +21,12 @@ public class DetectOfBulletCollision : MonoBehaviour
         GameObject otherObject = collision.gameObject;
         string otherTag = otherObject.tag;
 
+        if (otherTag == "Wall")
+        {
+            log.Warn("Мы въебались в стенку");
+            bullet.DestroyBullet();
+        }
+
         if (TagChecking(otherTag))
         {
             log.Debug("Попал в " + otherTag);

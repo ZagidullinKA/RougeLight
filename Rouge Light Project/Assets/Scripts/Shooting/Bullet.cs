@@ -19,6 +19,7 @@ public class Bullet : MonoBehaviour
     private Vector2 aimCoords;
     private int layerIndex;
 
+    private bool isRicochet = false;
 
     void Start()
     {

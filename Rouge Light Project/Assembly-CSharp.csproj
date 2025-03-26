@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\Dictionary\MoneyDictionary.cs" />
     <Compile Include="Assets\Scripts\Characters\Hero.cs" />
     <Compile Include="Assets\Scripts\Drop\Drop.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameBoardGeneration.cs" />
     <Compile Include="Assets\Scripts\Dictionary\Item\ItemEnemyTypesDirectory.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />

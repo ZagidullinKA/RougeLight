@@ -3,96 +3,75 @@ using log4net;
 
 public class WallCreator : MonoBehaviour
 {
-    [SerializeField] private float width;
-    [SerializeField] private float height;
-    [SerializeField] private Color wallColor = Color.red;
-    [SerializeField] private bool hasCollider = true; //Нужен ли коллайдер?
+    [SerializeField] private float _width;
+    [SerializeField] private float _height;
+    [SerializeField] private Color _wallColor = Color.red;
+    [SerializeField] private bool hasCollider = true;
     [SerializeField] private bool showCollider = true;
-    [SerializeField] private bool isKinematic = true;
-    // [SerializeField] private float setPixelsPerUnit;
 
     private static readonly ILog log = LogManager.GetLogger(typeof(Observer));
 
-
-    void Start()
+    // Публичные свойства с геттерами и сеттерами
+    public float Width
     {
-        WallCreator wallCreator = GetComponent<WallCreator>();
-        wallCreator.CreateWall(new Vector2(5, 3));
+        get => _width;
+        set => _width = value;
     }
 
-    public void CreateWall(Vector2 position, Transform parent = null)
+    public float Height
+    {
+        get => _height;
+        set => _height = value;
+    }
+
+    public Color WallColor
+    {
+        get => _wallColor;
+        set => _wallColor = value;
+    }
+
+    public void CreateWall(Vector2 position, float angle = 0f, Transform parent = null)
     {
         GameObject wall = new GameObject("Wall");
         wall.tag = "Wall";
         wall.layer = 11;
         wall.transform.position = position;
+        wall.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         if (parent != null)
             wall.transform.SetParent(parent);
 
-        //log.Debug("Pixels per unit is " + pixelsPerUnit);
-
         // 1. Создаём спрайт
         Texture2D texture = new Texture2D(1, 1);
-        
-        log.Debug("Sprite width and height is " + texture.width + " " + texture.height);
-        
+
         for (int x = 0; x < texture.width; x++)
             for (int y = 0; y < texture.height; y++)
-                texture.SetPixel(x, y, wallColor); // Заливаем белым
+                texture.SetPixel(x, y, _wallColor);
         texture.Apply();
-      
+
         Sprite sprite = Sprite.Create(
             texture,
             new Rect(0, 0, texture.width, texture.height),
-            new Vector2(0.5f, 0.5f), // Pivot в центре
+            new Vector2(0.5f, 0.5f),
             1
         );
 
         SpriteRenderer spriteRenderer = wall.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite;
-        spriteRenderer.color = wallColor;
+        spriteRenderer.color = _wallColor;
 
-        // 2. Масштабируем спрайт (теперь 1 юнит Unity = 100 пикселей)
-        wall.transform.localScale = new Vector2(width, height);
+        // 2. Масштабируем спрайт
+        wall.transform.localScale = new Vector2(_width, _height);
 
         Rigidbody2D rb = wall.AddComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        // 3. Настраиваем коллайдер (размер в юнитах Unity)
+        // 3. Настраиваем коллайдер
         if (hasCollider)
         {
             BoxCollider2D collider = wall.AddComponent<BoxCollider2D>();
-            collider.size = new Vector2(1, 1); // Теперь размер коллайдера = размеру стены
-        }
-
-        if (showCollider) 
-        {
-            // 4. Настраиваем LineRenderer (рисуем границы коллайдера)
-            LineRenderer lineRenderer = wall.AddComponent<LineRenderer>();
-            lineRenderer.useWorldSpace = false;
-            lineRenderer.positionCount = 5;
-            lineRenderer.loop = true;
-            lineRenderer.startWidth = 0.05f;
-            lineRenderer.endWidth = 0.05f;
-            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-            lineRenderer.startColor = Color.green;
-            lineRenderer.endColor = Color.green;
-
-            // Углы коллайдера (учитываем его размер)
-            float halfWidth = 0.5f;
-            float halfHeight = 0.5f;
-
-            Vector3[] corners = new Vector3[5]
-            {
-            new Vector3(-halfWidth, -halfHeight, 0), // Левый нижний
-            new Vector3(-halfWidth, halfHeight, 0),  // Левый верхний
-            new Vector3(halfWidth, halfHeight, 0),   // Правый верхний
-            new Vector3(halfWidth, -halfHeight, 0),  // Правый нижний
-            new Vector3(-halfWidth, -halfHeight, 0) // Замыкаем
-            };
-
-            lineRenderer.SetPositions(corners);
+            collider.size = new Vector2(1, 1);
         }
     }
 }
