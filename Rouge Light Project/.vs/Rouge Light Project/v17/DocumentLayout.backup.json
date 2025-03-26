@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\wallcreator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|e:\\rougelight\\rouge light project\\assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\managers\\observer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\managers\\observer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\uielements\\expslider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uielements\\expslider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1448D721-1910-505E-691F-9B01304F2ACD}|Assembly-CSharp.csproj|E:\\RougeLight\\Rouge Light Project\\assets\\scripts\\managers\\gamegeneration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -60,14 +60,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\WallCreator.cs",
               "ToolTip": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Managers\\WallCreator.cs",
               "RelativeToolTip": "Assets\\Scripts\\Managers\\WallCreator.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwCEAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wDAAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T00:22:11.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ExpSlider.cs",
               "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\UIElements\\ExpSlider.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UIElements\\ExpSlider.cs",
@@ -75,17 +75,18 @@
               "RelativeToolTip": "Assets\\Scripts\\UIElements\\ExpSlider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T15:25:29.457Z"
+              "WhenOpened": "2025-03-09T15:25:29.457Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Observer.cs",
               "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Managers\\Observer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Managers\\Observer.cs",
               "ToolTip": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Managers\\Observer.cs",
               "RelativeToolTip": "Assets\\Scripts\\Managers\\Observer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-09T14:58:03.356Z",
               "EditorCaption": ""
@@ -104,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Character.cs",
               "DocumentMoniker": "E:\\RougeLight\\Rouge Light Project\\Assets\\Scripts\\Characters\\Character.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Character.cs",
@@ -112,8 +113,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Characters\\Character.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T20:07:44.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-07T20:07:44.883Z"
             },
             {
               "$type": "Document",

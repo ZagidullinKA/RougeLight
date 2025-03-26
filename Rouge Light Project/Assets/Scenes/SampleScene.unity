@@ -1692,12 +1692,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 1
-  height: 1
+  height: 10
   wallColor: {r: 1, g: 0, b: 0, a: 1}
   hasCollider: 1
   showCollider: 1
   isKinematic: 1
-  pixelsPerUnit: 1
 --- !u!1 &1818164533
 GameObject:
   m_ObjectHideFlags: 0

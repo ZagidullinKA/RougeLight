@@ -9,7 +9,7 @@ public class WallCreator : MonoBehaviour
     [SerializeField] private bool hasCollider = true; //Нужен ли коллайдер?
     [SerializeField] private bool showCollider = true;
     [SerializeField] private bool isKinematic = true;
-    [SerializeField] private float pixelsPerUnit;
+    // [SerializeField] private float setPixelsPerUnit;
 
     private static readonly ILog log = LogManager.GetLogger(typeof(Observer));
 
@@ -30,10 +30,10 @@ public class WallCreator : MonoBehaviour
         if (parent != null)
             wall.transform.SetParent(parent);
 
-        log.Debug("Pixels per unit is " + pixelsPerUnit);
+        //log.Debug("Pixels per unit is " + pixelsPerUnit);
 
         // 1. Создаём спрайт
-        Texture2D texture = new Texture2D((int)pixelsPerUnit, (int)pixelsPerUnit);
+        Texture2D texture = new Texture2D(1, 1);
         
         log.Debug("Sprite width and height is " + texture.width + " " + texture.height);
         
@@ -46,7 +46,7 @@ public class WallCreator : MonoBehaviour
             texture,
             new Rect(0, 0, texture.width, texture.height),
             new Vector2(0.5f, 0.5f), // Pivot в центре
-            pixelsPerUnit
+            1
         );
 
         SpriteRenderer spriteRenderer = wall.AddComponent<SpriteRenderer>();
@@ -54,7 +54,7 @@ public class WallCreator : MonoBehaviour
         spriteRenderer.color = wallColor;
 
         // 2. Масштабируем спрайт (теперь 1 юнит Unity = 100 пикселей)
-        wall.transform.localScale = new Vector2(width * pixelsPerUnit, height * pixelsPerUnit);
+        wall.transform.localScale = new Vector2(width, height);
 
         Rigidbody2D rb = wall.AddComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
