@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     private float bulletFlySpeed;
     private Rigidbody2D rb;
 
-    private List<DotEffect> usableDotsArray;
+    private List<UsableDotEffect> usableDotsArray;
     private int damage;
     private Vector2 aimCoords;
     private int layerIndex;
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         BulletGeneration(aimCoords, usableDotsArray);
     }
 
-    public void BulletGeneration(Vector2 aimCoords, List<DotEffect> usableDotsArray)
+    public void BulletGeneration(Vector2 aimCoords, List<UsableDotEffect> usableDotsArray)
     {
         log.Debug("Пуля создана");
         float rotate = Mathf.Atan2(aimCoords.y, aimCoords.x) * Mathf.Rad2Deg - 90f;
@@ -60,9 +60,9 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletFlySpeed(float flySpeed) { bulletFlySpeed = flySpeed; }
 
-    public void SetUsableDotsArray(List<DotEffect> dotsArray) { usableDotsArray = dotsArray; }
+    public void SetUsableDotsArray(List<UsableDotEffect> dotsArray) { usableDotsArray = dotsArray; }
 
-    public List<DotEffect> GetUsableDotsArray() { return usableDotsArray; }
+    public List<UsableDotEffect> GetUsableDotsArray() { return usableDotsArray; }
 
     public void SetAimCoords(Vector2 coords) { aimCoords = coords; }
 

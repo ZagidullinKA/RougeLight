@@ -8,7 +8,7 @@ public class EnemyTypesDictionary
         new ItemEnemyTypesDictionary(
         "UnitTest",                         //string code,
         "Тестовый юнит",                    //string nameRu,
-        100,                                //int maxHP,
+        200,                                //int maxHP,
         5,                                  //int dmg,
         1,                                  //float atkSpeed,
         1,                                  //int moveSpeed,

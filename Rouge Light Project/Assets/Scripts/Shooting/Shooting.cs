@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
         float? attackSpeed, 
         int bulletFlySpeed, 
         int bulletTimeAlive, 
-        List<DotEffect> usableDotsArray)
+        List<UsableDotEffect> usableDotsArray)
     {
         float coolDown = 1 / (float) attackSpeed; // устанавливаем задержку стрельбы
         // log.Debug("Кулдаун " + coolDown);
@@ -102,7 +102,7 @@ public class Shooting : MonoBehaviour
         bullet.tag = string.Concat(whoIsShooter, "Bullet");
     }
 
-    private void UsableDotsArray(List<DotEffect> usableDotsArray, int baseDmg)
+    private void UsableDotsArray(List<UsableDotEffect> usableDotsArray, int baseDmg)
     {
         foreach (var dotEffect in usableDotsArray)
         {
@@ -116,8 +116,9 @@ public class Shooting : MonoBehaviour
             {
                 log.Warn("In " + dotEffect + " DotDur is 0");
             }
-            log.Debug("dotEffect.type is " + dotEffect.type);
-            if (dotEffect.type == "percent")
+
+            log.Debug("dotEffect.type is " + dotEffect.Type);
+            if (dotEffect.Type == TypeOfDots.TYPE_BASE_DMG_PERCENT)
             {
                 log.Debug("Множитель " + (float)dotEffect.DotDmg / 100 + " Умноженный урон до округления " + (float)baseDmg * (float)dotEffect.DotDmg / 100 + " Округленный урон " + (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100));
                 dotEffect.DotDmg = (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100);

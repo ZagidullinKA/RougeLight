@@ -8,7 +8,7 @@ public class ItemDot
     private int baseDotDmg;
     private int baseDotDuration;
     private string affectedChar;
-    private string type;
+    private TypeOfDots type;
     private bool upgradable;
 
     public string Code => code;
@@ -18,12 +18,12 @@ public class ItemDot
     public int BaseDotDmg => baseDotDmg;
     public int BaseDotDuration => baseDotDuration;
     public string AffectedChar => affectedChar;
-    public string Type => type;
+    public TypeOfDots Type => type;
     public bool Upgradable => upgradable;
 
     public ItemDot(string code, string nameRu, int upgradeDotDmgX, 
         int upgradeDotDurX, int baseDotDmg, int baseDotDuration, 
-        string affectedChar, string type, bool upgradable)
+        string affectedChar, TypeOfDots type, bool upgradable)
     {
         this.code = code;
         this.nameRu = nameRu;

@@ -30,7 +30,7 @@ public class DetectOfBulletCollision : MonoBehaviour
                 if (character.TryDodge())
                 {
                     // Вызываем метод TakeDamage и передаем урон
-                    character.TakeDamage(bullet.DamageDealing());
+                    character.TakeDamage(bullet.DamageDealing(), TypeOfDamage.TYPE_ATTACK);
                     character.TakeDots(bullet.GetUsableDotsArray());
                     bullet.DestroyBullet();
                 }

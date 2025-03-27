@@ -60,9 +60,9 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printActualHP(actualHP);
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, TypeOfDamage typeDamage)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, typeDamage);
         UIManager.Instance.printActualHP(actualHP);
     }
 
@@ -72,6 +72,8 @@ public class Hero : Character, IAttacker, IMovable
         {
             isShooting = true;
         }
+
+        base.HandlingAppliedDoTEffects();
     }
 
     void DrawCircle()
@@ -188,14 +190,14 @@ public class Hero : Character, IAttacker, IMovable
                         (item.DurationUpgradeAmount, "upgradableItem.DurationUpgradeAmount")
                     );
 
-            usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+            usableDotsArray.Add(new UsableDotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
                 (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
         }
         UIManager.Instance.printDots(usableDotsArray);
     }
 
     // Установка значения характеристики
-    public void SetCharacteristic(string code, float? value)
+    public override void SetCharacteristic(string code, float? value)
     {
         ValidationValue.ValidateFloatNotNull(
             (value, code)
@@ -264,6 +266,46 @@ public class Hero : Character, IAttacker, IMovable
             Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
     }
 
+    public override float? GetCharacteristic(string code)
+    {
+
+        log.Debug("GetCharacteristic :" + code );
+        switch (code)
+        {
+            case "maxHP":
+                return maxHP;
+            case "dmg":
+                return dmg;
+            case "atkSpeed":
+                return atkSpeed;
+            case "moveSpeed":
+                return moveSpeed;
+            case "luck":
+                return luck;
+            case "critChance":
+                return critChance;
+            case "evadeChance":
+                return evadeChance;
+            case "armor":
+                return armor;
+            case "debuffResist":
+                return debuffResist;
+            case "Vampire":
+                return vampire;
+            case "hpFromDropRestore":
+                return hpFromDropRestore;
+            case "dropRadius":
+                return dropRadius;
+            case "bulletFlySpeed":
+                return bulletFlySpeed;
+            case "bulletTimeAlive":
+                return bulletTimeAlive;
+            default:
+                log.Warn($"Неизвестная характеристика: {code}");
+                return null;
+        }
+    }
+
     public void AddDotInUsableDotsArrayOfCode(string code)
     {
         var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code);
@@ -274,7 +316,7 @@ public class Hero : Character, IAttacker, IMovable
             return;
         }
 
-        usableDotsArray.Add(new DotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+        usableDotsArray.Add(new UsableDotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
                 (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
     }
 
@@ -283,7 +325,7 @@ public class Hero : Character, IAttacker, IMovable
         bool seacrhDot = true; // Чек нашли ли мы нужный нам дот
         for (int i = 0; i < usableDotsArray.Count; i++)
         {
-            if (usableDotsArray[i].code == code)
+            if (usableDotsArray[i].Code == code)
             {
                 if (typeUpgradeDmgDot)
                 {
@@ -293,7 +335,7 @@ public class Hero : Character, IAttacker, IMovable
                         log.Warn("DotDur = 0, code = " + code);
                     }
                     usableDotsArray[i].DotDmg += (int) value;
-                    log.Debug("Улучшили dot " + usableDotsArray[i].code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDmg);
+                    log.Debug("Улучшили dot " + usableDotsArray[i].Code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDmg);
                 } else
                 {
                     if (usableDotsArray[i].DotDmg == 0)
@@ -302,7 +344,7 @@ public class Hero : Character, IAttacker, IMovable
                         log.Warn("DotDmg = 0, code = " + code);
                     }
                     usableDotsArray[i].DotDur += (int)value;
-                    log.Debug("Улучшили dot " + usableDotsArray[i].code + ", dur на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDur);
+                    log.Debug("Улучшили dot " + usableDotsArray[i].Code + ", dur на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDur);
                 }
                 seacrhDot = false;
                 break;

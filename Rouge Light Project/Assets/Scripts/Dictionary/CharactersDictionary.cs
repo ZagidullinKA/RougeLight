@@ -6,7 +6,7 @@ public class DictionaryCharacters
     {
         //структура ItemCharacter: string code, string nameRu, bool upgradable, int upgradeX, int baseAmount, int price, bool isEnemyAvaliable
         new ItemCharacter("maxHP",              "максимальное ХП",              true,   10, 1,  1,  true) ,
-        new ItemCharacter("dmg",                "дамаг",                        true,   1,  70,  2,  true),
+        new ItemCharacter("dmg",                "дамаг",                        true,   1,  1,  2,  true),
         new ItemCharacter("atkSpeed",           "Скорость атаки",               true,   10, 5,  3,  true),
         new ItemCharacter("moveSpeed",          "Скорость передвижения",        true,   10, 5,  4,  true),
         new ItemCharacter("luck",               "Удача",                        false,  2,  2,  5,  true),

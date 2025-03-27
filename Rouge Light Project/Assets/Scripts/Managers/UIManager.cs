@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using DG.Tweening;
+using UnityEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class UIManager : MonoBehaviour
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
 
+    public GameObject damageTextPrefab;
+
     void Awake()
     {
         // Реализация синглтона
@@ -37,6 +41,13 @@ public class UIManager : MonoBehaviour
         {
             log.Warn("UIManager Уничтожен");
             Destroy(gameObject);
+        }
+
+        damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DamageTextPrefab.prefab");
+
+        if (damageTextPrefab == null)
+        {
+            log.Error("Awake. Префаб DamageTextPrefab не найден по указанному пути.");
         }
     }
 
@@ -71,7 +82,7 @@ public class UIManager : MonoBehaviour
         textCharacters.text = sb.ToString();
     }
 
-    public void printDots(List<DotEffect> usableDotsArray)
+    public void printDots(List<UsableDotEffect> usableDotsArray)
     {
         log.Debug("Обращение к printDots");
 
@@ -104,13 +115,13 @@ public class UIManager : MonoBehaviour
             sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2," 
                 + countCharValue + ":F1} │ {3," + countCharValue + "} │ {4," + countCharValue + "} │ {5," 
                 + countCharNameCode + "} │ {6," + countCharNameCode + "}\n",
-                dot.code,
+                dot.Code,
                 dot.DotDmg,
                 dot.DotDur,
                 dot.DmgUpgCount,
                 dot.DurUpgCount,
-                dot.affectedChar,
-                dot.type);
+                dot.AffectedChar,
+                dot.Type);
         }
 
         textDots.text = sb.ToString();
@@ -183,5 +194,33 @@ public class UIManager : MonoBehaviour
         }
 
         textLvl.text = string.Format("Lvl : {0}", lvl);
+    }
+
+    public void printDamage(string damage, Vector3 position)
+    {
+        if (damageTextPrefab == null)
+        {
+            log.Error("TakeDamage. Префаб DamageTextPrefab не найден по указанному пути.");
+        }
+
+        GameObject damageText = Instantiate(damageTextPrefab, position, Quaternion.identity);
+        // Устанавливаем текст
+        TextMeshPro textComponent = damageText.GetComponent<TextMeshPro>();
+        if (textComponent == null)
+        {
+            log.Error("TakeDamage. Префаб textComponent не найден.");
+        }
+
+        textComponent.text = damage;
+        textComponent.color = Color.red;
+        textComponent.sortingOrder = 100;
+
+        // Плавно поднимаем текст вверх
+        damageText.transform.DOMoveY(transform.position.y + 2f, 2f)
+            .SetEase(Ease.OutQuad); // Плавное ускорение и замедление
+
+        // Плавно изменяем прозрачность текста
+        textComponent.DOFade(0f, 1.5f)
+            .OnComplete(() => Destroy(damageText));
     }
 }

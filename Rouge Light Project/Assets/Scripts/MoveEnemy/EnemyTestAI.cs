@@ -11,7 +11,7 @@ public class EnemyTestAI : MonoBehaviour
     private Transform playerTransform; // Ссылка на героя
     private float minRadius = 3f; // Минимальный радиус (50 пикселей)
     private float maxRadius = 5f; // Максимальный радиус (100 пикселей)
-    private float moveSpeed; // Скорость движения врага
+    public float moveSpeed; // Скорость движения врага
     private float timer = 0f; // Направление движения
     private int directionCircle = 1; // Направление движения (1 — по часовой стрелке, -1 — против)
     private bool directionFront = true; // Направление движения (true — к герою, false — от героя)

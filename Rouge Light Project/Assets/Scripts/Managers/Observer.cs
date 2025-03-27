@@ -22,7 +22,7 @@ public class Observer : MonoBehaviour
     private static float lastOverestimatingTime = 0f; // ¬рем€ последнего вывода лога
     private static float recalculationPeriod = 60f; // –аз в какое врем€ должна пересчитыватьс€ крива€ сложности
     private static float lastGenerationMobsTime = 0f; // ¬рем€ последней генерации мобов
-    private static float generationMobsPeriod = 5f; // –аз в какое врем€ происходит генераци€ мобов
+    private static float generationMobsPeriod = 60f; // –аз в какое врем€ происходит генераци€ мобов
 
     private static int countKill = 0;
     private static int lvl = 1;
