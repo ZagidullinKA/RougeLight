@@ -45,6 +45,7 @@ public class GameGeneration : MonoBehaviour
                 Mobs enemyScript = enemy.GetComponent<Mobs>();
                 enemyScript.mobStats.IdMob = mobIterationNumber;
                 mobIterationNumber++;
+
                 if (enemy == null)
                 {
                     log.Error("Генерация не удалась, enemy is null");

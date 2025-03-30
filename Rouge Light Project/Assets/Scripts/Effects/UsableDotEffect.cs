@@ -8,18 +8,14 @@ public class UsableDotEffect
     private DotCode code;             // Уникальный код эффекта
     private int dotDmg;             // Финальный урон за тик
     private float dotDur;           // Финальная длительность эффекта
-    private int dmgUpgCount;        // Количество улучшений урона
-    private int durUpgCount;        // Количество улучшений длительности
     private CharacterStatCode affectedChar;    // Идентификатор затронутого персонажа
     private TypeOfDots type;            // Тип эффекта (например, "Poison", "Fire")
 
-    public UsableDotEffect(DotCode code, int finalDotDmg, float finalDotDur, int dmgUpgCount, int durUpgCount)
+    public UsableDotEffect(DotCode code, int finalDotDmg, float finalDotDur)
     {
         this.code = code;
         this.DotDmg = finalDotDmg;
         this.DotDur = finalDotDur;
-        this.DmgUpgCount = dmgUpgCount;
-        this.DurUpgCount = durUpgCount;
 
         var dotItem = DotsDictionary.GetDot(code);
         ValidationValue.ValidateStringNotNullOrEmpty(
@@ -47,19 +43,6 @@ public class UsableDotEffect
         get { return dotDur; }
         set { dotDur = value; }
     }
-
-    public int DmgUpgCount
-    {
-        get { return dmgUpgCount; }
-        set { dmgUpgCount = value; }
-    }
-
-    public int DurUpgCount
-    {
-        get { return durUpgCount; }
-        set { durUpgCount = value; }
-    }
-
 
     public CharacterStatCode AffectedChar
     {

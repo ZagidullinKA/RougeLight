@@ -83,6 +83,7 @@ public class Hero : Character, IAttacker, IMovable
 
         // Вызов обработчика дотов
         base.HandlingAppliedDoTEffects();
+        UIManager.Instance.printRecievedDots(heroStats.GetRecievedDots());
     }
 
     // Метод рисования круга для отображения радиуса дропа
@@ -194,10 +195,9 @@ public class Hero : Character, IAttacker, IMovable
         {
             // Преобразование из string в DotCode
             DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), item.Code);
-            heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur,
-                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+            heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur));
         }
-        UIManager.Instance.printDots(heroStats.GetUsableDots());
+        UIManager.Instance.printUsableDots(heroStats.GetUsableDots());
     }
 
     public override void SetStat(string statName, float? value)
@@ -266,8 +266,7 @@ public class Hero : Character, IAttacker, IMovable
 
         // Преобразование из string в DotCode
         DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), item.Code);
-        heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur,
-                (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
+        heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur));
     }
 
     public void UpgradeUsableDots(DotCode code, float? value, bool typeUpgradeDmgDot)
@@ -307,7 +306,7 @@ public class Hero : Character, IAttacker, IMovable
             AddDotInUsableDotsArrayOfCode(code);
         }
 
-        UIManager.Instance.printDots(heroStats.GetUsableDots());
+        UIManager.Instance.printUsableDots(heroStats.GetUsableDots());
     }
 
     public void IncrementLvl(int lvl)

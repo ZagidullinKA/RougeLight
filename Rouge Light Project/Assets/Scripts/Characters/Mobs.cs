@@ -1,5 +1,6 @@
 using log4net;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Mobs : Character, IAttacker
@@ -139,6 +140,13 @@ public class Mobs : Character, IAttacker
                     }
                 }
             }
+
+            for (int j = 0; j < enemyData.CountOfDots; j++)
+            {
+                ItemDot itemDot = DotsDictionary.GetRandomDot();
+                mobStats.SetUsableDots((new UsableDotEffect(itemDot.Code, itemDot.BaseDotDmg, itemDot.BaseDotDuration)));
+            }
+        
 
             log.Debug($"InitializeCharacteristics. Характеристики моба инициализированы - DeathPrice: {mobStats.DeathPrice}");
         }

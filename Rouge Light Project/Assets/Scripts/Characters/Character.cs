@@ -108,7 +108,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
             {
                 if (itemForcedDots.Code == itemRecievedDot.Code)
                 {
-                    itemRecievedDot.DotDur = itemRecievedDot.DotDur;
+                    itemRecievedDot.DotDur = itemForcedDots.DotDur;
                     itemRecievedDot.DotDmg += 1;
                     itemRecievedDot.Count += 1;
                     itemRecievedDot.Tick = 0;
@@ -248,7 +248,10 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                     sb.Append(" | ");
                 }
             }
-            UIManager.Instance.printDamage(sb.ToString(), transform.position);
+            if (stats.IsEnemy)
+            {
+                UIManager.Instance.printDamage(sb.ToString(), transform.position);
+            }
 
             takeDamageList.Clear();
         }

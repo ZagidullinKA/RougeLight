@@ -1,8 +1,12 @@
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class DotsDictionary
 {
+    private static readonly Random random = new Random();
+
     // Формат: 
     private static readonly Dictionary<DotCode, ItemDot> ITEM_DOTS = new()
     {   
@@ -28,5 +32,12 @@ public static class DotsDictionary
     public static List<ItemDot> GetAllDots()
     {
         return new List<ItemDot>(ITEM_DOTS.Values);
+    }
+
+    public static ItemDot GetRandomDot()
+    {
+        var keys = ITEM_DOTS.Keys.ToList(); // Преобразуем коллекцию ключей в список
+        DotCode randomKey = keys[random.Next(keys.Count)]; // Выбираем случайный ключ
+        return ITEM_DOTS[randomKey]; // Возвращаем значение по ключу
     }
 }

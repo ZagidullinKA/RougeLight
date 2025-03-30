@@ -21,7 +21,7 @@ public static class EnemyTypesDictionary
             3,                                  //int bulletTimeAlive,
             5,                                  //int rotateSpeed,
             TypeOfEnemyAttack.TYPE_SHOOT,       //string typeOfAttack,
-            0,                                  //int countOfDots,
+            1,                                  //int countOfDots,
             0,                                  //int countOfBulletModifiers,
             0,                                  //int countOfShootingModifiers,
             1,                                  //int meleeDmg,
