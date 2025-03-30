@@ -17,7 +17,6 @@ public class Mobs : Character, IAttacker
     private DropManager dropManagerScript;
 
     private Transform player; // Ссылка на игрока
-    public float rotationSpeed = 5f; // Скорость поворота ЕБАННЫЙ ХАРДКОД
 
     private Shooting shooting;
 
@@ -73,7 +72,7 @@ public class Mobs : Character, IAttacker
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
 
         // Плавно поворачиваем объект
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, mobStats.RotateSpeed * Time.deltaTime);
     }
 
     public override void SetStat(string statName, float? value)

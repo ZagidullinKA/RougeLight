@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd181319f219cc4096d8df2251ef93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
-  mobStatsPrefab: {fileID: 11400000, guid: c94bb39766d25ff4fb47fc2f8a18a262, type: 2}
+  stats: {fileID: 11400000, guid: c94bb39766d25ff4fb47fc2f8a18a262, type: 2}
+  mobStatsPrefab: {fileID: 11400000, guid: 0b59b3a416ca85f46bc096bf2754132c, type: 2}
   rotationSpeed: 5
 --- !u!114 &570033486433605984
 MonoBehaviour:
@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4466c0c431ba7c4478b8269b6e05bff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
 --- !u!114 &3073966055780693377
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -164,8 +164,6 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
             {
                 case TypeOfDots.TYPE_PERCENT:
                     countedDotDmg = (int)Math.Ceiling((float)(stats.MaxHP / 100 * itemRecievedDot.DotDmg));
-                    log.Debug("HandlingAppliedDoTEffects. countedDotDmg = " + countedDotDmg + ", (int)Math.Ceiling((float)(maxHP / 100 * item.DotDmg)) = " + (int)Math.Ceiling((float)(stats.MaxHP / 100 * itemRecievedDot.DotDmg)));
-                    log.Debug("HandlingAppliedDoTEffects. item.DotDmg = " + itemRecievedDot.DotDmg);
                     break;
                 case TypeOfDots.TYPE_FIXED:
                 case TypeOfDots.TYPE_BASE_DMG_PERCENT:
@@ -176,10 +174,20 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                     break;
             }
 
+            countedDotDmg -= stats.DebuffResist;
+
+            if (countedDotDmg < 0)
+            {
+                countedDotDmg = 0;
+            }
+
+
             if (itemRecievedDot.AffectedChar == CharacterStatCode.ActualHP)
             {
                 takeDamageList.Add(new ItemPrintDot(itemRecievedDot.Code.ToString(), countedDotDmg));
-                TakeDamage(countedDotDmg, TypeOfDamage.TYPE_DOT);
+                if (countedDotDmg != 0)
+                    TakeDamage(countedDotDmg, TypeOfDamage.TYPE_DOT);
+                
                 if (itemRecievedDot.DotDur <= 1)
                 {
                     removeRecievedDotsArray.Add(itemRecievedDot);
@@ -199,7 +207,9 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                 {
                     log.Error("У характеристики нет значения item.AffectedChar = " + itemRecievedDot.AffectedChar);
                 }
-                if (affectedCharCurrentvalue - countedDotDmg < 0)
+                if (affectedCharCurrentvalue - countedDotDmg < 0
+                    || ( itemRecievedDot.AffectedChar != CharacterStatCode.DebuffResist
+                    && itemRecievedDot.AffectedChar != CharacterStatCode.Armor))
                 {
                     countedDotDmg = (int)affectedCharCurrentvalue;
                 }

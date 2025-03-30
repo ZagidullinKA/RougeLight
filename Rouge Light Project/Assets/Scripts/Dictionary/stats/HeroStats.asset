@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 0
   dmg: 0
+  meleeDmg: 0
   atkSpeed: 0
   moveSpeed: 0
   critChance: 0
@@ -22,13 +23,14 @@ MonoBehaviour:
   debuffResist: 0
   vampire: 0
   hpFromDropRestore: 0
-  dropRadius: 0
   bulletFlySpeed: 0
   bulletTimeAlive: 0
   actualHP: 0
   isCanDie: 1
   isEnemy: 0
+  rotateSpeed: 0
   recievedDotsArray: []
   usableDotsArray: []
   luck: 0
   isGodMode: 1
+  dropRadius: 0

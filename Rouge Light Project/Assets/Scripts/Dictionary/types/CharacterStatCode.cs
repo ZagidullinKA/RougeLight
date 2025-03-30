@@ -11,9 +11,11 @@ public enum CharacterStatCode
     DebuffResist,
     Vampire,
     HpFromDropRestore,
-    DropRadius,
     BulletFlySpeed,
     BulletTimeAlive,
+    RotateSpeed,
     ActualHP,
+    DropRadius,
+    IdMob,
     DeathPrice
 }

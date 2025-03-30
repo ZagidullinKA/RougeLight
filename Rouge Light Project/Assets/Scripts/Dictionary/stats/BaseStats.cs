@@ -11,6 +11,7 @@ public class BaseStats : ScriptableObject
 
     [SerializeField] protected int maxHP = 0;                    // Максимальное здоровье персонажа
     [SerializeField] protected int dmg = 0;                      // Урон персонажа
+    [SerializeField] protected int meleeDmg = 0;                 // Урон персонажа
     [SerializeField] protected float atkSpeed = 0f;              // Скорость атаки
     [SerializeField] protected int moveSpeed = 0;                // Скорость передвижения
     [SerializeField] protected int critChance = 0;               // Шанс критического удара
@@ -19,18 +20,19 @@ public class BaseStats : ScriptableObject
     [SerializeField] protected int debuffResist = 0;             // Сопротивление дебаффам
     [SerializeField] protected int vampire = 0;                  // Вампиризм (лечение от урона)
     [SerializeField] protected int hpFromDropRestore = 0;        // Восстановление HP от подбираемых предметов
-    [SerializeField] protected int dropRadius = 0;               // Радиус подбора предметов
     [SerializeField] protected int bulletFlySpeed = 0;           // Скорость полёта пули
     [SerializeField] protected int bulletTimeAlive = 0;          // Время жизни пули
     [SerializeField] protected int actualHP = 0;                 // Текущее здоровье персонажа (доступ напрямую)
     [SerializeField] protected bool isCanDie = true;             // Может ли персонаж умереть (доступ напрямую)
     [SerializeField] protected bool isEnemy = false;             // Является ли персонаж врагом (доступ напрямую)
+    [SerializeField] protected float rotateSpeed = 0;             // Является ли персонаж врагом (доступ напрямую)
     [SerializeField] protected List<RecievedDotEffect> recievedDotsArray = new List<RecievedDotEffect>(); // Список полученных DoT-эффектов
     [SerializeField] protected List<UsableDotEffect> usableDotsArray = new List<UsableDotEffect>();       // Список используемых DoT-эффектов
 
     // Свойства с прямым get и set для числовых характеристик
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int Dmg { get => dmg; set => dmg = value; }
+    public int MeleeDmg { get => meleeDmg; set => meleeDmg = value; }
     public float AtkSpeed { get => atkSpeed; set => atkSpeed = value; }
     public int MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public int CritChance { get => critChance; set => critChance = value; }
@@ -39,12 +41,12 @@ public class BaseStats : ScriptableObject
     public int DebuffResist { get => debuffResist; set => debuffResist = value; }
     public int Vampire { get => vampire; set => vampire = value; }
     public int HpFromDropRestore { get => hpFromDropRestore; set => hpFromDropRestore = value; }
-    public int DropRadius { get => dropRadius; set => dropRadius = value; }
     public int BulletFlySpeed { get => bulletFlySpeed; set => bulletFlySpeed = value; }
     public int BulletTimeAlive { get => bulletTimeAlive; set => bulletTimeAlive = value; }
     public int ActualHP { get => actualHP; set => actualHP = value; }
     public bool IsCanDie { get => isCanDie; set => isCanDie = value; }
     public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
+    public float RotateSpeed { get => rotateSpeed; set => rotateSpeed = value; }
 
     // Устанавливает значение числовой характеристики по её имени через рефлексию
     public virtual void SetStat(string statName, float? value)

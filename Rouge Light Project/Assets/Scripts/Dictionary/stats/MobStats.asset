@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5d9dbc4f473fd8439c96ea17789d38c, type: 3}
-  m_Name: DefaultMobStats
+  m_Name: MobStats
   m_EditorClassIdentifier: 
   maxHP: 0
   dmg: 0
+  meleeDmg: 0
   atkSpeed: 0
   moveSpeed: 0
   critChance: 0
@@ -22,12 +23,12 @@ MonoBehaviour:
   debuffResist: 0
   vampire: 0
   hpFromDropRestore: 0
-  dropRadius: 0
   bulletFlySpeed: 0
   bulletTimeAlive: 0
   actualHP: 0
   isCanDie: 1
   isEnemy: 0
+  rotateSpeed: 0
   recievedDotsArray: []
   usableDotsArray: []
   idMob: 0
