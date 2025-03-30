@@ -1,129 +1,108 @@
 using log4net;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 public static class ImprovableCharactesDictionary
 {
     //Добавляем логирование
-    private static readonly ILog log = LogManager.GetLogger(typeof(Hero));
+    private static readonly ILog log = LogManager.GetLogger(typeof(ImprovableCharactesDictionary));
 
-    private static readonly List<ItemImprovableCharactes> ItemsImprovableCharactes = new();
+    private static readonly Dictionary<string, ItemImprovableCharactes> itemsImprovableCharactes = new();
 
-
-    public static List<ItemImprovableCharactes> getListItemImprovableCharactesAndDots()
+    // Однократная инициализация справочника при обращении к любому из методов класса
+    static ImprovableCharactesDictionary()
     {
-        if (ItemsImprovableCharactes.Count != 0)
-            ItemsImprovableCharactes.Clear();
+        InitializeDictionary();
+    }
 
-        foreach (var itemCharacter in DictionaryCharacters.GetAllCharacteristics())
+    private static void InitializeDictionary()
+    {
+        itemsImprovableCharactes.Clear();
+
+        // Добавляем улучшаемые характеристики из DictionaryCharacters
+        foreach (var item in DictionaryCharacters.GetAllCharacteristics())
         {
-            if (itemCharacter.Upgradable == true) {
-                
-                ValidationValue.ValidateStringNotNullOrEmpty(
-                    (itemCharacter.Code, nameof(itemCharacter.Code)),
-                    (itemCharacter.NameRu, nameof(itemCharacter.NameRu))
-                    );
-
-                ValidationValue.ValidateFloatNotNull(
-                     (itemCharacter.BaseAmount, nameof(itemCharacter.BaseAmount))
-                     );
-
-                ItemImprovableCharactes item = new(
-                    itemCharacter.Code,
-                    itemCharacter.NameRu,
-                    true,
-                    0,
-                    itemCharacter.BaseAmount,
-                    null,
-                    null,
-                    null,
-                    null);
-
-                ItemsImprovableCharactes.Add(item);
+            if (item.Upgradable)
+            {
+                string code = item.Code.ToString(); // Конвертируем CharacterStatCode в строку
+                itemsImprovableCharactes.Add(
+                    code,
+                    CreateItem(code, item.NameRu, true, 0, item.BaseAmount, null, null, null, null));
             }
         }
 
-        foreach (var itemDot in DotsDictionary.GetAllDots())
+        // Добавляем улучшаемые DoT-эффекты из DotsDictionary
+        foreach (var dot in DotsDictionary.GetAllDots())
         {
-            UnityEngine.Debug.Log("Type = " + itemDot.Type + " Code = " + itemDot.Code + " Upgradable = " + itemDot.Upgradable);
-            if (itemDot.Upgradable == true)
+            if (dot.Upgradable)
             {
                 ValidationValue.ValidateStringNotNullOrEmpty(
-                    (itemDot.Code, nameof(itemDot.Code)),
-                    (itemDot.NameRu, nameof(itemDot.NameRu))
-                    );
+                    (dot.NameRu, nameof(dot.NameRu)));
 
                 ValidationValue.ValidateIntNotNull(
-                     (itemDot.BaseDotDmg, nameof(itemDot.BaseDotDmg)),
-                     (itemDot.BaseDotDuration, nameof(itemDot.BaseDotDuration))
-                     );
+                    (dot.BaseDotDmg, nameof(dot.BaseDotDmg)),
+                    (dot.BaseDotDuration, nameof(dot.BaseDotDuration)));
 
-                ItemImprovableCharactes item = new(
-                    itemDot.Code,
-                    itemDot.NameRu,
-                    false,
-                    null,
-                    null,
-                    0,
-                    0,
-                    itemDot.BaseDotDmg,
-                    itemDot.BaseDotDuration);
-
-                ItemsImprovableCharactes.Add(item);
-                UnityEngine.Debug.Log("Code = " + item.Code + " Добавлен");
+                string code = dot.Code.ToString(); // Конвертируем DotCode в строку
+                itemsImprovableCharactes.Add(
+                    code,
+                    CreateItem(code, dot.NameRu, false, null, null, 0, 0, dot.BaseDotDmg, dot.BaseDotDuration));
             }
         }
+    }
 
-        return ItemsImprovableCharactes;
+    // Вспомогательный метод для создания ItemImprovableCharactes
+    private static ItemImprovableCharactes CreateItem(string code, string nameRu, bool type,
+        int? upgradeAmount, float? finalValue, int? dmgUpgradeAmount,
+        int? durationUpgradeAmount, int? finalDotDmg, int? finalDotDur)
+    {
+        return new ItemImprovableCharactes(code, nameRu, type, upgradeAmount, finalValue,
+            dmgUpgradeAmount, durationUpgradeAmount, finalDotDmg, finalDotDur);
+    }
+
+    public static List<ItemImprovableCharactes> GetListItemImprovableCharactesAndDots()
+    {
+        return new List<ItemImprovableCharactes>(itemsImprovableCharactes.Values);
     }
 
     public static ItemImprovableCharactes GetImprovableCharacteristicOrDot(string code)
     {
-        return ItemsImprovableCharactes.Find(x => x.Code == code);
+        return itemsImprovableCharactes.TryGetValue(code, out var item) ? item : null;
     }
 
     public static List<ItemImprovableCharactes> GetAllImprovableCharacteristicsAndDots()
     {
-        getListItemImprovableCharactesAndDots();
-        return ItemsImprovableCharactes;
+        return GetListItemImprovableCharactesAndDots();
     }
 
     public static List<ItemImprovableCharactes> GetAllImprovableDots()
     {
-        List < ItemImprovableCharactes > listDots = new();
-        foreach (var item in getListItemImprovableCharactesAndDots())
-        {
-            if (item.Type == false)
-            {
-                listDots.Add(item);
-            }
-        }
-
-        return listDots;
+        return itemsImprovableCharactes.Values
+            .Where(item => !item.Type) // false = DoT-эффект
+            .ToList();
     }
 
     public static int GetFinalDotDmgOfCode(string code)
     {
-        int? dotDmgReturn = ItemsImprovableCharactes.Find(x => x.Code == code).FinalDotDmg;
-
-        if (dotDmgReturn == null)
+        var item = itemsImprovableCharactes.TryGetValue(code, out var foundItem) ? foundItem : null;
+        if (item == null || item.FinalDotDmg == null)
         {
-            log.Error("Не верный code или поле dotDmg не заполнено, code = " + code);
+            log.Error($"Не верный code или поле FinalDotDmg не заполнено, code = {code}");
+            return 0;
         }
-
-        return (int) dotDmgReturn;
+        return item.FinalDotDmg.Value;
     }
 
     public static int GetFinalDotDurOfCode(string code)
     {
-        int? dotDurReturn = ItemsImprovableCharactes.Find(x => x.Code == code).FinalDotDur;
-
-        if (dotDurReturn == null)
+        var item = itemsImprovableCharactes.TryGetValue(code, out var foundItem) ? foundItem : null;
+        if (item == null || item.FinalDotDur == null)
         {
-            log.Error("Не верный code или поле dotDmg не заполнено, code = " + code);
+            log.Error($"Не верный code или поле FinalDotDur не заполнено, code = {code}");
+            return 0;
         }
-
-        return (int) dotDurReturn;
+        return item.FinalDotDur.Value;
     }
 }

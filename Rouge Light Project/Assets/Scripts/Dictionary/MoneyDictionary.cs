@@ -1,36 +1,41 @@
 using log4net;
-using NUnit.Framework;
 using System.Collections.Generic;
 
 public static class MoneyDictionary
 {
-    //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(MoneyDictionary));
-
-    private static readonly List<ItemMoneyDictionary> ItemsMoneyDictionary = new() {
-        new ItemMoneyDictionary("money", 12)
+    private static readonly Dictionary<MoneyCode, ItemMoneyDictionary> itemsMoneyDictionary = new()
+    {
+        // Формат: { Код, new ItemMoneyDictionary(Код, Количество) }
+        { MoneyCode.Money, CreateMoneyItem(MoneyCode.Money, 12) }
     };
 
-
-    public static ItemMoneyDictionary GetItemMoneyDictionaryOfCode(string code)
+    // Вспомогательный метод для создания ItemMoneyDictionary
+    private static ItemMoneyDictionary CreateMoneyItem(MoneyCode code, int amount)
     {
-        return ItemsMoneyDictionary.Find(x => x.Code == code);
+        return new ItemMoneyDictionary(code, amount);
+    }
+
+    public static ItemMoneyDictionary GetItemMoneyDictionaryOfCode(MoneyCode code)
+    {
+        return itemsMoneyDictionary.TryGetValue(code, out var item) ? item : null;
     }
 
     public static List<ItemMoneyDictionary> GetItemsMoneyDictionary()
     {
-        return ItemsMoneyDictionary;
+        return new List<ItemMoneyDictionary>(itemsMoneyDictionary.Values);
     }
 
-    public static void increaseAmountItemMoneyDictionaryOfCode(string code, int value)
+    public static void IncreaseAmountItemMoneyDictionaryOfCode(MoneyCode code, int value)
     {
-        for (int i = 0; i < ItemsMoneyDictionary.Count; i++)
+        if (itemsMoneyDictionary.TryGetValue(code, out var item))
         {
-            if (ItemsMoneyDictionary[i].Code == code)
-            {
-                ItemsMoneyDictionary[i].Amount = ItemsMoneyDictionary[i].Amount + value;
-                break;
-            }
+            item.Amount += value;
+            log.Debug($"Количество {code} увеличено на {value}, теперь: {item.Amount}");
+        }
+        else
+        {
+            log.Warn($"Валюта с кодом {code} не найдена в справочнике.");
         }
     }
 }

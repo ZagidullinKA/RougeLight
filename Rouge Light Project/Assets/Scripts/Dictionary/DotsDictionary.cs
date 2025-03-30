@@ -1,21 +1,32 @@
 
 using System.Collections.Generic;
 
-public static class DotsDictionary 
+public static class DotsDictionary
 {
-    private static readonly List<ItemDot> ITEM_DOTS = new()
-        {
-            new ItemDot("Fire", "Огонь", 1, 1, 1, 5, "actualHP", TypeOfDots.TYPE_FIXED, true),
-            new ItemDot("Poison", "Яд", 2, 2, 2, 2, "actualHP", TypeOfDots.TYPE_FIXED, true)
-        };
+    // Формат: 
+    private static readonly Dictionary<DotCode, ItemDot> ITEM_DOTS = new()
+    {   
+        // { Код, new ItemDot }     Код,            Название, Шаг улучшения урона, Шаг улучшения длительности, Базовый урон, Базовая длительность, Цель, Тип, Улучшаемость
+        { DotCode.Fire,   CreateDot(DotCode.Fire,   "Огонь",    1, 1, 1, 5, CharacterStatCode.ActualHP, TypeOfDots.TYPE_FIXED, true) },
+        { DotCode.Poison, CreateDot(DotCode.Poison, "Яд",       2, 2, 2, 2, CharacterStatCode.ActualHP, TypeOfDots.TYPE_FIXED, true) }
+    };
 
-    public static ItemDot GetDot(string code)
+    // Вспомогательный метод для создания ItemDot с читаемым форматом
+    private static ItemDot CreateDot(DotCode code, string nameRu, int upgradeDotDmgX, int upgradeDotDurX,
+                                     int baseDotDmg, int baseDotDuration, CharacterStatCode affectedChar,
+                                     TypeOfDots type, bool upgradable)
     {
-        return ITEM_DOTS.Find(x => x.Code == code);
+        return new ItemDot(code, nameRu, upgradeDotDmgX, upgradeDotDurX, baseDotDmg, baseDotDuration,
+                           affectedChar, type, upgradable);
+    }
+
+    public static ItemDot GetDot(DotCode code)
+    {
+        return ITEM_DOTS.TryGetValue(code, out var item) ? item : null;
     }
 
     public static List<ItemDot> GetAllDots()
     {
-        return ITEM_DOTS;
+        return new List<ItemDot>(ITEM_DOTS.Values);
     }
 }

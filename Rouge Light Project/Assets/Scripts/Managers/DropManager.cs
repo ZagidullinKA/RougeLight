@@ -12,8 +12,7 @@ public class DropManager : MonoBehaviour
     private static readonly ILog log = LogManager.GetLogger(typeof(DropManager));
 
     private static Hero heroScript;
-    private static float luck;
-    private static String dropCode;
+    private static float luck; 
 
     public GameObject dropPrefab;
     private GameObject enemy;
@@ -37,8 +36,8 @@ public class DropManager : MonoBehaviour
         if (heroScript != null)
         {
             //Подтягиваем удачу из героя
-            log.Debug("Переменная удачи из Hero: " + heroScript.Luck);
-            luck = 1f / (heroScript.Luck);
+            log.Debug("Переменная удачи из Hero: " + heroScript.heroStats.Luck);
+            luck = 1f / (heroScript.heroStats.Luck);
 
             //Проверка удачи на выпадение дропа
             if (diceRoll < luck)
@@ -62,53 +61,54 @@ public class DropManager : MonoBehaviour
     private void ChoosingDrop()
     {
         float diceRoll = Random.Range(1, 101);
+        TypeOfDrop dropCode;
 
         //Проверяем какой дроп выпадет
         if (diceRoll < 11)
         {
             log.Debug("Выпадает улучшение характеристики");
-            dropCode = "character";
+            dropCode = TypeOfDrop.TYPE_CHARACTER;
         }
         else if (diceRoll < 31)
         {
             log.Debug("Выпадает улучшение дота");
-            dropCode = "dot";
+            dropCode = TypeOfDrop.TYPE_DOT;
         }
         else if (diceRoll < 61)
         {
             log.Debug("Выпадают деньги");
-            dropCode = "money";
+            dropCode = TypeOfDrop.TYPE_MONEY;
         }
         else
         {
             log.Debug("Выпадает хилка");
-            dropCode = "heal";
+            dropCode = TypeOfDrop.TYPE_HEAL;
         }
         //Пока это условность, всегда будет выпадать улучшение характеристики
         createDrop(dropCode);
     }
 
-    private void createDrop(string dropCode)
+    private void createDrop(TypeOfDrop dropCode)
     {
 
-        string code;
+        string itemCode;
         Color dropColor;
         switch (dropCode)
         {
-            case "character":
-                code = getRandomCharacterOrDot(true);
+            case TypeOfDrop.TYPE_CHARACTER:
+                itemCode = getRandomCharacterOrDot(true);
                 dropColor = Color.blue;
                 break;
-            case "dot":
-                code = getRandomCharacterOrDot(false);
+            case TypeOfDrop.TYPE_DOT:
+                itemCode = getRandomCharacterOrDot(false);
                 dropColor = Color.green;
                 break;
-            case "money":
-                code = dropCode;
+            case TypeOfDrop.TYPE_MONEY:
+                itemCode = TypeOfDrop.TYPE_MONEY.ToString();
                 dropColor = Color.yellow;
                 break;
-            case "heal":
-                code = dropCode;
+            case TypeOfDrop.TYPE_HEAL:
+                itemCode = TypeOfDrop.TYPE_HEAL.ToString();
                 dropColor = Color.red;
                 break;
             default:
@@ -125,10 +125,10 @@ public class DropManager : MonoBehaviour
         Drop dropScript = drop.GetComponent<Drop>();
         // Передаем дропу характеристики
         dropScript.DropCode = dropCode;
-        dropScript.ItemCode = code;
+        dropScript.ItemCode = itemCode;
         dropScript.Update = 3; //ЕБАННЫЙ ХАРДКОД
 
-        if (dropCode == "dot")
+        if (dropCode == TypeOfDrop.TYPE_DOT)
         {
             dropScript.IsDmgUpIfDot = Random.value > 0.5f;
         }

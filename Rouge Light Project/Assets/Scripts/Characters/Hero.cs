@@ -9,6 +9,10 @@ public class Hero : Character, IAttacker, IMovable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Hero));
+    // Префаб для создания файла с характеристиками
+    [SerializeField] private HeroStats heroStatsPrefab;
+    // Переменная для характеристик, через нее можно обращаться к базову stats 
+    public HeroStats heroStats => stats as HeroStats;
 
     public Rigidbody2D rb;
     public Shooting shooting;
@@ -16,38 +20,42 @@ public class Hero : Character, IAttacker, IMovable
     private Vector2 moveVector;
     private bool isShooting = false;
 
+    //Колайдер для подбора дропа
     private CircleCollider2D colliderDropRadius;
+    // линия отражающая радиус подбора (Для тестов)
     private LineRenderer lineRendererDropRadius;
 
+    // Переменная, которая отражает увелечение характеристик при получении уровня
     private const float UpgradeLvlFactor = 1.5f;
-    //Доп коммент тест мердже
-
-    //Переменная для godmod
-    public bool isGodMode = false;
 
     protected override void Awake()
     {
+        stats = Instantiate(heroStatsPrefab);
+
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
-        isEnemy = false; // Герой не является врагом
+
+        if (heroStats == null)
+        {
+            log.Error("heroStats не инициализирован");
+        }
+
+        heroStats.IsEnemy = false; // Герой не является врагом
         
 
         colliderDropRadius = GetComponent<CircleCollider2D>();
         if (colliderDropRadius != null)
         {
-            colliderDropRadius.isTrigger = true; // Äåëàåì êîëëàéäåð òðèããåðîì
-
-            //Äåëàåì íàñòðîéêè äëÿ âèçóàëèçàöèè ðàäèóñà äðîïà
-
+            colliderDropRadius.isTrigger = true;
             lineRendererDropRadius = gameObject.AddComponent<LineRenderer>();
 
-            // Íàñòðîéêà LineRenderer
-            lineRendererDropRadius.startWidth = 0.01f;
-            lineRendererDropRadius.endWidth = 0.01f;
+            // Задаем для LineRenderer базовые настройки
+            lineRendererDropRadius.startWidth = 0.02f;
+            lineRendererDropRadius.endWidth = 0.02f;
             lineRendererDropRadius.useWorldSpace = false;
             lineRendererDropRadius.material = new Material(Shader.Find("Sprites/Default"));
-            lineRendererDropRadius.startColor = Color.green;
-            lineRendererDropRadius.endColor = Color.green;
+            lineRendererDropRadius.startColor = new Color(0f, 1f, 0f, 0.1f);
+            lineRendererDropRadius.endColor = new Color(0f, 1f, 0f, 0.1f);
         }
         else
         {
@@ -57,13 +65,13 @@ public class Hero : Character, IAttacker, IMovable
 
         InitializeCharacteristicsAndDots();
         base.Awake();
-        UIManager.Instance.printActualHP(actualHP);
+        UIManager.Instance.printActualHP(heroStats.ActualHP);
     }
 
-    public override void TakeDamage(int damage, TypeOfDamage typeDamage)
+    protected override void TakeDamage(int damage, TypeOfDamage typeDamage)
     {
         base.TakeDamage(damage, typeDamage);
-        UIManager.Instance.printActualHP(actualHP);
+        UIManager.Instance.printActualHP(heroStats.ActualHP);
     }
 
     void Update()
@@ -73,12 +81,14 @@ public class Hero : Character, IAttacker, IMovable
             isShooting = true;
         }
 
+        // Вызов обработчика дотов
         base.HandlingAppliedDoTEffects();
     }
 
+    // Метод рисования круга для отображения радиуса дропа
     void DrawCircle()
     {
-        int segments = 50; // Êîëè÷åñòâî ñåãìåíòîâ äëÿ îêðóæíîñòè
+        int segments = 360;
         lineRendererDropRadius.positionCount = segments + 1;
 
         float angle = 0f;
@@ -111,24 +121,23 @@ public class Hero : Character, IAttacker, IMovable
 
             switch (drop.DropCode)
             {
-                case "character":
-                    SetCharacteristic(drop.ItemCode, drop.Update);
+                case TypeOfDrop.TYPE_CHARACTER:
+                    SetStat(drop.ItemCode, drop.Update);
                     break;
-                case "dot":
-                    UpgradeUsableDots(drop.ItemCode, drop.Update, (bool) drop.IsDmgUpIfDot);
+                case TypeOfDrop.TYPE_DOT:
+                    DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), drop.ItemCode);
+                    UpgradeUsableDots(dotCode, drop.Update, (bool) drop.IsDmgUpIfDot);
                     break;
-                case "money":
+                case TypeOfDrop.TYPE_MONEY:
                     Observer.increaseMoney(drop.Update);
                     break;
-                case "heal":
+                case TypeOfDrop.TYPE_HEAL:
                     Heal(drop.Update);
                     break;
                 default:
                     log.Error($"Неизвестная тип дропа: {drop.DropCode}");
                     return;
             }
-
-            
 
             Destroy(other.gameObject);
             log.Debug("Дроп уничтожен");
@@ -142,7 +151,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         if (isShooting)
         {
-            shooting.Shot(dmg, critChance, atkSpeed, bulletFlySpeed, bulletTimeAlive, usableDotsArray);
+            shooting.Shot(heroStats.Dmg, heroStats.CritChance, heroStats.AtkSpeed, heroStats.BulletFlySpeed, heroStats.BulletTimeAlive, heroStats.GetUsableDots());
             isShooting = false;
         }
     }
@@ -153,7 +162,7 @@ public class Hero : Character, IAttacker, IMovable
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
 
-        rb.MovePosition(rb.position + moveVector * moveSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + moveVector * heroStats.MoveSpeed * Time.deltaTime);
         RotateTowardsMouse();
     }
 
@@ -166,94 +175,47 @@ public class Hero : Character, IAttacker, IMovable
             if (item.Upgradable)
             {
                 // Получаем улучшаемые характеристики из справочника улучшаемых характеристик
-                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Find(x => x.Code == item.Code);
+                var upgradableItem = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Find(x => x.Code == item.Code.ToString());
                 if (upgradableItem is null)
                 {
                     log.Error("upgradableItem is null - item.code = " + item.Code);
                     continue;
                 }
-                SetCharacteristic(item.Code, upgradableItem.FinalValue);
+                SetStat(item.Code.ToString(), upgradableItem.FinalValue);
             }
             else
             {
                 // Используем базовые значения из справочника всех характеристик
-                SetCharacteristic(item.Code, item.BaseAmount);
+                SetStat(item.Code.ToString(), item.BaseAmount);
             }
         }
 
         foreach (var item in ImprovableCharactesDictionary.GetAllImprovableDots())
         {
-            ValidationValue.ValidateIntNotNull(
-                        (item.FinalDotDmg, "upgradableItem.FinalDotDmg"),
-                        (item.FinalDotDur, "upgradableItem.FinalDotDur"),
-                        (item.DmgUpgradeAmount, "upgradableItem.DmgUpgradeAmount"),
-                        (item.DurationUpgradeAmount, "upgradableItem.DurationUpgradeAmount")
-                    );
-
-            usableDotsArray.Add(new UsableDotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+            // Преобразование из string в DotCode
+            DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), item.Code);
+            heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur,
                 (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
         }
-        UIManager.Instance.printDots(usableDotsArray);
+        UIManager.Instance.printDots(heroStats.GetUsableDots());
     }
 
-    // Установка значения характеристики
-    public override void SetCharacteristic(string code, float? value)
+    public override void SetStat(string statName, float? value)
     {
-        ValidationValue.ValidateFloatNotNull(
-            (value, code)
-            );
-
-        log.Debug("SetCharacteristic :" + code + " - " + value);
-        switch (code)
+        if (heroStats == null)
         {
-            case "maxHP":
-                maxHP += (int)value;
-                break;
-            case "dmg":
-                dmg += (int)value;
-                break;
-            case "atkSpeed":
-                atkSpeed += (float) value;
-                break;
-            case "moveSpeed":
-                moveSpeed += (int)value;
-                break;
-            case "luck":
-                luck += (int)value;
-                break;
-            case "critChance":
-                critChance += (int)value;
-                break;
-            case "evadeChance":
-                evadeChance += (int)value;
-                break;
-            case "armor":
-                armor += (int)value;
-                break;
-            case "debuffResist":
-                debuffResist += (int)value;
-                break;
-            case "Vampire":
-                vampire += (int)value;
-                break;
-            case "hpFromDropRestore":
-                hpFromDropRestore += (int)value;
-                break;
-            case "dropRadius":
-                dropRadius += (int)value;
-                colliderDropRadius.radius = dropRadius;
-                DrawCircle();
-                break;
-            case "bulletFlySpeed":
-                bulletFlySpeed += (int)value;
-                break;
-            case "bulletTimeAlive":
-                bulletTimeAlive += (int)value;
-                break;
-            default:
-                log.Warn($"Неизвестная характеристика: {code}");
-                break;
+            log.Debug("Stats не назначены!");
+            return;
         }
+
+        if (value == null)
+        {
+            log.Debug($"Значение для {statName} не указано!");
+            return;
+        }
+
+        heroStats.SetStat(statName, value);
+        ApplySpecialEffects(statName);        
 
         if (UIManager.Instance == null)
         {
@@ -261,54 +223,40 @@ public class Hero : Character, IAttacker, IMovable
             return;
         }
 
-        UIManager.Instance.printCharacters(maxHP, dmg, atkSpeed,
-            moveSpeed, luck, critChance, evadeChance, armor, debuffResist,
-            Vampire, hpFromDropRestore, dropRadius, bulletFlySpeed, bulletTimeAlive);
+        UIManager.Instance.printCharacters(
+            heroStats.MaxHP,
+            heroStats.Dmg,
+            heroStats.AtkSpeed,
+            heroStats.MoveSpeed,
+            heroStats.Luck,
+            heroStats.CritChance,
+            heroStats.EvadeChance,
+            heroStats.Armor,
+            heroStats.DebuffResist,
+            heroStats.Vampire,
+            heroStats.HpFromDropRestore,
+            heroStats.DropRadius,
+            heroStats.BulletFlySpeed,
+            heroStats.BulletTimeAlive
+        );
     }
 
-    public override float? GetCharacteristic(string code)
+    //Метод дополнитльеных изменений, помимо самой переменной
+    protected override void ApplySpecialEffects(string statName)
     {
+        CharacterStatCode characterCode = (CharacterStatCode)Enum.Parse(typeof(CharacterStatCode), statName);
 
-        log.Debug("GetCharacteristic :" + code );
-        switch (code)
+        if (characterCode == CharacterStatCode.DropRadius && colliderDropRadius != null)
         {
-            case "maxHP":
-                return maxHP;
-            case "dmg":
-                return dmg;
-            case "atkSpeed":
-                return atkSpeed;
-            case "moveSpeed":
-                return moveSpeed;
-            case "luck":
-                return luck;
-            case "critChance":
-                return critChance;
-            case "evadeChance":
-                return evadeChance;
-            case "armor":
-                return armor;
-            case "debuffResist":
-                return debuffResist;
-            case "Vampire":
-                return vampire;
-            case "hpFromDropRestore":
-                return hpFromDropRestore;
-            case "dropRadius":
-                return dropRadius;
-            case "bulletFlySpeed":
-                return bulletFlySpeed;
-            case "bulletTimeAlive":
-                return bulletTimeAlive;
-            default:
-                log.Warn($"Неизвестная характеристика: {code}");
-                return null;
+            colliderDropRadius.radius = heroStats.DropRadius;
+            DrawCircle();
+            log.Debug($"DropRadius обновлён: {heroStats.DropRadius}");
         }
     }
 
-    public void AddDotInUsableDotsArrayOfCode(string code)
+    public void AddDotInUsableDotsArrayOfCode(DotCode code)
     {
-        var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code);
+        var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code.ToString());
 
         if (item == null)
         {
@@ -316,35 +264,37 @@ public class Hero : Character, IAttacker, IMovable
             return;
         }
 
-        usableDotsArray.Add(new UsableDotEffect(item.Code, (int)item.FinalDotDmg, (int)item.FinalDotDur,
+        // Преобразование из string в DotCode
+        DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), item.Code);
+        heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur,
                 (int)item.DmgUpgradeAmount, (int)item.DurationUpgradeAmount));
     }
 
-    public void UpgradeUsableDots(string code, float? value, bool typeUpgradeDmgDot)
+    public void UpgradeUsableDots(DotCode code, float? value, bool typeUpgradeDmgDot)
     {
         bool seacrhDot = true; // Чек нашли ли мы нужный нам дот
-        for (int i = 0; i < usableDotsArray.Count; i++)
+        for (int i = 0; i < heroStats.GetUsableDots().Count; i++)
         {
-            if (usableDotsArray[i].Code == code)
+            if (heroStats.GetUsableDots()[i].Code == code)
             {
                 if (typeUpgradeDmgDot)
                 {
-                    if (usableDotsArray[i].DotDur == 0)
+                    if (heroStats.GetUsableDots()[i].DotDur == 0)
                     {
-                        usableDotsArray[i].DotDur = ImprovableCharactesDictionary.GetFinalDotDurOfCode(code);
+                        heroStats.GetUsableDots()[i].DotDur = ImprovableCharactesDictionary.GetFinalDotDurOfCode(code.ToString());
                         log.Warn("DotDur = 0, code = " + code);
                     }
-                    usableDotsArray[i].DotDmg += (int) value;
-                    log.Debug("Улучшили dot " + usableDotsArray[i].Code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDmg);
+                    heroStats.GetUsableDots()[i].DotDmg += (int) value;
+                    log.Debug("Улучшили dot " + heroStats.GetUsableDots()[i].Code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + heroStats.GetUsableDots()[i].DotDmg);
                 } else
                 {
-                    if (usableDotsArray[i].DotDmg == 0)
+                    if (heroStats.GetUsableDots()[i].DotDmg == 0)
                     {
-                        usableDotsArray[i].DotDmg = ImprovableCharactesDictionary.GetFinalDotDmgOfCode(code);
+                        heroStats.GetUsableDots()[i].DotDmg = ImprovableCharactesDictionary.GetFinalDotDmgOfCode(code.ToString());
                         log.Warn("DotDmg = 0, code = " + code);
                     }
-                    usableDotsArray[i].DotDur += (int)value;
-                    log.Debug("Улучшили dot " + usableDotsArray[i].Code + ", dur на " + value + ", округлили до " + (int)value + ", теперь он = " + usableDotsArray[i].DotDur);
+                    heroStats.GetUsableDots()[i].DotDur += (int)value;
+                    log.Debug("Улучшили dot " + heroStats.GetUsableDots()[i].Code + ", dur на " + value + ", округлили до " + (int)value + ", теперь он = " + heroStats.GetUsableDots()[i].DotDur);
                 }
                 seacrhDot = false;
                 break;
@@ -357,7 +307,7 @@ public class Hero : Character, IAttacker, IMovable
             AddDotInUsableDotsArrayOfCode(code);
         }
 
-        UIManager.Instance.printDots(usableDotsArray);
+        UIManager.Instance.printDots(heroStats.GetUsableDots());
     }
 
     public void IncrementLvl(int lvl)
@@ -377,18 +327,18 @@ public class Hero : Character, IAttacker, IMovable
         }
 
         // 2. Используем Dictionary для группировки характеристик
-        var upgrades = new Dictionary<string, float>
+        var upgrades = new Dictionary<CharacterStatCode, float>
         {
-            ["dmg"] = CalculateUpgrade(lvl),
-            ["atkSpeed"] = CalculateUpgrade(lvl),
-            ["maxHP"] = CalculateUpgrade(lvl)
+            [CharacterStatCode.Dmg] = CalculateUpgrade(lvl),
+            [CharacterStatCode.AtkSpeed] = CalculateUpgrade(lvl),
+            [CharacterStatCode.MaxHP] = CalculateUpgrade(lvl)
         };
 
         // 3. Применяем характеристики в цикле
         foreach (var characteristic in upgrades)
         {
             log.Debug("IncrementLvl. Увелечение характеристики : "+ characteristic.Key + " на " + characteristic.Value);
-            SetCharacteristic(characteristic.Key, characteristic.Value);
+            SetStat(characteristic.Key.ToString(), characteristic.Value);
         }
     }
 
@@ -410,25 +360,25 @@ public class Hero : Character, IAttacker, IMovable
     public override void Heal(int amount)
     {
         base.Heal(amount);
-        UIManager.Instance.printActualHP(actualHP);
+        UIManager.Instance.printActualHP(heroStats.ActualHP);
     }
 
     protected override void Die()
     {
 
-        if (!isGodMode)
+        if (!heroStats.IsGodMode)
         {
-            if (isCanDie)
+            if (heroStats.IsCanDie)
             {
-                isCanDie = false;
+                heroStats.IsCanDie = false;
                 base.Die();
             }
         }
             else
         {
             log.Debug("Ты бы умер, но ты либо тестер, либо читер");
-            actualHP = maxHP;
-            UIManager.Instance.printActualHP(actualHP);
+            heroStats.ActualHP = heroStats.MaxHP;
+            UIManager.Instance.printActualHP(heroStats.ActualHP);
         }
     }
 

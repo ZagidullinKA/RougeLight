@@ -5,15 +5,15 @@ using static UnityEditor.Progress;
 [System.Serializable]
 public class UsableDotEffect
 {
-    private string code;             // Уникальный код эффекта
+    private DotCode code;             // Уникальный код эффекта
     private int dotDmg;             // Финальный урон за тик
     private float dotDur;           // Финальная длительность эффекта
     private int dmgUpgCount;        // Количество улучшений урона
     private int durUpgCount;        // Количество улучшений длительности
-    private string affectedChar;    // Идентификатор затронутого персонажа
+    private CharacterStatCode affectedChar;    // Идентификатор затронутого персонажа
     private TypeOfDots type;            // Тип эффекта (например, "Poison", "Fire")
 
-    public UsableDotEffect(string code, int finalDotDmg, float finalDotDur, int dmgUpgCount, int durUpgCount)
+    public UsableDotEffect(DotCode code, int finalDotDmg, float finalDotDur, int dmgUpgCount, int durUpgCount)
     {
         this.code = code;
         this.DotDmg = finalDotDmg;
@@ -23,14 +23,14 @@ public class UsableDotEffect
 
         var dotItem = DotsDictionary.GetDot(code);
         ValidationValue.ValidateStringNotNullOrEmpty(
-                        (dotItem.AffectedChar, "upgradableItem.AffectedChar")
+                        (dotItem.AffectedChar.ToString(), "upgradableItem.AffectedChar")
                     );
 
         this.affectedChar = dotItem.AffectedChar;
         this.type = dotItem.Type;
     }
 
-    public string Code
+    public DotCode Code
     {
         get { return code; }
         set { code = value; }
@@ -61,7 +61,7 @@ public class UsableDotEffect
     }
 
 
-    public string AffectedChar
+    public CharacterStatCode AffectedChar
     {
         get { return affectedChar; }
         set { affectedChar = value; }

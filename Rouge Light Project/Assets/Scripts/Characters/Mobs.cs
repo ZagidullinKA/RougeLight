@@ -2,38 +2,38 @@ using log4net;
 using System;
 using UnityEngine;
 
-public class Mobs : Character, IAttacker, IMovable
+public class Mobs : Character, IAttacker
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
-    private int idMob;
+    // Префаб для создания файла с характеристиками
+    [SerializeField] private MobStats mobStatsPrefab;
+    // Переменная для характеристик, через нее можно обращаться к базову stats
+    public MobStats mobStats => stats as MobStats; 
 
-    public int IdMob
-    {
-        get => idMob;
-        set { idMob = value; }
-    }
 
-    private int deathPrice;
-    public int DeathPrice
-    {
-        get => deathPrice;
-        set { deathPrice = value; }
-    }
 
     private Rigidbody2D rb;
     private DropManager dropManagerScript;
 
     private Transform player; // Ссылка на игрока
-    public float rotationSpeed = 5f; // Скорость поворота
+    public float rotationSpeed = 5f; // Скорость поворота ЕБАННЫЙ ХАРДКОД
 
     private Shooting shooting;
 
     protected override void Awake()
     {
-        InitializeCharacteristics("UnitTest");
+        // Создаём новый экземпляр MobStats
+        stats = Instantiate(mobStatsPrefab);
+
+        if (mobStats != null)
+        {
+            log.Debug($"Моб инициализирован с ID: {mobStats.IdMob} и наградой за смерть: {mobStats.DeathPrice}");
+        }
+
+        InitializeCharacteristics(EnemyTypeCode.UnitTest);
         base.Awake();
-        isEnemy = true; // Моб является врагом
+        mobStats.IsEnemy = true; // Моб является врагом
 
         dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -48,7 +48,7 @@ public class Mobs : Character, IAttacker, IMovable
         if (player != null)
         {
             RotateTowardsPlayer();
-            shooting.Shot(dmg, critChance, atkSpeed, bulletFlySpeed, bulletTimeAlive, usableDotsArray);
+            Shoot();
         }
 
         base.HandlingAppliedDoTEffects();
@@ -57,13 +57,7 @@ public class Mobs : Character, IAttacker, IMovable
     // Реализация IAttacker
     public void Shoot()
     {
-        log.Debug("Моб стреляет с пониженной точностью!");
-    }
-
-    // Реализация IMovable
-    public void Move()
-    {
-        log.Debug("Моб движется со скоростью " + moveSpeed);
+        shooting.Shot(mobStats.Dmg, mobStats.CritChance, mobStats.AtkSpeed, mobStats.BulletFlySpeed, mobStats.BulletTimeAlive, mobStats.GetUsableDots());
     }
 
     void RotateTowardsPlayer()
@@ -82,166 +76,102 @@ public class Mobs : Character, IAttacker, IMovable
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
+    public override void SetStat(string statName, float? value)
+    {
+        if (mobStats == null)
+        {
+            log.Debug("Stats не назначены!");
+            return;
+        }
+
+        if (value == null)
+        {
+            log.Debug($"Значение для {statName} не указано!");
+            return;
+        }
+
+        // Проверка существования statName в enum CharacterStatCode
+        if (Enum.TryParse<CharacterStatCode>(statName, ignoreCase: true, out CharacterStatCode statCode))
+        {
+            mobStats.SetStat(statName, value);
+            ApplySpecialEffects(statName);
+        }
+    }
+
+    //Метод дополнитльеных изменений, помимо самой переменной
+    protected override void ApplySpecialEffects(string statName)
+    {
+         CharacterStatCode characterCode = (CharacterStatCode)Enum.Parse(typeof(CharacterStatCode), statName);
+        if (characterCode == CharacterStatCode.MoveSpeed)
+        {
+            EnemyTestAI mobsMoveScript = gameObject.GetComponent<EnemyTestAI>();
+            mobsMoveScript.MoveSpeed = mobStats.MoveSpeed;
+            log.Debug($"DropRadius обновлён: {mobStats.MoveSpeed}");
+        }
+    }
+
 
     // Инициализация характеристик
-    private void InitializeCharacteristics(string enemyType)
+    private void InitializeCharacteristics(EnemyTypeCode enemyType)
     {
-        
-
-        // Используем справочник врагов
         var enemyData = EnemyTypesDictionary.GetCharacteristic(enemyType);
+        float mobsMultiplier = GameGeneration.MobsMultipier;
 
-        ValidationValue.ValidateFloatNotNull(
-            (atkSpeed, nameof(atkSpeed))
-            );
-
-        ValidationValue.ValidateIntNotNull(
-            (maxHP, nameof(maxHP)),
-            (dmg, nameof(dmg)),
-            (moveSpeed, nameof(moveSpeed)),
-            (critChance, nameof(critChance)),
-            (evadeChance, nameof(evadeChance)),
-            (armor, nameof(armor)),
-            (debuffResist, nameof(debuffResist)),
-            (vampire, nameof(vampire)),
-            (bulletFlySpeed, nameof(bulletFlySpeed)),
-            (bulletTimeAlive, nameof(bulletTimeAlive))
-            );
-
-        float mobsMultipier = GameGeneration.MobsMultipier;
-
-        if (enemyData != null)
+        if (enemyData != null && mobStats != null)
         {
-            maxHP = (int) Math.Round(enemyData.MaxHP * mobsMultipier);
-            dmg = (int)Math.Round(enemyData.Dmg * mobsMultipier);
-            atkSpeed = (float)Math.Round(enemyData.AtkSpeed * mobsMultipier);
-            moveSpeed = (int)Math.Round(enemyData.MoveSpeed * mobsMultipier);
-            critChance = (int)Math.Round(enemyData.CritChance * mobsMultipier);
-            evadeChance = (int)Math.Round(enemyData.EvadeChance * mobsMultipier);
-            armor = (int)Math.Round(enemyData.Armor * mobsMultipier);
-            debuffResist = (int)Math.Round(enemyData.DebuffResist * mobsMultipier);
-            vampire = (int)Math.Round(enemyData.Vampire * mobsMultipier);
-            bulletFlySpeed = (int) Math.Round(enemyData.BulletFlySpeed * mobsMultipier);
-            bulletTimeAlive = (int)Math.Round(enemyData.BulletTimeAlive * mobsMultipier);
-            deathPrice = enemyData.DeathPrice;
+            // Получаем все наименнования переменных из ItemEnemyTypesDictionary и соответствующие условиям public и принадлежащие объекту, т.е. не статические
+            var enemyFields = typeof(ItemEnemyTypesDictionary).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 
-            log.Debug("InitializeCharacteristics. Характеристики моба - " + enemyData.DeathPrice);
+            foreach (var field in enemyFields)
+            {
+                if (field.PropertyType == typeof(int) || field.PropertyType == typeof(float))
+                {
+                    string fieldName = field.Name; // Получаем имя переменной
+                    string statName = char.ToLower(fieldName[0]) + fieldName.Substring(1); // меняем регистр 1 буквы имени на нижний
+
+                    // Получаем соответствующее имя переменной из класса Mob 
+                    var mobField = typeof(MobStats).GetField(statName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                    if (mobField != null)
+                    {
+                        // Конвертируем значение во float
+                        var value = Convert.ToSingle(field.GetValue(enemyData));
+                        float? newValue = fieldName == "DeathPrice" ? value : (float)Math.Round(value * mobsMultiplier); // Получаем значение, которое будем присваивать
+                        mobStats.SetStat(fieldName, newValue); // Присваеваем переменной новое значение
+                    }
+                }
+            }
+
+            log.Debug($"InitializeCharacteristics. Характеристики моба инициализированы - DeathPrice: {mobStats.DeathPrice}");
+        }
+        else
+        {
+            if (enemyData == null)
+            {
+                log.Warn($"Данные врага для {enemyType} не найдены в EnemyTypesDictionary.");
+            }
+            if (mobStats == null)
+            {
+                log.Warn("mobStats не инициализирован.");
+            }
         }
     }
 
-    public override void SetCharacteristic(string code, float? value)
+
+    protected override void TakeDamage(int damage, TypeOfDamage typeDamage)
     {
-        ValidationValue.ValidateFloatNotNull(
-            (value, code)
-            );
-
-        log.Debug("SetCharacteristic :" + code + " - " + value);
-        switch (code)
-        {
-            case "maxHP":
-                maxHP += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + maxHP);
-                break;
-            case "dmg":
-                dmg += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + dmg);
-                break;
-            case "atkSpeed":
-                atkSpeed += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + atkSpeed);
-                break;
-            case "moveSpeed":
-                moveSpeed += (int)value;
-                EnemyTestAI mobsMoveScript = gameObject.GetComponent<EnemyTestAI>();
-                mobsMoveScript.moveSpeed = moveSpeed;
-                log.Debug("SetCharacteristic теперь " + code + " = " + moveSpeed);
-                break;
-            case "critChance":
-                critChance += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + critChance);
-                break;
-            case "evadeChance":
-                evadeChance += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + evadeChance);
-                break;
-            case "armor":
-                armor += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + armor);
-                break;
-            case "debuffResist":
-                debuffResist += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + debuffResist);
-                break;
-            case "vampire":
-                vampire += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + vampire);
-                break;
-            case "bulletFlySpeed":
-                bulletFlySpeed += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + bulletFlySpeed);
-                break;
-            case "bulletTimeAlive":
-                bulletTimeAlive += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + bulletTimeAlive);
-                break;
-            case "deathPrice":
-                deathPrice += (int)value;
-                log.Debug("SetCharacteristic теперь " + code + " = " + deathPrice);
-                break;
-        }
-    }
-
-    public override float? GetCharacteristic(string code)
-    {
-
-        log.Debug("GetCharacteristic :" + code);
-        switch (code)
-        {
-            case "maxHP":
-                return maxHP;
-            case "dmg":
-                return dmg;
-            case "atkSpeed":
-                return atkSpeed;
-            case "moveSpeed":
-                return moveSpeed;
-            case "critChance":
-                return critChance;
-            case "evadeChance":
-                return evadeChance;
-            case "armor":
-                return armor;
-            case "debuffResist":
-                return debuffResist;
-            case "Vampire":
-                return vampire;
-            case "bulletFlySpeed":
-                return bulletFlySpeed;
-            case "bulletTimeAlive":
-                return bulletTimeAlive;
-            case "deathPrice":
-                return deathPrice;
-            default:
-                log.Warn($"Неизвестная характеристика: {code}");
-                return null;
-        }
-    }
-
-    public override void TakeDamage(int damage, TypeOfDamage typeDamage)
-    {
-        log.Debug("TakeDamage. Die. idMob = " + idMob);
+        log.Debug("TakeDamage. Die. idMob = " + mobStats.IdMob);
         base.TakeDamage(damage, typeDamage);
     }
 
     protected override void Die()
     {
         Destroy(GetComponent<BoxCollider2D>());
-        if (isCanDie)
+        if (mobStats.IsCanDie)
         {
-            isCanDie = false;
-            log.Debug("Die. idMob = " + idMob);
+            mobStats.IsCanDie = false;
+            log.Debug("Die. idMob = " + mobStats.IdMob);
             dropManagerScript.DropLoss();
-            Observer.IncrementCountKill(DeathPrice);
+            Observer.IncrementCountKill(mobStats.DeathPrice);
             base.Die();
         }
         

@@ -5,8 +5,8 @@ using static UnityEditor.Progress;
 [System.Serializable]
 public class RecievedDotEffect
 {
-    private string code;
-    private string affectedChar;
+    private DotCode code;
+    private CharacterStatCode affectedChar;
     private TypeOfDots type;
     private int dotDmg;
     private float dotDur;
@@ -28,13 +28,13 @@ public class RecievedDotEffect
     }
 
     // Свойства с get/set
-    public string Code
+    public DotCode Code
     {
         get => code;
         set => code = value;
     }
 
-    public string AffectedChar
+    public CharacterStatCode AffectedChar
     {
         get => affectedChar;
         set => affectedChar = value;

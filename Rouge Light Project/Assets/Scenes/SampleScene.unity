@@ -628,7 +628,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &655383579
+--- !u!1001 &696485880
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -636,17 +636,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 604435949576138029, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2994815040407122416, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.01
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 2994815040407122416, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 2994815040407122416, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_LocalPosition.z
@@ -680,6 +676,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5493396226755638572, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: c94bb39766d25ff4fb47fc2f8a18a262, type: 2}
     - target: {fileID: 7424926675049982923, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -727,6 +727,7 @@ MonoBehaviour:
   textMoney: {fileID: 1573365788}
   textExp: {fileID: 1283506054}
   textLvl: {fileID: 1818164534}
+  damageTextPrefab: {fileID: 0}
 --- !u!4 &704068381
 Transform:
   m_ObjectHideFlags: 0
@@ -2299,15 +2300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ca039f4e63b4646872412a70aa72f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualHP: 0
-  isEnemy: 0
-  recievedDots: []
-  usableDotsArray: []
-  damageTextPrefab: {fileID: 0}
+  stats: {fileID: 0}
+  heroStatsPrefab: {fileID: 11400000, guid: c297756732df2db499c419cae7521833, type: 2}
   rb: {fileID: 2049923070}
   shooting: {fileID: 2049923072}
   firePoint: {fileID: 900538706}
-  isGodMode: 1
 --- !u!114 &2049923074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2493,7 +2490,7 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1192760881}
   - {fileID: 2049923071}
-  - {fileID: 655383579}
   - {fileID: 1144096135}
   - {fileID: 2131016261}
   - {fileID: 704068381}
+  - {fileID: 696485880}

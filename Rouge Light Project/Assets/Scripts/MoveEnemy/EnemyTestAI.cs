@@ -1,7 +1,5 @@
 using log4net;
-using Mono.Cecil.Cil;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyTestAI : MonoBehaviour
 {
@@ -11,7 +9,9 @@ public class EnemyTestAI : MonoBehaviour
     private Transform playerTransform; // Ссылка на героя
     private float minRadius = 3f; // Минимальный радиус (50 пикселей)
     private float maxRadius = 5f; // Максимальный радиус (100 пикселей)
-    public float moveSpeed; // Скорость движения врага
+    private float moveSpeed; // Скорость движения врага
+    public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+
     private float timer = 0f; // Направление движения
     private int directionCircle = 1; // Направление движения (1 — по часовой стрелке, -1 — против)
     private bool directionFront = true; // Направление движения (true — к герою, false — от героя)
@@ -25,9 +25,9 @@ public class EnemyTestAI : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerTransform = player.transform;
         Mobs mobsScript = gameObject.GetComponent<Mobs>();
-        moveSpeed = mobsScript.MoveSpeed;
+        moveSpeed = mobsScript.mobStats.MoveSpeed;
         changeInterval = Random.Range(1, 5);
-        log.Debug("Инициализация скорости передвижения - " + moveSpeed + " mobsScript.MoveSpeed - " + mobsScript.MoveSpeed);
+        log.Debug("Инициализация скорости передвижения - " + moveSpeed + " mobsScript.MoveSpeed - " + mobsScript.mobStats.MoveSpeed);
         rb = GetComponent<Rigidbody2D>();
         
         rb.bodyType = RigidbodyType2D.Dynamic;

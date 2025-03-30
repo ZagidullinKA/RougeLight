@@ -1,29 +1,29 @@
 
-public class ItemDot 
+public class ItemDot
 {
-    private string code;
+    private DotCode code;
     private string nameRu;
     private int upgradeDotDmgX;
     private int upgradeDotDurX;
     private int baseDotDmg;
     private int baseDotDuration;
-    private string affectedChar;
+    private CharacterStatCode affectedChar;
     private TypeOfDots type;
     private bool upgradable;
 
-    public string Code => code;
+    public DotCode Code => code;
     public string NameRu => nameRu;
     public int UpgradeDotDmgX => upgradeDotDmgX;
     public int UpgradeDotDurX => upgradeDotDurX;
     public int BaseDotDmg => baseDotDmg;
     public int BaseDotDuration => baseDotDuration;
-    public string AffectedChar => affectedChar;
+    public CharacterStatCode AffectedChar => affectedChar;
     public TypeOfDots Type => type;
     public bool Upgradable => upgradable;
 
-    public ItemDot(string code, string nameRu, int upgradeDotDmgX, 
-        int upgradeDotDurX, int baseDotDmg, int baseDotDuration, 
-        string affectedChar, TypeOfDots type, bool upgradable)
+    public ItemDot(DotCode code, string nameRu, int upgradeDotDmgX, int upgradeDotDurX,
+                   int baseDotDmg, int baseDotDuration, CharacterStatCode affectedChar,
+                   TypeOfDots type, bool upgradable)
     {
         this.code = code;
         this.nameRu = nameRu;
