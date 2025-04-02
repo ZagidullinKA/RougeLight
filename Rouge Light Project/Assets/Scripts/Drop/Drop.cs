@@ -7,12 +7,12 @@ public class Drop : MonoBehaviour
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Drop));
 
-    private string dropCode;
+    private TypeOfDrop dropCode;
     private string itemCode;
     private int update;
     private bool? isDmgUpIfDot;
 
-    public string DropCode
+    public TypeOfDrop DropCode
     {
         get { return dropCode; }
         set { dropCode = value; }

@@ -1,25 +1,20 @@
-using System;
+
 
 public class ItemMoneyDictionary
 {
-    private string code;
+    private MoneyCode code;
     private int amount;
 
-    public string Code
-    {
-        get => code;
-        set { code = value; }
-    }
-
+    public MoneyCode Code => code;
     public int Amount
     {
         get => amount;
-        set { amount = value; }
+        set => amount = value; // Оставляем setter для изменения Amount
     }
 
-    public ItemMoneyDictionary(string code, int amount)
+    public ItemMoneyDictionary(MoneyCode code, int amount)
     {
-        Code = code; 
-        Amount = amount;
+        this.code = code;
+        this.amount = amount;
     }
 }

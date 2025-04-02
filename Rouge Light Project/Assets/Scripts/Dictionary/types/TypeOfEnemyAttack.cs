@@ -1,6 +1,6 @@
 
-public static class TypeOfEnemyAttack 
+public enum TypeOfEnemyAttack
 {
-    public const string TYPE_SHOOT = "shoot";
-    public const string TYPE_MELEE = "melee";
+    TYPE_SHOOT,
+    TYPE_MELEE
 }

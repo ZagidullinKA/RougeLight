@@ -1,148 +1,272 @@
-using DG.Tweening;
 using log4net;
+using System;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
+using System.Text;
 using UnityEngine;
 
 
-public class Character : MonoBehaviour, IDamageable, IHealable
+public abstract class Character : MonoBehaviour, IDamageable, IHealable
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
-    protected bool isCanDie = true;           // Можети ли умереть 
+    // Добавляем переменную хранящую все характеристики
+    [SerializeField] public BaseStats stats;
 
-    // Основные характеристики
-    protected int maxHP = 0;
-    protected int dmg = 0;
-    protected float? atkSpeed = 0;
-    protected int moveSpeed = 0;
-    protected int luck = 0;
-    protected int critChance = 0;
-    protected int evadeChance = 0;
-    protected int armor = 0;
-    protected int debuffResist = 0;
-    protected int vampire = 0;
-    protected int hpFromDropRestore = 0;
-    protected int dropRadius = 0;
-    protected int bulletFlySpeed = 0;
-    protected int bulletTimeAlive = 0;
-
-    // Свойства с get для доступа к переменным
-    public int MaxHP => maxHP;
-    public int Dmg => dmg;
-    public float? AtkSpeed => atkSpeed;
-    public int MoveSpeed => moveSpeed;
-    public int Luck => luck;
-    public int CritChance => critChance;
-    public int EvadeChance => evadeChance;
-    public int Armor => armor;
-    public int DebuffResist => debuffResist;
-    public int Vampire => vampire;
-    public int HpFromDropRestore => hpFromDropRestore;
-    public int DropRadius => dropRadius;
-    public int BulletFlySpeed => bulletFlySpeed;
-    public int BulletTimeAlive => bulletTimeAlive;
-
-    // Текущее здоровье
-    public int actualHP = 0;
-
-    // Флаг, определяющий, является ли объект врагом
-    public bool isEnemy = false;
-
-    // Массив для хранения полученных ДОТов (Damage Over Time)
-    public List<DotEffect> recievedDots = new List<DotEffect>();
-
-    // Массив для хранения наносимых снарядом ДОТов (Damage Over Time)
-    public List<DotEffect> usableDotsArray = new List<DotEffect>();
-
-    public GameObject damageTextPrefab;
+    protected float lastHandlingAppliedDoTEffectsTime = 0;
+    protected float handlingAppliedDoTEffectsPeriod = 1f;
 
     // Инициализация
     protected virtual void Awake()
     {
-        damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DamageTextPrefab.prefab");
-
-        if (damageTextPrefab == null)
+        if (stats != null)
         {
-            log.Error("Awake. Префаб DamageTextPrefab не найден по указанному пути.");
+            stats.InitializeFromDictionary(new DictionaryCharacters());
         }
 
-
-        actualHP = maxHP; // Устанавливаем текущее здоровье на максимальное при старте
+        stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
     }
 
-    // Реализация IDamageable
-    public virtual void TakeDamage(int damage)
+    
+
+    // Возвращает значение числовой характеристики через рефлексию
+    public virtual float? GetStat(string statName)
     {
-        int damageAfterArmor = damage - armor;
-        if (damageAfterArmor < 0) damageAfterArmor = 0;
-        actualHP -= damageAfterArmor;
-        if (isEnemy)
+        if (stats == null)
         {
-            log.Debug("Вошли в условие отображения урона!");
-            // Создаем текст с уроном
-
-            if (damageTextPrefab == null)
-            {
-                log.Error("TakeDamage. Префаб DamageTextPrefab не найден по указанному пути.");
-            }
-
-            
-
-            GameObject damageText = Instantiate(damageTextPrefab, transform.position, Quaternion.identity);
-            // Устанавливаем текст
-            TextMeshPro textComponent = damageText.GetComponent<TextMeshPro>();
-            if (textComponent == null)
-            {
-                log.Error("TakeDamage. Префаб textComponent не найден.");
-            }
-
-            textComponent.text = damageAfterArmor.ToString();
-            textComponent.color = Color.red;
-            textComponent.sortingOrder = 100;
-
-            // Плавно поднимаем текст вверх
-            damageText.transform.DOMoveY(transform.position.y + 2f, 2f)
-                .SetEase(Ease.OutQuad); // Плавное ускорение и замедление
-
-            // Плавно изменяем прозрачность текста
-            textComponent.DOFade(0f, 2f)
-                .OnComplete(() => Destroy(damageText));
+            log.Debug("Stats не назначены!"); // Логируем отсутствие stats
+            return null;
         }
 
-        log.Debug("Противник получил урон: " + damageAfterArmor + ". Осталось здоровья: " + actualHP);
-        if (actualHP <= 0)
+        return stats.GetStat(statName);
+    }
+
+    public virtual void SetStat(string code, float? value)
+    {
+        if (stats == null)
+        {
+            log.Debug("Stats не назначены!");
+            return;
+        }
+
+        //Проверям есть ли такой code в переменных statCode
+        if (Enum.TryParse<CharacterStatCode>(code, ignoreCase: true, out CharacterStatCode statCode))
+        {
+            stats.SetStat(code, value); // Присваиваем новое значение переменной
+            ApplySpecialEffects(code);  // На случай необходимости дополнительных изменений, кроме самой переменной
+        }
+    }
+
+    protected virtual void ApplySpecialEffects(string statName)
+    {
+        log.Debug("Пока только переопределение");
+    }
+
+    protected virtual void TakeDamage(int damage, TypeOfDamage typeDamage)
+    {
+        
+        stats.ActualHP -= damage;
+
+        if (stats.IsEnemy)
+        {
+            if (typeDamage == TypeOfDamage.TYPE_ATTACK)
+                UIManager.Instance.printDamage(damage.ToString(), transform.position);
+        }
+
+        log.Debug($"Противник получил урон: {damage}. Осталось здоровья: {stats.ActualHP}");
+        if (stats.ActualHP <= 0)
         {
             Die();
         }
     }
 
+    public virtual void CalculateDamageAfterArmor(int damage, TypeOfDamage typeDamage)
+    {
+        int damageAfterArmor = damage - stats.Armor;
+        if (damageAfterArmor < 0) damageAfterArmor = 0;
+        TakeDamage(damageAfterArmor, typeDamage);
+    }
+
     // Метод проверки вероятности уклонения
     public bool TryDodge()
     {
-        float randomValue = Random.value; // Генерация случайного числа от 0 до 1
-        float evadeChanceMoment = 1 / evadeChance;
+        float randomValue = UnityEngine.Random.value; // Генерация случайного числа от 0 до 1
+        float evadeChanceMoment = 1 / stats.EvadeChance;
         log.Debug(randomValue);
         log.Debug(randomValue < evadeChanceMoment);
         return randomValue > evadeChanceMoment;
     }
 
-    public void TakeDots(List<DotEffect> usableDotsArray)
+    public void TakeDots(List<UsableDotEffect> forcedDotsArray)
     {
-        foreach (var item in usableDotsArray)
+        if (forcedDotsArray.Count == 0) { return; }
+        log.Debug("HandlingAppliedDoTEffects. Вошли в получение дотов от патрона");
+
+        foreach (var itemForcedDots in forcedDotsArray)
         {
-            log.Debug(item.code);
+            bool checkAvailability = true;
+            foreach (var itemRecievedDot in stats.GetRecievedDots())
+            {
+                if (itemForcedDots.Code == itemRecievedDot.Code)
+                {
+                    itemRecievedDot.DotDur = itemForcedDots.DotDur;
+                    itemRecievedDot.DotDmg += 1;
+                    itemRecievedDot.Count += 1;
+                    itemRecievedDot.Tick = 0;
+                    checkAvailability = false;
+                    break;
+                }
+            }
+            if (checkAvailability) {
+                log.Debug("HandlingAppliedDoTEffects. Добавляем дот itemForcedDots.Code = " + itemForcedDots.Code);
+                log.Debug("HandlingAppliedDoTEffects. itemForcedDots.DotDmg = " + itemForcedDots.DotDmg);
+                stats.SetRecievedDots(new RecievedDotEffect(itemForcedDots));                   
+            }
         }
+    }
+
+    public class ItemPrintDot
+    {
+        public string code;
+        public int damage;
+
+        public ItemPrintDot (string code, int damage)
+        {
+            this.code = code;
+            this.damage = damage;
+        }
+    }
+
+    public void HandlingAppliedDoTEffects()
+    {
+        if (stats.GetRecievedDots().Count <= 0)
+        {
+            lastHandlingAppliedDoTEffectsTime = Time.time;
+            return;
+        }
+
+        if (Time.time - lastHandlingAppliedDoTEffectsTime < handlingAppliedDoTEffectsPeriod)
+        {
+            return;
+        }
+
+        
+
+        log.Debug("HandlingAppliedDoTEffects. Вошли в обработку дотов");
+        lastHandlingAppliedDoTEffectsTime = Time.time;
+        List<RecievedDotEffect> removeRecievedDotsArray = new List<RecievedDotEffect>();
+        List<ItemPrintDot> takeDamageList = new List<ItemPrintDot>();
+        foreach (var itemRecievedDot in stats.GetRecievedDots())
+        {
+            log.Debug("HandlingAppliedDoTEffects. Обрабатываем itemRecievedDot.Code = " + itemRecievedDot.Code);
+
+            int countedDotDmg = 0;
+            switch (itemRecievedDot.Type)
+            {
+                case TypeOfDots.TYPE_PERCENT:
+                    countedDotDmg = (int)Math.Ceiling((float)(stats.MaxHP / 100 * itemRecievedDot.DotDmg));
+                    break;
+                case TypeOfDots.TYPE_FIXED:
+                case TypeOfDots.TYPE_BASE_DMG_PERCENT:
+                    countedDotDmg = itemRecievedDot.DotDmg;
+                    break;
+                default:
+                    log.Error("HandlingAppliedDoTEffects. Такого типа дота не Существует!");
+                    break;
+            }
+
+            countedDotDmg -= stats.DebuffResist;
+
+            if (countedDotDmg < 0)
+            {
+                countedDotDmg = 0;
+            }
+
+
+            if (itemRecievedDot.AffectedChar == CharacterStatCode.ActualHP)
+            {
+                takeDamageList.Add(new ItemPrintDot(itemRecievedDot.Code.ToString(), countedDotDmg));
+                if (countedDotDmg != 0)
+                    TakeDamage(countedDotDmg, TypeOfDamage.TYPE_DOT);
+                
+                if (itemRecievedDot.DotDur <= 1)
+                {
+                    removeRecievedDotsArray.Add(itemRecievedDot);
+                } else
+                {
+                    itemRecievedDot.DotDur--;
+                }
+
+                continue;
+            }
+
+            float? affectedCharCurrentvalue = GetStat(itemRecievedDot.AffectedChar.ToString());
+            if (itemRecievedDot.Tick < 1)
+            {
+                log.Debug("HandlingAppliedDoTEffects. item.AffectedChar = " + itemRecievedDot.AffectedChar + ", countedDotDmg = " + -countedDotDmg);
+                if (affectedCharCurrentvalue == null)
+                {
+                    log.Error("У характеристики нет значения item.AffectedChar = " + itemRecievedDot.AffectedChar);
+                }
+                if (affectedCharCurrentvalue - countedDotDmg < 0
+                    || ( itemRecievedDot.AffectedChar != CharacterStatCode.DebuffResist
+                    && itemRecievedDot.AffectedChar != CharacterStatCode.Armor))
+                {
+                    countedDotDmg = (int)affectedCharCurrentvalue;
+                }
+
+                SetStat(itemRecievedDot.AffectedChar.ToString(), -countedDotDmg);
+                itemRecievedDot.AffectedDamage += countedDotDmg;
+            }
+            itemRecievedDot.Tick++;
+            
+
+            
+            log.Debug("HandlingAppliedDoTEffects.item.DotDur = " + itemRecievedDot.DotDur);
+            if (itemRecievedDot.DotDur <= 1)
+            {
+                log.Debug("HandlingAppliedDoTEffects. удаляем и возвращаем характеристику");
+                SetStat(itemRecievedDot.AffectedChar.ToString(), itemRecievedDot.AffectedDamage);
+                removeRecievedDotsArray.Add(itemRecievedDot);
+            }
+            else
+            {
+                itemRecievedDot.DotDur--;
+            }
+
+        }
+
+        if (takeDamageList.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < takeDamageList.Count; i++)
+            {
+                var item = takeDamageList[i];
+                sb.Append(item.code + " : " + item.damage);
+
+                if (i < takeDamageList.Count - 1)
+                {
+                    sb.Append(" | ");
+                }
+            }
+            if (stats.IsEnemy)
+            {
+                UIManager.Instance.printDamage(sb.ToString(), transform.position);
+            }
+
+            takeDamageList.Clear();
+        }
+
+        stats.RemoveRecievedDots(removeRecievedDotsArray);
+        removeRecievedDotsArray.Clear();   
     }
 
     // Реализация IHealable
     public virtual void Heal(int amount)
     {
-        actualHP += amount;
-        if (actualHP > maxHP)
+        stats.ActualHP += amount;
+        if (stats.ActualHP > stats.MaxHP)
         {
-            actualHP = maxHP;
+            stats.ActualHP = stats.MaxHP;
         }
     }
 

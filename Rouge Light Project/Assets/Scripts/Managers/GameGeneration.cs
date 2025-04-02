@@ -43,8 +43,9 @@ public class GameGeneration : MonoBehaviour
             {
                 GameObject enemy = Instantiate(enemyPrefab, GetRandomPositionAroundHero(), Quaternion.identity);
                 Mobs enemyScript = enemy.GetComponent<Mobs>();
-                enemyScript.IdMob = mobIterationNumber;
+                enemyScript.mobStats.IdMob = mobIterationNumber;
                 mobIterationNumber++;
+
                 if (enemy == null)
                 {
                     log.Error("Генерация не удалась, enemy is null");

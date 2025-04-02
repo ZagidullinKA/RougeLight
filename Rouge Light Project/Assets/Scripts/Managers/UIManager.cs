@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using DG.Tweening;
+using UnityEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,7 +15,8 @@ public class UIManager : MonoBehaviour
     private static readonly ILog log = LogManager.GetLogger(typeof(UIManager));
 
     public TMP_Text textCharacters; // Ссылка на компонент TextMeshPro для Характеристик
-    public TMP_Text textDots; // Ссылка на компонент TextMeshPro для Дотов
+    public TMP_Text textUsableDots; // Ссылка на компонент TextMeshPro для используемых Дотов
+    public TMP_Text textRecievedDots; // Ссылка на компонент TextMeshPro для наложенных Дотов
     public TMP_Text textTimer; // Ссылка на компонент TextMeshPro для Timer
     public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
     public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
@@ -23,6 +26,8 @@ public class UIManager : MonoBehaviour
 
     int countCharNameCode = -12; // максимальное количество символов названия кода 
     int countCharValue = 6; // максимальное количество символов значения
+
+    public GameObject damageTextPrefab;
 
     void Awake()
     {
@@ -37,6 +42,13 @@ public class UIManager : MonoBehaviour
         {
             log.Warn("UIManager Уничтожен");
             Destroy(gameObject);
+        }
+
+        damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DamageTextPrefab.prefab");
+
+        if (damageTextPrefab == null)
+        {
+            log.Error("Awake. Префаб DamageTextPrefab не найден по указанному пути.");
         }
     }
 
@@ -71,11 +83,11 @@ public class UIManager : MonoBehaviour
         textCharacters.text = sb.ToString();
     }
 
-    public void printDots(List<DotEffect> usableDotsArray)
+    public void printUsableDots(List<UsableDotEffect> usableDotsArray)
     {
-        log.Debug("Обращение к printDots");
+        log.Debug("Обращение к printUsableDots");
 
-        if (textDots == null)
+        if (textUsableDots == null)
         {
             log.Error("textDots не назначен!");
             return;
@@ -86,15 +98,14 @@ public class UIManager : MonoBehaviour
         if (usableDotsArray == null || usableDotsArray.Count == 0)
         {
             sb.AppendLine("No active DOT effects");
-            textDots.text = sb.ToString();
+            textUsableDots.text = sb.ToString();
             return;
         }
 
         // Шапка таблицы
         sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2," 
-            + countCharValue + "} │ {3," + countCharValue + "} │ {4," + countCharValue + "} │ {5," 
-            + countCharNameCode + "} │ {6," + countCharNameCode + "}\n",
-            "Effect", "Dmg", "Dur", "Dmg+", "Dur+", "Target", "Type");
+            + countCharValue + "} │ {3," + countCharValue + "} │ {4," + countCharNameCode + "}\n",
+            "Effect", "Dmg", "Dur", "Target", "Type");
 
         // Разделитель
         sb.AppendLine(new string('─', 12 + 5 * 4 + 12 * 2 + 6 * 6)); // 6 разделителей " │ "
@@ -102,18 +113,56 @@ public class UIManager : MonoBehaviour
         foreach (var dot in usableDotsArray)
         {
             sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2," 
-                + countCharValue + ":F1} │ {3," + countCharValue + "} │ {4," + countCharValue + "} │ {5," 
-                + countCharNameCode + "} │ {6," + countCharNameCode + "}\n",
-                dot.code,
+                + countCharValue + ":F1} │ {3," + countCharValue + "} │ {4," + countCharNameCode + "}\n",
+                dot.Code,
                 dot.DotDmg,
                 dot.DotDur,
-                dot.DmgUpgCount,
-                dot.DurUpgCount,
-                dot.affectedChar,
-                dot.type);
+                dot.AffectedChar,
+                dot.Type);
         }
 
-        textDots.text = sb.ToString();
+        textUsableDots.text = sb.ToString();
+    }
+
+    public void printRecievedDots(List<RecievedDotEffect> recievedDotsArray)
+    {
+        if (textRecievedDots == null)
+        {
+            log.Error("textDots не назначен!");
+            return;
+        }
+
+        var sb = new StringBuilder();
+
+        if (recievedDotsArray == null || recievedDotsArray.Count == 0)
+        {
+            sb.AppendLine("No active DOT effects");
+            textRecievedDots.text = sb.ToString();
+            return;
+        }
+
+        // Шапка таблицы
+        sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2,"
+            + countCharValue + "} │ {3," + countCharNameCode + "} │ {4," + countCharNameCode + "}" +
+            " │ {5," + countCharValue + "} \n",
+            "Effect", "Dmg", "Dur", "affectedDamage", "count", "tick");
+
+        // Разделитель
+        sb.AppendLine(new string('─', 12 + 5 * 4 + 12 * 2 + 6 * 6)); // 6 разделителей " │ "
+
+        foreach (var dot in recievedDotsArray)
+        {
+            sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2,"
+                + countCharValue + ":F1} │ {3," + countCharValue + "} │ {4," + countCharNameCode + "}\n",
+                dot.Code,
+                dot.DotDmg,
+                dot.DotDur,
+                dot.AffectedChar,
+                dot.Count,
+                dot.Tick);
+        }
+
+        textRecievedDots.text = sb.ToString();
     }
 
     public void printTimer(float elapsedTime)
@@ -183,5 +232,33 @@ public class UIManager : MonoBehaviour
         }
 
         textLvl.text = string.Format("Lvl : {0}", lvl);
+    }
+
+    public void printDamage(string damage, Vector3 position)
+    {
+        if (damageTextPrefab == null)
+        {
+            log.Error("TakeDamage. Префаб DamageTextPrefab не найден по указанному пути.");
+        }
+
+        GameObject damageText = Instantiate(damageTextPrefab, position, Quaternion.identity);
+        // Устанавливаем текст
+        TextMeshPro textComponent = damageText.GetComponent<TextMeshPro>();
+        if (textComponent == null)
+        {
+            log.Error("TakeDamage. Префаб textComponent не найден.");
+        }
+
+        textComponent.text = damage;
+        textComponent.color = Color.red;
+        textComponent.sortingOrder = 100;
+
+        // Плавно поднимаем текст вверх
+        damageText.transform.DOMoveY(transform.position.y + 2f, 2f)
+            .SetEase(Ease.OutQuad); // Плавное ускорение и замедление
+
+        // Плавно изменяем прозрачность текста
+        textComponent.DOFade(0f, 1.5f)
+            .OnComplete(() => Destroy(damageText));
     }
 }

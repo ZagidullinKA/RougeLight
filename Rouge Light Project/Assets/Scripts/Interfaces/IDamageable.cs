@@ -1,5 +1,5 @@
 public interface IDamageable
 {
-    void TakeDamage(int damage);
+    void CalculateDamageAfterArmor(int damage, TypeOfDamage typeDamage);
     bool TryDodge();
 }

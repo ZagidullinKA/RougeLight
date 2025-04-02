@@ -2,28 +2,28 @@
 
 public class ItemImprovableCharactes
 {
-    private string code;
+    private string code; // Оставляем string, так как коды из разных enum будут конвертироваться в строки
     private string nameRu;
-    private bool type;
+    private bool type; // true = характеристика (CharacterStatCode), false = DoT-эффект (DotCode)
     private int? upgradeAmount;
     private float? finalValue;
     private int? dmgUpgradeAmount;
     private int? durationUpgradeAmount;
     private int? finalDotDmg;
-    private int? finalDotDur;   
+    private int? finalDotDur;
 
     public string Code => code;
-    public string Name => nameRu;       
+    public string Name => nameRu;
     public bool Type => type;
     public int? UpgradeAmount => upgradeAmount;
     public float? FinalValue => finalValue;
-    public int? DmgUpgradeAmount => dmgUpgradeAmount;  
+    public int? DmgUpgradeAmount => dmgUpgradeAmount;
     public int? DurationUpgradeAmount => durationUpgradeAmount;
     public int? FinalDotDmg => finalDotDmg;
     public int? FinalDotDur => finalDotDur;
 
-    public ItemImprovableCharactes(string code, string nameRu, bool type, 
-        int? upgradeAmount, float? finalValue, int? dmgUpgradeAmount, 
+    public ItemImprovableCharactes(string code, string nameRu, bool type,
+        int? upgradeAmount, float? finalValue, int? dmgUpgradeAmount,
         int? durationUpgradeAmount, int? finalDotDmg, int? finalDotDur)
     {
         this.code = code;

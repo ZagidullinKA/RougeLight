@@ -1,0 +1,21 @@
+public enum CharacterStatCode
+{
+    MaxHP,
+    Dmg,
+    AtkSpeed,
+    MoveSpeed,
+    Luck,
+    CritChance,
+    EvadeChance,
+    Armor,
+    DebuffResist,
+    Vampire,
+    HpFromDropRestore,
+    BulletFlySpeed,
+    BulletTimeAlive,
+    RotateSpeed,
+    ActualHP,
+    DropRadius,
+    IdMob,
+    DeathPrice
+}

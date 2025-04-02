@@ -1,7 +1,6 @@
 public class ItemEnemyTypesDictionary
 {
-    // Приватные поля
-    private string code;
+    private EnemyTypeCode code;
     private string nameRu;
     private int maxHP;
     private int dmg;
@@ -15,7 +14,7 @@ public class ItemEnemyTypesDictionary
     private int bulletFlySpeed;
     private int bulletTimeAlive;
     private int rotateSpeed;
-    private string typeOfAttack;
+    private TypeOfEnemyAttack typeOfAttack;
     private int countOfDots;
     private int countOfBulletModifiers;
     private int countOfShootingModifiers;
@@ -23,8 +22,7 @@ public class ItemEnemyTypesDictionary
     private int deathPrice;
     private bool isBoss;
 
-    // Свойства только для чтения (get'ры)
-    public string Code => code;
+    public EnemyTypeCode Code => code;
     public string NameRu => nameRu;
     public int MaxHP => maxHP;
     public int Dmg => dmg;
@@ -38,7 +36,7 @@ public class ItemEnemyTypesDictionary
     public int BulletFlySpeed => bulletFlySpeed;
     public int BulletTimeAlive => bulletTimeAlive;
     public int RotateSpeed => rotateSpeed;
-    public string TypeOfAttack => typeOfAttack;
+    public TypeOfEnemyAttack TypeOfAttack => typeOfAttack;
     public int CountOfDots => countOfDots;
     public int CountOfBulletModifiers => countOfBulletModifiers;
     public int CountOfShootingModifiers => countOfShootingModifiers;
@@ -46,9 +44,8 @@ public class ItemEnemyTypesDictionary
     public int DeathPrice => deathPrice;
     public bool IsBoss => isBoss;
 
-    // Конструктор
-    public ItemEnemyTypesDictionary ( 
-        string code,
+    public ItemEnemyTypesDictionary(
+        EnemyTypeCode code,
         string nameRu,
         int maxHP,
         int dmg,
@@ -62,7 +59,7 @@ public class ItemEnemyTypesDictionary
         int bulletFlySpeed,
         int bulletTimeAlive,
         int rotateSpeed,
-        string typeOfAttack,
+        TypeOfEnemyAttack typeOfAttack,
         int countOfDots,
         int countOfBulletModifiers,
         int countOfShootingModifiers,
@@ -87,19 +84,15 @@ public class ItemEnemyTypesDictionary
             (deathPrice, nameof(deathPrice)),
             (bulletFlySpeed, nameof(bulletFlySpeed)),
             (bulletTimeAlive, nameof(bulletTimeAlive))
-            );
+        );
 
         ValidationValue.ValidateFloatNotNull(
             (atkSpeed, nameof(atkSpeed))
-            );
+        );
 
         ValidationValue.ValidateStringNotNullOrEmpty(
-            (code, nameof(code)),
-            (nameRu, nameof(nameRu)),
-            (typeOfAttack, nameof(typeOfAttack))
-            );
-
-
+            (nameRu, nameof(nameRu))
+        );
 
         this.code = code;
         this.nameRu = nameRu;
