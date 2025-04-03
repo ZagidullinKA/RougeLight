@@ -1,27 +1,31 @@
+// Класс ItemEnemyTypesDictionary представляет полный набор характеристик для конкретного типа врага
+// Содержит все параметры, необходимые для создания и настройки вражеских юнитов
 public class ItemEnemyTypesDictionary
 {
-    private EnemyTypeCode code;
-    private string nameRu;
-    private int maxHP;
-    private int dmg;
-    private float atkSpeed;
-    private int moveSpeed;
-    private int critChance;
-    private int evadeChance;
-    private int armor;
-    private int debuffResist;
-    private int vampire;
-    private int bulletFlySpeed;
-    private int bulletTimeAlive;
-    private int rotateSpeed;
-    private TypeOfEnemyAttack typeOfAttack;
-    private int countOfDots;
-    private int countOfBulletModifiers;
-    private int countOfShootingModifiers;
-    private int meleeDmg;
-    private int deathPrice;
-    private bool isBoss;
+    // Основные поля класса (все приватные, доступ через свойства)
+    private EnemyTypeCode code;            // Уникальный идентификатор типа врага
+    private string nameRu;                 // Локализованное название на русском
+    private int maxHP;                     // Максимальное здоровье
+    private int dmg;                       // Базовый урон
+    private float atkSpeed;                // Скорость атаки (атак в секунду)
+    private int moveSpeed;                 // Скорость перемещения
+    private int critChance;                // Шанс критического удара (%)
+    private int evadeChance;               // Шанс уклонения (%)
+    private int armor;                     // Защита (снижение урона)
+    private int debuffResist;              // Сопротивление негативным эффектам
+    private int vampire;                   // Вампиризм (% урона в здоровье)
+    private int bulletFlySpeed;            // Скорость снарядов
+    private int bulletTimeAlive;           // Время жизни снарядов
+    private int rotateSpeed;               // Скорость поворота
+    private TypeOfEnemyAttack typeOfAttack; // Тип атаки (дальняя/ближняя)
+    private int countOfDots;               // Количество доступных DoT-эффектов
+    private int countOfBulletModifiers;    // Количество модификаторов снарядов
+    private int countOfShootingModifiers;  // Количество модификаторов стрельбы
+    private int meleeDmg;                  // Урон в ближнем бою
+    private int deathPrice;                // Награда за убийство
+    private bool isBoss;                   // Является ли боссом
 
+    // Свойства только для чтения (инкапсуляция полей)
     public EnemyTypeCode Code => code;
     public string NameRu => nameRu;
     public int MaxHP => maxHP;
@@ -44,6 +48,7 @@ public class ItemEnemyTypesDictionary
     public int DeathPrice => deathPrice;
     public bool IsBoss => isBoss;
 
+    // Конструктор с валидацией параметров
     public ItemEnemyTypesDictionary(
         EnemyTypeCode code,
         string nameRu,
@@ -67,6 +72,7 @@ public class ItemEnemyTypesDictionary
         int deathPrice,
         bool isBoss)
     {
+        // Валидация целочисленных параметров
         ValidationValue.ValidateIntNotNull(
             (maxHP, nameof(maxHP)),
             (dmg, nameof(dmg)),
@@ -86,14 +92,17 @@ public class ItemEnemyTypesDictionary
             (bulletTimeAlive, nameof(bulletTimeAlive))
         );
 
+        // Валидация параметров с плавающей точкой
         ValidationValue.ValidateFloatNotNull(
             (atkSpeed, nameof(atkSpeed))
         );
 
+        // Валидация строковых параметров
         ValidationValue.ValidateStringNotNullOrEmpty(
             (nameRu, nameof(nameRu))
         );
 
+        // Инициализация полей
         this.code = code;
         this.nameRu = nameRu;
         this.maxHP = maxHP;

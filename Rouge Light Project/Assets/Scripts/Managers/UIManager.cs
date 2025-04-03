@@ -1,34 +1,42 @@
-﻿using log4net;
-using TMPro;
-using UnityEngine;
-using System;
-using System.Text;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEditor;
+﻿// Импорт необходимых пространств имен
+using log4net;       // Для системы логирования
+using TMPro;         // Для работы с TextMeshPro
+using UnityEngine;   // Базовые функции Unity
+using System;        // Базовые типы .NET
+using System.Text;   // Для работы с StringBuilder
+using System.Collections.Generic; // Для работы с коллекциями
+using DG.Tweening;   // Для анимаций
+using UnityEditor;   // Для работы с редактором Unity (AssetDatabase)
 
+// Класс UIManager - централизованный менеджер пользовательского интерфейса
+// Реализует паттерн Singleton для глобального доступа
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance; // синглтон
+    public static UIManager Instance; // синглтон - единственный экземпляр класса
 
     //Добавляем логирование
+    // Инициализация логгера для этого класса
     private static readonly ILog log = LogManager.GetLogger(typeof(UIManager));
 
-    public TMP_Text textCharacters; // Ссылка на компонент TextMeshPro для Характеристик
-    public TMP_Text textUsableDots; // Ссылка на компонент TextMeshPro для используемых Дотов
-    public TMP_Text textRecievedDots; // Ссылка на компонент TextMeshPro для наложенных Дотов
-    public TMP_Text textTimer; // Ссылка на компонент TextMeshPro для Timer
-    public TMP_Text textActualHP; // Ссылка на компонент TextMeshPro для ActualHP
-    public TMP_Text textCountKill; // Ссылка на компонент TextMeshPro для CountKill
-    public TMP_Text textMoney; // Ссылка на компонент TextMeshPro для Money
-    public TMP_Text textExp; // Ссылка на компонент TextMeshPro для Exp
-    public TMP_Text textLvl; // Ссылка на компонент TextMeshPro для Lvl
+    // Ссылки на текстовые элементы UI
+    public TMP_Text textCharacters;     // Ссылка на компонент TextMeshPro для Характеристик
+    public TMP_Text textUsableDots;     // Ссылка на компонент TextMeshPro для используемых Дотов
+    public TMP_Text textRecievedDots;   // Ссылка на компонент TextMeshPro для наложенных Дотов
+    public TMP_Text textTimer;          // Ссылка на компонент TextMeshPro для Timer
+    public TMP_Text textActualHP;       // Ссылка на компонент TextMeshPro для ActualHP
+    public TMP_Text textCountKill;      // Ссылка на компонент TextMeshPro для CountKill
+    public TMP_Text textMoney;          // Ссылка на компонент TextMeshPro для Money
+    public TMP_Text textExp;            // Ссылка на компонент TextMeshPro для Exp
+    public TMP_Text textLvl;            // Ссылка на компонент TextMeshPro для Lvl
 
-    int countCharNameCode = -12; // максимальное количество символов названия кода 
+    // Настройки форматирования текста
+    int countCharNameCode = -12; // максимальное количество символов названия кода (отрицательное значение для выравнивания по левому краю)
     int countCharValue = 6; // максимальное количество символов значения
 
+    // Префаб для отображения урона
     public GameObject damageTextPrefab;
 
+    // Метод Awake вызывается при инициализации объекта
     void Awake()
     {
         // Реализация синглтона
@@ -44,6 +52,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // Загрузка префаба для текста урона из Assets
         damageTextPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DamageTextPrefab.prefab");
 
         if (damageTextPrefab == null)
@@ -52,19 +61,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // Метод для отображения характеристик персонажа
     public void printCharacters(int maxHP, int dmg, float? atkSpeed,
             int moveSpeed, int luck, int critChance, int evadeChance, int armor, int debuffResist,
             int Vampire, int hpFromDropRestore, int dropRadius, int bulletFlySpeed, int bulletTimeAlive)
     {
-
+        // Проверка наличия ссылки на текстовый компонент
         if (textCharacters == null)
         {
             log.Error("textCharacters не назначен!");
             return;
         }
 
+        // Использование StringBuilder для эффективного построения строки
         var sb = new StringBuilder();
 
+        // Форматированный вывод каждой характеристики с выравниванием
         sb.AppendFormat("{0," + countCharNameCode + "} = {1," + countCharValue + "}\n", "maxHP", maxHP);
         sb.AppendFormat("{0," + countCharNameCode + "} = {1," + countCharValue + "}\n", "dmg", dmg);
         sb.AppendFormat("{0," + countCharNameCode + "} = {1," + countCharValue + ":F2}\n", "atkSpeed", atkSpeed);
@@ -80,13 +92,16 @@ public class UIManager : MonoBehaviour
         sb.AppendFormat("{0," + countCharNameCode + "} = {1," + countCharValue + "}\n", "bFlySpeed", bulletFlySpeed);
         sb.AppendFormat("{0," + countCharNameCode + "} = {1," + countCharValue + "}", "bTimeAlive", bulletTimeAlive);
 
+        // Установка сформированного текста
         textCharacters.text = sb.ToString();
     }
 
+    // Метод для отображения активных DOT-эффектов (накладываемых на врагов)
     public void printUsableDots(List<UsableDotEffect> usableDotsArray)
     {
         log.Debug("Обращение к printUsableDots");
 
+        // Проверка наличия текстового компонента
         if (textUsableDots == null)
         {
             log.Error("textDots не назначен!");
@@ -95,6 +110,7 @@ public class UIManager : MonoBehaviour
 
         var sb = new StringBuilder();
 
+        // Проверка на пустой список эффектов
         if (usableDotsArray == null || usableDotsArray.Count == 0)
         {
             sb.AppendLine("No active DOT effects");
@@ -103,16 +119,17 @@ public class UIManager : MonoBehaviour
         }
 
         // Шапка таблицы
-        sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2," 
+        sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2,"
             + countCharValue + "} │ {3," + countCharValue + "} │ {4," + countCharNameCode + "}\n",
             "Effect", "Dmg", "Dur", "Target", "Type");
 
         // Разделитель
         sb.AppendLine(new string('─', 12 + 5 * 4 + 12 * 2 + 6 * 6)); // 6 разделителей " │ "
 
+        // Добавление информации о каждом DOT-эффекте
         foreach (var dot in usableDotsArray)
         {
-            sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2," 
+            sb.AppendFormat("{0," + countCharNameCode + "} │ {1," + countCharValue + "} │ {2,"
                 + countCharValue + ":F1} │ {3," + countCharValue + "} │ {4," + countCharNameCode + "}\n",
                 dot.Code,
                 dot.DotDmg,
@@ -124,6 +141,7 @@ public class UIManager : MonoBehaviour
         textUsableDots.text = sb.ToString();
     }
 
+    // Метод для отображения полученных DOT-эффектов (действующих на игрока)
     public void printRecievedDots(List<RecievedDotEffect> recievedDotsArray)
     {
         if (textRecievedDots == null)
@@ -165,6 +183,7 @@ public class UIManager : MonoBehaviour
         textRecievedDots.text = sb.ToString();
     }
 
+    // Метод для отображения игрового времени
     public void printTimer(float elapsedTime)
     {
         if (textTimer == null)
@@ -172,14 +191,17 @@ public class UIManager : MonoBehaviour
             log.Error("textTimer не назначен!");
             return;
         }
+        // Конвертация времени в часы, минуты, секунды и миллисекунды
         float hours = Mathf.FloorToInt(elapsedTime / 360);
         float minutes = Mathf.FloorToInt(elapsedTime / 60);
         float seconds = Mathf.FloorToInt(elapsedTime % 60);
         double miliSeconds = Math.Round((elapsedTime % 1), 5) * 100000;
 
+        // Форматированный вывод времени
         textTimer.text = string.Format("{0:00}:{1:00}:{2:00}.{3:00000}", hours, minutes, seconds, miliSeconds);
     }
 
+    // Метод для отображения текущего здоровья
     public void printActualHP(int actualHP)
     {
         if (textActualHP == null)
@@ -191,6 +213,7 @@ public class UIManager : MonoBehaviour
         textActualHP.text = string.Format("ActualHP : {0}", actualHP);
     }
 
+    // Метод для отображения количества убийств
     public void printCountKill(int countKill)
     {
         if (textCountKill == null)
@@ -202,6 +225,7 @@ public class UIManager : MonoBehaviour
         textCountKill.text = string.Format("Count kill : {0}", countKill);
     }
 
+    // Метод для отображения количества денег
     public void printMoney(int money)
     {
         if (textMoney == null)
@@ -213,6 +237,7 @@ public class UIManager : MonoBehaviour
         textMoney.text = string.Format("Заработаные : {0}", money);
     }
 
+    // Метод для отображения опыта (текущий/максимальный)
     public void printExp(int currentExp, int maxExp)
     {
         if (textExp == null)
@@ -223,6 +248,7 @@ public class UIManager : MonoBehaviour
         textExp.text = string.Format("Exp : {0} / {1}", currentExp, maxExp);
     }
 
+    // Метод для отображения уровня
     public void printLvl(int lvl)
     {
         if (textLvl == null)
@@ -234,6 +260,7 @@ public class UIManager : MonoBehaviour
         textLvl.text = string.Format("Lvl : {0}", lvl);
     }
 
+    // Метод для отображения урона в виде всплывающего текста
     public void printDamage(string damage, Vector3 position)
     {
         if (damageTextPrefab == null)
@@ -241,24 +268,27 @@ public class UIManager : MonoBehaviour
             log.Error("TakeDamage. Префаб DamageTextPrefab не найден по указанному пути.");
         }
 
+        // Создание экземпляра префаба с текстом урона
         GameObject damageText = Instantiate(damageTextPrefab, position, Quaternion.identity);
-        // Устанавливаем текст
+
+        // Получение компонента TextMeshPro
         TextMeshPro textComponent = damageText.GetComponent<TextMeshPro>();
         if (textComponent == null)
         {
             log.Error("TakeDamage. Префаб textComponent не найден.");
         }
 
+        // Настройка текста
         textComponent.text = damage;
         textComponent.color = Color.red;
-        textComponent.sortingOrder = 100;
+        textComponent.sortingOrder = 100; // Установка порядка отрисовки
 
-        // Плавно поднимаем текст вверх
+        // Анимация движения текста вверх
         damageText.transform.DOMoveY(transform.position.y + 2f, 2f)
             .SetEase(Ease.OutQuad); // Плавное ускорение и замедление
 
-        // Плавно изменяем прозрачность текста
+        // Анимация исчезновения текста
         textComponent.DOFade(0f, 1.5f)
-            .OnComplete(() => Destroy(damageText));
+            .OnComplete(() => Destroy(damageText)); // Уничтожение объекта после завершения анимации
     }
 }

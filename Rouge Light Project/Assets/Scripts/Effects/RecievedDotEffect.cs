@@ -2,32 +2,39 @@ using System;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+// Класс RecievedDotEffect представляет активный DoT-эффект, примененный к персонажу
+// Отслеживает текущее состояние эффекта и его параметры во время действия
 [System.Serializable]
 public class RecievedDotEffect
 {
-    private DotCode code;
-    private CharacterStatCode affectedChar;
-    private TypeOfDots type;
-    private int dotDmg;
-    private float dotDur;
-    private int affectedDamage;
-    private int count;
-    private int tick;
+    // Приватные поля класса:
+    private DotCode code;                  // Тип эффекта (из перечисления DotCode)
+    private CharacterStatCode affectedChar; // Характеристика, на которую влияет эффект
+    private TypeOfDots type;               // Способ расчета урона (фиксированный/процентный)
+    private int dotDmg;                    // Текущий урон за тик
+    private float dotDur;                  // Оставшееся время действия эффекта
+    private int affectedDamage;            // Накопленный урон/изменение характеристики
+    private int count;                     // Количество стаков эффекта
+    private int tick;                      // Счетчик тиков (для периодических эффектов)
 
-    // Конструктор
-    public RecievedDotEffect( UsableDotEffect usableDotsArray )
+    // Конструктор класса:
+    public RecievedDotEffect(UsableDotEffect usableDotsArray)
     {
+        // Инициализация параметров из базового эффекта:
         this.code = usableDotsArray.Code;
         this.affectedChar = usableDotsArray.AffectedChar;
         this.type = usableDotsArray.Type;
         this.dotDmg = usableDotsArray.DotDmg;
         this.dotDur = usableDotsArray.DotDur;
-        affectedDamage = 0;
-        count = 1;
-        tick = 0;
+
+        // Инициализация счетчиков:
+        affectedDamage = 0;    // Накопленный урон/изменение характеристики
+        count = 1;             // Начальное количество стаков
+        tick = 0;              // Счетчик тиков
     }
 
-    // Свойства с get/set
+    // Свойства с get/set для доступа к параметрам:
+
     public DotCode Code
     {
         get => code;
@@ -75,7 +82,4 @@ public class RecievedDotEffect
         get => tick;
         set => tick = value;
     }
-
-    
-    
 }

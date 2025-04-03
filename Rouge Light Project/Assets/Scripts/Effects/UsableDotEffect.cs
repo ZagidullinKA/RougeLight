@@ -2,29 +2,40 @@ using System;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+// Класс UsableDotEffect представляет активный DoT-эффект, который может использовать персонаж
+// Содержит текущие параметры эффекта и методы для работы с ними
 [System.Serializable]
 public class UsableDotEffect
 {
-    private DotCode code;             // Уникальный код эффекта
-    private int dotDmg;             // Финальный урон за тик
-    private float dotDur;           // Финальная длительность эффекта
-    private CharacterStatCode affectedChar;    // Идентификатор затронутого персонажа
-    private TypeOfDots type;            // Тип эффекта (например, "Poison", "Fire")
+    // Приватные поля класса:
+    private DotCode code;                       // Уникальный код эффекта (из перечисления DotCode)
+    private int dotDmg;                         // Финальный урон за тик (с учетом всех модификаторов)
+    private float dotDur;                       // Финальная длительность эффекта (в секундах/тиках)
+    private CharacterStatCode affectedChar;     // Идентификатор затронутой характеристики (например, здоровье)
+    private TypeOfDots type;                    // Тип эффекта (например, "Poison", "Fire")
 
+    // Конструктор класса:
     public UsableDotEffect(DotCode code, int finalDotDmg, float finalDotDur)
     {
+        // Инициализация основных параметров эффекта
         this.code = code;
         this.DotDmg = finalDotDmg;
         this.DotDur = finalDotDur;
 
+        // Получение базовых параметров эффекта из словаря
         var dotItem = DotsDictionary.GetDot(code);
-        ValidationValue.ValidateStringNotNullOrEmpty(
-                        (dotItem.AffectedChar.ToString(), "upgradableItem.AffectedChar")
-                    );
 
+        // Валидация параметров эффекта
+        ValidationValue.ValidateStringNotNullOrEmpty(
+            (dotItem.AffectedChar.ToString(), "upgradableItem.AffectedChar")
+        );
+
+        // Установка дополнительных параметров из словаря
         this.affectedChar = dotItem.AffectedChar;
         this.type = dotItem.Type;
     }
+
+    // Свойства с get/set для доступа к параметрам:
 
     public DotCode Code
     {
@@ -49,7 +60,6 @@ public class UsableDotEffect
         get { return affectedChar; }
         set { affectedChar = value; }
     }
-
 
     public TypeOfDots Type
     {

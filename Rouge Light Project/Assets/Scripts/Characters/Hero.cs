@@ -3,8 +3,9 @@ using log4net;
 using System;
 using System.Collections.Generic;
 
-//удалены неиспользуемые библиотеки
 
+// Класс Hero - основной класс управления игровым персонажем
+// Наследуется от Character, реализует интерфейсы атакующего (IAttacker) и подвижного объекта (IMovable)
 public class Hero : Character, IAttacker, IMovable
 {
     //Добавляем логирование
@@ -12,26 +13,30 @@ public class Hero : Character, IAttacker, IMovable
     // Префаб для создания файла с характеристиками
     [SerializeField] private HeroStats heroStatsPrefab;
     // Переменная для характеристик, через нее можно обращаться к базову stats 
-    public HeroStats heroStats => stats as HeroStats;
+    public HeroStats heroStats => stats as HeroStats; // Приведение базовых stats к HeroStats
 
-    public Rigidbody2D rb;
-    public Shooting shooting;
-    public Transform firePoint;
-    private Vector2 moveVector;
-    private bool isShooting = false;
+    // Компоненты и параметры управления
+    public Rigidbody2D rb;              // Физическое тело персонажа
+    public Shooting shooting;           // Компонент стрельбы
+    public Transform firePoint;         // Точка выстрела
+    private Vector2 moveVector;         // Вектор движения
+    private bool isShooting = false;    // Флаг стрельбы
 
     //Колайдер для подбора дропа
     private CircleCollider2D colliderDropRadius;
     // линия отражающая радиус подбора (Для тестов)
     private LineRenderer lineRendererDropRadius;
 
-    // Переменная, которая отражает увелечение характеристик при получении уровня
+    // Множитель улучшения характеристик при повышении уровня
     private const float UpgradeLvlFactor = 1.5f;
 
+    // Метод инициализации, вызываемый при создании объекта
     protected override void Awake()
     {
+        // Создаем экземпляр характеристик из префаба
         stats = Instantiate(heroStatsPrefab);
 
+        // Получаем компоненты
         rb = GetComponent<Rigidbody2D>();
         shooting = GetComponent<Shooting>();
 
@@ -41,12 +46,13 @@ public class Hero : Character, IAttacker, IMovable
         }
 
         heroStats.IsEnemy = false; // Герой не является врагом
-        
 
+        // Настройка коллайдера для подбора предметов
         colliderDropRadius = GetComponent<CircleCollider2D>();
         if (colliderDropRadius != null)
         {
             colliderDropRadius.isTrigger = true;
+            // Создаем LineRenderer для визуализации радиуса подбора
             lineRendererDropRadius = gameObject.AddComponent<LineRenderer>();
 
             // Задаем для LineRenderer базовые настройки
@@ -62,20 +68,27 @@ public class Hero : Character, IAttacker, IMovable
             log.Error("CircleCollider2D DropRadius is null");
         }
 
-
+        // Инициализация характеристик и эффектов
         InitializeCharacteristicsAndDots();
         base.Awake();
+        // Обновление UI здоровья
         UIManager.Instance.printActualHP(heroStats.ActualHP);
+
     }
 
+    // Переопределенный метод получения урона
     protected override void TakeDamage(int damage, TypeOfDamage typeDamage)
     {
         base.TakeDamage(damage, typeDamage);
+        // Обновление UI здоровья после получения урона
         UIManager.Instance.printActualHP(heroStats.ActualHP);
+
     }
 
+    // Метод Update вызывается каждый кадр
     void Update()
     {
+        // Проверка нажатия кнопки стрельбы
         if (Input.GetKey(KeyCode.Mouse0))
         {
             isShooting = true;
@@ -83,6 +96,7 @@ public class Hero : Character, IAttacker, IMovable
 
         // Вызов обработчика дотов
         base.HandlingAppliedDoTEffects();
+        // Обновление UI эффектов
         UIManager.Instance.printRecievedDots(heroStats.GetRecievedDots());
     }
 
@@ -95,6 +109,7 @@ public class Hero : Character, IAttacker, IMovable
         float angle = 0f;
         float angleStep = 360f / segments;
 
+        // Рисуем круг из сегментов
         for (int i = 0; i <= segments; i++)
         {
             float x = Mathf.Sin(Mathf.Deg2Rad * angle) * colliderDropRadius.radius;
@@ -105,12 +120,14 @@ public class Hero : Character, IAttacker, IMovable
         }
     }
 
+    // Метод FixedUpdate вызывается с фиксированной частотой
     private void FixedUpdate()
     {
-        Move();
-        Shoot();
+        Move();  // Обработка движения
+        Shoot(); // Обработка стрельбы
     }
 
+    // Обработчик столкновений с триггерами
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Проверяем, что объект можно подобрать
@@ -119,7 +136,7 @@ public class Hero : Character, IAttacker, IMovable
             log.Debug("Предмет подобрали! - " + other.name);
             Drop drop = other.GetComponent<Drop>();
 
-
+            // Обработка разных типов дропа
             switch (drop.DropCode)
             {
                 case TypeOfDrop.TYPE_CHARACTER:
@@ -127,7 +144,7 @@ public class Hero : Character, IAttacker, IMovable
                     break;
                 case TypeOfDrop.TYPE_DOT:
                     DotCode dotCode = (DotCode)Enum.Parse(typeof(DotCode), drop.ItemCode);
-                    UpgradeUsableDots(dotCode, drop.Update, (bool) drop.IsDmgUpIfDot);
+                    UpgradeUsableDots(dotCode, drop.Update, (bool)drop.IsDmgUpIfDot);
                     break;
                 case TypeOfDrop.TYPE_MONEY:
                     Observer.increaseMoney(drop.Update);
@@ -145,29 +162,30 @@ public class Hero : Character, IAttacker, IMovable
         }
     }
 
-
-
-    // Реализация IAttacker
+    // Реализация IAttacker - метод стрельбы
     public void Shoot()
     {
         if (isShooting)
         {
+            // Вызываем метод выстрела с текущими характеристиками
             shooting.Shot(heroStats.Dmg, heroStats.CritChance, heroStats.AtkSpeed, heroStats.BulletFlySpeed, heroStats.BulletTimeAlive, heroStats.GetUsableDots());
             isShooting = false;
         }
     }
 
-    // Реализация IMovable
+    // Реализация IMovable - метод движения
     public void Move()
     {
+        // Получаем ввод с клавиатуры
         moveVector.x = Input.GetAxis("Horizontal");
         moveVector.y = Input.GetAxis("Vertical");
 
+        // Перемещаем персонажа с учетом скорости
         rb.MovePosition(rb.position + moveVector * heroStats.MoveSpeed * Time.deltaTime);
-        RotateTowardsMouse();
+        RotateTowardsMouse(); // Поворачиваем персонажа к курсору
     }
 
-    // Инициализация характеристик
+    // Инициализация характеристик и эффектов
     private void InitializeCharacteristicsAndDots()
     {
         // Используем справочник всех характеристик
@@ -191,6 +209,7 @@ public class Hero : Character, IAttacker, IMovable
             }
         }
 
+        // Инициализация эффектов (DoT)
         foreach (var item in ImprovableCharactesDictionary.GetAllImprovableDots())
         {
             // Преобразование из string в DotCode
@@ -200,6 +219,7 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printUsableDots(heroStats.GetUsableDots());
     }
 
+    // Переопределенный метод установки характеристик
     public override void SetStat(string statName, float? value)
     {
         if (heroStats == null)
@@ -214,8 +234,9 @@ public class Hero : Character, IAttacker, IMovable
             return;
         }
 
+        // Устанавливаем новое значение характеристики
         heroStats.SetStat(statName, value);
-        ApplySpecialEffects(statName);        
+        ApplySpecialEffects(statName);
 
         if (UIManager.Instance == null)
         {
@@ -223,6 +244,7 @@ public class Hero : Character, IAttacker, IMovable
             return;
         }
 
+        // Обновляем все характеристики в UI
         UIManager.Instance.printCharacters(
             heroStats.MaxHP,
             heroStats.Dmg,
@@ -246,6 +268,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         CharacterStatCode characterCode = (CharacterStatCode)Enum.Parse(typeof(CharacterStatCode), statName);
 
+        // Если изменился радиус подбора - обновляем коллайдер и визуализацию
         if (characterCode == CharacterStatCode.DropRadius && colliderDropRadius != null)
         {
             colliderDropRadius.radius = heroStats.DropRadius;
@@ -254,6 +277,7 @@ public class Hero : Character, IAttacker, IMovable
         }
     }
 
+    // Добавление нового эффекта в список доступных
     public void AddDotInUsableDotsArrayOfCode(DotCode code)
     {
         var item = ImprovableCharactesDictionary.GetImprovableCharacteristicOrDot(code.ToString());
@@ -269,24 +293,28 @@ public class Hero : Character, IAttacker, IMovable
         heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur));
     }
 
+    // Улучшение параметров эффекта
     public void UpgradeUsableDots(DotCode code, float? value, bool typeUpgradeDmgDot)
     {
-        bool seacrhDot = true; // Чек нашли ли мы нужный нам дот
+        bool seacrhDot = true; // Флаг поиска эффекта
         for (int i = 0; i < heroStats.GetUsableDots().Count; i++)
         {
             if (heroStats.GetUsableDots()[i].Code == code)
             {
                 if (typeUpgradeDmgDot)
                 {
+                    // Улучшение урона эффекта
                     if (heroStats.GetUsableDots()[i].DotDur == 0)
                     {
                         heroStats.GetUsableDots()[i].DotDur = ImprovableCharactesDictionary.GetFinalDotDurOfCode(code.ToString());
                         log.Warn("DotDur = 0, code = " + code);
                     }
-                    heroStats.GetUsableDots()[i].DotDmg += (int) value;
+                    heroStats.GetUsableDots()[i].DotDmg += (int)value;
                     log.Debug("Улучшили dot " + heroStats.GetUsableDots()[i].Code + ", dmg на " + value + ", округлили до " + (int)value + ", теперь он = " + heroStats.GetUsableDots()[i].DotDmg);
-                } else
+                }
+                else
                 {
+                    // Улучшение длительности эффекта
                     if (heroStats.GetUsableDots()[i].DotDmg == 0)
                     {
                         heroStats.GetUsableDots()[i].DotDmg = ImprovableCharactesDictionary.GetFinalDotDmgOfCode(code.ToString());
@@ -300,6 +328,7 @@ public class Hero : Character, IAttacker, IMovable
             }
         }
 
+        // Если эффект не найден - добавляем новый
         if (seacrhDot)
         {
             log.Debug("Дот не был найден в списке usableDotsArray героя, code = " + code);
@@ -309,6 +338,7 @@ public class Hero : Character, IAttacker, IMovable
         UIManager.Instance.printUsableDots(heroStats.GetUsableDots());
     }
 
+    // Повышение уровня персонажа
     public void IncrementLvl(int lvl)
     {
         if (lvl < 1)
@@ -336,11 +366,12 @@ public class Hero : Character, IAttacker, IMovable
         // 3. Применяем характеристики в цикле
         foreach (var characteristic in upgrades)
         {
-            log.Debug("IncrementLvl. Увелечение характеристики : "+ characteristic.Key + " на " + characteristic.Value);
+            log.Debug("IncrementLvl. Увелечение характеристики : " + characteristic.Key + " на " + characteristic.Value);
             SetStat(characteristic.Key.ToString(), characteristic.Value);
         }
     }
 
+    // Поворот персонажа в сторону курсора мыши
     void RotateTowardsMouse()
     {
         // Получаем позицию курсора в мировых координатах
@@ -356,15 +387,17 @@ public class Hero : Character, IAttacker, IMovable
         rb.rotation = angle;
     }
 
+    // Переопределенный метод лечения
     public override void Heal(int amount)
     {
         base.Heal(amount);
         UIManager.Instance.printActualHP(heroStats.ActualHP);
+
     }
 
+    // Переопределенный метод смерти
     protected override void Die()
     {
-
         if (!heroStats.IsGodMode)
         {
             if (heroStats.IsCanDie)
@@ -373,7 +406,7 @@ public class Hero : Character, IAttacker, IMovable
                 base.Die();
             }
         }
-            else
+        else
         {
             log.Debug("Ты бы умер, но ты либо тестер, либо читер");
             heroStats.ActualHP = heroStats.MaxHP;
@@ -382,3 +415,4 @@ public class Hero : Character, IAttacker, IMovable
     }
 
 }
+
