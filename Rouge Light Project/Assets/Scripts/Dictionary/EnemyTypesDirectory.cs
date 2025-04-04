@@ -1,36 +1,41 @@
-
 using System.Collections.Generic;
 
+// Статический класс EnemyTypesDictionary - справочник типов врагов в игре
+// Содержит параметры для каждого типа вражеских юнитов
 public static class EnemyTypesDictionary
 {
+    // Словарь для хранения всех типов врагов
+    // Ключ - тип врага (EnemyTypeCode), значение - параметры врага (ItemEnemyTypesDictionary)
     private static readonly Dictionary<EnemyTypeCode, ItemEnemyTypesDictionary> itemEnemys = new()
     {
+        // Пример тестового юнита с базовыми параметрами
         { EnemyTypeCode.UnitTest, CreateEnemy(
-            EnemyTypeCode.UnitTest,
-            "Тестовый юнит",                    //string nameRu,
-            200,                                //int maxHP,
-            5,                                  //int dmg,
-            1,                                  //float atkSpeed,
-            1,                                  //int moveSpeed,
-            10,                                 //int critChance,
-            5,                                  //int evadeChance,
-            0,                                  //int armor,
-            2,                                  //int debuffResist,
-            0,                                  //int vampire,
-            2,                                  //int bulletFlySpeed,
-            3,                                  //int bulletTimeAlive,
-            5,                                  //int rotateSpeed,
-            TypeOfEnemyAttack.TYPE_SHOOT,       //string typeOfAttack,
-            1,                                  //int countOfDots,
-            0,                                  //int countOfBulletModifiers,
-            0,                                  //int countOfShootingModifiers,
-            1,                                  //int meleeDmg,
-            2,                                  //int deathPrice,
-            false                               //bool isBoss) }
-        )} 
+            EnemyTypeCode.UnitTest,       // Уникальный код типа врага   
+            "Тестовый юнит",              // Локализованное название                //string nameRu
+            200,                          // Максимальное здоровье                  //int maxHP
+            5,                            // Базовый урон                           //int dmg
+            1,                            // Скорость атаки (атак в секунду)        //float atkSpeed
+            1,                            // Скорость передвижения                  //int moveSpeed
+            10,                           // Шанс критического удара (%)            //int critChance
+            5,                            // Шанс уклонения (%)                     //int evadeChance
+            0,                            // Защита (уменьшение получаемого урона)  //int armor
+            2,                            // Сопротивление негативным эффектам      //int debuffResist
+            0,                            // Вампиризм (% от урона в здоровье)      //int vampire
+            2,                            // Скорость полета пуль                   //int bulletFlySpeed
+            3,                            // Время жизни пуль (сек)                 //int bulletTimeAlive
+            5,                            // Скорость поворота                      //int rotateSpeed
+            TypeOfEnemyAttack.TYPE_SHOOT, // Тип атаки (стрельба/ближний бой)       //string typeOfAttack
+            1,                            // Количество типов DoT-эффектов          //int countOfDots
+            0,                            // Количество модификаторов пуль          //int countOfBulletModifiers
+            0,                            // Количество модификаторов стрельбы      //int countOfShootingModifiers
+            1,                            // Урон в ближнем бою                     //int meleeDmg
+            2,                            // Награда за убийство                    //int deathPrice
+            false                         // Является ли боссом                     //bool isBoss
+        )}
     };
 
     // Вспомогательный метод для создания ItemEnemyTypesDictionary с читаемым форматом
+    // Позволяет наглядно видеть все параметры при создании нового типа врага
     private static ItemEnemyTypesDictionary CreateEnemy(
         EnemyTypeCode code, string nameRu,
         int maxHP, int dmg, float atkSpeed, int moveSpeed,
@@ -48,13 +53,17 @@ public static class EnemyTypesDictionary
             countOfShootingModifiers, meleeDmg, deathPrice, isBoss);
     }
 
+    // Получение параметров конкретного типа врага по его коду
     public static ItemEnemyTypesDictionary GetCharacteristic(EnemyTypeCode code)
     {
+        // Возвращает параметры врага или null, если тип не найден
         return itemEnemys.TryGetValue(code, out var item) ? item : null;
     }
 
+    // Получение списка всех типов врагов в игре
     public static List<ItemEnemyTypesDictionary> GetAllCharacteristics()
     {
+        // Создает новый список на основе значений словаря
         return new List<ItemEnemyTypesDictionary>(itemEnemys.Values);
     }
 }

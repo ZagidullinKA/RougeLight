@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.92549026, g: 0.81568635, b: 0.054901965, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -225,7 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: c94bb39766d25ff4fb47fc2f8a18a262, type: 2}
   mobStatsPrefab: {fileID: 11400000, guid: 0b59b3a416ca85f46bc096bf2754132c, type: 2}
-  rotationSpeed: 5
 --- !u!114 &570033486433605984
 MonoBehaviour:
   m_ObjectHideFlags: 0

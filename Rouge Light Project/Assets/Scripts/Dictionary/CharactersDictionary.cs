@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 
+// Класс DictionaryCharacters представляет справочник всех характеристик персонажей в игре
+// Содержит базовые параметры для всех игровых характеристик и их свойства
 public class DictionaryCharacters
 {
+    // Основной словарь, хранящий все характеристики персонажей
+    // Ключ - перечисление CharacterStatCode, значение - объект ItemCharacter с параметрами
     private static readonly Dictionary<CharacterStatCode, ItemCharacter> itemCharacters = new()
     {
-        // Формат: { Код, new ItemCharacter(    Код,                                            Название,                       Улучшаемость, Шаг улучшения, Базовое значение, Цена, Доступно врагам) }
+        
         { CharacterStatCode.MaxHP,              CreateStat(CharacterStatCode.MaxHP,             "максимальное ХП",              true,   10,     1f,     1,  true)   },
-        { CharacterStatCode.Dmg,                CreateStat(CharacterStatCode.Dmg,               "дамаг",                        true,   1,      1f,     2,  true)   },
+        { CharacterStatCode.Dmg,                CreateStat(CharacterStatCode.Dmg,               "дамаг",                        true,   1,      1f,   2,  true)   },
         { CharacterStatCode.AtkSpeed,           CreateStat(CharacterStatCode.AtkSpeed,          "Скорость атаки",               true,   10,     5f,     3,  true)   },
         { CharacterStatCode.MoveSpeed,          CreateStat(CharacterStatCode.MoveSpeed,         "Скорость передвижения",        true,   10,     5f,     4,  true)   },
         { CharacterStatCode.CritChance,         CreateStat(CharacterStatCode.CritChance,        "Шанс крита",                   true,   0,      10f,    6,  true)   },
@@ -22,17 +26,29 @@ public class DictionaryCharacters
         { CharacterStatCode.Luck,               CreateStat(CharacterStatCode.Luck,              "Удача",                        false,  2,      2f,     5,  false)  },
     };
 
-    // Вспомогательный метод для создания ItemCharacter с читаемым форматом
+    // Вспомогательный метод для создания объектов ItemCharacter
+    // Параметры:
+    // code - тип характеристики из перечисления CharacterStatCode
+    // nameRu - локализованное название характеристики
+    // upgradable - можно ли улучшать эту характеристику
+    // upgradeX - шаг улучшения характеристики
+    // baseAmount - базовое значение характеристики
+    // price - цена улучшения
+    // isEnemyAvailable - доступна ли характеристика для врагов
     private static ItemCharacter CreateStat(CharacterStatCode code, string nameRu, bool upgradable, int upgradeX, float baseAmount, int price, bool isEnemyAvailable)
     {
         return new ItemCharacter(code, nameRu, upgradable, upgradeX, baseAmount, price, isEnemyAvailable);
     }
 
+    // Получает параметры характеристики по её коду
+    // Возвращает объект ItemCharacter или null, если характеристика не найдена
     public static ItemCharacter GetCharacteristic(CharacterStatCode code)
     {
         return itemCharacters.TryGetValue(code, out var item) ? item : null;
     }
 
+    // Возвращает список всех доступных характеристик
+    // Возвращаемое значение: List<ItemCharacter> со всеми характеристиками
     public static List<ItemCharacter> GetAllCharacteristics()
     {
         return new List<ItemCharacter>(itemCharacters.Values);

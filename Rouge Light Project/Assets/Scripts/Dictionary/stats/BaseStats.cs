@@ -29,7 +29,7 @@ public class BaseStats : ScriptableObject
     [SerializeField] protected List<RecievedDotEffect> recievedDotsArray = new List<RecievedDotEffect>(); // Список полученных DoT-эффектов
     [SerializeField] protected List<UsableDotEffect> usableDotsArray = new List<UsableDotEffect>();       // Список используемых DoT-эффектов
 
-    // Свойства с прямым get и set для числовых характеристик
+    // Свойства для доступа к характеристикам:
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int Dmg { get => dmg; set => dmg = value; }
     public int MeleeDmg { get => meleeDmg; set => meleeDmg = value; }
@@ -48,7 +48,7 @@ public class BaseStats : ScriptableObject
     public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
     public float RotateSpeed { get => rotateSpeed; set => rotateSpeed = value; }
 
-    // Устанавливает значение числовой характеристики по её имени через рефлексию
+    // Устанавливает значение характеристики по имени через рефлексию
     public virtual void SetStat(string statName, float? value)
     {
         if (value == null)
@@ -85,7 +85,6 @@ public class BaseStats : ScriptableObject
     // Возвращает значение числовой характеристики по её имени через рефлексию
     public virtual float? GetStat(string statName)
     {
-
         // Получаем переменную, соответствующую fieldName
         var field = GetType().GetField(statName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         if (field == null)
@@ -94,7 +93,7 @@ public class BaseStats : ScriptableObject
             return null;
         }
 
-        return (float?) field.GetValue(this);
+        return (float?)field.GetValue(this);
     }
 
     // Добавляет полученный DoT-эффект в список

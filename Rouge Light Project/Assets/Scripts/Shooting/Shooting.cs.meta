@@ -4,10 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - bulletPrefab: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
+  - bulletPrefab: {instanceID: 0}
   - rb: {instanceID: 0}
-  - shooter: {instanceID: 0}
   - bulletSpawn: {instanceID: 0}
+  - bulletOutlineMaterial: {fileID: 2100000, guid: 735f797c3a677f74a9a5eb861be89e7e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

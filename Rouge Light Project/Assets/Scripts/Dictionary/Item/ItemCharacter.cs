@@ -1,24 +1,30 @@
-
+// Класс ItemCharacter хранит данные об игровых характеристиках персонажей
+// Используется для настройки и управления параметрами персонажей и врагов
 public class ItemCharacter
 {
-    private CharacterStatCode code;
-    private string nameRu;
-    private bool upgradable;
-    private int upgradeX;
-    private float baseAmount;
-    private int price;
-    private bool isEnemyAvailable;
+    // Приватные поля класса:
+    private CharacterStatCode code;        // Идентификатор характеристики из перечисления
+    private string nameRu;                 // Локализованное название на русском языке
+    private bool upgradable;               // Можно ли улучшать эту характеристику
+    private int upgradeX;                  // Величина улучшения за один уровень
+    private float baseAmount;              // Базовое значение характеристики
+    private int price;                     // Стоимость улучшения (в игровой валюте)
+    private bool isEnemyAvailable;         // Доступна ли характеристика для врагов
 
-    public CharacterStatCode Code => code;
-    public string NameRu => nameRu;
-    public bool Upgradable => upgradable;
-    public int UpgradeX => upgradeX;
-    public float BaseAmount => baseAmount;
-    public int Price => price;
-    public bool IsEnemyAvailable => isEnemyAvailable;
+    // Свойства только для чтения:
+    public CharacterStatCode Code => code; // Возвращает идентификатор характеристики
+    public string NameRu => nameRu;        // Возвращает локализованное название
+    public bool Upgradable => upgradable;  // Возвращает возможность улучшения
+    public int UpgradeX => upgradeX;       // Возвращает шаг улучшения
+    public float BaseAmount => baseAmount; // Возвращает базовое значение
+    public int Price => price;             // Возвращает стоимость улучшения
+    public bool IsEnemyAvailable => isEnemyAvailable; // Возвращает доступность для врагов
 
-    public ItemCharacter(CharacterStatCode code, string nameRu, bool upgradable, int upgradeX, float baseAmount, int price, bool isEnemyAvailable)
+    // Конструктор класса:
+    public ItemCharacter(CharacterStatCode code, string nameRu, bool upgradable,
+                        int upgradeX, float baseAmount, int price, bool isEnemyAvailable)
     {
+        // Инициализация всех полей:
         this.code = code;
         this.nameRu = nameRu;
         this.upgradable = upgradable;
