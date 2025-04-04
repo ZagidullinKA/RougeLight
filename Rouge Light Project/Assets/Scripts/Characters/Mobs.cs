@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mobs : Character, IAttacker
+public class Mobs : Character
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
@@ -19,7 +19,7 @@ public class Mobs : Character, IAttacker
 
     private Transform player; // Ссылка на игрока
 
-    private Shooting shooting;
+    
 
     protected override void Awake()
     {
@@ -39,8 +39,6 @@ public class Mobs : Character, IAttacker
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         rb = GetComponent<Rigidbody2D>();
-
-        shooting = gameObject.GetComponent<Shooting>();
     }
 
     void Update()
@@ -48,16 +46,10 @@ public class Mobs : Character, IAttacker
         if (player != null)
         {
             RotateTowardsPlayer();
-            Shoot();
+            base.Shoot();
         }
 
         base.HandlingAppliedDoTEffects();
-    }
-
-    // Реализация IAttacker
-    public void Shoot()
-    {
-        shooting.Shot(mobStats.Dmg, mobStats.CritChance, mobStats.AtkSpeed, mobStats.BulletFlySpeed, mobStats.BulletTimeAlive, mobStats.GetUsableDots());
     }
 
     void RotateTowardsPlayer()

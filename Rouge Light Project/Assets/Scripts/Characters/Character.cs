@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 
-public abstract class Character : MonoBehaviour, IDamageable, IHealable
+public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttacker
 {
     //Добавляем логирование
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
@@ -14,6 +14,8 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
 
     protected float lastHandlingAppliedDoTEffectsTime = 0;
     protected float handlingAppliedDoTEffectsPeriod = 1f;
+    protected float lastShootTime;
+    protected Shooting shooting;
 
     // Инициализация
     protected virtual void Awake()
@@ -24,9 +26,21 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
         }
 
         stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
+        shooting = gameObject.GetComponent<Shooting>();
+        lastShootTime = Time.time;
     }
 
-    
+    public void Shoot()
+    {
+        // Вычисляем интервал между выстрелами в секундах на основе скорости атаки (stats.AtkSpeed).
+        // Например, если AtkSpeed = 25, то shootInterval = 1 / 25 = 0.04 секунды (25 выстрелов в секунду).
+        float shootInterval = 1f / (float)stats.AtkSpeed;
+        if (Time.time >= lastShootTime + shootInterval)             // Проверяем, можно ли стрелять (прошло ли время с последнего выстрела)
+        {
+            lastShootTime = Time.time;                          // Обновляем время последнего выстрела
+            shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots());
+        }
+    }
 
     // Возвращает значение числовой характеристики через рефлексию
     public virtual float? GetStat(string statName)
@@ -63,7 +77,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
 
     protected virtual void TakeDamage(int damage, TypeOfDamage typeDamage)
     {
-        
+
         stats.ActualHP -= damage;
 
         if (stats.IsEnemy)
@@ -116,10 +130,11 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                     break;
                 }
             }
-            if (checkAvailability) {
+            if (checkAvailability)
+            {
                 log.Debug("HandlingAppliedDoTEffects. Добавляем дот itemForcedDots.Code = " + itemForcedDots.Code);
                 log.Debug("HandlingAppliedDoTEffects. itemForcedDots.DotDmg = " + itemForcedDots.DotDmg);
-                stats.SetRecievedDots(new RecievedDotEffect(itemForcedDots));                   
+                stats.SetRecievedDots(new RecievedDotEffect(itemForcedDots));
             }
         }
     }
@@ -129,7 +144,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
         public string code;
         public int damage;
 
-        public ItemPrintDot (string code, int damage)
+        public ItemPrintDot(string code, int damage)
         {
             this.code = code;
             this.damage = damage;
@@ -149,7 +164,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
             return;
         }
 
-        
+
 
         log.Debug("HandlingAppliedDoTEffects. Вошли в обработку дотов");
         lastHandlingAppliedDoTEffectsTime = Time.time;
@@ -187,11 +202,12 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                 takeDamageList.Add(new ItemPrintDot(itemRecievedDot.Code.ToString(), countedDotDmg));
                 if (countedDotDmg != 0)
                     TakeDamage(countedDotDmg, TypeOfDamage.TYPE_DOT);
-                
+
                 if (itemRecievedDot.DotDur <= 1)
                 {
                     removeRecievedDotsArray.Add(itemRecievedDot);
-                } else
+                }
+                else
                 {
                     itemRecievedDot.DotDur--;
                 }
@@ -208,7 +224,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                     log.Error("У характеристики нет значения item.AffectedChar = " + itemRecievedDot.AffectedChar);
                 }
                 if (affectedCharCurrentvalue - countedDotDmg < 0
-                    || ( itemRecievedDot.AffectedChar != CharacterStatCode.DebuffResist
+                    || (itemRecievedDot.AffectedChar != CharacterStatCode.DebuffResist
                     && itemRecievedDot.AffectedChar != CharacterStatCode.Armor))
                 {
                     countedDotDmg = (int)affectedCharCurrentvalue;
@@ -218,9 +234,9 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
                 itemRecievedDot.AffectedDamage += countedDotDmg;
             }
             itemRecievedDot.Tick++;
-            
 
-            
+
+
             log.Debug("HandlingAppliedDoTEffects.item.DotDur = " + itemRecievedDot.DotDur);
             if (itemRecievedDot.DotDur <= 1)
             {
@@ -257,7 +273,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable
         }
 
         stats.RemoveRecievedDots(removeRecievedDotsArray);
-        removeRecievedDotsArray.Clear();   
+        removeRecievedDotsArray.Clear();
     }
 
     // Реализация IHealable

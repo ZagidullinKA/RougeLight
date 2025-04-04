@@ -2,6 +2,7 @@
 using log4net;
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 //удалены неиспользуемые библиотеки
 
@@ -15,10 +16,11 @@ public class Hero : Character, IAttacker, IMovable
     public HeroStats heroStats => stats as HeroStats;
 
     public Rigidbody2D rb;
-    public Shooting shooting;
     public Transform firePoint;
     private Vector2 moveVector;
-    private bool isShooting = false;
+
+    [SerializeField] private InputActionAsset inputActions;
+    private InputAction shootAction;
 
     //Колайдер для подбора дропа
     private CircleCollider2D colliderDropRadius;
@@ -33,7 +35,6 @@ public class Hero : Character, IAttacker, IMovable
         stats = Instantiate(heroStatsPrefab);
 
         rb = GetComponent<Rigidbody2D>();
-        shooting = GetComponent<Shooting>();
 
         if (heroStats == null)
         {
@@ -66,6 +67,37 @@ public class Hero : Character, IAttacker, IMovable
         InitializeCharacteristicsAndDots();
         base.Awake();
         UIManager.Instance.printActualHP(heroStats.ActualHP);
+
+
+
+
+        // Проверяем, задан ли InputActions в инспекторе
+        if (inputActions == null)
+        {
+            log.Error("InputActions не задан в инспекторе!");
+        }
+
+        // Ищем карту действий "Player" в InputActions
+        var actionMap = inputActions.FindActionMap("Player");
+        if (actionMap == null)
+        {
+            log.Error("Карта действий 'Player' не найдена!");
+        }
+
+        // Ищем действие "Shoot" в карте "Player"
+        shootAction = actionMap.FindAction("Shoot");
+        if (shootAction == null)
+        {
+            log.Error("Действие 'Shoot' не найдено в карте 'Player'!");
+        }
+
+        shootAction.started += ctx => OnShootStarted();         // Подписываемся на событие начала действия (нажатие ЛКМ)
+        shootAction.Enable();                                   // Активируем действие для обработки ввода
+    }
+
+    private void OnShootStarted()
+    {
+        Shoot();
     }
 
     protected override void TakeDamage(int damage, TypeOfDamage typeDamage)
@@ -76,9 +108,10 @@ public class Hero : Character, IAttacker, IMovable
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        // Проверяем состояние кнопки через ReadValue
+        if (shootAction.ReadValue<float>() > 0) // 1 = кнопка нажата
         {
-            isShooting = true;
+            base.Shoot();
         }
 
         // Вызов обработчика дотов
@@ -108,7 +141,6 @@ public class Hero : Character, IAttacker, IMovable
     private void FixedUpdate()
     {
         Move();
-        Shoot();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -142,18 +174,6 @@ public class Hero : Character, IAttacker, IMovable
 
             Destroy(other.gameObject);
             log.Debug("Дроп уничтожен");
-        }
-    }
-
-
-
-    // Реализация IAttacker
-    public void Shoot()
-    {
-        if (isShooting)
-        {
-            shooting.Shot(heroStats.Dmg, heroStats.CritChance, heroStats.AtkSpeed, heroStats.BulletFlySpeed, heroStats.BulletTimeAlive, heroStats.GetUsableDots());
-            isShooting = false;
         }
     }
 

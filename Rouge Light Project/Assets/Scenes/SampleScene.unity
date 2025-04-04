@@ -2441,6 +2441,7 @@ MonoBehaviour:
   rb: {fileID: 2049923070}
   shooting: {fileID: 2049923072}
   firePoint: {fileID: 900538706}
+  inputActions: {fileID: -944628639613478452, guid: ce7a642fdefd63d469be073395696fdc, type: 3}
 --- !u!114 &2049923074
 MonoBehaviour:
   m_ObjectHideFlags: 0
