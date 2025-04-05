@@ -65,6 +65,7 @@ public class Hero : Character, IAttacker, IMovable
 
 
         InitializeCharacteristicsAndDots();
+        InitializeShootingModifier();
         base.Awake();
         UIManager.Instance.printActualHP(heroStats.ActualHP);
 
@@ -218,6 +219,45 @@ public class Hero : Character, IAttacker, IMovable
             heroStats.SetUsableDots(new UsableDotEffect(dotCode, (int)item.FinalDotDmg, (int)item.FinalDotDur));
         }
         UIManager.Instance.printUsableDots(heroStats.GetUsableDots());
+    }
+
+    private void InitializeShootingModifier()
+    {
+        // Получаем модификаторы уровня 1
+        var level1Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(1);
+        foreach (var modifier in level1Modifiers)
+        {
+            if (modifier.Code == TypeOfShootingModifier.Circle6)
+            {
+                heroStats.AddShootingModifierFirst(modifier.Code);
+                log.Debug($"Добавлен модификатор первого этапа: {modifier.Code}");
+                break; // Добавляем только один модификатор
+            }
+        }
+
+        // Получаем модификаторы уровня 2
+        var level2Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(2);
+        foreach (var modifier in level2Modifiers)
+        {
+            if (modifier.Code == TypeOfShootingModifier.Burst3)
+            {
+                heroStats.AddShootingModifierSecond(modifier.Code);
+                log.Debug($"Добавлен модификатор второго этапа: {modifier.Code}");
+                break; // Добавляем только один модификатор
+            }
+        }
+
+        // Получаем модификаторы уровня 3
+        var level3Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(3);
+        foreach (var modifier in level3Modifiers)
+        {
+            if (modifier.Code == TypeOfShootingModifier.Buckshot3)
+            {
+                heroStats.AddShootingModifierThird(modifier.Code);
+                log.Debug($"Добавлен модификатор третьего этапа: {modifier.Code}");
+                break; // Добавляем только один модификатор
+            }
+        }
     }
 
     public override void SetStat(string statName, float? value)

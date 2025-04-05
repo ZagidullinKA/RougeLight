@@ -31,5 +31,8 @@ MonoBehaviour:
   rotateSpeed: 0
   recievedDotsArray: []
   usableDotsArray: []
+  shootingModifierFirstArray: 
+  shootingModifierSecondArray: 
+  shootingModifierThirdArray: 
   idMob: 0
   deathPrice: 0

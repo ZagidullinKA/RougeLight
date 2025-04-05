@@ -28,6 +28,9 @@ public class BaseStats : ScriptableObject
     [SerializeField] protected float rotateSpeed = 0;             // Является ли персонаж врагом (доступ напрямую)
     [SerializeField] protected List<RecievedDotEffect> recievedDotsArray = new List<RecievedDotEffect>(); // Список полученных DoT-эффектов
     [SerializeField] protected List<UsableDotEffect> usableDotsArray = new List<UsableDotEffect>();       // Список используемых DoT-эффектов
+    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierFirstArray = new List<TypeOfShootingModifier>();              // Список модификаторов стрельбы 1 этап
+    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierSecondArray = new List<TypeOfShootingModifier>();             // Список модификаторов стрельбы 2 этап
+    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierThirdArray = new List<TypeOfShootingModifier>();              // Список модификаторов стрельбы 3 этап
 
     // Свойства с прямым get и set для числовых характеристик
     public int MaxHP { get => maxHP; set => maxHP = value; }
@@ -147,6 +150,84 @@ public class BaseStats : ScriptableObject
             {
                 SetStat(item.Code.ToString(), item.BaseAmount - Convert.ToSingle(GetStat(fieldName)));
             }
+        }
+    }
+
+    // Возвращает список модификаторов стрельбы для первого этапа
+    public virtual List<TypeOfShootingModifier> GetShootingModifierFirstArray()
+    {
+        return shootingModifierFirstArray;
+    }
+
+    // Добавляет модификатор в список первого этапа
+    public virtual void AddShootingModifierFirst(TypeOfShootingModifier modifier)
+    {
+        shootingModifierFirstArray.Add(modifier);
+        log.Debug($"Добавлен модификатор первого этапа: {modifier}");
+    }
+
+    // Удаляет модификатор из списка первого этапа
+    public virtual void RemoveShootingModifierFirst(TypeOfShootingModifier modifier)
+    {
+        if (shootingModifierFirstArray.Remove(modifier))
+        {
+            log.Debug($"Удалён модификатор первого этапа: {modifier}");
+        }
+        else
+        {
+            log.Debug($"Модификатор первого этапа {modifier} не найден для удаления.");
+        }
+    }
+
+    // Возвращает список модификаторов стрельбы для второго этапа
+    public virtual List<TypeOfShootingModifier> GetShootingModifierSecondArray()
+    {
+        return shootingModifierSecondArray;
+    }
+
+    // Добавляет модификатор в список второго этапа
+    public virtual void AddShootingModifierSecond(TypeOfShootingModifier modifier)
+    {
+        shootingModifierSecondArray.Add(modifier);
+        log.Debug($"Добавлен модификатор второго этапа: {modifier}");
+    }
+
+    // Удаляет модификатор из списка второго этапа
+    public virtual void RemoveShootingModifierSecond(TypeOfShootingModifier modifier)
+    {
+        if (shootingModifierSecondArray.Remove(modifier))
+        {
+            log.Debug($"Удалён модификатор второго этапа: {modifier}");
+        }
+        else
+        {
+            log.Debug($"Модификатор второго этапа {modifier} не найден для удаления.");
+        }
+    }
+
+    // Возвращает список модификаторов стрельбы для третьего этапа
+    public virtual List<TypeOfShootingModifier> GetShootingModifierThirdArray()
+    {
+        return shootingModifierThirdArray;
+    }
+
+    // Добавляет модификатор в список третьего этапа
+    public virtual void AddShootingModifierThird(TypeOfShootingModifier modifier)
+    {
+        shootingModifierThirdArray.Add(modifier);
+        log.Debug($"Добавлен модификатор третьего этапа: {modifier}");
+    }
+
+    // Удаляет модификатор из списка третьего этапа
+    public virtual void RemoveShootingModifierThird(TypeOfShootingModifier modifier)
+    {
+        if (shootingModifierThirdArray.Remove(modifier))
+        {
+            log.Debug($"Удалён модификатор третьего этапа: {modifier}");
+        }
+        else
+        {
+            log.Debug($"Модификатор третьего этапа {modifier} не найден для удаления.");
         }
     }
 }

@@ -31,6 +31,9 @@ MonoBehaviour:
   rotateSpeed: 0
   recievedDotsArray: []
   usableDotsArray: []
+  shootingModifierFirstArray: 
+  shootingModifierSecondArray: 
+  shootingModifierThirdArray: 
   luck: 0
   isGodMode: 1
   dropRadius: 0

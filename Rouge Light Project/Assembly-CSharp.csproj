@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Logging\UnityDebugAppender.cs" />
     <Compile Include="Assets\Scripts\Effects\RecievedDotEffect.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\ShootingModifiersDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\CharactersDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\stats\MobStats.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMovable.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\Item\ItemShootingModifiersDictionary.cs" />
     <Compile Include="Assets\Scripts\Managers\GameGeneration.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IHealable.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Assets\Scripts\Managers\DropManager.cs" />
     <Compile Include="Assets\Scripts\Logging\Logger.cs" />
     <Compile Include="Assets\Scripts\UIElements\ExpSlider.cs" />
+    <Compile Include="Assets\Scripts\Dictionary\types\TypeOfShootingModifier.cs" />
     <Compile Include="Assets\Scripts\MoveEnemy\EnemyTestAI.cs" />
     <Compile Include="Assets\Scripts\Dictionary\ImprovableCharactesDictionary.cs" />
     <Compile Include="Assets\Scripts\Dictionary\types\TypeOfDots.cs" />
