@@ -16,6 +16,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
     protected float handlingAppliedDoTEffectsPeriod = 1f;
     protected float lastShootTime;
     protected Shooting shooting;
+    protected GameObject firePoint;
 
     // Инициализация
     protected virtual void Awake()
@@ -26,7 +27,10 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         }
 
         stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
+
+        CreateFirePoint();
         shooting = gameObject.GetComponent<Shooting>();
+
         lastShootTime = Time.time;
     }
 
@@ -38,8 +42,28 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         if (Time.time >= lastShootTime + shootInterval)             // Проверяем, можно ли стрелять (прошло ли время с последнего выстрела)
         {
             lastShootTime = Time.time;                          // Обновляем время последнего выстрела
-            shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots());
+            shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoint);
         }
+    }
+
+    protected virtual void CreateFirePoint()
+    {
+        // Создаём новый GameObject с именем "FirePoint"
+        firePoint = new GameObject("FirePoint");
+
+        // Устанавливаем его как дочерний элемент текущего объекта (this.gameObject)
+        firePoint.transform.SetParent(this.transform);
+
+        // Настраиваем Transform
+        firePoint.transform.localPosition = new Vector3(0f, 0.8f, 0f); // Позиция (0, 0.8, 0)
+        firePoint.transform.localRotation = Quaternion.identity;       // Поворот (0, 0, 0)
+        firePoint.transform.localScale = Vector3.one;                  // Масштаб (1, 1, 1)
+
+        // Устанавливаем Tag
+        firePoint.tag = "PlayerFirePoint";
+
+        // Устанавливаем Layer
+        firePoint.layer = LayerMask.NameToLayer("Hero");
     }
 
     // Возвращает значение числовой характеристики через рефлексию

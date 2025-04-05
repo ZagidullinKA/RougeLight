@@ -16,7 +16,6 @@ public class Hero : Character, IAttacker, IMovable
     public HeroStats heroStats => stats as HeroStats;
 
     public Rigidbody2D rb;
-    public Transform firePoint;
     private Vector2 moveVector;
 
     [SerializeField] private InputActionAsset inputActions;
@@ -63,7 +62,6 @@ public class Hero : Character, IAttacker, IMovable
             log.Error("CircleCollider2D DropRadius is null");
         }
 
-
         InitializeCharacteristicsAndDots();
         InitializeShootingModifier();
         base.Awake();
@@ -95,6 +93,8 @@ public class Hero : Character, IAttacker, IMovable
         shootAction.started += ctx => OnShootStarted();         // Подписываемся на событие начала действия (нажатие ЛКМ)
         shootAction.Enable();                                   // Активируем действие для обработки ввода
     }
+
+    
 
     private void OnShootStarted()
     {

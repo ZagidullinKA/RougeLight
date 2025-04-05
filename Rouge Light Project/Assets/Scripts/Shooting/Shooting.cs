@@ -19,8 +19,6 @@ public class Shooting : MonoBehaviour
 
     private float critDamageMultiplier = 2;
 
-    [SerializeField] private GameObject bulletSpawn;
-
     private void Start()
     {
         whoIsShooter = gameObject.tag;
@@ -29,14 +27,10 @@ public class Shooting : MonoBehaviour
         int critChance, 
         int bulletFlySpeed, 
         int bulletTimeAlive, 
-        List<UsableDotEffect> usableDotsArray)
+        List<UsableDotEffect> usableDotsArray,
+        GameObject bulletSpawn
+        )
     {
-        
-        if (bulletSpawn == null)
-        {
-            log.Error("bulletSpawn не назначен, выстрел невозможен.");
-            return;
-        }
 
         Vector2 firePoint = bulletSpawn.transform.position;
         Vector2 unitPos = transform.position;

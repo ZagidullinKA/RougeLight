@@ -68,6 +68,26 @@ public class Mobs : Character
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, mobStats.RotateSpeed * Time.deltaTime);
     }
 
+    protected override void CreateFirePoint()
+    {
+        // Создаём новый GameObject с именем "FirePoint"
+        firePoint = new GameObject("FirePoint");
+
+        // Устанавливаем его как дочерний элемент текущего объекта (this.gameObject)
+        firePoint.transform.SetParent(this.transform);
+
+        // Настраиваем Transform
+        firePoint.transform.localPosition = new Vector3(0.8f, 0f, 0f); // Позиция (0, 0.8, 0)
+        firePoint.transform.localRotation = Quaternion.identity;       // Поворот (0, 0, 0)
+        firePoint.transform.localScale = Vector3.one;                  // Масштаб (1, 1, 1)
+
+        // Устанавливаем Tag
+        firePoint.tag = "EnemyFirePoint";
+
+        // Устанавливаем Layer
+        firePoint.layer = LayerMask.NameToLayer("Enemy");
+    }
+
     public override void SetStat(string statName, float? value)
     {
         if (mobStats == null)

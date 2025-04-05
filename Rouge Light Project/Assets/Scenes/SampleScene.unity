@@ -813,10 +813,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5493396226755638572, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
-      propertyPath: mobStatsPrefab
-      value: 
-      objectReference: {fileID: 11400000, guid: 0b59b3a416ca85f46bc096bf2754132c, type: 2}
     - target: {fileID: 7424926675049982923, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1067,37 +1063,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &900538705
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 900538706}
-  m_Layer: 6
-  m_Name: FirePoint
-  m_TagString: PlayerFirePoint
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &900538706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900538705}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2049923071}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1062771845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,7 +2323,6 @@ GameObject:
   - component: {fileID: 2049923070}
   - component: {fileID: 2049923072}
   - component: {fileID: 2049923073}
-  - component: {fileID: 2049923074}
   - component: {fileID: 2049923077}
   - component: {fileID: 2049923076}
   m_Layer: 6
@@ -2409,7 +2373,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 794442935}
-  - {fileID: 900538706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2049923072
@@ -2427,7 +2390,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2228177594977835695, guid: 1560e5d074adc214b8b759d8e6ddba7d, type: 3}
   rb: {fileID: 0}
   whoIsShooter: 
-  bulletSpawn: {fileID: 900538705}
 --- !u!114 &2049923073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2443,20 +2405,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   heroStatsPrefab: {fileID: 11400000, guid: c297756732df2db499c419cae7521833, type: 2}
   rb: {fileID: 2049923070}
-  firePoint: {fileID: 900538706}
   inputActions: {fileID: -944628639613478452, guid: ce7a642fdefd63d469be073395696fdc, type: 3}
---- !u!114 &2049923074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049923068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c885a95c78fd34e878d68d00e07698, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2049923076
 CircleCollider2D:
   m_ObjectHideFlags: 0
