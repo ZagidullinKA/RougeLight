@@ -7,24 +7,19 @@ using Vector2 = UnityEngine.Vector2;
 using log4net;
 using System.Linq;
 
-
 // Класс Shooting отвечает за логику стрельбы персонажей и врагов
 public class Shooting : MonoBehaviour
 {
-    //Добавляем логирование
     // Инициализация логгера для этого класса
     private static readonly ILog log = LogManager.GetLogger(typeof(Shooting));
 
     // Публичные поля для настройки стрельбы
     public GameObject bulletPrefab; // Префаб пули
     public Rigidbody2D rb; // Компонент Rigidbody2D стреляющего объекта
-
     public string whoIsShooter; // Тег объекта, который стреляет (Player/Enemy)
 
     private float nextFireTime; // Время следующего выстрела
-
     private float critDamageMultiplier = 2; // Множитель критического урона
-
     [SerializeField] private GameObject bulletSpawn; // Точка спавна пуль
 
     // Метод Start вызывается при инициализации объекта
@@ -32,70 +27,39 @@ public class Shooting : MonoBehaviour
     {
         // Запоминаем тег объекта для идентификации пуль
         whoIsShooter = gameObject.tag;
-
     }
 
     // ===== НОВЫЙ КОД =========================================================================================
     /// <summary>
-    /// Определяет и возвращает цвет стреляющего объекта для применения к пуле
+    /// Универсальный метод определения цвета стреляющего объекта
     /// </summary>
     /// <returns>
     /// Возвращает Color структуру, содержащую RGBA-значение цвета:
-    /// - Для игрока: цвет с объекта Triangle
-    /// - Для врага: цвет первого найденного SpriteRenderer'а
-    /// - Белый цвет (Color.white) если цвет определить не удалось
+    /// - Цвет SpriteRenderer'а на основном объекте (если есть)
+    /// - Цвет первого найденного SpriteRenderer'а в дочерних объектах (если есть)
+    /// - Белый цвет (Color.white) если SpriteRenderer не найден
     /// </returns>
     private Color GetShooterColor()
     {
-        // Проверяем, является ли текущий объект игроком (имеет тег "Player")
-        // Это важно, так как визуальное представление игрока может отличаться от врагов
-        if (gameObject.CompareTag("Player"))
+        // Сначала проверяем SpriteRenderer на самом объекте
+        SpriteRenderer mainRenderer = GetComponent<SpriteRenderer>();
+
+        if (mainRenderer != null)
         {
-            // Ищем конкретный дочерний объект с именем "Triangle"
-            // Triangle - это специальный дочерний объект, содержащий визуальное представление игрока
-            Transform triangle = transform.Find("Triangle");
-
-            // Если объект Triangle найден в иерархии
-            if (triangle != null)
-            {
-                // Получаем компонент SpriteRenderer с объекта Triangle
-                // SpriteRenderer отвечает за визуальное отображение 2D-объекта
-                SpriteRenderer sr = triangle.GetComponent<SpriteRenderer>();
-
-                // Если SpriteRenderer существует и настроен
-                if (sr != null)
-                {
-                    // Возвращаем текущий цвет спрайта
-                    // Это позволит пулям игрока соответствовать его цветовой схеме
-                    return sr.color;
-                }
-                // Если SpriteRenderer не найден - продолжаем выполнение
-            }
-            // Если Triangle не найден - продолжаем выполнение
-        }
-        // Проверяем, является ли текущий объект врагом (имеет тег "Enemy")
-        else if (gameObject.CompareTag("Enemy"))
-        {
-            // Для врагов используем более общий подход:
-            // Ищем любой SpriteRenderer на текущем объекте или его потомках
-            // GetComponentInChildren рекурсивно проверяет всю иерархию объектов
-            SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-
-            // Если SpriteRenderer найден
-            if (sr != null)
-            {
-                // Возвращаем цвет спрайта врага
-                // Это обеспечит визуальное соответствие пуль врага их внешнему виду
-                return sr.color;
-            }
-            // Если SpriteRenderer не найден - продолжаем выполнение
+            log.Debug($"Найден SpriteRenderer на основном объекте. Цвет: {mainRenderer.color}");
+            return mainRenderer.color;
         }
 
-        // Возвращаем белый цвет по умолчанию в случаях:
-        // - Объект не является ни игроком, ни врагом
-        // - Не удалось найти нужный SpriteRenderer
-        // - Не найден объект Triangle (для игрока)
-        // Color.white - это полностью непрозрачный белый цвет (RGBA: 1,1,1,1)
+        // Если на основном объекте нет SpriteRenderer'а, ищем в дочерних объектах
+        SpriteRenderer childRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (childRenderer != null)
+        {
+            log.Debug($"Найден SpriteRenderer в дочернем объекте. Цвет: {childRenderer.color}");
+            return childRenderer.color;
+        }
+
+        log.Warn("Не удалось найти SpriteRenderer ни на основном объекте, ни в дочерних. Используется белый цвет.");
         return Color.white;
     }
     // ===== КОНЕЦ НОВОГО КОДА =================================================================================
@@ -110,7 +74,6 @@ public class Shooting : MonoBehaviour
     {
         // Рассчитываем кулдаун между выстрелами
         float coolDown = 1 / (float)attackSpeed;
-        // log.Debug("Кулдаун " + coolDown);
 
         // Проверка наличия точки спавна пуль
         if (bulletSpawn == null)
@@ -141,32 +104,21 @@ public class Shooting : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.identity);
 
             // ===== НОВЫЙ КОД ========================================================================
-            // Получаем компонент SpriteRenderer у только что созданной пули
-            // GetComponentInChildren ищет компонент как на самом объекте пули, так и на всех его дочерних объектах
-            // Это гарантирует, что мы найдем визуальное представление пули, даже если оно находится во вложенной иерархии
+            // Получаем компонент SpriteRenderer у пули
             SpriteRenderer bulletRenderer = bullet.GetComponentInChildren<SpriteRenderer>();
 
-            // Проверяем, был ли найден компонент SpriteRenderer
-            // Эта проверка критически важна, чтобы избежать NullReferenceException
             if (bulletRenderer != null)
             {
-                // Устанавливаем цвет визуального представления пули
-                // GetShooterColor() возвращает цвет, соответствующий стреляющему объекту:
-                // - Для игрока берется цвет с дочернего объекта "Triangle"
-                // - Для врага берется первый найденный SpriteRenderer
-                // - Если ничего не найдено, возвращается белый цвет (Color.white)
+                // Устанавливаем цвет пули в соответствии с цветом стреляющего объекта
                 bulletRenderer.color = GetShooterColor();
-
-                // Логируем информацию о примененном цвете для отладки:
-                // - bulletRenderer.color - фактический установленный цвет
-                // - gameObject.tag - тег стреляющего объекта (Player/Enemy)
-                // Это помогает отслеживать визуальные эффекты во время разработки
-                Debug.Log($"Пуля получила цвет: {bulletRenderer.color} (Стрелял: {gameObject.tag})");
-
-                // Примечание: В финальной сборке Debug.Log следует заменить на log.Debug
-                // для интеграции с системой log4net, но оставлено для наглядности в примере
+                log.Debug($"Пуля получила цвет: {bulletRenderer.color} (Стреляющий объект: {gameObject.name})");
+            }
+            else
+            {
+                log.Warn("Не удалось найти SpriteRenderer у созданной пули");
             }
             // ===== КОНЕЦ НОВОГО КОДА ========================================================================
+
             // Назначаем пуле соответствующий тег
             BulletTag(bullet, whoIsShooter);
 
@@ -180,13 +132,10 @@ public class Shooting : MonoBehaviour
             bulletScript.SetBulletFlySpeed(bulletFlySpeed); // Скорость полета
             bulletScript.SetBulletTimeAlive(bulletTimeAlive); // Время жизни пули
             bulletScript.SetLayerIndex(LayerIndex); // Слой для коллизий
-            log.Debug("Layer Tag is " + layerTag + "Layer Index is " + LayerIndex);
 
             // Устанавливаем время следующего выстрела
             nextFireTime = Time.time + coolDown;
-            log.Debug("nexyFireTime " + nextFireTime + " Time.time " + Time.time);
         }
-
     }
 
     // Метод расчета шанса критического удара
@@ -208,11 +157,8 @@ public class Shooting : MonoBehaviour
     int DamageCalc(int BaseDmg, float critChance)
     {
         return (int)Math.Round(BaseDmg * CritChance(critChance));
-
-        // хуяк=хуяк и в коммит
     }
 
-    //Присваивание пуле тега в соответствии с тегом стреляющего
     // Метод для назначения тега пуле
     void BulletTag(GameObject bullet, string whoIsShooter)
     {
@@ -225,10 +171,6 @@ public class Shooting : MonoBehaviour
         // Перебираем все DOT-эффекты
         foreach (var dotEffect in usableDotsArray)
         {
-            // Логируем параметры эффекта
-            log.Debug("dotEffect.DotDmg is " + dotEffect.DotDmg +
-                " and dotEffect.DotDur is " + dotEffect.DotDur);
-
             // Проверка нулевого урона DOT
             if (dotEffect.DotDmg == 0)
             {
@@ -241,11 +183,8 @@ public class Shooting : MonoBehaviour
             }
 
             // Обработка DOT-эффектов, зависящих от базового урона
-            log.Debug("dotEffect.type is " + dotEffect.Type);
             if (dotEffect.Type == TypeOfDots.TYPE_BASE_DMG_PERCENT)
             {
-                log.Debug("Множитель " + (float)dotEffect.DotDmg / 100 + " Умноженный урон до округления " + (float)baseDmg * (float)dotEffect.DotDmg / 100 + " Округленный урон " + (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100));
-                // Пересчитываем урон DOT в процентах от базового урона
                 dotEffect.DotDmg = (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100);
             }
         }

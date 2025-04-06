@@ -15,7 +15,7 @@ E:/Project/Docs/RougeLight/Rouge Light Project
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-53019
+52220
 -job-worker-count
 5
 -background-job-worker-count
@@ -59,12 +59,12 @@ E:/Project/Docs/RougeLight/Rouge Light Project
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [17968]  Target information:
+Player connection [3584]  Target information:
 
-Player connection [17968]  * "[IP] 192.168.0.111 [Port] 0 [Flags] 2 [Guid] 2631802817 [EditorId] 2631802817 [Version] 1048832 [Id] WindowsEditor(7,Monster) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [3584]  * "[IP] 192.168.0.111 [Port] 0 [Flags] 2 [Guid] 694611773 [EditorId] 694611773 [Version] 1048832 [Id] WindowsEditor(7,Monster) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [17968] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [17968] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [3584] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [3584] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 5
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -75,7 +75,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 1.97 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 2.81 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.32f1 (b2e806cf271c)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.32f1/Editor/Data/Resources/UnitySubsystems
@@ -91,43 +91,43 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.32f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.32f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.32f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56620
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56064
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.32f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002341 seconds.
-- Loaded All Assemblies, in  0.407 seconds
+Registered in 0.002550 seconds.
+- Loaded All Assemblies, in  0.419 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.391 seconds
-Domain Reload Profiling: 797ms
-	BeginReloadAssembly (143ms)
+- Finished resetting the current domain, in  0.367 seconds
+Domain Reload Profiling: 784ms
+	BeginReloadAssembly (140ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (40ms)
-	RebuildNativeTypeToScriptingClass (14ms)
-	initialDomainReloadingComplete (49ms)
-	LoadAllAssembliesAndSetupDomain (158ms)
-		LoadAssemblies (138ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (55ms)
+	LoadAllAssembliesAndSetupDomain (167ms)
+		LoadAssemblies (136ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (155ms)
-			TypeCache.Refresh (154ms)
-				TypeCache.ScanAssembly (140ms)
+		AnalyzeDomain (164ms)
+			TypeCache.Refresh (162ms)
+				TypeCache.ScanAssembly (146ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (392ms)
+	FinalizeReload (368ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (354ms)
+		SetupLoadedEditorAssemblies (333ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (23ms)
-			SetLoadedEditorAssemblies (5ms)
-			BeforeProcessingInitializeOnLoad (84ms)
-			ProcessInitializeOnLoadAttributes (179ms)
-			ProcessInitializeOnLoadMethodAttributes (63ms)
+			InitializePlatformSupportModulesInManaged (24ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (175ms)
+			ProcessInitializeOnLoadMethodAttributes (69ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -136,8 +136,8 @@ Domain Reload Profiling: 797ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.- Loaded All Assemblies, in  1.048 seconds
-Refreshing native plugins compatible for Editor in 1.40 ms, found 4 plugins.
+Duplicate assembly 'log4net.dll' with different versions detected, using 'Assets/Packages/log4net.3.0.4/lib/netstandard2.0/log4net.dll, AssemblyName=log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' and ignoring 'Packages/com.unity.collab-proxy/Lib/Editor/log4netPlastic.dll, AssemblyName=log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a'.- Loaded All Assemblies, in  0.913 seconds
+Refreshing native plugins compatible for Editor in 1.56 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
 log4net:ERROR Exception while reading ConfigurationSettings. Check your .config file is well formed XML.
 System.Configuration.ConfigurationErrorsException: Configuration system failed to initialize ---> System.PlatformNotSupportedException: Operation is not supported on this platform.
@@ -250,44 +250,60 @@ Package Manager log level set to [2]
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.989 seconds
-Domain Reload Profiling: 2034ms
-	BeginReloadAssembly (197ms)
+- Finished resetting the current domain, in  0.992 seconds
+Domain Reload Profiling: 1903ms
+	BeginReloadAssembly (187ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (37ms)
-	RebuildCommonClasses (44ms)
-	RebuildNativeTypeToScriptingClass (17ms)
-	initialDomainReloadingComplete (50ms)
-	LoadAllAssembliesAndSetupDomain (737ms)
-		LoadAssemblies (475ms)
+		CreateAndSetChildDomain (34ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (620ms)
+		LoadAssemblies (410ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (377ms)
-			TypeCache.Refresh (273ms)
-				TypeCache.ScanAssembly (248ms)
-			BuildScriptInfoCaches (87ms)
-			ResolveRequiredComponents (14ms)
-	FinalizeReload (990ms)
+		AnalyzeDomain (323ms)
+			TypeCache.Refresh (225ms)
+				TypeCache.ScanAssembly (205ms)
+			BuildScriptInfoCaches (82ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (993ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (826ms)
+		SetupLoadedEditorAssemblies (851ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (3ms)
 			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (125ms)
-			ProcessInitializeOnLoadAttributes (583ms)
-			ProcessInitializeOnLoadMethodAttributes (106ms)
-			AfterProcessingInitializeOnLoad (5ms)
+			BeforeProcessingInitializeOnLoad (136ms)
+			ProcessInitializeOnLoadAttributes (593ms)
+			ProcessInitializeOnLoadMethodAttributes (110ms)
+			AfterProcessingInitializeOnLoad (4ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 2.72 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 2.28 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 220 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6666 unused Assets / (6.2 MB). Loaded Objects now: 7352.
-Memory consumption went from 178.8 MB to 172.6 MB.
-Total: 23.401700 ms (FindLiveObjects: 1.204400 ms CreateObjectMapping: 3.081200 ms MarkObjects: 10.083900 ms  DeleteObjects: 9.030100 ms)
+Unloading 6666 unused Assets / (4.9 MB). Loaded Objects now: 7353.
+Memory consumption went from 178.7 MB to 173.8 MB.
+Total: 14.971000 ms (FindLiveObjects: 1.284400 ms CreateObjectMapping: 0.905600 ms MarkObjects: 8.246300 ms  DeleteObjects: 4.532400 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 5148.677568 seconds.
+  path: Assets/Resources/Enemy.physicsMaterial2D
+  artifactKey: Guid(30cce2a29eb040746a2c5d001ac4b809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Enemy.physicsMaterial2D using Guid(30cce2a29eb040746a2c5d001ac4b809) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '437a9a2f44a8c2b2b75869701327f133') in 0.0273363 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Resources/DOTweenSettings.asset
+  artifactKey: Guid(36bdc60bc31a3c24aa3b5adc7c18bf41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/DOTweenSettings.asset using Guid(36bdc60bc31a3c24aa3b5adc7c18bf41) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1afd6f7d7de6983c212d99424a5e12a8') in 0.0045168 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 

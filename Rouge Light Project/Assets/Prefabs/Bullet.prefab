@@ -76,6 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9bca63598f22e419e128ab4dd62e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineSettings:
+    color: {r: 1, g: 0, b: 0, a: 1}
+    size: 10
+    enabled: 1
 --- !u!212 &8578433520238635617
 SpriteRenderer:
   m_ObjectHideFlags: 0
