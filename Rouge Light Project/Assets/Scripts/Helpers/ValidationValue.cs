@@ -1,8 +1,13 @@
 using System;
 using UnityEngine;
 
+//  ласс ValidationValue предоставл€ет методы дл€ валидации различных типов данных
+// »спользуетс€ дл€ проверки входных параметров на корректность
 public static class ValidationValue
 {
+    // ѕровер€ет, что строковые значени€ не €вл€ютс€ null или пустыми
+    // ѕараметры:
+    // variables - массив кортежей (значение, им€ переменной) дл€ проверки
     public static void ValidateStringNotNullOrEmpty(params (string value, string name)[] variables)
     {
         foreach (var (value, name) in variables)
@@ -13,6 +18,10 @@ public static class ValidationValue
             }
         }
     }
+
+    // ѕровер€ет, что целочисленные значени€ не €вл€ютс€ null
+    // ѕараметры:
+    // variables - массив кортежей (значение, им€ переменной) дл€ проверки
     public static void ValidateIntNotNull(params (int? value, string name)[] variables)
     {
         foreach (var (value, name) in variables)
@@ -24,6 +33,9 @@ public static class ValidationValue
         }
     }
 
+    // ѕровер€ет, что значени€ с плавающей точкой не €вл€ютс€ null
+    // ѕараметры:
+    // variables - массив кортежей (значение, им€ переменной) дл€ проверки
     public static void ValidateFloatNotNull(params (float? value, string name)[] variables)
     {
         foreach (var (value, name) in variables)

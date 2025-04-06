@@ -1,38 +1,46 @@
-using log4net;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+// Импорт необходимых пространств имен
+using log4net; // Для системы логирования
+using System; // Базовые типы .NET
+using System.Collections.Generic; // Для работы с коллекциями (List)
+using UnityEngine; // Базовые функции Unity
+using UnityEngine.SceneManagement; // Для работы со сценами
+using UnityEngine.UIElements; // Для работы с элементами UI
 
+// Класс Observer - центральный наблюдатель за игровым процессом
+// Реализует паттерн Singleton для глобального доступа
 public class Observer : MonoBehaviour
 {
-    public static Observer Instance; // синглтон
+    public static Observer Instance; // синглтон - единственный экземпляр класса
 
     //Добавляем логирование
+    // Инициализация логгера для этого класса
     private static readonly ILog log = LogManager.GetLogger(typeof(Observer));
 
-    private static int moneyAtStart;
-    private static int raceID;
+    // Статические переменные для хранения игровых данных
+    private static int moneyAtStart; // Количество денег в начале игры
+    private static int raceID; // Идентификатор расы
 
-    private static float startTime; // Время начала отсчета
-    private static bool isRunning = false; // Флаг, указывающий, работает ли таймер
-    private static float lastLogTime = 0f; // Время последнего вывода лога
-    private static float logPeriod = 10f; // Время последнего вывода лога
-    private static float lastOverestimatingTime = 0f; // Время последнего вывода лога
-    private static float recalculationPeriod = 60f; // Раз в какое время должна пересчитываться кривая сложности
-    private static float lastGenerationMobsTime = 0f; // Время последней генерации мобов
-    private static float generationMobsPeriod = 10f; // Раз в какое время происходит генерация мобов
+    // Переменные для работы с игровым временем
+    private static float startTime;                     // Время начала отсчета
+    private static bool isRunning = false;              // Флаг, указывающий, работает ли таймер
+    private static float lastLogTime = 0f;              // Время последнего вывода лога
+    private static float logPeriod = 10f;               // Период логирования (в секундах)
+    private static float lastOverestimatingTime = 0f;   // Время последнего пересчета сложности
+    private static float recalculationPeriod = 60f;     // Период пересчета кривой сложности
+    private static float lastGenerationMobsTime = 0f;   // Время последней генерации мобов
+    private static float generationMobsPeriod = 10f;    // Период генерации мобов
 
-    private static int countKill = 0;
-    private static int lvl = 1;
-    private static int exp = 0;
-    private static int lvlCount = 0;
-    private static List<int> expNextLvl = new List<int>();
+    // Статистика игрока
+    private static int countKill = 0; // Количество убийств
+    private static int lvl = 1; // Текущий уровень
+    private static int exp = 0; // Текущий опыт
+    private static int lvlCount = 0; // Счетчик повышений уровня
+    private static List<int> expNextLvl = new List<int>(); // Список опыта для следующих уровней
 
-
+    // Метод Awake вызывается при инициализации объекта
     private void Awake()
     {
+        // Реализация паттерна Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -44,53 +52,68 @@ public class Observer : MonoBehaviour
             log.Warn("Duplicate Observer destroyed.");
             Destroy(gameObject);
         }
+
+        // Инициализация начальных значений
         initializedMoneyAtStart();
+
+        // Обновление UI
         UIManager.Instance.printCountKill(countKill);
         UIManager.Instance.printMoney(0);
         UIManager.Instance.printLvl(lvl);
-        ExpSlider.setMaxExp(searchCountLvlUpExp()); 
+        ExpSlider.setMaxExp(searchCountLvlUpExp());
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] // Запуск скрипта после загрузки сцены
+    // Метод вызываемый после загрузки сцены
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     static void OnSceneLoad()
     {
         if (Instance == null) // проверка на существования этого объекта
         {
             log.Info("Сцена загружена, запускаем инициализацию");
-            GameObject initializerObject = new GameObject("Observer"); //Создание объекта для рыботы скрипта
+
+            // Создание объекта Observer если он не существует
+            GameObject initializerObject = new GameObject("Observer");
             initializerObject.hideFlags = HideFlags.HideInHierarchy; // Скрываем объект в иерархии
             initializerObject.AddComponent<Observer>(); // Добавляем этот скрипт
+
             StartTimer();
             log.Info("Инициализация наблюдателя завершена");
         }
     }
 
+    // Инициализация начального количества денег
     private void initializedMoneyAtStart()
     {
         moneyAtStart = MoneyDictionary.GetItemMoneyDictionaryOfCode(MoneyCode.Money).Amount;
     }
 
+    // Метод Update вызывается каждый кадр
     void Update()
     {
         if (isRunning)
         {
-            float elapsedTime = Time.time - startTime; // Прошедшее время
+            // Расчет прошедшего времени
+            float elapsedTime = Time.time - startTime;
             UIManager.Instance.printTimer(elapsedTime);
 
-
-            if (Time.time - lastLogTime >= logPeriod) // Проверка вывода лога
+            // Проверка необходимости вывода лога
+            if (Time.time - lastLogTime >= logPeriod)
             {
                 log.Debug("Прошло 10 секунд - На данный момент прошло: " + elapsedTime);
-                lastLogTime = Time.time; 
+                lastLogTime = Time.time;
             }
-            if (Time.time - lastOverestimatingTime >= recalculationPeriod) // Проверка пересчет множителей
+
+            // Проверка необходимости пересчета сложности
+            if (Time.time - lastOverestimatingTime >= recalculationPeriod)
             {
                 // Пересчитываем множители мобов
                 GameGeneration.OverestimatingMobsAmount();
                 GameGeneration.OverestimatingMobsMultipier();
                 lastOverestimatingTime = Time.time;
             }
-            if (Time.time - lastGenerationMobsTime >= generationMobsPeriod) // Проверка генерации мобов
+
+            // Проверка необходимости генерации мобов
+            if (Time.time - lastGenerationMobsTime >= generationMobsPeriod)
             {
                 //Генерация мобов
                 GameGeneration.GenerationMobs();
@@ -99,6 +122,7 @@ public class Observer : MonoBehaviour
         }
     }
 
+    // Запуск игрового таймера
     public static void StartTimer()
     {
         log.Debug("Таймер запущен");
@@ -106,11 +130,13 @@ public class Observer : MonoBehaviour
         isRunning = true; // Запускаем таймер
     }
 
+    // Остановка игрового таймера
     public static void StopTimer()
     {
         isRunning = false; // Останавливаем таймер
     }
 
+    // Увеличение счетчика убийств
     public static void IncrementCountKill(int deathPrice)
     {
         if (Instance == null)
@@ -125,6 +151,7 @@ public class Observer : MonoBehaviour
         IncreasetExp(deathPrice);
     }
 
+    // Увеличение опыта
     public static void IncreasetExp(int deathPrice)
     {
         log.Debug("IncreasetExp. - dp = " + deathPrice);
@@ -132,6 +159,7 @@ public class Observer : MonoBehaviour
         CheckProgressExp(deathPrice);
     }
 
+    // Проверка повышения уровня
     private static int CheckLvlUp(int deathPrice)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -140,38 +168,46 @@ public class Observer : MonoBehaviour
         for (var i = exp + 1; i <= (exp + deathPrice); i++)
         {
             log.Debug("IncreasetExp. Math.Pow(exp, 0.5) % 1 = " + ((float)Math.Pow(exp, 0.5) % 1 == 0) + "  Math.Pow(exp, 0.5) = " + Math.Pow(exp, 0.5) + "  i  = " + i);
-            if ((float)Math.Pow(i, 0.5) % 1 == 0) // Если квадратный корень числа exp целочисленный, то повышаем уровень 
+
+            // Проверка условия повышения уровня (когда квадратный корень опыта целое число)
+            if ((float)Math.Pow(i, 0.5) % 1 == 0)
             {
                 log.Debug("IncreasetExp. Мы вошли в повышение уровня!");
-                lvl++;                                                          // Повышения уровня героя
-                playerScript.IncrementLvl(lvl);                                 // Вызываем метод перерасчета базовых характеристик героя        
+                lvl++; // Повышения уровня героя
+                playerScript.IncrementLvl(lvl); // Перерасчет характеристик героя        
                 UIManager.Instance.printLvl(lvl);
-                lvlCount++;                                                     // Количество уровней, которые мы повысим за раз
-                
-                deathPrice = deathPrice - (i - exp);                            // Высчитываем остаток опыта
+                lvlCount++; // Увеличиваем счетчик повышений уровня
+
+                deathPrice = deathPrice - (i - exp); // Высчитываем остаток опыта
                 exp = i;
-                expNextLvl.Add(searchCountLvlUpExp());                          // Получаем количество опыта, необходимое до след уровня
+                expNextLvl.Add(searchCountLvlUpExp()); // Получаем опыт для следующего уровня
+
                 if (deathPrice != 0)
-                    return CheckLvlUp(deathPrice);                              // Если есть остаток, проверяем нужно ли повысить уровень еще раз
+                    return CheckLvlUp(deathPrice); // Рекурсивная проверка для остатка опыта
             }
         }
+
         log.Debug("IncreasetExp. expNextLvl = " + expNextLvl + " lvlCount = " + lvlCount + " deathPrice = " + deathPrice);
 
-        ExpSlider.AddExp(expNextLvl, lvlCount, deathPrice);                     // Отправляем данные в слайдер для анимации слайдера опыта 
+        // Обновление слайдера опыта
+        ExpSlider.AddExp(expNextLvl, lvlCount, deathPrice);
         expNextLvl.Clear();
         lvlCount = 0;
-        return deathPrice;                                                      // Возвращаем остаток опыта
-    
+        return deathPrice; // Возвращаем остаток опыта
     }
 
+    // Обновление текущего опыта
     private static void CheckProgressExp(int deathPrice)
     {
         exp += deathPrice;
     }
 
+    // Поиск количества опыта для следующего уровня
     private static int searchCountLvlUpExp()
     {
         log.Debug("searchCountLvlUpExp. IncreasetExp. Ищем новое значение maxExp до след уровня");
+
+        // Поиск ближайшего числа, квадратный корень которого целый
         for (var i = exp + 1; i > 0; i++)
         {
             if (Math.Pow(i, 0.5) % 1 == 0)
@@ -180,10 +216,12 @@ public class Observer : MonoBehaviour
                 return i;
             }
         }
+
         log.Error("searchCountLvlUpExp. IncreasetExp. Не нашли след значение уровня!!!!!! ");
         return 0;
     }
 
+    // Увеличение количества денег
     public static void increaseMoney(int countMoney)
     {
         MoneyDictionary.IncreaseAmountItemMoneyDictionaryOfCode(MoneyCode.Money, countMoney);

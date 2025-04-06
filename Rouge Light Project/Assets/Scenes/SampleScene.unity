@@ -813,6 +813,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5320383408383874311, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
+      propertyPath: m_Color.b
+      value: 0.056692798
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320383408383874311, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
+      propertyPath: m_Color.g
+      value: 0.81835693
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320383408383874311, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9245283
+      objectReference: {fileID: 0}
     - target: {fileID: 7424926675049982923, guid: 72d88f672f6dfcf4d96fb6619ba6d711, type: 3}
       propertyPath: m_Name
       value: Enemy
