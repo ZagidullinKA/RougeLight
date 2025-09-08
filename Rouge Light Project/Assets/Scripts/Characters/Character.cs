@@ -7,9 +7,9 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttacker
 {
-    //Добавляем логирование
+    // Р›РѕРіРіРµСЂ РґР»СЏ РѕС‚Р»Р°РґРєРё
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
-    // Добавляем переменную хранящую все характеристики
+    // РЎСЃС‹Р»РєР° РЅР° Р±Р°Р·РѕРІС‹Рµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРµСЂСЃРѕРЅР°Р¶Р°
     [SerializeField] public BaseStats stats;
 
     protected float lastHandlingAppliedDoTEffectsTime = 0;
@@ -17,8 +17,9 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
     protected float lastShootTime;
     protected Shooting shooting;
     protected GameObject firePoint;
+    private List<GameObject> firePoints = new List<GameObject>(); // СЃРїРёСЃРѕРє С‚РѕС‡РµРє РґР»СЏ СЃС‚СЂРµР»СЊР±С‹ FirePoint
 
-    // Инициализация
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
     protected virtual void Awake()
     {
         if (stats != null)
@@ -26,7 +27,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
             stats.InitializeFromDictionary(new DictionaryCharacters());
         }
 
-        stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
+        stats.ActualHP = stats.MaxHP; // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ РЅР° РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РїСЂРё СЃС‚Р°СЂС‚Рµ
 
         CreateFirePoint();
         shooting = gameObject.GetComponent<Shooting>();
@@ -34,44 +35,151 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         lastShootTime = Time.time;
     }
 
-    public void Shoot()
-    {
-        // Вычисляем интервал между выстрелами в секундах на основе скорости атаки (stats.AtkSpeed).
-        // Например, если AtkSpeed = 25, то shootInterval = 1 / 25 = 0.04 секунды (25 выстрелов в секунду).
-        float shootInterval = 1f / (float)stats.AtkSpeed;
-        if (Time.time >= lastShootTime + shootInterval)             // Проверяем, можно ли стрелять (прошло ли время с последнего выстрела)
-        {
-            lastShootTime = Time.time;                          // Обновляем время последнего выстрела
-            shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoint);
-        }
-    }
-
     protected virtual void CreateFirePoint()
     {
-        // Создаём новый GameObject с именем "FirePoint"
+        // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ GameObject СЃ РёРјРµРЅРµРј "FirePoint"
         firePoint = new GameObject("FirePoint");
 
-        // Устанавливаем его как дочерний элемент текущего объекта (this.gameObject)
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РµРіРѕ РєР°Рє РґРѕС‡РµСЂРЅРёР№ РѕР±СЉРµРєС‚ РїРµСЂСЃРѕРЅР°Р¶Р° (this.gameObject)
         firePoint.transform.SetParent(this.transform);
 
-        // Настраиваем Transform
-        firePoint.transform.localPosition = new Vector3(0f, 0.8f, 0f); // Позиция (0, 0.8, 0)
-        firePoint.transform.localRotation = Quaternion.identity;       // Поворот (0, 0, 0)
-        firePoint.transform.localScale = Vector3.one;                  // Масштаб (1, 1, 1)
+        // РќР°СЃС‚СЂР°РёРІР°РµРј Transform
+        firePoint.transform.localPosition = new Vector3(0f, 0.8f, 0f); // РїРѕР·РёС†РёСЏ (0, 0.8, 0)
+        firePoint.transform.localRotation = Quaternion.identity;       // РїРѕРІРѕСЂРѕС‚ (0, 0, 0)
+        firePoint.transform.localScale = Vector3.one;                  // РјР°СЃС€С‚Р°Р± (1, 1, 1)
 
-        // Устанавливаем Tag
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Tag
         firePoint.tag = "PlayerFirePoint";
 
-        // Устанавливаем Layer
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Layer
         firePoint.layer = LayerMask.NameToLayer("Hero");
     }
 
-    // Возвращает значение числовой характеристики через рефлексию
+    protected virtual void CreateFirePointAround(int count, float radius, float totalAngle)
+    {
+        // РџСЂРѕРІРµСЂСЏРµРј РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РІС…РѕРґРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ
+        if (count < 1)
+        {
+            log.Error("Count РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 0!");
+            return;
+        }
+
+        // РћРіСЂР°РЅРёС‡РёРІР°РµРј totalAngle РґРѕ 360 РіСЂР°РґСѓСЃРѕРІ (РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ)
+        if (totalAngle > 360f)
+        {
+            log.Warn("TotalAngle РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 360 РіСЂР°РґСѓСЃРѕРІ! РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј 360.");
+            totalAngle = 360f;
+        }
+
+        if (totalAngle <= 0f)
+        {
+            log.Error("TotalAngle РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 0!");
+            return;
+        }
+
+        // РЈРґР°Р»СЏРµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ FirePoint, РµСЃР»Рё РѕРЅРё РµСЃС‚СЊ (РєСЂРѕРјРµ РѕСЃРЅРѕРІРЅРѕРіРѕ)
+        foreach (var fp in firePoints)
+        {
+            if (fp != null && fp != firePoint)
+            {
+                Destroy(fp);
+            }
+        }
+        firePoints.Clear();
+
+        // Р”РѕР±Р°РІР»СЏРµРј РѕСЃРЅРѕРІРЅРѕР№ FirePoint РІ СЃРїРёСЃРѕРє (РµСЃР»Рё РѕРЅ РЅРµ РІ С†РµРЅС‚СЂРµ РєРѕРѕСЂРґРёРЅР°С‚)
+        firePoints.Add(firePoint);
+
+        // Р’С‹С‡РёСЃР»СЏРµРј СѓРіРѕР» РѕСЃРЅРѕРІРЅРѕРіРѕ FirePoint РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР°
+        Vector3 firstFirePointPos = firePoint.transform.localPosition;
+        float startAngle;
+        if (firstFirePointPos == Vector3.zero)
+        {
+            startAngle = 90f; // РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СѓРіРѕР» РІ 90В° (РІРІРµСЂС…), РµСЃР»Рё FirePoint РІ С†РµРЅС‚СЂРµ
+        }
+        else
+        {
+            startAngle = Mathf.Atan2(firstFirePointPos.y, firstFirePointPos.x) * Mathf.Rad2Deg;
+        }
+
+        // Р’С‹С‡РёСЃР»СЏРµРј РЅР°С‡Р°Р»СЊРЅС‹Р№ Рё РєРѕРЅРµС‡РЅС‹Р№ СѓРіР»С‹ РґР»СЏ РІСЃРµС… С‚РѕС‡РµРє
+        float adjustedStartAngle;
+        float adjustedEndAngle;
+        if (totalAngle < 360f)
+        {
+            // РЎРёРјРјРµС‚СЂРёС‡РЅРѕ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕСЃРЅРѕРІРЅРѕРіРѕ FirePoint
+            adjustedStartAngle = startAngle - (totalAngle / 2f);
+            adjustedEndAngle = startAngle + (totalAngle / 2f);
+        }
+        else
+        {
+            // Р”Р»СЏ РїРѕР»РЅРѕРіРѕ РєСЂСѓРіР° РЅР°С‡РёРЅР°РµРј СЃ СѓРіР»Р°, СЃР»РµРґСѓСЋС‰РµРіРѕ Р·Р° РѕСЃРЅРѕРІРЅС‹Рј FirePoint
+            adjustedStartAngle = startAngle + (totalAngle / count);
+            adjustedEndAngle = startAngle + totalAngle;
+        }
+
+        // Р’С‹С‡РёСЃР»СЏРµРј С€Р°Рі РјРµР¶РґСѓ С‚РѕС‡РєР°РјРё (totalAngle / (РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕС‡РµРє - 1))
+        float angleStep = (adjustedEndAngle - adjustedStartAngle) / (count - 1);
+
+        // РЎРѕР·РґР°РµРј count РЅРѕРІС‹С… FirePoint
+        for (int i = 0; i < count; i++)
+        {
+            // Р’С‹С‡РёСЃР»СЏРµРј СѓРіРѕР» РґР»СЏ С‚РµРєСѓС‰РµР№ С‚РѕС‡РєРё
+            float t = (float)i / (count - 1); // РёРЅС‚РµСЂРїРѕР»РёСЂРѕРІР°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕС‚ 0 РґРѕ 1
+            float angle = Mathf.Lerp(adjustedStartAngle, adjustedEndAngle, t);
+
+            // РџСЂРµРѕР±СЂР°Р·СѓРµРј СѓРіРѕР» РІ СЂР°РґРёР°РЅС‹
+            float angleRad = angle * Mathf.Deg2Rad;
+
+            // Р’С‹С‡РёСЃР»СЏРµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ РїРѕ СѓРіР»Сѓ (x = cos(СѓРіРѕР»), y = sin(СѓРіРѕР»))
+            float x = radius * Mathf.Cos(angleRad);
+            float y = radius * Mathf.Sin(angleRad);
+
+            // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ FirePoint
+            GameObject newFirePoint = new GameObject($"FirePoint_{i}");
+            newFirePoint.transform.SetParent(this.transform);
+            newFirePoint.transform.localPosition = new Vector3(x, y, 0f);
+            newFirePoint.transform.localRotation = Quaternion.identity;
+            newFirePoint.transform.localScale = Vector3.one;
+            newFirePoint.tag = "PlayerFirePoint";
+            newFirePoint.layer = LayerMask.NameToLayer("Hero");
+
+            // Р”РѕР±Р°РІР»СЏРµРј РІ СЃРїРёСЃРѕРє
+            firePoints.Add(newFirePoint);
+        }
+    }
+
+    public void Shoot()
+    {
+        // Р’С‹С‡РёСЃР»СЏРµРј РёРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ РІС‹СЃС‚СЂРµР»Р°РјРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃРєРѕСЂРѕСЃС‚Рё Р°С‚Р°РєРё (stats.AtkSpeed).
+        // РќР°РїСЂРёРјРµСЂ, РµСЃР»Рё AtkSpeed = 25, С‚Рѕ shootInterval = 1 / 25 = 0.04 СЃРµРєСѓРЅРґС‹ (25 РІС‹СЃС‚СЂРµР»РѕРІ РІ СЃРµРєСѓРЅРґСѓ).
+        float shootInterval = 1f / (float)stats.AtkSpeed;
+        if (Time.time >= lastShootTime + shootInterval)             // РїСЂРѕРІРµСЂСЏРµРј, РјРѕР¶РµРј Р»Рё СЃС‚СЂРµР»СЏС‚СЊ (РїСЂРѕС€Р»Рѕ Р»Рё РІСЂРµРјСЏ СЃ РїРѕСЃР»РµРґРЅРµРіРѕ РІС‹СЃС‚СЂРµР»Р°)
+        {
+            lastShootTime = Time.time;                          // РѕР±РЅРѕРІР»СЏРµРј РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РІС‹СЃС‚СЂРµР»Р°
+            
+            if (firePoints.Count > 0)
+            {
+                for (int i = 0; i < firePoints.Count; i++) {
+                    shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoints[i]);
+                }
+            } else
+            {
+                shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoint);
+            }
+            
+            
+        }
+    }
+
+    
+
+    // РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РєРѕРЅРєСЂРµС‚РЅРѕР№ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРµСЂСЃРѕРЅР°Р¶Р°
     public virtual float? GetStat(string statName)
     {
         if (stats == null)
         {
-            log.Debug("Stats не назначены!"); // Логируем отсутствие stats
+            log.Debug("Stats РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ!"); // РїСЂРѕРІРµСЂСЏРµРј РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ stats
             return null;
         }
 
@@ -82,21 +190,21 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
     {
         if (stats == null)
         {
-            log.Debug("Stats не назначены!");
+            log.Debug("Stats РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ!");
             return;
         }
 
-        //Проверям есть ли такой code в переменных statCode
+        // РїСЂРµРѕР±СЂР°Р·СѓРµРј СЃС‚СЂРѕРєСѓ code РІ enum statCode
         if (Enum.TryParse<CharacterStatCode>(code, ignoreCase: true, out CharacterStatCode statCode))
         {
-            stats.SetStat(code, value); // Присваиваем новое значение переменной
-            ApplySpecialEffects(code);  // На случай необходимости дополнительных изменений, кроме самой переменной
+            stats.SetStat(code, value); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё
+            ApplySpecialEffects(code);  // РЅР° СЃР»СѓС‡Р°Р№ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїРѕР±РѕС‡РЅС‹С… СЌС„С„РµРєС‚РѕРІ, РµСЃР»Рё РЅСѓР¶РЅРѕ
         }
     }
 
     protected virtual void ApplySpecialEffects(string statName)
     {
-        log.Debug("Пока только переопределение");
+        log.Debug("РњРµС‚РѕРґ РЅРµ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅ");
     }
 
     protected virtual void TakeDamage(int damage, TypeOfDamage typeDamage)
@@ -110,7 +218,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
                 UIManager.Instance.printDamage(damage.ToString(), transform.position);
         }
 
-        log.Debug($"Противник получил урон: {damage}. Осталось здоровья: {stats.ActualHP}");
+        log.Debug($"РџРѕР»СѓС‡РµРЅ СѓСЂРѕРЅ РѕС‚ Р°С‚Р°РєРё: {damage}. РўРµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ: {stats.ActualHP}");
         if (stats.ActualHP <= 0)
         {
             Die();
@@ -124,10 +232,10 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         TakeDamage(damageAfterArmor, typeDamage);
     }
 
-    // Метод проверки вероятности уклонения
+    // РњРµС‚РѕРґ РїСЂРѕРІРµСЂРєРё СѓРєР»РѕРЅРµРЅРёСЏ РѕС‚ Р°С‚Р°РєРё
     public bool TryDodge()
     {
-        float randomValue = UnityEngine.Random.value; // Генерация случайного числа от 0 до 1
+        float randomValue = UnityEngine.Random.value; // РіРµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅРѕРµ С‡РёСЃР»Рѕ РѕС‚ 0 РґРѕ 1
         float evadeChanceMoment = 1 / stats.EvadeChance;
         log.Debug(randomValue);
         log.Debug(randomValue < evadeChanceMoment);
@@ -137,7 +245,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
     public void TakeDots(List<UsableDotEffect> forcedDotsArray)
     {
         if (forcedDotsArray.Count == 0) { return; }
-        log.Debug("HandlingAppliedDoTEffects. Вошли в получение дотов от патрона");
+        log.Debug("HandlingAppliedDoTEffects. РќР°С‡Р°Р»Рѕ РѕР±СЂР°Р±РѕС‚РєРё DoT СЌС„С„РµРєС‚РѕРІ РѕС‚ Р°С‚Р°РєРё");
 
         foreach (var itemForcedDots in forcedDotsArray)
         {
@@ -156,7 +264,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
             }
             if (checkAvailability)
             {
-                log.Debug("HandlingAppliedDoTEffects. Добавляем дот itemForcedDots.Code = " + itemForcedDots.Code);
+                log.Debug("HandlingAppliedDoTEffects. Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ itemForcedDots.Code = " + itemForcedDots.Code);
                 log.Debug("HandlingAppliedDoTEffects. itemForcedDots.DotDmg = " + itemForcedDots.DotDmg);
                 stats.SetRecievedDots(new RecievedDotEffect(itemForcedDots));
             }
@@ -190,13 +298,13 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
 
 
 
-        log.Debug("HandlingAppliedDoTEffects. Вошли в обработку дотов");
+        log.Debug("HandlingAppliedDoTEffects. РќР°С‡Р°Р»Рѕ РѕР±СЂР°Р±РѕС‚РєРё DoT");
         lastHandlingAppliedDoTEffectsTime = Time.time;
         List<RecievedDotEffect> removeRecievedDotsArray = new List<RecievedDotEffect>();
         List<ItemPrintDot> takeDamageList = new List<ItemPrintDot>();
         foreach (var itemRecievedDot in stats.GetRecievedDots())
         {
-            log.Debug("HandlingAppliedDoTEffects. Обрабатываем itemRecievedDot.Code = " + itemRecievedDot.Code);
+            log.Debug("HandlingAppliedDoTEffects. РћР±СЂР°Р±Р°С‚С‹РІР°РµРј itemRecievedDot.Code = " + itemRecievedDot.Code);
 
             int countedDotDmg = 0;
             switch (itemRecievedDot.Type)
@@ -209,7 +317,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
                     countedDotDmg = itemRecievedDot.DotDmg;
                     break;
                 default:
-                    log.Error("HandlingAppliedDoTEffects. Такого типа дота не Существует!");
+                    log.Error("HandlingAppliedDoTEffects. РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї DoT РЅРµ РѕР±СЂР°Р±РѕС‚Р°РЅ!");
                     break;
             }
 
@@ -245,7 +353,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
                 log.Debug("HandlingAppliedDoTEffects. item.AffectedChar = " + itemRecievedDot.AffectedChar + ", countedDotDmg = " + -countedDotDmg);
                 if (affectedCharCurrentvalue == null)
                 {
-                    log.Error("У характеристики нет значения item.AffectedChar = " + itemRecievedDot.AffectedChar);
+                    log.Error("Р’ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°С… РЅРµС‚ РїРѕР»СЏ item.AffectedChar = " + itemRecievedDot.AffectedChar);
                 }
                 if (affectedCharCurrentvalue - countedDotDmg < 0
                     || (itemRecievedDot.AffectedChar != CharacterStatCode.DebuffResist
@@ -264,7 +372,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
             log.Debug("HandlingAppliedDoTEffects.item.DotDur = " + itemRecievedDot.DotDur);
             if (itemRecievedDot.DotDur <= 1)
             {
-                log.Debug("HandlingAppliedDoTEffects. удаляем и возвращаем характеристику");
+                log.Debug("HandlingAppliedDoTEffects. Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ");
                 SetStat(itemRecievedDot.AffectedChar.ToString(), itemRecievedDot.AffectedDamage);
                 removeRecievedDotsArray.Add(itemRecievedDot);
             }
@@ -300,7 +408,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         removeRecievedDotsArray.Clear();
     }
 
-    // Реализация IHealable
+    // Р РµР°Р»РёР·Р°С†РёСЏ IHealable
     public virtual void Heal(int amount)
     {
         stats.ActualHP += amount;
@@ -310,10 +418,10 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         }
     }
 
-    // Метод для обработки смерти
+    // РњРµС‚РѕРґ РґР»СЏ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
     protected virtual void Die()
     {
-        log.Debug(gameObject.name + " умер.");
+        log.Debug(gameObject.name + " СѓРјРµСЂ.");
         Destroy(gameObject);
     }
 }

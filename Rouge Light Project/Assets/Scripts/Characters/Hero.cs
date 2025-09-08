@@ -29,8 +29,12 @@ public class Hero : Character, IAttacker, IMovable
     // Переменная, которая отражает увелечение характеристик при получении уровня
     private const float UpgradeLvlFactor = 1.5f;
 
+    
+
     protected override void Awake()
     {
+
+
         stats = Instantiate(heroStatsPrefab);
 
         rb = GetComponent<Rigidbody2D>();
@@ -63,8 +67,8 @@ public class Hero : Character, IAttacker, IMovable
         }
 
         InitializeCharacteristicsAndDots();
-        InitializeShootingModifier();
         base.Awake();
+        InitializeShootingModifier();
         UIManager.Instance.printActualHP(heroStats.ActualHP);
 
 
@@ -224,19 +228,24 @@ public class Hero : Character, IAttacker, IMovable
     private void InitializeShootingModifier()
     {
         // Получаем модификаторы уровня 1
-        var level1Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(1);
+        var level1Modifiers = ShootingModifiersDictionary.GetListModifiersByLevel(1);
         foreach (var modifier in level1Modifiers)
         {
             if (modifier.Code == TypeOfShootingModifier.Circle6)
             {
                 heroStats.AddShootingModifierFirst(modifier.Code);
                 log.Debug($"Добавлен модификатор первого этапа: {modifier.Code}");
-                break; // Добавляем только один модификатор
+            }
+            log.Debug($"CreateFirePointAround. Перед условием : {modifier.Code}");
+            if (modifier.Code == TypeOfShootingModifier.Circle6)
+            {
+                log.Debug($"CreateFirePointAround. Прошли условие");
+                base.CreateFirePointAround(modifier.Count, firePoint.transform.position.y, 360f);
             }
         }
 
         // Получаем модификаторы уровня 2
-        var level2Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(2);
+        var level2Modifiers = ShootingModifiersDictionary.GetListModifiersByLevel(2);
         foreach (var modifier in level2Modifiers)
         {
             if (modifier.Code == TypeOfShootingModifier.Burst3)
@@ -248,7 +257,7 @@ public class Hero : Character, IAttacker, IMovable
         }
 
         // Получаем модификаторы уровня 3
-        var level3Modifiers = ShootingModifiersDictionary.GetModifiersByLevel(3);
+        var level3Modifiers = ShootingModifiersDictionary.GetListModifiersByLevel(3);
         foreach (var modifier in level3Modifiers)
         {
             if (modifier.Code == TypeOfShootingModifier.Buckshot3)

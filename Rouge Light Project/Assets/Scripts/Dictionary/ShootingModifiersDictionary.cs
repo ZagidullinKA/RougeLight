@@ -4,42 +4,42 @@ using System.Linq;
 
 public static class ShootingModifiersDictionary
 {
-    // Логгер для записи сообщений об ошибках и отладочной информации
+    // Р›РѕРіРіРµСЂ РґР»СЏ РѕС‚Р»Р°РґРєРё РѕС€РёР±РѕРє Рё РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№
     private static readonly ILog log = LogManager.GetLogger(typeof(ShootingModifiersDictionary));
 
-    // Справочник модификаторов стрельбы: ключ — ShootingModifierCode, значение — ItemShootingModifiersDictionary
+    // РЎР»РѕРІР°СЂСЊ РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ СЃС‚СЂРµР»СЊР±С‹: РєР»СЋС‡ - ShootingModifierCode, Р·РЅР°С‡РµРЅРёРµ - ItemShootingModifiersDictionary
     private static readonly Dictionary<TypeOfShootingModifier, ItemShootingModifiersDictionary> itemsShootingModifiersDictionary = new()
     {
-        // Формат: { ShootingModifierCode, new ItemShootingModifiersDictionary(code,                                 lvl, count, type,      accuracy) }
-        { TypeOfShootingModifier.BaseShootingFirst,   CreateShootingModifier(TypeOfShootingModifier.BaseShootingFirst,   1, 1, "base",       null) },
-        { TypeOfShootingModifier.BaseShootingSecond,  CreateShootingModifier(TypeOfShootingModifier.BaseShootingSecond,  2, 1, "base",       null) },
-        { TypeOfShootingModifier.BaseShootingThird,   CreateShootingModifier(TypeOfShootingModifier.BaseShootingThird,   3, 1, "base",       1f)   },
-        { TypeOfShootingModifier.Circle6,             CreateShootingModifier(TypeOfShootingModifier.Circle6,             1, 6, "circle",     null) },
-        { TypeOfShootingModifier.SemiCircle3,         CreateShootingModifier(TypeOfShootingModifier.SemiCircle3,         1, 3, "semiCircle", null) },
-        { TypeOfShootingModifier.Burst3,              CreateShootingModifier(TypeOfShootingModifier.Burst3,              2, 3, "burst",      null) },
-        { TypeOfShootingModifier.Buckshot3,           CreateShootingModifier(TypeOfShootingModifier.Buckshot3,           3, 3, "buckshot",   0.6f) }
+        // Р¤РѕСЂРјР°С‚: { ShootingModifierCode, new ItemShootingModifiersDictionary(code,                                lvl, count, type,      accuracy) }
+        { TypeOfShootingModifier.BaseShootingFirst,   CreateShootingModifier(TypeOfShootingModifier.BaseShootingFirst,   1,   1, "base",       null) },
+        { TypeOfShootingModifier.BaseShootingSecond,  CreateShootingModifier(TypeOfShootingModifier.BaseShootingSecond,  2,   1, "base",       null) },
+        { TypeOfShootingModifier.BaseShootingThird,   CreateShootingModifier(TypeOfShootingModifier.BaseShootingThird,   3,   1, "base",       1f)   },
+        { TypeOfShootingModifier.Circle6,             CreateShootingModifier(TypeOfShootingModifier.Circle6,             1,   6, "circle",     null) },
+        { TypeOfShootingModifier.SemiCircle3,         CreateShootingModifier(TypeOfShootingModifier.SemiCircle3,         1,   3, "semiCircle", null) },
+        { TypeOfShootingModifier.Burst3,              CreateShootingModifier(TypeOfShootingModifier.Burst3,              2,   3, "burst",      null) },
+        { TypeOfShootingModifier.Buckshot3,           CreateShootingModifier(TypeOfShootingModifier.Buckshot3,           3,   3, "buckshot",   0.6f) }
     };
 
-    // Вспомогательный метод для создания ItemShootingModifiersDictionary
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ ItemShootingModifiersDictionary
     private static ItemShootingModifiersDictionary CreateShootingModifier(TypeOfShootingModifier code, int lvl, int count, string type, float? accuracy)
     {
         return new ItemShootingModifiersDictionary(code, lvl, count, type, accuracy ?? 0f);
     }
 
-    // Получение модификатора по коду
+    // РџРѕР»СѓС‡РµРЅРёРµ РјРѕРґРёС„РёРєР°С‚РѕСЂР° РїРѕ РєРѕРґСѓ
     public static ItemShootingModifiersDictionary GetItemShootingModifierOfCode(TypeOfShootingModifier code)
     {
         return itemsShootingModifiersDictionary.TryGetValue(code, out var item) ? item : null;
     }
 
-    // Получение списка всех модификаторов
+    // РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РІСЃРµС… РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ
     public static List<ItemShootingModifiersDictionary> GetItemsShootingModifiersDictionary()
     {
         return new List<ItemShootingModifiersDictionary>(itemsShootingModifiersDictionary.Values);
     }
 
-    // Возвращает все модификаторы с заданным уровнем
-    public static List<ItemShootingModifiersDictionary> GetModifiersByLevel(int lvl)
+    // РџРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ РїРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ СѓСЂРѕРІРЅСЋ
+    public static List<ItemShootingModifiersDictionary> GetListModifiersByLevel(int lvl)
     {
         return itemsShootingModifiersDictionary.Values
             .Where(item => item.Lvl == lvl)
