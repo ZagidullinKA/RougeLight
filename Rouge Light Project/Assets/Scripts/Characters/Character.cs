@@ -1,5 +1,6 @@
 using log4net;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -29,124 +30,9 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
 
         stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
 
-        CreateFirePoint();
         shooting = gameObject.GetComponent<Shooting>();
 
         lastShootTime = Time.time;
-    }
-
-    protected virtual void CreateFirePoint()
-    {
-        // Создаем новый GameObject с именем "FirePoint"
-        firePoint = new GameObject("FirePoint");
-
-        // Устанавливаем его как дочерний объект персонажа (this.gameObject)
-        firePoint.transform.SetParent(this.transform);
-
-        // Настраиваем Transform
-        firePoint.transform.localPosition = new Vector3(0f, 0.8f, 0f); // позиция (0, 0.8, 0)
-        firePoint.transform.localRotation = Quaternion.identity;       // поворот (0, 0, 0)
-        firePoint.transform.localScale = Vector3.one;                  // масштаб (1, 1, 1)
-
-        // Устанавливаем Tag
-        firePoint.tag = "PlayerFirePoint";
-
-        // Устанавливаем Layer
-        firePoint.layer = LayerMask.NameToLayer("Hero");
-    }
-
-    protected virtual void CreateFirePointAround(int count, float radius, float totalAngle)
-    {
-        // Проверяем корректность входных параметров
-        if (count < 1)
-        {
-            log.Error("Count не может быть меньше 0!");
-            return;
-        }
-
-        // Ограничиваем totalAngle до 360 градусов (если необходимо)
-        if (totalAngle > 360f)
-        {
-            log.Warn("TotalAngle не может быть больше 360 градусов! Устанавливаем 360.");
-            totalAngle = 360f;
-        }
-
-        if (totalAngle <= 0f)
-        {
-            log.Error("TotalAngle не может быть меньше 0!");
-            return;
-        }
-
-        // Удаляем существующие FirePoint, если они есть (кроме основного)
-        foreach (var fp in firePoints)
-        {
-            if (fp != null && fp != firePoint)
-            {
-                Destroy(fp);
-            }
-        }
-        firePoints.Clear();
-
-        // Добавляем основной FirePoint в список (если он не в центре координат)
-        firePoints.Add(firePoint);
-
-        // Вычисляем угол основного FirePoint относительно центра
-        Vector3 firstFirePointPos = firePoint.transform.localPosition;
-        float startAngle;
-        if (firstFirePointPos == Vector3.zero)
-        {
-            startAngle = 90f; // по умолчанию угол в 90° (вверх), если FirePoint в центре
-        }
-        else
-        {
-            startAngle = Mathf.Atan2(firstFirePointPos.y, firstFirePointPos.x) * Mathf.Rad2Deg;
-        }
-
-        // Вычисляем начальный и конечный углы для всех точек
-        float adjustedStartAngle;
-        float adjustedEndAngle;
-        if (totalAngle < 360f)
-        {
-            // Симметрично относительно основного FirePoint
-            adjustedStartAngle = startAngle - (totalAngle / 2f);
-            adjustedEndAngle = startAngle + (totalAngle / 2f);
-        }
-        else
-        {
-            // Для полного круга начинаем с угла, следующего за основным FirePoint
-            adjustedStartAngle = startAngle + (totalAngle / count);
-            adjustedEndAngle = startAngle + totalAngle;
-        }
-
-        // Вычисляем шаг между точками (totalAngle / (количество точек - 1))
-        float angleStep = (adjustedEndAngle - adjustedStartAngle) / (count - 1);
-
-        // Создаем count новых FirePoint
-        for (int i = 0; i < count; i++)
-        {
-            // Вычисляем угол для текущей точки
-            float t = (float)i / (count - 1); // интерполированное значение от 0 до 1
-            float angle = Mathf.Lerp(adjustedStartAngle, adjustedEndAngle, t);
-
-            // Преобразуем угол в радианы
-            float angleRad = angle * Mathf.Deg2Rad;
-
-            // Вычисляем координаты по углу (x = cos(угол), y = sin(угол))
-            float x = radius * Mathf.Cos(angleRad);
-            float y = radius * Mathf.Sin(angleRad);
-
-            // Создаем новый FirePoint
-            GameObject newFirePoint = new GameObject($"FirePoint_{i}");
-            newFirePoint.transform.SetParent(this.transform);
-            newFirePoint.transform.localPosition = new Vector3(x, y, 0f);
-            newFirePoint.transform.localRotation = Quaternion.identity;
-            newFirePoint.transform.localScale = Vector3.one;
-            newFirePoint.tag = "PlayerFirePoint";
-            newFirePoint.layer = LayerMask.NameToLayer("Hero");
-
-            // Добавляем в список
-            firePoints.Add(newFirePoint);
-        }
     }
 
     public void Shoot()
@@ -158,21 +44,277 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         {
             lastShootTime = Time.time;                          // обновляем время последнего выстрела
             
-            if (firePoints.Count > 0)
-            {
-                for (int i = 0; i < firePoints.Count; i++) {
-                    shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoints[i]);
-                }
-            } else
-            {
-                shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, stats.GetUsableDots(), firePoint);
-            }
-            
-            
+            // Применяем модификаторы стрельбы
+            ApplyShootingModifiers();
         }
     }
 
-    
+    /// <summary>
+    /// Применяет модификаторы стрельбы - обрабатывает точки стрельбы и выполняет выстрелы
+    /// </summary>
+    protected virtual void ApplyShootingModifiers()
+    {
+        // Получаем модификаторы второго слота (всегда должен быть хотя бы один)
+        var shootingModifiers = stats.GetShootingModifierSecondArray();
+        
+        // Обрабатываем каждый модификатор
+        foreach (var modifierCode in shootingModifiers)
+        {
+            ProcessShootingModifier(modifierCode);
+        }
+    }
+
+    /// <summary>
+    /// Универсальный метод для обработки модификаторов стрельбы 2 уровня
+    /// </summary>
+    /// <param name="modifierCode">Код модификатора</param>
+    protected virtual void ProcessShootingModifier(TypeOfShootingModifier modifierCode)
+    {
+        // Получаем данные модификатора из словаря (всегда должен существовать)
+        var modifierData = ShootingModifiersDictionary.GetItemShootingModifierOfCode(modifierCode);
+
+        // Универсальная обработка на основе количества выстрелов
+        ProcessUniversalShooting(modifierData);
+    }
+
+    /// <summary>
+    /// Универсальный метод для обработки стрельбы на основе количества выстрелов
+    /// </summary>
+    /// <param name="modifierData">Данные модификатора</param>
+    protected virtual void ProcessUniversalShooting(ItemShootingModifiersDictionary modifierData)
+    {
+        int shotCount = modifierData.Count;
+        
+        if (shotCount == 1)
+        {
+            // Один выстрел - выполняем сразу
+            ExecuteShootingFromAllPoints();
+        }
+        else
+        {
+            // Несколько выстрелов - запускаем корутину с задержками
+            StartCoroutine(ExecuteMultipleShots(shotCount));
+        }
+    }
+
+    /// <summary>
+    /// Выполняет несколько выстрелов с задержками между ними
+    /// </summary>
+    /// <param name="shotCount">Количество выстрелов</param>
+    /// <returns>Корутина</returns>
+    protected virtual System.Collections.IEnumerator ExecuteMultipleShots(int shotCount)
+    {
+        // Вычисляем задержку между выстрелами: 1/(count * atkSpeed)
+        float delayBetweenShots = 1f / (shotCount * stats.AtkSpeed);
+        
+        for (int i = 0; i < shotCount; i++)
+        {
+            // Выполняем выстрел из всех активных точек
+            ExecuteShootingFromAllPoints();
+            
+            // Если это не последний выстрел, ждем задержку
+            if (i < shotCount - 1)
+            {
+                yield return new WaitForSeconds(delayBetweenShots);
+            }
+        }
+        
+        // Обновляем время последнего выстрела для кулдауна
+        lastShootTime = Time.time;
+    }
+
+
+    /// <summary>
+    /// Выполняет выстрел из всех активных точек стрельбы
+    /// </summary>
+    protected virtual void ExecuteShootingFromAllPoints()
+    {
+        // Используем новую систему shotPointsArray
+        var shotPoints = stats.GetShotPointsArray();
+        if (shotPoints.Count > 0)
+        {
+            // Стреляем из всех активных точек
+            for (int i = 0; i < shotPoints.Count; i++)
+            {
+                if (shotPoints[i].isActive)
+                {
+                    // Получаем угол вращения объекта в радианах
+                    float objectRotation = transform.eulerAngles.z * Mathf.Deg2Rad;
+                    
+                    // Получаем повернутое направление стрельбы
+                    Vector2 rotatedDirection = shotPoints[i].GetRotatedDirection(objectRotation);
+                    
+                    // Создаем временную точку стрельбы на основе повернутого направления
+                    Vector3 shootPosition = transform.position + (Vector3)rotatedDirection * 0.8f;
+                    
+                    // Выполняем выстрелы из этой точки (может быть несколько для дробовика)
+                    ExecuteShotsFromPoint(shootPosition, rotatedDirection);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Выполняет выстрелы из одной точки с учетом модификаторов 3 уровня
+    /// </summary>
+    /// <param name="shootPosition">Позиция стрельбы</param>
+    /// <param name="baseDirection">Базовое направление</param>
+    protected virtual void ExecuteShotsFromPoint(Vector3 shootPosition, Vector2 baseDirection)
+    {
+        // Получаем модификаторы третьего слота
+        var thirdLevelModifiers = stats.GetShootingModifierThirdArray();
+        
+        float spread = 0f;
+        int shotsPerPoint = 1;
+        
+        if (thirdLevelModifiers.Count > 0)
+        {
+            // Обрабатываем каждый модификатор 3 уровня (всегда должен существовать)
+            foreach (var modifierCode in thirdLevelModifiers)
+            {
+                var modifierData = ShootingModifiersDictionary.GetItemShootingModifierOfCode(modifierCode);
+                
+                // Вычисляем spread: (1 - accuracy) * 10
+                spread = (1f - modifierData.Accuracy) * 10f;
+                
+                // Количество выстрелов из одной точки (для дробовика)
+                shotsPerPoint = modifierData.Count;
+                break; // Берем первый модификатор
+            }
+        }
+        
+        // Выполняем несколько выстрелов из одной точки (для дробовика)
+        for (int i = 0; i < shotsPerPoint; i++)
+        {
+            shooting.Shot(stats.Dmg, stats.CritChance, stats.BulletFlySpeed, stats.BulletTimeAlive, 
+                         stats.GetUsableDots(), shootPosition, baseDirection, spread);
+        }
+    }
+
+    /// <summary>
+    /// Изменяет точки стрельбы в заданном диапазоне углов, равномерно распределяя их и добавляя новые.
+    /// Поддерживает диапазоны, пересекающие 0° (например, от 270° до 90°).
+    /// </summary>
+    /// <param name="a">Начальный угол диапазона (в градусах)</param>
+    /// <param name="b">Конечный угол диапазона (в градусах)</param>
+    /// <param name="count">Количество новых точек для добавления</param>
+    public void RedistributeShotPointsInRange(int a, int b, int count, bool useUpAsZero = false)
+    {
+        // Получаем текущий массив точек стрельбы
+        var shotPointsArray = stats.GetShotPointsArray();
+
+        // 1. Разделение точек по принадлежности к новому диапазону
+        List<ShotPoint> pointsInside = new List<ShotPoint>();
+        List<ShotPoint> pointsOutside = new List<ShotPoint>();
+
+        foreach (var sp in shotPointsArray)
+        {
+            bool isInsideRange;
+            
+            // Проверяем, пересекает ли диапазон 0°
+            if (a > b)
+            {
+                // Диапазон пересекает 0° (например, 270° до 90°)
+                // Ищем точки в диапазонах: от a до 360 и от 0 до b
+                isInsideRange = (sp.angle >= a && sp.angle <= 360) || (sp.angle >= 0 && sp.angle <= b);
+            }
+            else
+            {
+                // Обычный диапазон (например, 0° до 90°)
+                isInsideRange = sp.angle >= a && sp.angle <= b;
+            }
+
+            if (isInsideRange)
+            {
+                pointsInside.Add(sp);
+            }
+            else
+            {
+                pointsOutside.Add(sp);
+            }
+        }
+
+        // 2. Равномерное распределение точек внутри диапазона
+        int M = pointsInside.Count + count;
+        
+        // Вычисляем общую длину диапазона
+        float rangeLength;
+        if (a > b)
+        {
+            // Диапазон пересекает 0°: от a до 360 + от 0 до b
+            rangeLength = (360 - a) + b;
+        }
+        else
+        {
+            // Обычный диапазон
+            rangeLength = b - a;
+        }
+        
+        float countM = M;
+        if (rangeLength != 360)
+        {
+            if (countM < 2) {
+                countM = 1;
+            } else {
+                countM = countM - 1;
+            }
+        }
+
+        float uniform_step = rangeLength / countM;
+
+        List<ShotPoint> redistributedPoints = new List<ShotPoint>();
+        for (int j = 0; j < M; j++)
+        {
+            float new_angle = a + uniform_step * j;
+            
+            // Нормализуем угол в диапазон [0, 360)
+            while (new_angle >= 360) new_angle -= 360;
+            while (new_angle < 0) new_angle += 360;
+            
+            float angle_rad = new_angle * Mathf.Deg2Rad;
+            
+            Vector2 direction;
+            if (useUpAsZero)
+            {
+                // Система координат: 0° = вверх (для героя)
+                direction = new Vector2(Mathf.Sin(angle_rad), Mathf.Cos(angle_rad)).normalized;
+            }
+            else
+            {
+                // Система координат: 0° = вправо (для мобов)
+                direction = new Vector2(Mathf.Cos(angle_rad), Mathf.Sin(angle_rad)).normalized;
+            }
+
+            ShotPoint newPoint = new ShotPoint();
+            newPoint.angle = new_angle;
+            newPoint.direction = direction;
+            newPoint.isActive = true;
+            redistributedPoints.Add(newPoint);
+        }
+
+        // 3. Формирование итогового массива точек
+        List<ShotPoint> result = new List<ShotPoint>();
+        result.AddRange(pointsOutside);
+        result.AddRange(redistributedPoints);
+
+        // Сортировка по углу
+        result.Sort((sp1, sp2) => sp1.angle.CompareTo(sp2.angle));
+
+        // 4. Подготовка данных для стрельбы
+        // (angle, direction, isActive уже заданы выше)
+
+        // Обновляем массив точек стрельбы в stats
+        log.Debug("RedistributeShotPointsInRange. uniform_step: " + uniform_step);
+        log.Debug("RedistributeShotPointsInRange. rangeLength: " + rangeLength);
+        log.Debug("RedistributeShotPointsInRange. Итоговый массив точек:");
+        foreach (var sp in result)
+        {
+            log.Debug($"ShotPoint: angle={sp.angle}");
+        }
+
+        stats.SetShotPointsArray(result);
+    }
+
 
     // Получение значения конкретной характеристики персонажа
     public virtual float? GetStat(string statName)

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Mobs : Character
 {
-    //Добавляем логирование
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private static readonly ILog log = LogManager.GetLogger(typeof(Mobs));
-    // Префаб для создания файла с характеристиками
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     [SerializeField] private MobStats mobStatsPrefab;
-    // Переменная для характеристик, через нее можно обращаться к базову stats
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ stats
     public MobStats mobStats => stats as MobStats; 
 
 
@@ -17,23 +17,24 @@ public class Mobs : Character
     private Rigidbody2D rb;
     private DropManager dropManagerScript;
 
-    private Transform player; // Ссылка на игрока
+    private Transform player; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     
 
     protected override void Awake()
     {
-        // Создаём новый экземпляр MobStats
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MobStats
         stats = Instantiate(mobStatsPrefab);
 
         if (mobStats != null)
         {
-            log.Debug($"Моб инициализирован с ID: {mobStats.IdMob} и наградой за смерть: {mobStats.DeathPrice}");
+            log.Debug($"пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ID: {mobStats.IdMob} пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: {mobStats.DeathPrice}");
         }
 
         InitializeCharacteristics(EnemyTypeCode.UnitTest);
+        RedistributeShotPointsInRange(270, 90, 8);
         base.Awake();
-        mobStats.IsEnemy = true; // Моб является врагом
+        mobStats.IsEnemy = true; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
         dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -54,55 +55,35 @@ public class Mobs : Character
 
     void RotateTowardsPlayer()
     {
-        // Вычисляем направление к игроку
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Vector2 direction = player.position - transform.position;
         direction.Normalize();
 
-        // Вычисляем угол поворота
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Создаем целевой поворот
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
 
-        // Плавно поворачиваем объект
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, mobStats.RotateSpeed * Time.deltaTime);
-    }
-
-    protected override void CreateFirePoint()
-    {
-        // Создаём новый GameObject с именем "FirePoint"
-        firePoint = new GameObject("FirePoint");
-
-        // Устанавливаем его как дочерний элемент текущего объекта (this.gameObject)
-        firePoint.transform.SetParent(this.transform);
-
-        // Настраиваем Transform
-        firePoint.transform.localPosition = new Vector3(0.8f, 0f, 0f); // Позиция (0, 0.8, 0)
-        firePoint.transform.localRotation = Quaternion.identity;       // Поворот (0, 0, 0)
-        firePoint.transform.localScale = Vector3.one;                  // Масштаб (1, 1, 1)
-
-        // Устанавливаем Tag
-        firePoint.tag = "EnemyFirePoint";
-
-        // Устанавливаем Layer
-        firePoint.layer = LayerMask.NameToLayer("Enemy");
     }
 
     public override void SetStat(string statName, float? value)
     {
         if (mobStats == null)
         {
-            log.Debug("Stats не назначены!");
+            log.Debug("Stats пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
             return;
         }
 
         if (value == null)
         {
-            log.Debug($"Значение для {statName} не указано!");
+            log.Debug($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ {statName} пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
             return;
         }
 
-        // Проверка существования statName в enum CharacterStatCode
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ statName пїЅ enum CharacterStatCode
         if (Enum.TryParse<CharacterStatCode>(statName, ignoreCase: true, out CharacterStatCode statCode))
         {
             mobStats.SetStat(statName, value);
@@ -110,7 +91,7 @@ public class Mobs : Character
         }
     }
 
-    //Метод дополнитльеных изменений, помимо самой переменной
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     protected override void ApplySpecialEffects(string statName)
     {
          CharacterStatCode characterCode = (CharacterStatCode)Enum.Parse(typeof(CharacterStatCode), statName);
@@ -118,12 +99,12 @@ public class Mobs : Character
         {
             EnemyTestAI mobsMoveScript = gameObject.GetComponent<EnemyTestAI>();
             mobsMoveScript.MoveSpeed = mobStats.MoveSpeed;
-            log.Debug($"DropRadius обновлён: {mobStats.MoveSpeed}");
+            log.Debug($"DropRadius пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: {mobStats.MoveSpeed}");
         }
     }
 
 
-    // Инициализация характеристик
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private void InitializeCharacteristics(EnemyTypeCode enemyType)
     {
         var enemyData = EnemyTypesDictionary.GetCharacteristic(enemyType);
@@ -131,24 +112,24 @@ public class Mobs : Character
 
         if (enemyData != null && mobStats != null)
         {
-            // Получаем все наименнования переменных из ItemEnemyTypesDictionary и соответствующие условиям public и принадлежащие объекту, т.е. не статические
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ItemEnemyTypesDictionary пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ public пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             var enemyFields = typeof(ItemEnemyTypesDictionary).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
 
             foreach (var field in enemyFields)
             {
                 if (field.PropertyType == typeof(int) || field.PropertyType == typeof(float))
                 {
-                    string fieldName = field.Name; // Получаем имя переменной
-                    string statName = char.ToLower(fieldName[0]) + fieldName.Substring(1); // меняем регистр 1 буквы имени на нижний
+                    string fieldName = field.Name; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                    string statName = char.ToLower(fieldName[0]) + fieldName.Substring(1); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-                    // Получаем соответствующее имя переменной из класса Mob 
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Mob 
                     var mobField = typeof(MobStats).GetField(statName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
                     if (mobField != null)
                     {
-                        // Конвертируем значение во float
+                        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ float
                         var value = Convert.ToSingle(field.GetValue(enemyData));
-                        float? newValue = fieldName == "DeathPrice" ? value : (float)Math.Round(value * mobsMultiplier); // Получаем значение, которое будем присваивать
-                        mobStats.SetStat(fieldName, newValue); // Присваеваем переменной новое значение
+                        float? newValue = fieldName == "DeathPrice" ? value : (float)Math.Round(value * mobsMultiplier); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                        mobStats.SetStat(fieldName, newValue); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     }
                 }
             }
@@ -160,17 +141,17 @@ public class Mobs : Character
             }
         
 
-            log.Debug($"InitializeCharacteristics. Характеристики моба инициализированы - DeathPrice: {mobStats.DeathPrice}");
+            log.Debug($"InitializeCharacteristics. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - DeathPrice: {mobStats.DeathPrice}");
         }
         else
         {
             if (enemyData == null)
             {
-                log.Warn($"Данные врага для {enemyType} не найдены в EnemyTypesDictionary.");
+                log.Warn($"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ {enemyType} пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ EnemyTypesDictionary.");
             }
             if (mobStats == null)
             {
-                log.Warn("mobStats не инициализирован.");
+                log.Warn("mobStats пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
             }
         }
     }

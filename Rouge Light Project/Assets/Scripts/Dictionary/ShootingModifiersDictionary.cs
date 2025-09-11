@@ -17,7 +17,7 @@ public static class ShootingModifiersDictionary
         { TypeOfShootingModifier.Circle6,             CreateShootingModifier(TypeOfShootingModifier.Circle6,             1,   6, "circle",     null) },
         { TypeOfShootingModifier.SemiCircle3,         CreateShootingModifier(TypeOfShootingModifier.SemiCircle3,         1,   3, "semiCircle", null) },
         { TypeOfShootingModifier.Burst3,              CreateShootingModifier(TypeOfShootingModifier.Burst3,              2,   3, "burst",      null) },
-        { TypeOfShootingModifier.Buckshot3,           CreateShootingModifier(TypeOfShootingModifier.Buckshot3,           3,   3, "buckshot",   0.6f) }
+        { TypeOfShootingModifier.Buckshot3,           CreateShootingModifier(TypeOfShootingModifier.Buckshot3,           3,   3, "buckshot",   0.1f) }
     };
 
     // Вспомогательный метод для создания ItemShootingModifiersDictionary

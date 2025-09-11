@@ -9,7 +9,7 @@ using System.Linq;
 
 public class Shooting : MonoBehaviour
 {
-    //Добавляем логирование
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private static readonly ILog log = LogManager.GetLogger(typeof(Shooting));
 
     public GameObject bulletPrefab;
@@ -23,41 +23,41 @@ public class Shooting : MonoBehaviour
     {
         whoIsShooter = gameObject.tag;
     }
+    
+
+    // РњРµС‚РѕРґ РґР»СЏ СЃС‚СЂРµР»СЊР±С‹ СЃ Р·Р°РґР°РЅРЅС‹Рј РЅР°РїСЂР°РІР»РµРЅРёРµРј
     public void Shot(int baseDmg, 
         int critChance, 
         int bulletFlySpeed, 
         int bulletTimeAlive, 
         List<UsableDotEffect> usableDotsArray,
-        GameObject bulletSpawn
+        Vector3 shootPosition,
+        Vector2 direction,
+        float spread = 0f
         )
     {
-
-        Vector2 firePoint = bulletSpawn.transform.position;
-        Vector2 unitPos = transform.position;
-
-        Vector2 aimCoords = firePoint - unitPos;
-        aimCoords.Normalize();
+        // Р’С‹С‡РёСЃР»СЏРµРј РѕС‚РєР»РѕРЅРµРЅРёРµ РЅР°РїСЂР°РІР»РµРЅРёСЏ РЅР° РѕСЃРЅРѕРІРµ spread
+        Vector2 aimCoords = CalculateSpreadDirection(direction, spread);
 
         UsableDotsArray(usableDotsArray, baseDmg);
 
         string layerTag = string.Concat(whoIsShooter, "Bullet"); 
         int LayerIndex = LayerMask.NameToLayer(layerTag);
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, shootPosition, Quaternion.identity);
 
         BulletTag(bullet, whoIsShooter);
 
         Bullet bulletScript = bullet.GetComponent<Bullet>();
             
-        // Передаем пуле характеристики
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РїСѓР»Рё
         bulletScript.SetAimCoords(aimCoords);
         bulletScript.SetUsableDotsArray(usableDotsArray);
         bulletScript.SetDamage(DamageCalc(baseDmg, critChance));
         bulletScript.SetBulletFlySpeed(bulletFlySpeed);
         bulletScript.SetBulletTimeAlive(bulletTimeAlive);
         bulletScript.SetLayerIndex(LayerIndex);
-        log.Debug("Layer Tag is " + layerTag + "Layer Index is " + LayerIndex);
-
+        log.Debug($"Layer Tag: {layerTag}, Layer Index: {LayerIndex}");
     }
 
     float CritChance(float critChance)
@@ -65,22 +65,20 @@ public class Shooting : MonoBehaviour
         float diceRoll = Random.Range(0, 1);
         if (diceRoll > critChance)
         {
-            return critDamageMultiplier; // Если крит сработал - возвращаем множитель крита
+            return critDamageMultiplier; // РљСЂРёС‚РёС‡РµСЃРєРёР№ СѓРґР°СЂ - СѓРјРЅРѕР¶Р°РµРј СѓСЂРѕРЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         }
         else
         {
-            return 1; // Если крит не сработал - возвращаем множитель 1
+            return 1; // РћР±С‹С‡РЅС‹Р№ СѓРґР°СЂ - РјРЅРѕР¶РёС‚РµР»СЊ 1пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1
         }
     }
 
     int DamageCalc(int BaseDmg, float critChance)
     {
         return (int)Math.Round(BaseDmg * CritChance(critChance));
-        
-        // хуяк=хуяк и в коммит
     }
 
-    //Присваивание пуле тега в соответствии с тегом стреляющего
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     void BulletTag(GameObject bullet, string whoIsShooter)
     {
         bullet.tag = string.Concat(whoIsShooter, "Bullet");
@@ -90,24 +88,50 @@ public class Shooting : MonoBehaviour
     {
         foreach (var dotEffect in usableDotsArray)
         {
-            log.Debug("dotEffect.DotDmg is " +  dotEffect.DotDmg + 
-                " and dotEffect.DotDur is " + dotEffect.DotDur);
+            log.Debug($"DoT Effect - Damage: {dotEffect.DotDmg}, Duration: {dotEffect.DotDur}");
             if (dotEffect.DotDmg == 0)
             {
-                log.Warn("In " + dotEffect + " DotDmg is 0");
+                log.Warn($"DoT Effect {dotEffect} has zero damage");
             }
             if (dotEffect.DotDur == 0)
             {
-                log.Warn("In " + dotEffect + " DotDur is 0");
+                log.Warn($"DoT Effect {dotEffect} has zero duration");
             }
 
-            log.Debug("dotEffect.type is " + dotEffect.Type);
+            log.Debug($"DoT Effect type: {dotEffect.Type}");
             if (dotEffect.Type == TypeOfDots.TYPE_BASE_DMG_PERCENT)
             {
-                log.Debug("Множитель " + (float)dotEffect.DotDmg / 100 + " Умноженный урон до округления " + (float)baseDmg * (float)dotEffect.DotDmg / 100 + " Округленный урон " + (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100));
+                log.Debug("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + (float)dotEffect.DotDmg / 100 + " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ " + (float)baseDmg * (float)dotEffect.DotDmg / 100 + " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ " + (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100));
                 dotEffect.DotDmg = (int)MathF.Ceiling((float)baseDmg * (float)dotEffect.DotDmg / 100);
             }
         }
+    }
+
+    /// <summary>
+    /// Р’С‹С‡РёСЃР»СЏРµС‚ РЅР°РїСЂР°РІР»РµРЅРёРµ СЃ СѓС‡РµС‚РѕРј СЂР°Р·Р±СЂРѕСЃР° (spread)
+    /// </summary>
+    /// <param name="baseDirection">Р‘Р°Р·РѕРІРѕРµ РЅР°РїСЂР°РІР»РµРЅРёРµ</param>
+    /// <param name="spread">Р Р°Р·Р±СЂРѕСЃ РІ РіСЂР°РґСѓСЃР°С…</param>
+    /// <returns>РќР°РїСЂР°РІР»РµРЅРёРµ СЃ РѕС‚РєР»РѕРЅРµРЅРёРµРј</returns>
+    private Vector2 CalculateSpreadDirection(Vector2 baseDirection, float spread)
+    {
+        if (spread <= 0f)
+        {
+            return baseDirection.normalized;
+        }
+
+        // Р’С‹С‡РёСЃР»СЏРµРј СЃР»СѓС‡Р°Р№РЅРѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ РІ РґРёР°РїР°Р·РѕРЅРµ (-spread, spread)
+        float randomSpread = Random.Range(-spread, spread);
+        
+        // РџСЂРµРѕР±СЂР°Р·СѓРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РІ СѓРіРѕР», РґРѕР±Р°РІР»СЏРµРј РѕС‚РєР»РѕРЅРµРЅРёРµ Рё РѕР±СЂР°С‚РЅРѕ РІ РЅР°РїСЂР°РІР»РµРЅРёРµ
+        float baseAngle = Mathf.Atan2(baseDirection.y, baseDirection.x) * Mathf.Rad2Deg;
+        float spreadAngle = baseAngle + randomSpread;
+        
+        // РџСЂРµРѕР±СЂР°Р·СѓРµРј РѕР±СЂР°С‚РЅРѕ РІ Vector2
+        float angleInRadians = spreadAngle * Mathf.Deg2Rad;
+        Vector2 spreadDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
+        
+        return spreadDirection.normalized;
     }
 }
 

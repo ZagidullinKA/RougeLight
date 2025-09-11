@@ -228,21 +228,9 @@ public class Hero : Character, IAttacker, IMovable
     private void InitializeShootingModifier()
     {
         // Получаем модификаторы уровня 1
-        var level1Modifiers = ShootingModifiersDictionary.GetListModifiersByLevel(1);
-        foreach (var modifier in level1Modifiers)
-        {
-            if (modifier.Code == TypeOfShootingModifier.Circle6)
-            {
-                heroStats.AddShootingModifierFirst(modifier.Code);
-                log.Debug($"Добавлен модификатор первого этапа: {modifier.Code}");
-            }
-            log.Debug($"CreateFirePointAround. Перед условием : {modifier.Code}");
-            if (modifier.Code == TypeOfShootingModifier.Circle6)
-            {
-                log.Debug($"CreateFirePointAround. Прошли условие");
-                base.CreateFirePointAround(modifier.Count, firePoint.transform.position.y, 360f);
-            }
-        }
+        //heroStats.SetDefaultShotPoints();
+        RedistributeShotPointsInRange(0, 360, 8, true);
+        //RedistributeShotPointsInRange(270, 90, 8);
 
         // Получаем модификаторы уровня 2
         var level2Modifiers = ShootingModifiersDictionary.GetListModifiersByLevel(2);
@@ -414,6 +402,7 @@ public class Hero : Character, IAttacker, IMovable
     {
         // Получаем позицию курсора в мировых координатах
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
 
         // Вычисляем направление от игрока к курсору
         Vector2 direction = mousePosition - transform.position;
@@ -422,7 +411,7 @@ public class Hero : Character, IAttacker, IMovable
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
         // Устанавливаем новый угол поворота
-        rb.rotation = angle;
+        rb.rotation = angle; 
     }
 
     public override void Heal(int amount)

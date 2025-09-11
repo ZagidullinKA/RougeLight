@@ -9,30 +9,30 @@ public class BaseStats : ScriptableObject
 {
     private static readonly ILog log = LogManager.GetLogger(typeof(Character));
 
-    [SerializeField] protected int maxHP = 0;                    // Максимальное здоровье персонажа
-    [SerializeField] protected int dmg = 0;                      // Урон персонажа
-    [SerializeField] protected int meleeDmg = 0;                 // Урон персонажа
-    [SerializeField] protected float atkSpeed = 0f;              // Скорость атаки
-    [SerializeField] protected int moveSpeed = 0;                // Скорость передвижения
-    [SerializeField] protected int critChance = 0;               // Шанс критического удара
-    [SerializeField] protected int evadeChance = 0;              // Шанс уворота
-    [SerializeField] protected int armor = 0;                    // Броня
-    [SerializeField] protected int debuffResist = 0;             // Сопротивление дебаффам
-    [SerializeField] protected int vampire = 0;                  // Вампиризм (лечение от урона)
-    [SerializeField] protected int hpFromDropRestore = 0;        // Восстановление HP от подбираемых предметов
-    [SerializeField] protected int bulletFlySpeed = 0;           // Скорость полёта пули
-    [SerializeField] protected int bulletTimeAlive = 0;          // Время жизни пули
-    [SerializeField] protected int actualHP = 0;                 // Текущее здоровье персонажа (доступ напрямую)
-    [SerializeField] protected bool isCanDie = true;             // Может ли персонаж умереть (доступ напрямую)
-    [SerializeField] protected bool isEnemy = false;             // Является ли персонаж врагом (доступ напрямую)
-    [SerializeField] protected float rotateSpeed = 0;             // Является ли персонаж врагом (доступ напрямую)
-    [SerializeField] protected List<RecievedDotEffect> recievedDotsArray = new List<RecievedDotEffect>(); // Список полученных DoT-эффектов
-    [SerializeField] protected List<UsableDotEffect> usableDotsArray = new List<UsableDotEffect>();       // Список используемых DoT-эффектов
-    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierFirstArray = new List<TypeOfShootingModifier>();              // Список модификаторов стрельбы 1 этап
-    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierSecondArray = new List<TypeOfShootingModifier>();             // Список модификаторов стрельбы 2 этап
-    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierThirdArray = new List<TypeOfShootingModifier>();              // Список модификаторов стрельбы 3 этап
+    [SerializeField] protected int maxHP = 0;                    // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РґРѕСЂРѕРІСЊРµ РїРµСЂСЃРѕРЅР°Р¶Р°
+    [SerializeField] protected int dmg = 0;                      // РЈСЂРѕРЅ Р°С‚Р°РєРё
+    [SerializeField] protected int meleeDmg = 0;                 // РЈСЂРѕРЅ Р±Р»РёР¶РЅРµРіРѕ Р±РѕСЏ
+    [SerializeField] protected float atkSpeed = 0f;              // РЎРєРѕСЂРѕСЃС‚СЊ Р°С‚Р°РєРё
+    [SerializeField] protected int moveSpeed = 0;                // РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРјРµС‰РµРЅРёСЏ
+    [SerializeField] protected int critChance = 0;               // РЁР°РЅСЃ РєСЂРёС‚РёС‡РµСЃРєРѕРіРѕ СѓРґР°СЂР°
+    [SerializeField] protected int evadeChance = 0;              // РЁР°РЅСЃ СѓРєР»РѕРЅРµРЅРёСЏ
+    [SerializeField] protected int armor = 0;                    // Р‘СЂРѕРЅСЏ
+    [SerializeField] protected int debuffResist = 0;             // РЎРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ РґРµР±Р°С„С„Р°Рј
+    [SerializeField] protected int vampire = 0;                  // Р’Р°РјРїРёСЂРёР·Рј (Р»РµС‡РµРЅРёРµ РѕС‚ СѓСЂРѕРЅР°)
+    [SerializeField] protected int hpFromDropRestore = 0;        // Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРјРѕРµ HP РѕС‚ РїРѕРґР±РёСЂР°РµРјРѕРіРѕ РїСЂРµРґРјРµС‚Р°
+    [SerializeField] protected int bulletFlySpeed = 0;           // РЎРєРѕСЂРѕСЃС‚СЊ РїРѕР»РµС‚Р° РїСѓР»Рё
+    [SerializeField] protected int bulletTimeAlive = 0;          // Р’СЂРµРјСЏ Р¶РёР·РЅРё РїСѓР»Рё
+    [SerializeField] protected int actualHP = 0;                 // РўРµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ РїРµСЂСЃРѕРЅР°Р¶Р° (РёР·РјРµРЅСЏРµС‚СЃСЏ РІ РёРіСЂРµ)
+    [SerializeField] protected bool isCanDie = true;             // РњРѕР¶РµС‚ Р»Рё РїРµСЂСЃРѕРЅР°Р¶ СѓРјРµСЂРµС‚СЊ (РёР·РјРµРЅСЏРµС‚СЃСЏ РІ РёРіСЂРµ)
+    [SerializeField] protected bool isEnemy = false;             // РЇРІР»СЏРµС‚СЃСЏ Р»Рё РїРµСЂСЃРѕРЅР°Р¶ РІСЂР°РіРѕРј (РёР·РјРµРЅСЏРµС‚СЃСЏ РІ РёРіСЂРµ)
+    [SerializeField] protected float rotateSpeed = 0;             // РЎРєРѕСЂРѕСЃС‚СЊ РїРѕРІРѕСЂРѕС‚Р° РїРµСЂСЃРѕРЅР°Р¶Р° (РёР·РјРµРЅСЏРµС‚СЃСЏ РІ РёРіСЂРµ)
+    [SerializeField] protected List<RecievedDotEffect> recievedDotsArray = new List<RecievedDotEffect>(); // СЃРїРёСЃРѕРє РїРѕР»СѓС‡Р°РµРјС‹С… DoT-СЌС„С„РµРєС‚РѕРІ
+    [SerializeField] protected List<UsableDotEffect> usableDotsArray = new List<UsableDotEffect>();       // СЃРїРёСЃРѕРє РёСЃРїРѕР»СЊР·СѓРµРјС‹С… DoT-СЌС„С„РµРєС‚РѕРІ
+    [SerializeField] protected List<ShotPoint> shotPointsArray = new List<ShotPoint>();              // СЃРїРёСЃРѕРє С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹
+    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierSecondArray = new List<TypeOfShootingModifier>();             // СЃРїРёСЃРѕРє РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ СЃС‚СЂРµР»СЊР±С‹ 2 СЃР»РѕС‚
+    [SerializeField] protected List<TypeOfShootingModifier> shootingModifierThirdArray = new List<TypeOfShootingModifier>();              // СЃРїРёСЃРѕРє РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ СЃС‚СЂРµР»СЊР±С‹ 3 СЃР»РѕС‚
 
-    // Свойства с прямым get и set для числовых характеристик
+    // РЎРІРѕР№СЃС‚РІР° get Рё set РґР»СЏ РѕСЃРЅРѕРІРЅС‹С… С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int Dmg { get => dmg; set => dmg = value; }
     public int MeleeDmg { get => meleeDmg; set => meleeDmg = value; }
@@ -51,101 +51,101 @@ public class BaseStats : ScriptableObject
     public bool IsEnemy { get => isEnemy; set => isEnemy = value; }
     public float RotateSpeed { get => rotateSpeed; set => rotateSpeed = value; }
 
-    // Устанавливает значение числовой характеристики по её имени через рефлексию
+    // РЈСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёСЏ РєРѕРЅРєСЂРµС‚РЅРѕР№ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРѕ РЅР°Р·РІР°РЅРёСЋ РІ РёРіСЂРµ Рё РёР·РјРµРЅРµРЅРёСЋ РІ С‡РёСЃР»РѕРІРѕРј РІРёРґРµ
     public virtual void SetStat(string statName, float? value)
     {
         if (value == null)
         {
-            log.Error($"Значение для {statName} не указано!");
+            log.Error($"Р—РЅР°С‡РµРЅРёРµ РґР»СЏ {statName} РЅРµ СѓРєР°Р·Р°РЅРѕ!");
             return;
         }
 
-        // Проверка существования statName в enum CharacterStatCode
+        // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ statName РёР· enum CharacterStatCode РІ СЃС‚СЂРѕРєСѓ (camelCase)
         if (Enum.TryParse<CharacterStatCode>(statName, ignoreCase: true, out CharacterStatCode statCode))
         {
-            // Преобразуем CharacterStatCode в имя поля (camelCase)
+            // РџСЂРµРѕР±СЂР°Р·СѓРµРј CharacterStatCode РІ СЃС‚СЂРѕРєСѓ (camelCase)
             string fieldName = char.ToLower(statCode.ToString()[0]) + statCode.ToString().Substring(1);
-            // Получаем переменную, соответствующую fieldName
+            // РќР°С…РѕРґРёРј РїРѕР»Рµ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ fieldName
             var field = GetType().GetField(fieldName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             if (field != null)
             {
-                var currentValue = Convert.ToSingle(field.GetValue(this)); // Преобразуем field в тип данных изменяемой переменной
+                var currentValue = Convert.ToSingle(field.GetValue(this)); // РџСЂРµРѕР±СЂР°Р·СѓРµРј field РІ float РґР»СЏ РґР°Р»СЊРЅРµР№С€РёС… РІС‹С‡РёСЃР»РµРЅРёР№
                 var newValue = currentValue + value.Value;
-                field.SetValue(this, Convert.ChangeType(newValue, field.FieldType)); // Присваевываем значение новой переменной
-                log.Debug($"SetStat: {statName} изменено на {newValue}");
+                field.SetValue(this, Convert.ChangeType(newValue, field.FieldType)); // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РЅРѕРІРѕРіРѕ РїРѕР»СЏ
+                log.Debug($"SetStat: {statName} РёР·РјРµРЅРёР»СЃСЏ РЅР° {newValue}");
             }
             else
             {
-                log.Warn($"Неизвестная характеристика: {statName}");
+                log.Warn($"РџРѕР»Рµ РЅРµ РЅР°Р№РґРµРЅРѕ: {statName}");
             }
         }
         else
         {
-            log.Warn($"Не удалось преобразовать '{statName}' в CharacterStatCode.");
+            log.Warn($"РќРµ РЅР°Р№РґРµРЅРѕ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ '{statName}' РІ CharacterStatCode.");
         }
     }
 
-    // Возвращает значение числовой характеристики по её имени через рефлексию
+    // РџРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РєРѕРЅРєСЂРµС‚РЅРѕР№ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РїРѕ РЅР°Р·РІР°РЅРёСЋ РІ РёРіСЂРµ Рё РёР·РјРµРЅРµРЅРёСЋ РІ С‡РёСЃР»РѕРІРѕРј РІРёРґРµ
     public virtual float? GetStat(string statName)
     {
 
-        // Получаем переменную, соответствующую fieldName
+        // РќР°С…РѕРґРёРј РїРѕР»Рµ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ fieldName
         var field = GetType().GetField(statName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         if (field == null)
         {
-            log.Debug($"Неизвестная характеристика: {statName}"); // Логируем неизвестную характеристику
+            log.Debug($"РџРѕР»Рµ РЅРµ РЅР°Р№РґРµРЅРѕ: {statName}"); // РїСЂРѕРІРµСЂСЏРµРј СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РїРѕР»СЏ
             return null;
         }
 
         return (float?) field.GetValue(this);
     }
 
-    // Добавляет полученный DoT-эффект в список
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РїРѕР»СѓС‡Р°РµРјРѕРіРѕ DoT-СЌС„С„РµРєС‚Р° РІ СЃРїРёСЃРѕРє
     public virtual void SetRecievedDots(RecievedDotEffect dotEffect)
     {
         recievedDotsArray.Add(dotEffect);
-        log.Debug($"Добавлен RecievedDotEffect: {dotEffect.Code}"); // Логируем добавление
+        log.Debug($"Р”РѕР±Р°РІР»РµРЅ RecievedDotEffect: {dotEffect.Code}"); // РїСЂРѕРІРµСЂСЏРµРј РґРѕР±Р°РІР»РµРЅРёРµ
     }
 
-    // Удаляет из списка recievedDotsArray все эффекты, содержащиеся в переданном списке
+    // РЈРґР°Р»СЏРµРј РёР· СЃРїРёСЃРєР° recievedDotsArray РІСЃРµ СЌР»РµРјРµРЅС‚С‹, СЃРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ РїРµСЂРµРґР°РЅРЅРѕРј СЃРїРёСЃРєРµ
     public virtual void RemoveRecievedDots(List<RecievedDotEffect> removeRecievedDotsArray)
     {
         int removedCount = recievedDotsArray.RemoveAll(item => removeRecievedDotsArray.Contains(item));
         if (removedCount > 0)
         {
-            log.Debug($"Удалено {removedCount} RecievedDotEffect из списка."); // Логируем количество удалённых эффектов
+            log.Debug($"РЈРґР°Р»РµРЅРѕ {removedCount} RecievedDotEffect РёР· СЃРїРёСЃРєР°."); // РїСЂРѕРІРµСЂСЏРµРј СѓСЃРїРµС€РЅРѕСЃС‚СЊ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ
         }
         else
         {
-            log.Debug("Не найдено RecievedDotEffect для удаления."); // Логируем, если ничего не удалено
+            log.Debug("РќРµ РЅР°Р№РґРµРЅРѕ RecievedDotEffect РґР»СЏ СѓРґР°Р»РµРЅРёСЏ."); // СЃРѕРѕР±С‰РµРЅРёРµ, РµСЃР»Рё СЌР»РµРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ
         }
     }
 
-    // Возвращает список полученных DoT-эффектов
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РїРѕР»СѓС‡Р°РµРјС‹С… DoT-СЌС„С„РµРєС‚РѕРІ
     public virtual List<RecievedDotEffect> GetRecievedDots()
     {
         return recievedDotsArray;
     }
 
-    // Добавляет используемый DoT-эффект в список
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РёСЃРїРѕР»СЊР·СѓРµРјРѕРіРѕ DoT-СЌС„С„РµРєС‚Р° РІ СЃРїРёСЃРѕРє
     public virtual void SetUsableDots(UsableDotEffect usableEffect)
     {
         usableDotsArray.Add(usableEffect);
-        log.Debug($"Добавлен UsableDotEffect: {usableEffect.Code}"); // Логируем добавление
+        log.Debug($"Р”РѕР±Р°РІР»РµРЅ UsableDotEffect: {usableEffect.Code}"); // РїСЂРѕРІРµСЂСЏРµРј РґРѕР±Р°РІР»РµРЅРёРµ
     }
 
-    // Возвращает список используемых DoT-эффектов
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РёСЃРїРѕР»СЊР·СѓРµРјС‹С… DoT-СЌС„С„РµРєС‚РѕРІ
     public virtual List<UsableDotEffect> GetUsableDots()
     {
         return usableDotsArray;
     }
 
-    // Инициализирует числовые характеристики из справочника
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РїРµСЂСЃРѕРЅР°Р¶Р° РёР· СЃРїСЂР°РІРѕС‡РЅРёРєР°
     public virtual void InitializeFromDictionary(DictionaryCharacters dictionary)
     {
         foreach (var item in DictionaryCharacters.GetAllCharacteristics())
         {
-            string fieldName = item.Code.ToString(); // Преобразуем CharacterStatCode в строку
+            string fieldName = item.Code.ToString(); // РџСЂРµРѕР±СЂР°Р·СѓРµРј CharacterStatCode РІ СЃС‚СЂРѕРєСѓ
             if (GetType().GetField(fieldName, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic) != null)
             {
                 SetStat(item.Code.ToString(), item.BaseAmount - Convert.ToSingle(GetStat(fieldName)));
@@ -153,81 +153,111 @@ public class BaseStats : ScriptableObject
         }
     }
 
-    // Возвращает список модификаторов стрельбы для первого этапа
-    public virtual List<TypeOfShootingModifier> GetShootingModifierFirstArray()
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹
+    public virtual List<ShotPoint> GetShotPointsArray()
     {
-        return shootingModifierFirstArray;
+        return shotPointsArray;
     }
 
-    // Добавляет модификатор в список первого этапа
-    public virtual void AddShootingModifierFirst(TypeOfShootingModifier modifier)
+    // Р”РѕР±Р°РІР»РµРЅРёРµ С‚РѕС‡РєРё СЃС‚СЂРµР»СЊР±С‹ РІ СЃРїРёСЃРѕРє
+    public virtual void AddShotPoint(ShotPoint shotPoint)
     {
-        shootingModifierFirstArray.Add(modifier);
-        log.Debug($"Добавлен модификатор первого этапа: {modifier}");
+        shotPointsArray.Add(shotPoint);
+        log.Debug($"Р”РѕР±Р°РІР»РµРЅР° С‚РѕС‡РєР° СЃС‚СЂРµР»СЊР±С‹: СѓРіРѕР»={shotPoint.angle}В°, РЅР°РїСЂР°РІР»РµРЅРёРµ={shotPoint.direction}, Р°РєС‚РёРІРЅР°={shotPoint.isActive}");
     }
 
-    // Удаляет модификатор из списка первого этапа
-    public virtual void RemoveShootingModifierFirst(TypeOfShootingModifier modifier)
+    // РЈРґР°Р»РµРЅРёРµ С‚РѕС‡РєРё СЃС‚СЂРµР»СЊР±С‹ РёР· СЃРїРёСЃРєР°
+    public virtual void RemoveShotPoint(ShotPoint shotPoint)
     {
-        if (shootingModifierFirstArray.Remove(modifier))
+        if (shotPointsArray.Remove(shotPoint))
         {
-            log.Debug($"Удалён модификатор первого этапа: {modifier}");
+            log.Debug($"РЈРґР°Р»РµРЅР° С‚РѕС‡РєР° СЃС‚СЂРµР»СЊР±С‹: СѓРіРѕР»={shotPoint.angle}В°");
         }
         else
         {
-            log.Debug($"Модификатор первого этапа {modifier} не найден для удаления.");
+            log.Debug($"РўРѕС‡РєР° СЃС‚СЂРµР»СЊР±С‹ СЃ СѓРіР»РѕРј {shotPoint.angle}В° РЅРµ РЅР°Р№РґРµРЅР° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ.");
         }
     }
 
-    // Возвращает список модификаторов стрельбы для второго этапа
+    // РћС‡РёСЃС‚РєР° РІСЃРµС… С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹
+    public virtual void ClearShotPoints()
+    {
+        shotPointsArray.Clear();
+        log.Debug("РћС‡РёС‰РµРЅС‹ РІСЃРµ С‚РѕС‡РєРё СЃС‚СЂРµР»СЊР±С‹");
+    }
+
+    // РЈСЃС‚Р°РЅРѕРІРєР° С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ (РѕРґРЅР° С‚РѕС‡РєР° РІРїРµСЂРµРґ)
+    public virtual void SetDefaultShotPoints()
+    {
+        shotPointsArray.Clear();
+        shotPointsArray.Add(new ShotPoint(0f, Vector2.up, true));
+        log.Debug("РЈСЃС‚Р°РЅРѕРІР»РµРЅС‹ С‚РѕС‡РєРё СЃС‚СЂРµР»СЊР±С‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ");
+    }
+
+    public virtual void SetDefaultShotPointsByMobs()
+    {
+        shotPointsArray.Clear();
+        shotPointsArray.Add(new ShotPoint(0f, Vector2.right, true));
+        log.Debug("РЈСЃС‚Р°РЅРѕРІР»РµРЅС‹ С‚РѕС‡РєРё СЃС‚СЂРµР»СЊР±С‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ");
+    }
+
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹
+    public virtual void SetShotPointsArray(List<ShotPoint> newShotPoints)
+    {
+        shotPointsArray.Clear();
+        shotPointsArray.AddRange(newShotPoints);
+        log.Debug($"РЈСЃС‚Р°РЅРѕРІР»РµРЅ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ С‚РѕС‡РµРє СЃС‚СЂРµР»СЊР±С‹: {newShotPoints.Count} С‚РѕС‡РµРє");
+    }
+
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ СЃС‚СЂРµР»СЊР±С‹ РґР»СЏ РІС‚РѕСЂРѕРіРѕ СЃР»РѕС‚Р°
     public virtual List<TypeOfShootingModifier> GetShootingModifierSecondArray()
     {
         return shootingModifierSecondArray;
     }
 
-    // Добавляет модификатор в список второго этапа
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РјРѕРґРёС„РёРєР°С‚РѕСЂР° РІРѕ РІС‚РѕСЂРѕР№ СЃР»РѕС‚
     public virtual void AddShootingModifierSecond(TypeOfShootingModifier modifier)
     {
         shootingModifierSecondArray.Add(modifier);
-        log.Debug($"Добавлен модификатор второго этапа: {modifier}");
+        log.Debug($"Р”РѕР±Р°РІР»РµРЅ РјРѕРґРёС„РёРєР°С‚РѕСЂ РІС‚РѕСЂРѕРіРѕ СЃР»РѕС‚Р°: {modifier}");
     }
 
-    // Удаляет модификатор из списка второго этапа
+    // РЈРґР°Р»РµРЅРёРµ РјРѕРґРёС„РёРєР°С‚РѕСЂР° РёР· РІС‚РѕСЂРѕРіРѕ СЃР»РѕС‚Р°
     public virtual void RemoveShootingModifierSecond(TypeOfShootingModifier modifier)
     {
         if (shootingModifierSecondArray.Remove(modifier))
         {
-            log.Debug($"Удалён модификатор второго этапа: {modifier}");
+            log.Debug($"РЈРґР°Р»РµРЅ РјРѕРґРёС„РёРєР°С‚РѕСЂ РІС‚РѕСЂРѕРіРѕ СЃР»РѕС‚Р°: {modifier}");
         }
         else
         {
-            log.Debug($"Модификатор второго этапа {modifier} не найден для удаления.");
+            log.Debug($"РњРѕРґРёС„РёРєР°С‚РѕСЂ РІС‚РѕСЂРѕРіРѕ СЃР»РѕС‚Р° {modifier} РЅРµ РЅР°Р№РґРµРЅ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ.");
         }
     }
 
-    // Возвращает список модификаторов стрельбы для третьего этапа
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє РјРѕРґРёС„РёРєР°С‚РѕСЂРѕРІ СЃС‚СЂРµР»СЊР±С‹ РґР»СЏ С‚СЂРµС‚СЊРµРіРѕ СЃР»РѕС‚Р°
     public virtual List<TypeOfShootingModifier> GetShootingModifierThirdArray()
     {
         return shootingModifierThirdArray;
     }
 
-    // Добавляет модификатор в список третьего этапа
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РјРѕРґРёС„РёРєР°С‚РѕСЂР° РІ С‚СЂРµС‚РёР№ СЃР»РѕС‚
     public virtual void AddShootingModifierThird(TypeOfShootingModifier modifier)
     {
         shootingModifierThirdArray.Add(modifier);
-        log.Debug($"Добавлен модификатор третьего этапа: {modifier}");
+        log.Debug($"Р”РѕР±Р°РІР»РµРЅ РјРѕРґРёС„РёРєР°С‚РѕСЂ С‚СЂРµС‚СЊРµРіРѕ СЃР»РѕС‚Р°: {modifier}");
     }
 
-    // Удаляет модификатор из списка третьего этапа
+    // РЈРґР°Р»РµРЅРёРµ РјРѕРґРёС„РёРєР°С‚РѕСЂР° РёР· С‚СЂРµС‚СЊРµРіРѕ СЃР»РѕС‚Р°
     public virtual void RemoveShootingModifierThird(TypeOfShootingModifier modifier)
     {
         if (shootingModifierThirdArray.Remove(modifier))
         {
-            log.Debug($"Удалён модификатор третьего этапа: {modifier}");
+            log.Debug($"РЈРґР°Р»РµРЅ РјРѕРґРёС„РёРєР°С‚РѕСЂ С‚СЂРµС‚СЊРµРіРѕ СЃР»РѕС‚Р°: {modifier}");
         }
         else
         {
-            log.Debug($"Модификатор третьего этапа {modifier} не найден для удаления.");
+            log.Debug($"РњРѕРґРёС„РёРєР°С‚РѕСЂ С‚СЂРµС‚СЊРµРіРѕ СЃР»РѕС‚Р° {modifier} РЅРµ РЅР°Р№РґРµРЅ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ.");
         }
     }
 }
