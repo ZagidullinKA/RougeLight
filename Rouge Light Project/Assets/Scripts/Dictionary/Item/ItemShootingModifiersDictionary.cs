@@ -1,54 +1,62 @@
-
 public class ItemShootingModifiersDictionary
 {
-    private TypeOfShootingModifier code;    //  Ó‰ ÏÓ‰ËÙËÍ‡ÚÓ‡
-    private int lvl;        // ”Ó‚ÂÌ¸ ÏÓ‰ËÙËÍ‡ÚÓ‡
-    private int count;      //  ÓÎË˜ÂÒÚ‚Ó ÔËÏÂÌÂÌËÈ ÏÓ‰ËÙËÍ‡ÚÓ‡
-    private string type;    // “ËÔ ÏÓ‰ËÙËÍ‡ÚÓ‡
-    private float accuracy; // “Ó˜ÌÓÒÚ¸ ÏÓ‰ËÙËÍ‡ÚÓ‡
+    private TypeOfShootingModifier code;    // –ö–æ–¥ –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞
+    private int lvl;        // –£—Ä–æ–≤–µ–Ω—å –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞
+    private int count;      // –ö–æ–ª–∏—á–µ—Å—Ç–≤–æ –≤—ã—Å—Ç—Ä–µ–ª–æ–≤ –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞
+    private string type;    // –¢–∏–ø –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞
+    private float accuracy; // –¢–æ—á–Ω–æ—Å—Ç—å –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞
+    private int[] range;    // –î–∏–∞–ø–∞–∑–æ–Ω —É–≥–ª–æ–≤ –¥–ª—è –º–æ–¥–∏—Ñ–∏–∫–∞—Ç–æ—Ä–∞ [start, end] (–º–æ–∂–µ—Ç –±—ã—Ç—å null)
 
-    // —‚ÓÈÒÚ‚Ó ‰Îˇ ‰ÓÒÚÛÔ‡ Í ÔÓÎ˛ code
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é code
     public TypeOfShootingModifier Code
     {
         get => code;
         set => code = value;
     }
 
-    // —‚ÓÈÒÚ‚Ó ‰Îˇ ‰ÓÒÚÛÔ‡ Í ÔÓÎ˛ lvl
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é lvl
     public int Lvl
     {
         get => lvl;
         set => lvl = value;
     }
 
-    // —‚ÓÈÒÚ‚Ó ‰Îˇ ‰ÓÒÚÛÔ‡ Í ÔÓÎ˛ count
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é count
     public int Count
     {
         get => count;
         set => count = value;
     }
 
-    // —‚ÓÈÒÚ‚Ó ‰Îˇ ‰ÓÒÚÛÔ‡ Í ÔÓÎ˛ type
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é type
     public string Type
     {
         get => type;
         set => type = value;
     }
 
-    // —‚ÓÈÒÚ‚Ó ‰Îˇ ‰ÓÒÚÛÔ‡ Í ÔÓÎ˛ accuracy
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é accuracy
     public float Accuracy
     {
         get => accuracy;
         set => accuracy = value;
     }
 
-    //  ÓÌÒÚÛÍÚÓ ‰Îˇ ËÌËˆË‡ÎËÁ‡ˆËË ‚ÒÂı ÔÓÎÂÈ
-    public ItemShootingModifiersDictionary(TypeOfShootingModifier code, int lvl, int count, string type, float accuracy)
+    // –°–≤–æ–π—Å—Ç–≤–æ –¥–ª—è –¥–æ—Å—Ç—É–ø–∞ –∫ –ø–æ–ª—é range
+    public int[] Range
+    {
+        get => range;
+        set => range = value;
+    }
+
+    // –ö–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –¥–ª—è —Å–æ–∑–¥–∞–Ω–∏—è –Ω–æ–≤–æ–≥–æ –æ–±—ä–µ–∫—Ç–∞ –∫–ª–∞—Å—Å–∞
+    public ItemShootingModifiersDictionary(TypeOfShootingModifier code, int lvl, int count, string type, float accuracy, int[] range)
     {
         this.code = code;
         this.lvl = lvl;
         this.count = count;
         this.type = type;
         this.accuracy = accuracy;
+        this.range = range;
     }
 }

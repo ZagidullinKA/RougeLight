@@ -2,6 +2,7 @@ using log4net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         stats.ActualHP = stats.MaxHP; // Устанавливаем текущее здоровье на максимальное при старте
 
         shooting = gameObject.GetComponent<Shooting>();
+        InitializeShootingModifier();
 
         lastShootTime = Time.time;
     }
@@ -557,6 +559,98 @@ public abstract class Character : MonoBehaviour, IDamageable, IHealable, IAttack
         if (stats.ActualHP > stats.MaxHP)
         {
             stats.ActualHP = stats.MaxHP;
+        }
+    }
+
+    // Обработка модификаторов атаки в зависимости от уровня
+    protected virtual void AddShootingModifier(string modifierCode)
+    {
+        // Парсим код модификатора
+        if (!Enum.TryParse<TypeOfShootingModifier>(modifierCode, out TypeOfShootingModifier modifierType))
+        {
+            log.Error($"Не удалось распарсить код модификатора: {modifierCode}");
+            return;
+        }
+
+        // Находим модификатор в справочнике
+        var modifierData = ShootingModifiersDictionary.GetItemShootingModifierOfCode(modifierType);
+        if (modifierData == null)
+        {
+            log.Error($"Модификатор не найден в справочнике: {modifierCode}");
+            return;
+        }
+
+        int lvl = modifierData.Lvl;
+        int count = modifierData.Count;
+        int[] range = modifierData.Range; // Получаем range из справочника [start, end]
+
+        if (range == null && lvl == 1)
+        {
+            log.Error($"Обработка модификатора: {modifierCode}, уровень: {lvl}, количество: {count}, диапазон: null");
+        }
+
+        
+
+        // Определяем, является ли персонаж врагом
+        bool isEnemy = stats.IsEnemy;
+        bool useUpAsZero = !isEnemy; // Герой использует useUpAsZero = true, моб = false
+
+        switch (lvl)
+        {
+            case 1:
+                // Для уровня 1 - вызываем метод изменения точек стрельбы
+                RedistributeShotPointsInRange(range[0], range[1], count, useUpAsZero);
+                log.Debug($"Применен модификатор уровня 1: {modifierCode} с диапазоном [{range[0]}, {range[1]}] (useUpAsZero = {useUpAsZero})");
+
+                break;
+                
+            case 2:
+                // Для уровня 2 - заменяем имеющийся код в shootingModifierSecondArray
+                var secondArray = stats.GetShootingModifierSecondArray();
+                string oldModifier2 = secondArray.Count > 0 ? secondArray[0].ToString() : "отсутствовал";
+                if (secondArray.Count > 0)
+                {
+                    // Удаляем старый модификатор
+                    stats.RemoveShootingModifierSecond(secondArray[0]);
+                }
+                // Добавляем новый
+                stats.AddShootingModifierSecond(modifierType);
+                log.Debug($"Заменен модификатор уровня 2: {oldModifier2} → {modifierCode}");
+                break;
+                
+            case 3:
+                // Для уровня 3 - заменяем имеющийся код в shootingModifierThirdArray
+                var thirdArray = stats.GetShootingModifierThirdArray();
+                string oldModifier3 = thirdArray.Count > 0 ? thirdArray[0].ToString() : "отсутствовал";
+                if (thirdArray.Count > 0)
+                {
+                    // Удаляем старый модификатор
+                    stats.RemoveShootingModifierThird(thirdArray[0]);
+                }
+                // Добавляем новый
+                stats.AddShootingModifierThird(modifierType);
+                log.Debug($"Заменен модификатор уровня 3: {oldModifier3} → {modifierCode}");
+                break;
+                
+            default:
+                log.Error($"Неизвестный уровень модификатора: {lvl}");
+                break;
+        }
+    }
+
+    // Инициализация модификаторов стрельбы - генерация базовых модификаторов из справочника
+    protected virtual void InitializeShootingModifier()
+    {
+        // Получаем все модификаторы с типом "base" из справочника
+        var allModifiers = ShootingModifiersDictionary.GetItemsShootingModifiersDictionary();
+        var baseModifiers = allModifiers.Where(modifier => modifier.Type == "base").ToList();
+
+        log.Debug($"Найдено {baseModifiers.Count} базовых модификаторов для инициализации");
+
+        // Применяем каждый базовый модификатор
+        foreach (var modifier in baseModifiers)
+        {
+            AddShootingModifier(modifier.Code.ToString());
         }
     }
 

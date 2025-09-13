@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    //Добавляем логирование
+    // Р›РѕРіРіРµСЂ РґР»СЏ РѕС‚Р»Р°РґРєРё
     private static readonly ILog log = LogManager.GetLogger(typeof(Drop));
 
     private TypeOfDrop dropCode;

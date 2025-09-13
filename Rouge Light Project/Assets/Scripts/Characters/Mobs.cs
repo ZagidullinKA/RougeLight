@@ -32,9 +32,8 @@ public class Mobs : Character
         }
 
         InitializeCharacteristics(EnemyTypeCode.UnitTest);
-        RedistributeShotPointsInRange(270, 90, 8);
-        base.Awake();
-        mobStats.IsEnemy = true; // ��� �������� ������
+        mobStats.IsEnemy = true; //   
+        base.Awake(); 
 
         dropManagerScript = GetComponent<DropManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;

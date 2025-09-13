@@ -8,7 +8,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class DropManager : MonoBehaviour
 {
-    //Добавляем логирование
+    // Р›РѕРіРіРµСЂ РґР»СЏ РѕС‚Р»Р°РґРєРё
     private static readonly ILog log = LogManager.GetLogger(typeof(DropManager));
 
     private static Hero heroScript;
@@ -19,7 +19,7 @@ public class DropManager : MonoBehaviour
 
     void Start()
     {
-        // Получаем объект, к которому прикреплен этот скрипт
+        // РџРѕР»СѓС‡Р°РµРј РІСЂР°РіР°, РІ РґР°РЅРЅРѕРј СЃР»СѓС‡Р°Рµ СЌС‚Рѕ СЃР°Рј РѕР±СЉРµРєС‚
         enemy = gameObject;
     }
 
@@ -28,32 +28,32 @@ public class DropManager : MonoBehaviour
         float diceRoll = Random.Range(0, 1f);
 
         GameObject heroObject = GameObject.Find("Player");
-        // Получаем компонент Hero
+        // РџРѕР»СѓС‡Р°РµРј СЃРєСЂРёРїС‚ Hero
         if (heroObject != null)
         {
             heroScript = heroObject.GetComponent<Hero>();
         }
         if (heroScript != null)
         {
-            //Подтягиваем удачу из героя
-            log.Debug("Переменная удачи из Hero: " + heroScript.heroStats.Luck);
+            // Р’С‹С‡РёСЃР»СЏРµРј С€Р°РЅСЃ РЅР° РѕСЃРЅРѕРІРµ СѓРґР°С‡Рё
+            log.Debug("РџРѕР»СѓС‡РµРЅР° СѓРґР°С‡Р° РѕС‚ Hero: " + heroScript.heroStats.Luck);
             luck = 1f / (heroScript.heroStats.Luck);
 
-            //Проверка удачи на выпадение дропа
+            // РџСЂРѕРІРµСЂСЏРµРј С€Р°РЅСЃ РЅР° РІС‹РїР°РґРµРЅРёРµ РґСЂРѕРїР°
             if (diceRoll < luck)
             {
-                log.Debug("Удача на твоей стороне, выпадение дропа!");
+                log.Debug("РЁР°РЅСЃ РЅР° РґСЂРѕРї РІС‹РїР°Р», СЃРѕР·РґР°РµРј РґСЂРѕРї!");
                 ChoosingDrop();
 
             }
             else
             {
-                log.Debug("Удача не пройдена - дроп не выпадет :  diceRoll - " + diceRoll + " < luck - " + luck);
+                log.Debug("РЁР°РЅСЃ РЅР° РґСЂРѕРї РЅРµ РІС‹РїР°Р» - РґСЂРѕРї РЅРµ СЃРѕР·РґР°РЅ :  diceRoll - " + diceRoll + " < luck - " + luck);
             }
         }
         else
         {
-            log.Error("Скрипт Hero не найден!");
+            log.Error("РЎРєСЂРёРїС‚ Hero РЅРµ РЅР°Р№РґРµРЅ!");
         }
 
     }
@@ -61,31 +61,40 @@ public class DropManager : MonoBehaviour
     private void ChoosingDrop()
     {
         float diceRoll = Random.Range(1, 101);
-        TypeOfDrop dropCode;
 
-        //Проверяем какой дроп выпадет
+        // РћРїСЂРµРґРµР»СЏРµРј С‚РёРї РІС‹РїР°РІС€РµРіРѕ РґСЂРѕРїР°
         if (diceRoll < 11)
         {
-            log.Debug("Выпадает улучшение характеристики");
-            dropCode = TypeOfDrop.TYPE_CHARACTER;
+            log.Debug("Р’С‹РїР°Р» С‚РёРї С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°");
+            createDrop(TypeOfDrop.TYPE_CHARACTER);
         }
-        else if (diceRoll < 31)
+
+        diceRoll = Random.Range(1, 101);
+        if (diceRoll < 21)
         {
-            log.Debug("Выпадает улучшение дота");
-            dropCode = TypeOfDrop.TYPE_DOT;
+            log.Debug("Р’С‹РїР°Р» С‚РёРї РґРѕС‚");
+            createDrop(TypeOfDrop.TYPE_DOT);
         }
-        else if (diceRoll < 61)
+
+        diceRoll = Random.Range(1, 101);
+        if (diceRoll < 31)
         {
-            log.Debug("Выпадают деньги");
-            dropCode = TypeOfDrop.TYPE_MONEY;
+            log.Debug("Р’С‹РїР°Р»Рё РґРµРЅСЊРіРё");
+            createDrop(TypeOfDrop.TYPE_MONEY);
         }
-        else
-        {
-            log.Debug("Выпадает хилка");
-            dropCode = TypeOfDrop.TYPE_HEAL;
+
+        diceRoll = Random.Range(1, 101);
+        if (diceRoll < 31) {
+            log.Debug("Р’С‹РїР°Р»Рѕ Р·РµР»СЊРµ");
+            createDrop(TypeOfDrop.TYPE_HEAL);
         }
-        //Пока это условность, всегда будет выпадать улучшение характеристики
-        createDrop(dropCode);
+
+        diceRoll = Random.Range(1, 101);
+        if (diceRoll < 101) {
+            
+            createDrop(TypeOfDrop.TYPE_MODIFIER_ATTACK);
+        }
+        
     }
 
     private void createDrop(TypeOfDrop dropCode)
@@ -111,8 +120,14 @@ public class DropManager : MonoBehaviour
                 itemCode = TypeOfDrop.TYPE_HEAL.ToString();
                 dropColor = Color.red;
                 break;
+            case TypeOfDrop.TYPE_MODIFIER_ATTACK:
+                int lvl = ShootingModifiersDictionary.GetRandomLevel();
+                itemCode = ShootingModifiersDictionary.GetRandomModifierCodeByLevel(lvl);
+                log.Debug("Р’С‹РїР°Р» РњРѕРґРёС„РёРєР°С‚РѕСЂ Р°С‚Р°РєРё: " + itemCode);
+                dropColor = new Color(0.5f, 0f, 0.5f); // Р¤РёРѕР»РµС‚РѕРІС‹Р№ С†РІРµС‚
+                break;
             default:
-                log.Error($"Неизвестная тип дропа: {dropCode}");
+                log.Error($"РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РґСЂРѕРїР°: {dropCode}");
                 return;
         }
 
@@ -123,57 +138,57 @@ public class DropManager : MonoBehaviour
         GameObject drop = Instantiate(dropPrefab, enemy.transform.position, Quaternion.identity);
 
         Drop dropScript = drop.GetComponent<Drop>();
-        // Передаем дропу характеристики
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РєРѕРґ РґСЂРѕРїР°
         dropScript.DropCode = dropCode;
         dropScript.ItemCode = itemCode;
-        dropScript.Update = 3; //ЕБАННЫЙ ХАРДКОД
+        dropScript.Update = 3; // РЈСЂРѕРІРµРЅСЊ СѓР»СѓС‡С€РµРЅРёСЏ
 
         if (dropCode == TypeOfDrop.TYPE_DOT)
         {
             dropScript.IsDmgUpIfDot = Random.value > 0.5f;
         }
 
-        // Получаем ссылку на дочерний объект "circle"
+        // РС‰РµРј РґРѕС‡РµСЂРЅРёР№ РѕР±СЉРµРєС‚ СЃ РёРјРµРЅРµРј "circle"
         Transform circleTransform = drop.transform.Find("Circle");
 
         if (circleTransform != null)
         {
-            // Получаем SpriteRenderer из дочернего объекта
+            // РџРѕР»СѓС‡Р°РµРј SpriteRenderer РЅР° РЅР°Р№РґРµРЅРЅРѕРј РѕР±СЉРµРєС‚Рµ
             SpriteRenderer dropSprite = circleTransform.GetComponent<SpriteRenderer>();
 
             if (dropSprite != null)
             {
-                // Теперь можно установить цвет
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С†РІРµС‚ СЃРїСЂР°Р№С‚Р° РґСЂРѕРїР°
                 dropSprite.color = dropColor;
             }
             else
             {
-                log.Error("SpriteRenderer не найден");
+                log.Error("SpriteRenderer РЅРµ РЅР°Р№РґРµРЅ");
             }
         }
         else
         {
-            log.Error("Дочерний объект 'circle' не найден");
+            log.Error("Р”РѕС‡РµСЂРЅРёР№ РѕР±СЉРµРєС‚ 'circle' РЅРµ РЅР°Р№РґРµРЅ");
         }
     }
 
     private String getRandomCharacterOrDot(bool type)
     {
-        // Фильтруем объекты по type, характеристика или дот
+        // Р¤РёР»СЊС‚СЂСѓРµРј РїСЂРµРґРјРµС‚С‹ РїРѕ type, С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё РёР»Рё РґРѕС‚С‹
         var filteredItems = ImprovableCharactesDictionary.GetAllImprovableCharacteristicsAndDots().Where(item => item.Type == type).ToList();
 
-        // Если список пуст, возвращаем null
+        // Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚, РІРѕР·РІСЂР°С‰Р°РµРј null
         if (filteredItems.Count == 0)
         {
-            log.Error("Улучшаемый/ая " + (type ? "характеристика" : "дот") + " не найден, type = " + type);
+            log.Error("РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё/РґРѕС‚С‹ РЅРµ РЅР°Р№РґРµРЅС‹, type = " + type);
             return null;
         }
 
-        // Генерируем случайный индекс
+        // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ РёРЅРґРµРєСЃ
         int randomIndex = Random.Range(0, filteredItems.Count);
 
-        // Возвращаем code выбранного объекта
-        log.Debug("Рандомно выбрали - " + filteredItems[randomIndex].Code);
+        // Р’РѕР·РІСЂР°С‰Р°РµРј code РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїСЂРµРґРјРµС‚Р°
+        log.Debug("Р’С‹Р±СЂР°РЅ РїСЂРµРґРјРµС‚ - " + filteredItems[randomIndex].Code);
         return filteredItems[randomIndex].Code;
     }
 }
